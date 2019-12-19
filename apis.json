@@ -1,0 +1,73 @@
+{
+    "name": "Mixpanel",
+    "description": "Get insights across all of your user-centric data to make smarter decisions and act faster based on how customers use your product or website. Try it free.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/79-mixpanel.jpg",
+    "tags": [
+        "analysis",
+        "api provider",
+        "api service provider",
+        "business intelligence",
+        "have api",
+        "metrics",
+        "webhook implementations"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/mixpanel\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [],
+    "x-common": [
+        {
+            "type": "Base",
+            "url": "http:\/\/api.mixpanel.com"
+        },
+        {
+            "type": "Blog",
+            "url": "https:\/\/mixpanel.com\/blog\/"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/mixpanel"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/mixpanel"
+        },
+        {
+            "type": "Email",
+            "url": "support@mixpanel.com"
+        },
+        {
+            "type": "Email",
+            "url": "inquiries@mixpanel.com"
+        },
+        {
+            "type": "Email",
+            "url": "pr@mixpanel.com"
+        },
+        {
+            "type": "Email",
+            "url": "legal@mixpanel.com"
+        },
+        {
+            "type": "Email",
+            "url": "compliance@mixpanel.com"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/mixpanel"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/mixpanel"
+        },
+        {
+            "type": "Webhooks",
+            "url": "https:\/\/mixpanel.com\/help\/reference\/webhooks"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/mixpanel.com\/"
+        }
+    ]
+}
