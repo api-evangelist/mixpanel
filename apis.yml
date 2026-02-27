@@ -1,0 +1,91 @@
+name: Mixpanel
+description: Mixpanel is a business analytics service company that tracks user interactions with web and mobile applications and provides tools for targeted communication with them.
+image: https://mixpanel.com/wp-content/uploads/2021/07/mixpanel-logo.svg
+url: https://mixpanel.com
+created: '2024'
+modified: '2024'
+specificationVersion: '0.16'
+apis:
+- name: Mixpanel Ingestion API
+  description: API for sending event data to Mixpanel for tracking and analysis
+  image: https://mixpanel.com/wp-content/uploads/2021/07/mixpanel-logo.svg
+  humanURL: https://mixpanel.com/
+  baseURL: https://api.mixpanel.com
+  tags:
+  - Analytics
+  - Events
+  - Tracking
+  properties:
+  - type: Documentation
+    url: https://developer.mixpanel.com/reference/ingestion-api
+  - type: OpenAPI
+    url: https://developer.mixpanel.com/reference/openapi
+  contact:
+  - FN: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+- name: Mixpanel Query API
+  description: API for querying and retrieving analytics data from Mixpanel
+  image: https://mixpanel.com/wp-content/uploads/2021/07/mixpanel-logo.svg
+  humanURL: https://mixpanel.com/
+  baseURL: https://mixpanel.com/api
+  tags:
+  - Analytics
+  - Query
+  - Data Export
+  properties:
+  - type: Documentation
+    url: https://developer.mixpanel.com/reference/query-api
+  - type: OpenAPI
+    url: https://developer.mixpanel.com/reference/openapi
+  contact:
+  - FN: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+- name: Mixpanel Data Pipelines API
+  description: API for importing and exporting data at scale with Mixpanel
+  image: https://mixpanel.com/wp-content/uploads/2021/07/mixpanel-logo.svg
+  humanURL: https://mixpanel.com/
+  baseURL: https://data.mixpanel.com
+  tags:
+  - Data Pipeline
+  - Import
+  - Export
+  properties:
+  - type: Documentation
+    url: https://developer.mixpanel.com/reference/raw-data-export-api
+  - type: OpenAPI
+    url: https://developer.mixpanel.com/reference/openapi
+  contact:
+  - FN: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+common:
+- type: Getting Started
+  url: https://developer.mixpanel.com/docs/getting-started
+- type: Authentication
+  url: https://developer.mixpanel.com/reference/authentication
+- type: SDKs
+  url: https://developer.mixpanel.com/docs/sdks
+- type: API Status
+  url: https://www.mixpanelstatus.com/
+- type: Terms of Service
+  url: https://mixpanel.com/legal/terms-of-use
+- type: Privacy Policy
+  url: https://mixpanel.com/legal/privacy-policy
+- type: Pricing
+  url: https://mixpanel.com/pricing
+- type: Blog
+  url: https://mixpanel.com/blog
+- type: Support
+  url: https://mixpanel.com/get-support
+maintainers:
+- FN: Mixpanel
+  email: support@mixpanel.com
+  url: https://mixpanel.com
+tags:
+- Analytics
+- Product Analytics
+- Event Tracking
+- User Behavior
+- Data Analysis
