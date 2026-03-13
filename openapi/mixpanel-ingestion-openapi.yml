@@ -1,0 +1,504 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Ingestion API
+  description: >-
+    API for sending event data to Mixpanel for tracking and analysis,
+    including importing events, tracking events, managing user profiles,
+    group profiles, and lookup tables.
+  version: '2.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+externalDocs:
+  description: Mixpanel Ingestion API Documentation
+  url: https://developer.mixpanel.com/reference/ingestion-api
+servers:
+  - url: https://api.mixpanel.com
+    description: Mixpanel US Data Residency
+  - url: https://api-eu.mixpanel.com
+    description: Mixpanel EU Data Residency
+tags:
+  - name: Events
+    description: Track and import event data
+  - name: User Profiles
+    description: Manage user profile properties
+  - name: Group Profiles
+    description: Manage group analytics profiles
+  - name: Lookup Tables
+    description: Manage lookup tables for data enrichment
+security:
+  - basicAuth: []
+paths:
+  /track:
+    post:
+      operationId: trackEvent
+      summary: Track event
+      description: >-
+        Send a single event or batch of events to Mixpanel in real time.
+        Events sent via /track are processed immediately.
+      tags:
+        - Events
+      parameters:
+        - $ref: '#/components/parameters/verbose'
+        - $ref: '#/components/parameters/ip'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  oneOf:
+                    - $ref: '#/components/schemas/Event'
+                    - type: array
+                      items:
+                        $ref: '#/components/schemas/Event'
+                      maxItems: 2000
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+                  description: Base64-encoded JSON event data
+      responses:
+        '200':
+          description: Events accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - invalid token
+        '429':
+          description: Rate limit exceeded
+      security:
+        - projectToken: []
+  /import:
+    post:
+      operationId: importEvents
+      summary: Import events
+      description: >-
+        Import events into Mixpanel. Designed for high-throughput historical
+        data import. Supports up to 2000 events per batch. Events can have
+        timestamps in the past.
+      tags:
+        - Events
+      parameters:
+        - name: strict
+          in: query
+          schema:
+            type: integer
+            enum: [0, 1]
+          description: When set to 1, validates all properties and rejects the entire batch if any event is invalid
+        - name: project_id
+          in: query
+          schema:
+            type: string
+          description: The project ID to import events into
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Event'
+              maxItems: 2000
+          application/x-ndjson:
+            schema:
+              type: string
+              description: Newline-delimited JSON events
+      responses:
+        '200':
+          description: Events imported successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+        '400':
+          description: Invalid event data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+      security:
+        - basicAuth: []
+  /engage:
+    post:
+      operationId: updateUserProfile
+      summary: Update user profile
+      description: >-
+        Create or update user profile properties in Mixpanel People.
+        Supports set, set_once, add, append, remove, union, unset,
+        and delete operations.
+      tags:
+        - User Profiles
+      parameters:
+        - $ref: '#/components/parameters/verbose'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/ProfileUpdate'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/ProfileUpdate'
+                  maxItems: 2000
+      responses:
+        '200':
+          description: Profile updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+      security:
+        - projectToken: []
+  /groups:
+    post:
+      operationId: updateGroupProfile
+      summary: Update group profile
+      description: >-
+        Create or update group profile properties. Groups allow you to
+        associate events with entities like companies, accounts, or any
+        custom group type.
+      tags:
+        - Group Profiles
+      parameters:
+        - $ref: '#/components/parameters/verbose'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/GroupUpdate'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/GroupUpdate'
+                  maxItems: 2000
+      responses:
+        '200':
+          description: Group profile updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+      security:
+        - projectToken: []
+  /lookup-tables:
+    get:
+      operationId: listLookupTables
+      summary: List lookup tables
+      description: >-
+        Retrieve all lookup tables defined for the project.
+      tags:
+        - Lookup Tables
+      responses:
+        '200':
+          description: List of lookup tables
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LookupTable'
+        '401':
+          description: Unauthorized
+      security:
+        - basicAuth: []
+  /lookup-tables/{lookupTableId}:
+    put:
+      operationId: replaceLookupTable
+      summary: Replace lookup table
+      description: >-
+        Replace the contents of a lookup table with new CSV data.
+        The first column is the join key.
+      tags:
+        - Lookup Tables
+      parameters:
+        - name: lookupTableId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the lookup table to replace
+      requestBody:
+        required: true
+        content:
+          text/csv:
+            schema:
+              type: string
+              description: CSV data with headers in the first row
+      responses:
+        '200':
+          description: Lookup table replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LookupTable'
+        '400':
+          description: Invalid CSV data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Lookup table not found
+      security:
+        - basicAuth: []
+    delete:
+      operationId: deleteLookupTable
+      summary: Delete lookup table
+      description: >-
+        Delete a lookup table by ID.
+      tags:
+        - Lookup Tables
+      parameters:
+        - name: lookupTableId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the lookup table to delete
+      responses:
+        '200':
+          description: Lookup table deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Lookup table not found
+      security:
+        - basicAuth: []
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        Service account credentials. Use the service account username
+        as the username and the service account secret as the password.
+    projectToken:
+      type: apiKey
+      in: query
+      name: token
+      description: Mixpanel project token for client-side tracking
+  parameters:
+    verbose:
+      name: verbose
+      in: query
+      schema:
+        type: integer
+        enum: [0, 1]
+      description: When set to 1, returns a JSON response with status and error details
+    ip:
+      name: ip
+      in: query
+      schema:
+        type: integer
+        enum: [0, 1]
+      description: When set to 1, use the IP address for geolocation
+  schemas:
+    Event:
+      type: object
+      required:
+        - event
+        - properties
+      properties:
+        event:
+          type: string
+          description: The event name
+        properties:
+          type: object
+          properties:
+            distinct_id:
+              type: string
+              description: Unique identifier for the user who performed the event
+            time:
+              type: integer
+              description: Unix timestamp in seconds when the event occurred
+            $insert_id:
+              type: string
+              description: Unique identifier for the event for deduplication
+            token:
+              type: string
+              description: Mixpanel project token
+          additionalProperties: true
+    ProfileUpdate:
+      type: object
+      required:
+        - $token
+        - $distinct_id
+      properties:
+        $token:
+          type: string
+          description: Mixpanel project token
+        $distinct_id:
+          type: string
+          description: Unique identifier for the user profile
+        $ip:
+          type: string
+          description: IP address for geolocation
+        $set:
+          type: object
+          additionalProperties: true
+          description: Properties to set (overwrites existing values)
+        $set_once:
+          type: object
+          additionalProperties: true
+          description: Properties to set only if they do not already exist
+        $add:
+          type: object
+          additionalProperties:
+            type: number
+          description: Numeric properties to increment
+        $append:
+          type: object
+          additionalProperties: true
+          description: Values to append to list properties
+        $remove:
+          type: object
+          additionalProperties: true
+          description: Values to remove from list properties
+        $union:
+          type: object
+          additionalProperties:
+            type: array
+          description: Values to merge into list properties without duplicates
+        $unset:
+          type: array
+          items:
+            type: string
+          description: Property names to remove from the profile
+        $delete:
+          type: string
+          description: Set to empty string to delete the profile entirely
+    GroupUpdate:
+      type: object
+      required:
+        - $token
+        - $group_key
+        - $group_id
+      properties:
+        $token:
+          type: string
+          description: Mixpanel project token
+        $group_key:
+          type: string
+          description: The group key (e.g., company)
+        $group_id:
+          type: string
+          description: The group identifier value
+        $set:
+          type: object
+          additionalProperties: true
+          description: Properties to set on the group profile
+        $set_once:
+          type: object
+          additionalProperties: true
+          description: Properties to set only if not already set
+        $unset:
+          type: array
+          items:
+            type: string
+          description: Property names to remove from the group profile
+        $delete:
+          type: string
+          description: Set to empty string to delete the group profile
+    LookupTable:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the lookup table
+        name:
+          type: string
+          description: Name of the lookup table
+        rowCount:
+          type: integer
+          description: Number of rows in the lookup table
+        columnCount:
+          type: integer
+          description: Number of columns in the lookup table
+        createdAt:
+          type: string
+          format: date-time
+          description: When the lookup table was created
+        lastModified:
+          type: string
+          format: date-time
+          description: When the lookup table was last updated
+    TrackResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          enum: [0, 1]
+          description: 1 for success, 0 for failure
+        error:
+          type: string
+          description: Error message if status is 0
+    ImportResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        num_records_imported:
+          type: integer
+          description: Number of records successfully imported
+        status:
+          type: string
+          description: Status message
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        error:
+          type: string
+          description: Error message
+        status:
+          type: string
+          description: Status indicator
+        num_records_imported:
+          type: integer
+          description: Number of records imported before failure
+        failed_records:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+                description: Index of the failed record
+              message:
+                type: string
+                description: Error message for this record

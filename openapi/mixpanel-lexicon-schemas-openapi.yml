@@ -1,0 +1,263 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Lexicon Schemas API
+  description: >-
+    API for syncing your internal data dictionary or tracking plan with
+    Mixpanel using schemas, allowing you to create, replace, retrieve,
+    and delete schema definitions that describe the data you send to Mixpanel.
+  version: '1.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+externalDocs:
+  description: Mixpanel Lexicon Schemas API Documentation
+  url: https://developer.mixpanel.com/reference/lexicon-schemas-api
+servers:
+  - url: https://mixpanel.com/api/app
+    description: Mixpanel US Data Residency
+  - url: https://eu.mixpanel.com/api/app
+    description: Mixpanel EU Data Residency
+tags:
+  - name: Schemas
+    description: Manage Lexicon schema definitions
+security:
+  - basicAuth: []
+paths:
+  /projects/{projectId}/schemas:
+    get:
+      operationId: listSchemas
+      summary: List schemas
+      description: >-
+        Retrieve all schema definitions for the project including
+        event schemas, profile property schemas, and group schemas.
+      tags:
+        - Schemas
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - name: entityType
+          in: query
+          schema:
+            type: string
+            enum: [event, profile, group, lookup_table]
+          description: Filter schemas by entity type
+      responses:
+        '200':
+          description: List of schemas
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SchemaDefinition'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    put:
+      operationId: replaceSchemas
+      summary: Replace schemas
+      description: >-
+        Replace all schema definitions for the specified entity type.
+        This completely replaces existing schemas with the provided ones.
+      tags:
+        - Schemas
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - entries
+              properties:
+                entries:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SchemaEntry'
+                truncate:
+                  type: boolean
+                  description: >-
+                    When true, deletes schemas not included in the request.
+                    When false, only adds or updates schemas.
+      responses:
+        '200':
+          description: Schemas replaced successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '400':
+          description: Invalid schema definitions
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    post:
+      operationId: createSchemas
+      summary: Create schemas
+      description: >-
+        Create new schema definitions or update existing ones without
+        removing schemas not included in the request.
+      tags:
+        - Schemas
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - entries
+              properties:
+                entries:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SchemaEntry'
+      responses:
+        '200':
+          description: Schemas created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '400':
+          description: Invalid schema definitions
+        '401':
+          description: Unauthorized
+    delete:
+      operationId: deleteSchemas
+      summary: Delete schemas
+      description: >-
+        Delete specific schema definitions from the project.
+      tags:
+        - Schemas
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - entries
+              properties:
+                entries:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - entityType
+                      - name
+                    properties:
+                      entityType:
+                        type: string
+                        enum: [event, profile, group, lookup_table]
+                      name:
+                        type: string
+                        description: Name of the schema to delete
+      responses:
+        '200':
+          description: Schemas deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Schema not found
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        Service account credentials for API authentication.
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel project ID
+  schemas:
+    SchemaDefinition:
+      type: object
+      properties:
+        entityType:
+          type: string
+          enum: [event, profile, group, lookup_table]
+          description: The type of entity this schema describes
+        name:
+          type: string
+          description: Name of the event or property
+        description:
+          type: string
+          description: Human-readable description
+        isHidden:
+          type: boolean
+          description: Whether this schema is hidden in the UI
+        isDropped:
+          type: boolean
+          description: Whether events matching this schema should be dropped
+        properties:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/PropertySchema'
+          description: Property definitions for this schema
+    SchemaEntry:
+      type: object
+      required:
+        - entityType
+        - name
+      properties:
+        entityType:
+          type: string
+          enum: [event, profile, group, lookup_table]
+          description: The entity type
+        name:
+          type: string
+          description: Event or property name
+        description:
+          type: string
+          description: Human-readable description
+        isHidden:
+          type: boolean
+          description: Whether to hide in the UI
+        isDropped:
+          type: boolean
+          description: Whether to drop matching events
+        properties:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/PropertySchema'
+          description: Property definitions
+    PropertySchema:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [string, number, boolean, datetime, list, object]
+          description: Data type of the property
+        description:
+          type: string
+          description: Description of the property
+        required:
+          type: boolean
+          description: Whether the property is required
+        isHidden:
+          type: boolean
+          description: Whether to hide this property in the UI

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developer.mixpanel.com/schemas/mixpanel/user-profile.json",
+  "title": "Mixpanel User Profile",
+  "description": "Represents a user profile in Mixpanel People, storing persistent properties about a user such as demographics, preferences, and engagement metrics.",
+  "type": "object",
+  "required": ["$distinct_id"],
+  "properties": {
+    "$distinct_id": {
+      "type": "string",
+      "description": "Unique identifier for the user"
+    },
+    "$properties": {
+      "type": "object",
+      "description": "User profile properties",
+      "properties": {
+        "$first_name": {
+          "type": "string",
+          "description": "User's first name"
+        },
+        "$last_name": {
+          "type": "string",
+          "description": "User's last name"
+        },
+        "$name": {
+          "type": "string",
+          "description": "User's full name"
+        },
+        "$email": {
+          "type": "string",
+          "format": "email",
+          "description": "User's email address"
+        },
+        "$phone": {
+          "type": "string",
+          "description": "User's phone number"
+        },
+        "$avatar": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the user's avatar image"
+        },
+        "$city": {
+          "type": "string",
+          "description": "User's city"
+        },
+        "$region": {
+          "type": "string",
+          "description": "User's region or state"
+        },
+        "$country_code": {
+          "type": "string",
+          "description": "Two-letter country code"
+        },
+        "$timezone": {
+          "type": "string",
+          "description": "User's timezone (e.g., US/Eastern)"
+        },
+        "$created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the user profile was first created"
+        },
+        "$last_seen": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the user was last active"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

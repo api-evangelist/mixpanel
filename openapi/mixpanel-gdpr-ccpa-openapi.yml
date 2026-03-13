@@ -1,0 +1,209 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel GDPR and CCPA API
+  description: >-
+    API for submitting data retrieval and deletion requests to help meet
+    GDPR and CCPA compliance requirements, including creating and checking
+    the status of retrieval and deletion tasks.
+  version: '3.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+externalDocs:
+  description: Mixpanel GDPR API Documentation
+  url: https://developer.mixpanel.com/reference/gdpr-api
+servers:
+  - url: https://mixpanel.com/api/app
+    description: Mixpanel US Data Residency
+  - url: https://eu.mixpanel.com/api/app
+    description: Mixpanel EU Data Residency
+tags:
+  - name: Deletion
+    description: Submit and check data deletion requests
+  - name: Retrieval
+    description: Submit and check data retrieval requests
+security:
+  - bearerAuth: []
+paths:
+  /data-retrievals/v3.0:
+    post:
+      operationId: createRetrievalRequest
+      summary: Create data retrieval request
+      description: >-
+        Submit a GDPR or CCPA data retrieval request for a specific user.
+        Returns a task ID to check the status of the retrieval.
+      tags:
+        - Retrieval
+      parameters:
+        - $ref: '#/components/parameters/projectToken'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrivacyRequest'
+      responses:
+        '200':
+          description: Retrieval request submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+  /data-retrievals/v3.0/{taskId}:
+    get:
+      operationId: checkRetrievalStatus
+      summary: Check retrieval status
+      description: >-
+        Check the status of a previously submitted data retrieval request.
+      tags:
+        - Retrieval
+      parameters:
+        - $ref: '#/components/parameters/taskId'
+        - $ref: '#/components/parameters/projectToken'
+      responses:
+        '200':
+          description: Retrieval task status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Task not found
+  /data-deletions/v3.0:
+    post:
+      operationId: createDeletionRequest
+      summary: Create data deletion request
+      description: >-
+        Submit a GDPR or CCPA data deletion request for a specific user.
+        Once completed, all event data and profile data for the user
+        will be permanently deleted.
+      tags:
+        - Deletion
+      parameters:
+        - $ref: '#/components/parameters/projectToken'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrivacyRequest'
+      responses:
+        '200':
+          description: Deletion request submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+  /data-deletions/v3.0/{taskId}:
+    get:
+      operationId: checkDeletionStatus
+      summary: Check deletion status
+      description: >-
+        Check the status of a previously submitted data deletion request.
+      tags:
+        - Deletion
+      parameters:
+        - $ref: '#/components/parameters/taskId'
+        - $ref: '#/components/parameters/projectToken'
+      responses:
+        '200':
+          description: Deletion task status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Task not found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        OAuth 2.0 bearer token for GDPR API authentication.
+  parameters:
+    taskId:
+      name: taskId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The task ID returned when the request was created
+    projectToken:
+      name: token
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Mixpanel project token
+  schemas:
+    PrivacyRequest:
+      type: object
+      required:
+        - distinct_ids
+        - compliance_type
+      properties:
+        distinct_ids:
+          type: array
+          items:
+            type: string
+          description: List of distinct_ids to retrieve or delete data for
+        compliance_type:
+          type: string
+          enum: [GDPR, CCPA]
+          description: The compliance regulation for the request
+    TaskResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ok, error]
+          description: Whether the request was accepted
+        results:
+          type: object
+          properties:
+            task_id:
+              type: string
+              description: Unique task ID for tracking the request
+        error:
+          type: string
+          description: Error message if status is error
+    TaskStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ok, error]
+          description: API call status
+        results:
+          type: object
+          properties:
+            status:
+              type: string
+              enum: [PENDING, STAGING, STARTED, SUCCESS, FAILURE, REVOKED, NOT_FOUND, UNKNOWN]
+              description: Current status of the task
+            result:
+              type: string
+              description: Additional result details
+            download_url:
+              type: string
+              format: uri
+              description: URL to download retrieval results (retrieval only)

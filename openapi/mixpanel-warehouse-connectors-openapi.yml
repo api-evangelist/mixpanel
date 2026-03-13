@@ -1,0 +1,389 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Warehouse Connectors API
+  description: >-
+    API for connecting a data warehouse to import events, users, groups,
+    and lookup tables into Mixpanel, and for manually triggering specific
+    warehouse import runs.
+  version: '1.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+externalDocs:
+  description: Mixpanel Warehouse Connectors API Documentation
+  url: https://developer.mixpanel.com/reference/warehouse-connectors-api
+servers:
+  - url: https://mixpanel.com/api/app
+    description: Mixpanel US Data Residency
+  - url: https://eu.mixpanel.com/api/app
+    description: Mixpanel EU Data Residency
+tags:
+  - name: Connectors
+    description: Manage warehouse data connections
+  - name: Imports
+    description: Manage and trigger warehouse import runs
+security:
+  - basicAuth: []
+paths:
+  /projects/{projectId}/warehouse-sources:
+    get:
+      operationId: listWarehouseSources
+      summary: List warehouse sources
+      description: >-
+        Retrieve all warehouse source connections configured for the project.
+      tags:
+        - Connectors
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: List of warehouse sources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WarehouseSource'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    post:
+      operationId: createWarehouseSource
+      summary: Create warehouse source
+      description: >-
+        Create a new warehouse source connection for importing data
+        from a data warehouse into Mixpanel.
+      tags:
+        - Connectors
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWarehouseSourceRequest'
+      responses:
+        '200':
+          description: Warehouse source created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarehouseSource'
+        '400':
+          description: Invalid configuration
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /projects/{projectId}/warehouse-sources/{sourceId}:
+    get:
+      operationId: getWarehouseSource
+      summary: Get warehouse source
+      description: >-
+        Retrieve details of a specific warehouse source connection.
+      tags:
+        - Connectors
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/sourceId'
+      responses:
+        '200':
+          description: Warehouse source details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarehouseSource'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Source not found
+    patch:
+      operationId: updateWarehouseSource
+      summary: Update warehouse source
+      description: >-
+        Update the configuration of an existing warehouse source connection.
+      tags:
+        - Connectors
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/sourceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWarehouseSourceRequest'
+      responses:
+        '200':
+          description: Warehouse source updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarehouseSource'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Source not found
+    delete:
+      operationId: deleteWarehouseSource
+      summary: Delete warehouse source
+      description: >-
+        Delete a warehouse source connection and all its import configurations.
+      tags:
+        - Connectors
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/sourceId'
+      responses:
+        '200':
+          description: Warehouse source deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Source not found
+  /projects/{projectId}/warehouse-sources/{sourceId}/tables:
+    get:
+      operationId: listWarehouseTables
+      summary: List warehouse tables
+      description: >-
+        List all tables configured for import from a warehouse source.
+      tags:
+        - Imports
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/sourceId'
+      responses:
+        '200':
+          description: List of configured tables
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WarehouseTable'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Source not found
+  /projects/{projectId}/warehouse-sources/{sourceId}/runs:
+    get:
+      operationId: listWarehouseRuns
+      summary: List import runs
+      description: >-
+        Retrieve the import run history for a specific warehouse source.
+      tags:
+        - Imports
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/sourceId'
+      responses:
+        '200':
+          description: List of import runs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WarehouseRun'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Source not found
+    post:
+      operationId: triggerWarehouseRun
+      summary: Trigger import run
+      description: >-
+        Manually trigger an import run for a warehouse source connection.
+      tags:
+        - Imports
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/sourceId'
+      responses:
+        '200':
+          description: Import run triggered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarehouseRun'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Source not found
+        '429':
+          description: Rate limit exceeded - too many runs triggered
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        Service account credentials for API authentication.
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel project ID
+    sourceId:
+      name: sourceId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The warehouse source connection ID
+  schemas:
+    WarehouseSource:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique source identifier
+        name:
+          type: string
+          description: Source connection name
+        type:
+          type: string
+          enum: [bigquery, snowflake, redshift, databricks, postgresql]
+          description: Warehouse type
+        status:
+          type: string
+          enum: [active, paused, error]
+          description: Connection status
+        schedule:
+          type: string
+          enum: [hourly, daily, weekly]
+          description: Import schedule
+        createdAt:
+          type: string
+          format: date-time
+          description: When the source was created
+        lastRunAt:
+          type: string
+          format: date-time
+          description: When the last import ran
+    CreateWarehouseSourceRequest:
+      type: object
+      required:
+        - name
+        - type
+        - connectionDetails
+      properties:
+        name:
+          type: string
+          description: Source connection name
+        type:
+          type: string
+          enum: [bigquery, snowflake, redshift, databricks, postgresql]
+          description: Warehouse type
+        schedule:
+          type: string
+          enum: [hourly, daily, weekly]
+          description: Import schedule
+        connectionDetails:
+          type: object
+          additionalProperties: true
+          description: >-
+            Warehouse-specific connection details (credentials, host, etc.)
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableConfig'
+          description: Tables to import
+    UpdateWarehouseSourceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated source name
+        schedule:
+          type: string
+          enum: [hourly, daily, weekly]
+          description: Updated import schedule
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableConfig'
+          description: Updated table configurations
+    TableConfig:
+      type: object
+      required:
+        - tableName
+        - importType
+      properties:
+        tableName:
+          type: string
+          description: Full table name (schema.table)
+        importType:
+          type: string
+          enum: [event, user, group, lookup_table]
+          description: How to import this table's data
+        eventNameColumn:
+          type: string
+          description: Column to use as event name (event type only)
+        distinctIdColumn:
+          type: string
+          description: Column to use as distinct_id
+        timeColumn:
+          type: string
+          description: Column to use as event timestamp
+    WarehouseTable:
+      type: object
+      properties:
+        tableName:
+          type: string
+          description: Full table name
+        importType:
+          type: string
+          enum: [event, user, group, lookup_table]
+          description: Import type
+        rowCount:
+          type: integer
+          description: Number of rows in the table
+        lastImportedAt:
+          type: string
+          format: date-time
+          description: When this table was last imported
+    WarehouseRun:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Run identifier
+        status:
+          type: string
+          enum: [running, completed, failed]
+          description: Run status
+        startTime:
+          type: string
+          format: date-time
+          description: When the run started
+        endTime:
+          type: string
+          format: date-time
+          description: When the run completed
+        recordsImported:
+          type: integer
+          description: Total records imported
+        errors:
+          type: array
+          items:
+            type: string
+          description: Error messages if any

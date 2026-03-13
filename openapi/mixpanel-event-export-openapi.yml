@@ -1,0 +1,104 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Event Export API
+  description: >-
+    API for downloading raw event data as it is received and stored
+    within Mixpanel, complete with all event properties including
+    distinct_id and exact timestamps.
+  version: '2.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+externalDocs:
+  description: Mixpanel Event Export API Documentation
+  url: https://developer.mixpanel.com/reference/raw-event-export
+servers:
+  - url: https://data.mixpanel.com/api/2.0
+    description: Mixpanel US Data Residency
+  - url: https://data-eu.mixpanel.com/api/2.0
+    description: Mixpanel EU Data Residency
+tags:
+  - name: Export
+    description: Export raw event data
+security:
+  - basicAuth: []
+paths:
+  /export:
+    get:
+      operationId: exportRawEvents
+      summary: Export raw events
+      description: >-
+        Download raw event data for a date range. Returns newline-delimited
+        JSON (NDJSON) where each line is a JSON object representing one event.
+        The response can be very large for projects with high event volumes.
+      tags:
+        - Export
+      parameters:
+        - name: from_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Start date for export (YYYY-MM-DD)
+        - name: to_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: End date for export (YYYY-MM-DD)
+        - name: event
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+          description: Filter to specific event names (JSON-encoded array)
+        - name: where
+          in: query
+          schema:
+            type: string
+          description: >-
+            Expression to filter events (e.g., 'properties["$os"] == "iPhone OS"')
+        - name: project_id
+          in: query
+          schema:
+            type: integer
+          description: The Mixpanel project ID
+      responses:
+        '200':
+          description: Raw event data in newline-delimited JSON format
+          content:
+            application/x-ndjson:
+              schema:
+                type: string
+                description: >-
+                  Newline-delimited JSON where each line is an event object
+                  with event name and properties
+            application/json:
+              schema:
+                type: object
+                properties:
+                  event:
+                    type: string
+                    description: Event name
+                  properties:
+                    type: object
+                    additionalProperties: true
+                    description: Event properties including distinct_id and time
+        '400':
+          description: Invalid date range or parameters
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        Service account credentials for API authentication.

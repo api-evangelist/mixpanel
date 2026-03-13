@@ -1,0 +1,443 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Data Pipelines API
+  description: >-
+    API for creating, managing, and monitoring data export pipelines in
+    Mixpanel, including creating, editing, pausing, resuming, and deleting
+    pipelines that export data to cloud storage and data warehouses.
+  version: '2.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+externalDocs:
+  description: Mixpanel Data Pipelines API Documentation
+  url: https://developer.mixpanel.com/reference/overview-2
+servers:
+  - url: https://data.mixpanel.com/api/2.0
+    description: Mixpanel US Data Residency
+  - url: https://data-eu.mixpanel.com/api/2.0
+    description: Mixpanel EU Data Residency
+tags:
+  - name: Pipelines
+    description: Create and manage data export pipelines
+  - name: Pipeline Runs
+    description: Monitor and manage pipeline execution runs
+security:
+  - basicAuth: []
+paths:
+  /nessie/pipeline/list:
+    get:
+      operationId: listPipelines
+      summary: List pipelines
+      description: >-
+        Retrieve a list of all data export pipelines configured for the project.
+      tags:
+        - Pipelines
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: List of pipelines
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Pipeline'
+                  status:
+                    type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden - insufficient permissions
+  /nessie/pipeline/create:
+    post:
+      operationId: createPipeline
+      summary: Create a pipeline
+      description: >-
+        Create a new data export pipeline to continuously export Mixpanel
+        data to a cloud storage destination such as BigQuery, Snowflake,
+        S3, or GCS.
+      tags:
+        - Pipelines
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePipelineRequest'
+      responses:
+        '200':
+          description: Pipeline created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+        '400':
+          description: Invalid pipeline configuration
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /nessie/pipeline/update:
+    post:
+      operationId: updatePipeline
+      summary: Update a pipeline
+      description: >-
+        Update the configuration of an existing data export pipeline.
+      tags:
+        - Pipelines
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePipelineRequest'
+      responses:
+        '200':
+          description: Pipeline updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Pipeline not found
+  /nessie/pipeline/delete:
+    post:
+      operationId: deletePipeline
+      summary: Delete a pipeline
+      description: >-
+        Delete a data export pipeline by ID.
+      tags:
+        - Pipelines
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+                  description: Pipeline ID to delete
+      responses:
+        '200':
+          description: Pipeline deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Pipeline not found
+  /nessie/pipeline/pause:
+    post:
+      operationId: pausePipeline
+      summary: Pause a pipeline
+      description: >-
+        Pause an active data export pipeline.
+      tags:
+        - Pipelines
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+                  description: Pipeline ID to pause
+      responses:
+        '200':
+          description: Pipeline paused
+        '401':
+          description: Unauthorized
+        '404':
+          description: Pipeline not found
+  /nessie/pipeline/unpause:
+    post:
+      operationId: unpausePipeline
+      summary: Resume a pipeline
+      description: >-
+        Resume a previously paused data export pipeline.
+      tags:
+        - Pipelines
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+                  description: Pipeline ID to resume
+      responses:
+        '200':
+          description: Pipeline resumed
+        '401':
+          description: Unauthorized
+        '404':
+          description: Pipeline not found
+  /nessie/pipeline/runs:
+    get:
+      operationId: listPipelineRuns
+      summary: List pipeline runs
+      description: >-
+        Retrieve the execution history for a specific pipeline.
+      tags:
+        - Pipeline Runs
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Pipeline ID
+      responses:
+        '200':
+          description: List of pipeline runs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PipelineRun'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Pipeline not found
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        Service account credentials for API authentication.
+  parameters:
+    projectId:
+      name: project_id
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel project ID
+  schemas:
+    Pipeline:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique pipeline identifier
+        name:
+          type: string
+          description: Pipeline name
+        type:
+          type: string
+          enum: [bigquery, snowflake, s3, gcs, azure-blob]
+          description: Destination type
+        status:
+          type: string
+          enum: [active, paused, error]
+          description: Current pipeline status
+        fromDate:
+          type: string
+          format: date
+          description: Start date for data export
+        dataTypes:
+          type: array
+          items:
+            type: string
+            enum: [event, people, group]
+          description: Types of data to export
+        createdAt:
+          type: string
+          format: date-time
+          description: When the pipeline was created
+        lastRunAt:
+          type: string
+          format: date-time
+          description: When the pipeline last ran
+        schemaType:
+          type: string
+          enum: [monoschema, multischema]
+          description: Schema type for the export
+        frequency:
+          type: string
+          enum: [hourly, daily]
+          description: How often the pipeline runs
+    CreatePipelineRequest:
+      type: object
+      required:
+        - name
+        - type
+        - fromDate
+        - dataTypes
+      properties:
+        name:
+          type: string
+          description: Pipeline name
+        type:
+          type: string
+          enum: [bigquery, snowflake, s3, gcs, azure-blob]
+          description: Destination type
+        fromDate:
+          type: string
+          format: date
+          description: Start date for data export
+        dataTypes:
+          type: array
+          items:
+            type: string
+            enum: [event, people, group]
+          description: Types of data to export
+        schemaType:
+          type: string
+          enum: [monoschema, multischema]
+          description: Schema type for the export
+        frequency:
+          type: string
+          enum: [hourly, daily]
+          description: Export frequency
+        bigqueryConfig:
+          $ref: '#/components/schemas/BigQueryConfig'
+        snowflakeConfig:
+          $ref: '#/components/schemas/SnowflakeConfig'
+        s3Config:
+          $ref: '#/components/schemas/S3Config'
+        gcsConfig:
+          $ref: '#/components/schemas/GCSConfig'
+    UpdatePipelineRequest:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          description: Pipeline ID to update
+        name:
+          type: string
+          description: Updated pipeline name
+        dataTypes:
+          type: array
+          items:
+            type: string
+          description: Updated data types to export
+        frequency:
+          type: string
+          enum: [hourly, daily]
+          description: Updated export frequency
+    BigQueryConfig:
+      type: object
+      properties:
+        projectId:
+          type: string
+          description: Google Cloud project ID
+        dataset:
+          type: string
+          description: BigQuery dataset name
+        serviceAccountKey:
+          type: string
+          description: Base64-encoded service account JSON key
+    SnowflakeConfig:
+      type: object
+      properties:
+        account:
+          type: string
+          description: Snowflake account identifier
+        warehouse:
+          type: string
+          description: Snowflake warehouse name
+        database:
+          type: string
+          description: Snowflake database name
+        schema:
+          type: string
+          description: Snowflake schema name
+        username:
+          type: string
+          description: Snowflake username
+        password:
+          type: string
+          description: Snowflake password
+    S3Config:
+      type: object
+      properties:
+        bucket:
+          type: string
+          description: S3 bucket name
+        prefix:
+          type: string
+          description: S3 key prefix for exported files
+        region:
+          type: string
+          description: AWS region
+        roleArn:
+          type: string
+          description: AWS IAM role ARN for cross-account access
+    GCSConfig:
+      type: object
+      properties:
+        bucket:
+          type: string
+          description: GCS bucket name
+        prefix:
+          type: string
+          description: GCS path prefix
+        serviceAccountKey:
+          type: string
+          description: Base64-encoded service account JSON key
+    PipelineRun:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Run identifier
+        pipelineId:
+          type: string
+          description: Parent pipeline ID
+        status:
+          type: string
+          enum: [running, completed, failed]
+          description: Run status
+        startTime:
+          type: string
+          format: date-time
+          description: When the run started
+        endTime:
+          type: string
+          format: date-time
+          description: When the run completed
+        recordsExported:
+          type: integer
+          description: Number of records exported in this run
+        error:
+          type: string
+          description: Error message if the run failed

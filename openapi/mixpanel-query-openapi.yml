@@ -1,0 +1,612 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Query API
+  description: >-
+    API for querying and retrieving analytics data from Mixpanel, including
+    cohorts, funnels, insights, retention, segmentation, activity feeds,
+    and event breakdowns.
+  version: '2.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+externalDocs:
+  description: Mixpanel Query API Documentation
+  url: https://developer.mixpanel.com/reference/query-api
+servers:
+  - url: https://mixpanel.com/api/2.0
+    description: Mixpanel US Data Residency
+  - url: https://eu.mixpanel.com/api/2.0
+    description: Mixpanel EU Data Residency
+tags:
+  - name: Insights
+    description: Query event data with aggregation and breakdowns
+  - name: Funnels
+    description: Analyze conversion funnels
+  - name: Retention
+    description: Query retention analysis data
+  - name: Segmentation
+    description: Query event segmentation data over time
+  - name: Cohorts
+    description: Manage and query user cohorts
+  - name: Annotations
+    description: Manage chart annotations
+security:
+  - basicAuth: []
+paths:
+  /insights:
+    get:
+      operationId: queryInsights
+      summary: Query insights
+      description: >-
+        Query event data with flexible aggregation, filtering, and
+        breakdown capabilities. Returns data suitable for charts and reports.
+      tags:
+        - Insights
+      parameters:
+        - name: project_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: The Mixpanel project ID
+        - name: bookmark_id
+          in: query
+          schema:
+            type: integer
+          description: ID of a saved report to query
+      responses:
+        '200':
+          description: Insights query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsightsResponse'
+        '400':
+          description: Invalid query parameters
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+  /funnels:
+    get:
+      operationId: queryFunnels
+      summary: Query funnel data
+      description: >-
+        Query funnel conversion data for a defined sequence of events.
+        Returns conversion rates and counts at each step.
+      tags:
+        - Funnels
+      parameters:
+        - name: project_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: The Mixpanel project ID
+        - name: funnel_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: The ID of the funnel to query
+        - name: from_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Start date (YYYY-MM-DD)
+        - name: to_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: End date (YYYY-MM-DD)
+        - name: length
+          in: query
+          schema:
+            type: integer
+          description: Number of units in the conversion window
+        - name: length_unit
+          in: query
+          schema:
+            type: string
+            enum: [day, hour, minute]
+          description: Unit of time for the conversion window
+        - name: interval
+          in: query
+          schema:
+            type: integer
+          description: Number of days per data point
+        - name: on
+          in: query
+          schema:
+            type: string
+          description: Property expression to segment results
+        - name: where
+          in: query
+          schema:
+            type: string
+          description: Expression to filter events
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Maximum number of segment values to return
+      responses:
+        '200':
+          description: Funnel query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FunnelResponse'
+        '400':
+          description: Invalid query parameters
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+  /funnels/list:
+    get:
+      operationId: listFunnels
+      summary: List funnels
+      description: >-
+        Retrieve a list of all saved funnels in the project.
+      tags:
+        - Funnels
+      parameters:
+        - name: project_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: The Mixpanel project ID
+      responses:
+        '200':
+          description: List of funnels
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FunnelSummary'
+        '401':
+          description: Unauthorized
+  /retention:
+    get:
+      operationId: queryRetention
+      summary: Query retention data
+      description: >-
+        Query retention analysis data showing how many users return
+        after performing an initial event.
+      tags:
+        - Retention
+      parameters:
+        - name: project_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: The Mixpanel project ID
+        - name: from_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Start date (YYYY-MM-DD)
+        - name: to_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: End date (YYYY-MM-DD)
+        - name: born_event
+          in: query
+          schema:
+            type: string
+          description: The initial event that defines the cohort
+        - name: retention_type
+          in: query
+          schema:
+            type: string
+            enum: [birth, compounded]
+          description: Type of retention analysis
+        - name: born_where
+          in: query
+          schema:
+            type: string
+          description: Filter expression for the initial event
+        - name: event
+          in: query
+          schema:
+            type: string
+          description: The return event to measure
+        - name: where
+          in: query
+          schema:
+            type: string
+          description: Filter expression for the return event
+        - name: interval
+          in: query
+          schema:
+            type: integer
+          description: Number of days per retention period
+        - name: interval_count
+          in: query
+          schema:
+            type: integer
+          description: Number of retention periods to return
+        - name: unit
+          in: query
+          schema:
+            type: string
+            enum: [day, week, month]
+          description: Time unit for retention periods
+        - name: on
+          in: query
+          schema:
+            type: string
+          description: Property to segment results by
+      responses:
+        '200':
+          description: Retention query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetentionResponse'
+        '400':
+          description: Invalid query parameters
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+  /segmentation:
+    get:
+      operationId: querySegmentation
+      summary: Query event segmentation
+      description: >-
+        Query event counts over a time range, optionally segmented
+        by a property. Returns time series data.
+      tags:
+        - Segmentation
+      parameters:
+        - name: project_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: The Mixpanel project ID
+        - name: event
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The event name to query
+        - name: from_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Start date (YYYY-MM-DD)
+        - name: to_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: End date (YYYY-MM-DD)
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [general, unique, average]
+          description: >-
+            Aggregation type - general (total count), unique (unique users),
+            or average (average per user)
+        - name: 'on'
+          in: query
+          schema:
+            type: string
+          description: Property expression to segment results by
+        - name: where
+          in: query
+          schema:
+            type: string
+          description: Expression to filter events
+        - name: unit
+          in: query
+          schema:
+            type: string
+            enum: [minute, hour, day, week, month]
+          description: Time granularity for the results
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Maximum number of segment values
+      responses:
+        '200':
+          description: Segmentation query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentationResponse'
+        '400':
+          description: Invalid query parameters
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+  /segmentation/sum:
+    get:
+      operationId: querySegmentationSum
+      summary: Query numeric property sum
+      description: >-
+        Query the sum of a numeric event property over a time range.
+      tags:
+        - Segmentation
+      parameters:
+        - name: project_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: The Mixpanel project ID
+        - name: event
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The event name to query
+        - name: from_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Start date (YYYY-MM-DD)
+        - name: to_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: End date (YYYY-MM-DD)
+        - name: 'on'
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The numeric property to sum
+        - name: where
+          in: query
+          schema:
+            type: string
+          description: Expression to filter events
+        - name: unit
+          in: query
+          schema:
+            type: string
+            enum: [minute, hour, day, week, month]
+          description: Time granularity for the results
+      responses:
+        '200':
+          description: Segmentation sum results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentationResponse'
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+  /segmentation/average:
+    get:
+      operationId: querySegmentationAverage
+      summary: Query numeric property average
+      description: >-
+        Query the average of a numeric event property over a time range.
+      tags:
+        - Segmentation
+      parameters:
+        - name: project_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: The Mixpanel project ID
+        - name: event
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The event name to query
+        - name: from_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Start date (YYYY-MM-DD)
+        - name: to_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: End date (YYYY-MM-DD)
+        - name: 'on'
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The numeric property to average
+        - name: unit
+          in: query
+          schema:
+            type: string
+            enum: [minute, hour, day, week, month]
+          description: Time granularity for the results
+      responses:
+        '200':
+          description: Segmentation average results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentationResponse'
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+  /cohorts/list:
+    get:
+      operationId: listCohorts
+      summary: List cohorts
+      description: >-
+        Retrieve a list of all cohorts defined in the project.
+      tags:
+        - Cohorts
+      parameters:
+        - name: project_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: The Mixpanel project ID
+      responses:
+        '200':
+          description: List of cohorts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cohort'
+        '401':
+          description: Unauthorized
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        Service account credentials. Use the service account username
+        as the username and the service account secret as the password.
+  schemas:
+    InsightsResponse:
+      type: object
+      properties:
+        series:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties: true
+          description: Time series data keyed by metric name
+        date_range:
+          type: object
+          properties:
+            from_date:
+              type: string
+              format: date
+            to_date:
+              type: string
+              format: date
+    FunnelResponse:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            dates:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  steps:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FunnelStep'
+    FunnelStep:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of users who completed this step
+        avg_time:
+          type: number
+          description: Average time to complete this step in seconds
+        goal:
+          type: string
+          description: Event name for this step
+        overall_conv_ratio:
+          type: number
+          description: Conversion rate from step 1 to this step
+        step_conv_ratio:
+          type: number
+          description: Conversion rate from previous step to this step
+    FunnelSummary:
+      type: object
+      properties:
+        funnel_id:
+          type: integer
+          description: Unique funnel identifier
+        name:
+          type: string
+          description: Funnel name
+    RetentionResponse:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          counts:
+            type: array
+            items:
+              type: integer
+            description: Retention counts for each period
+          first:
+            type: integer
+            description: Number of users in the initial cohort
+    SegmentationResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            series:
+              type: array
+              items:
+                type: string
+                format: date
+              description: Dates in the time series
+            values:
+              type: object
+              additionalProperties:
+                type: object
+                additionalProperties:
+                  type: number
+              description: Values keyed by segment name and date
+    Cohort:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique cohort identifier
+        name:
+          type: string
+          description: Cohort name
+        description:
+          type: string
+          description: Cohort description
+        count:
+          type: integer
+          description: Number of users in the cohort
+        created:
+          type: string
+          format: date-time
+          description: When the cohort was created

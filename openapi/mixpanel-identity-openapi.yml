@@ -1,0 +1,175 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Identity API
+  description: >-
+    API for managing user identity in Mixpanel, including creating
+    identities, creating aliases, and merging identities to accurately
+    resolve users across multiple devices.
+  version: '2.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+externalDocs:
+  description: Mixpanel Identity API Documentation
+  url: https://developer.mixpanel.com/reference/create-identity
+servers:
+  - url: https://api.mixpanel.com
+    description: Mixpanel US Data Residency
+  - url: https://api-eu.mixpanel.com
+    description: Mixpanel EU Data Residency
+tags:
+  - name: Identity
+    description: Manage user identity resolution and merging
+security:
+  - basicAuth: []
+paths:
+  /identity/create:
+    post:
+      operationId: createIdentity
+      summary: Create identity
+      description: >-
+        Create an identity mapping between an anonymous (device) ID
+        and an identified (user) ID. This links pre-login anonymous
+        activity to a known user.
+      tags:
+        - Identity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - $identified_id
+                - $anon_id
+                - $token
+              properties:
+                $identified_id:
+                  type: string
+                  description: The known user ID (e.g., user ID from your database)
+                $anon_id:
+                  type: string
+                  description: The anonymous device ID to link
+                $token:
+                  type: string
+                  description: Mixpanel project token
+      responses:
+        '200':
+          description: Identity created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+  /identity/create-alias:
+    post:
+      operationId: createAlias
+      summary: Create alias
+      description: >-
+        Create an alias that maps one distinct_id to another. This is
+        a legacy method for identity management. For new implementations,
+        use the create identity endpoint with ID merge instead.
+      tags:
+        - Identity
+      deprecated: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - alias
+                - distinct_id
+                - $token
+              properties:
+                alias:
+                  type: string
+                  description: The new alias to create
+                distinct_id:
+                  type: string
+                  description: The existing distinct_id to link
+                $token:
+                  type: string
+                  description: Mixpanel project token
+      responses:
+        '200':
+          description: Alias created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+  /identity/merge:
+    post:
+      operationId: mergeIdentities
+      summary: Merge identities
+      description: >-
+        Merge two distinct_id values into a single identity cluster.
+        All events and profile data associated with both IDs will be
+        combined. This operation is irreversible.
+      tags:
+        - Identity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - $distinct_ids
+                - $token
+              properties:
+                $distinct_ids:
+                  type: array
+                  items:
+                    type: string
+                  minItems: 2
+                  maxItems: 2
+                  description: Array of two distinct_ids to merge
+                $token:
+                  type: string
+                  description: Mixpanel project token
+      responses:
+        '200':
+          description: Identities merged successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        Service account credentials for API authentication.
+  schemas:
+    IdentityResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          enum: [0, 1]
+          description: 1 for success, 0 for failure
+        error:
+          type: string
+          description: Error message if status is 0

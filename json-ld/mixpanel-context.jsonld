@@ -1,0 +1,157 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "mixpanel": "https://developer.mixpanel.com/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Event": {
+      "@id": "mixpanel:Event",
+      "@context": {
+        "event": "schema:name",
+        "distinctId": "mixpanel:distinctId",
+        "time": {
+          "@id": "dcterms:date",
+          "@type": "xsd:integer"
+        },
+        "insertId": "mixpanel:insertId",
+        "token": "mixpanel:projectToken"
+      }
+    },
+
+    "UserProfile": {
+      "@id": "mixpanel:UserProfile",
+      "@context": {
+        "distinctId": "mixpanel:distinctId",
+        "firstName": "schema:givenName",
+        "lastName": "schema:familyName",
+        "name": "schema:name",
+        "email": "schema:email",
+        "phone": "schema:telephone",
+        "avatar": "schema:image",
+        "city": "schema:addressLocality",
+        "region": "schema:addressRegion",
+        "countryCode": "schema:addressCountry",
+        "created": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "lastSeen": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "GroupProfile": {
+      "@id": "mixpanel:GroupProfile",
+      "@context": {
+        "groupKey": "mixpanel:groupKey",
+        "groupId": "mixpanel:groupId",
+        "name": "schema:name",
+        "description": "schema:description"
+      }
+    },
+
+    "Funnel": {
+      "@id": "mixpanel:Funnel",
+      "@context": {
+        "funnelId": "mixpanel:funnelId",
+        "name": "schema:name",
+        "steps": "mixpanel:funnelSteps"
+      }
+    },
+
+    "Cohort": {
+      "@id": "mixpanel:Cohort",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "count": {
+          "@id": "mixpanel:memberCount",
+          "@type": "xsd:integer"
+        },
+        "created": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Annotation": {
+      "@id": "mixpanel:Annotation",
+      "@context": {
+        "date": {
+          "@id": "dcterms:date",
+          "@type": "xsd:dateTime"
+        },
+        "description": "schema:description",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Pipeline": {
+      "@id": "mixpanel:Pipeline",
+      "@context": {
+        "name": "schema:name",
+        "type": "mixpanel:destinationType",
+        "status": "mixpanel:pipelineStatus",
+        "frequency": "mixpanel:exportFrequency",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "ServiceAccount": {
+      "@id": "mixpanel:ServiceAccount",
+      "@context": {
+        "name": "schema:name",
+        "username": "mixpanel:serviceAccountUsername",
+        "organizationId": "mixpanel:organizationId",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "LookupTable": {
+      "@id": "mixpanel:LookupTable",
+      "@context": {
+        "name": "schema:name",
+        "rowCount": {
+          "@id": "mixpanel:rowCount",
+          "@type": "xsd:integer"
+        },
+        "columnCount": {
+          "@id": "mixpanel:columnCount",
+          "@type": "xsd:integer"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "WarehouseSource": {
+      "@id": "mixpanel:WarehouseSource",
+      "@context": {
+        "name": "schema:name",
+        "type": "mixpanel:warehouseType",
+        "status": "mixpanel:connectionStatus",
+        "schedule": "mixpanel:importSchedule",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developer.mixpanel.com/schemas/mixpanel/event.json",
+  "title": "Mixpanel Event",
+  "description": "Represents a tracked event in Mixpanel, capturing a user action with associated properties including timing, identity, and custom attributes.",
+  "type": "object",
+  "required": ["event", "properties"],
+  "properties": {
+    "event": {
+      "type": "string",
+      "description": "The name of the event (e.g., 'Sign Up', 'Purchase', 'Page View')",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "properties": {
+      "type": "object",
+      "description": "Properties associated with the event",
+      "properties": {
+        "distinct_id": {
+          "type": "string",
+          "description": "Unique identifier for the user who performed the event"
+        },
+        "time": {
+          "type": "integer",
+          "description": "Unix timestamp in seconds when the event occurred"
+        },
+        "$insert_id": {
+          "type": "string",
+          "description": "Unique identifier for the event used for deduplication",
+          "maxLength": 36
+        },
+        "token": {
+          "type": "string",
+          "description": "Mixpanel project token"
+        },
+        "$device_id": {
+          "type": "string",
+          "description": "Anonymous device identifier"
+        },
+        "$user_id": {
+          "type": "string",
+          "description": "Authenticated user identifier"
+        },
+        "mp_country_code": {
+          "type": "string",
+          "description": "Two-letter country code derived from IP geolocation"
+        },
+        "$city": {
+          "type": "string",
+          "description": "City derived from IP geolocation"
+        },
+        "$region": {
+          "type": "string",
+          "description": "Region or state derived from IP geolocation"
+        },
+        "$browser": {
+          "type": "string",
+          "description": "Browser name (e.g., Chrome, Safari, Firefox)"
+        },
+        "$os": {
+          "type": "string",
+          "description": "Operating system name"
+        },
+        "$current_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the page where the event occurred"
+        },
+        "$referrer": {
+          "type": "string",
+          "format": "uri",
+          "description": "Referring URL"
+        },
+        "$screen_height": {
+          "type": "integer",
+          "description": "Screen height in pixels"
+        },
+        "$screen_width": {
+          "type": "integer",
+          "description": "Screen width in pixels"
+        },
+        "mp_lib": {
+          "type": "string",
+          "description": "Mixpanel SDK library name and version"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

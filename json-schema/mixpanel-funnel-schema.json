@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developer.mixpanel.com/schemas/mixpanel/funnel.json",
+  "title": "Mixpanel Funnel",
+  "description": "Represents a conversion funnel in Mixpanel, defining a sequence of events that users are expected to complete and measuring drop-off at each step.",
+  "type": "object",
+  "required": ["funnel_id", "name"],
+  "properties": {
+    "funnel_id": {
+      "type": "integer",
+      "description": "Unique identifier for the funnel"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the funnel"
+    },
+    "steps": {
+      "type": "array",
+      "description": "Ordered sequence of funnel steps",
+      "items": {
+        "$ref": "#/$defs/FunnelStep"
+      },
+      "minItems": 2
+    },
+    "conversionWindow": {
+      "type": "object",
+      "description": "Time window for funnel completion",
+      "properties": {
+        "length": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of time units"
+        },
+        "unit": {
+          "type": "string",
+          "enum": ["minute", "hour", "day"],
+          "description": "Time unit for the conversion window"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "FunnelStep": {
+      "type": "object",
+      "description": "A single step in a conversion funnel",
+      "properties": {
+        "event": {
+          "type": "string",
+          "description": "Event name for this step"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of users who completed this step"
+        },
+        "avgTime": {
+          "type": "number",
+          "description": "Average time in seconds to reach this step from the previous step"
+        },
+        "overallConversionRatio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Conversion rate from step 1 to this step"
+        },
+        "stepConversionRatio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Conversion rate from the previous step to this step"
+        }
+      }
+    }
+  }
+}
