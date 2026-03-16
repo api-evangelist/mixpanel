@@ -1,10 +1,12 @@
+aid: mixpanel
 name: Mixpanel
 description: Mixpanel is a business analytics service company that tracks user interactions with web and mobile applications and provides tools for targeted communication with them.
-image: https://mixpanel.com/wp-content/uploads/2021/07/mixpanel-logo.svg
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: https://mixpanel.com
 created: '2024'
-modified: '2026-03-04'
-specificationVersion: '0.18'
+modified: '2026-03-16'
+specificationVersion: '0.19'
 apis:
 - name: Mixpanel Ingestion API
   description: API for sending event data to Mixpanel for tracking and analysis, including importing events, tracking events, managing user profiles, group profiles, and lookup tables.
