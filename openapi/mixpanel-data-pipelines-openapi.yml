@@ -20,10 +20,10 @@ servers:
   - url: https://data-eu.mixpanel.com/api/2.0
     description: Mixpanel EU Data Residency
 tags:
-  - name: Pipelines
-    description: Create and manage data export pipelines
   - name: Pipeline Runs
     description: Monitor and manage pipeline execution runs
+  - name: Pipelines
+    description: Create and manage data export pipelines
 security:
   - basicAuth: []
 paths:

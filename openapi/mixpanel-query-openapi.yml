@@ -20,18 +20,16 @@ servers:
   - url: https://eu.mixpanel.com/api/2.0
     description: Mixpanel EU Data Residency
 tags:
-  - name: Insights
-    description: Query event data with aggregation and breakdowns
+  - name: Cohorts
+    description: Manage and query user cohorts
   - name: Funnels
     description: Analyze conversion funnels
+  - name: Insights
+    description: Query event data with aggregation and breakdowns
   - name: Retention
     description: Query retention analysis data
   - name: Segmentation
     description: Query event segmentation data over time
-  - name: Cohorts
-    description: Manage and query user cohorts
-  - name: Annotations
-    description: Manage chart annotations
 security:
   - basicAuth: []
 paths:

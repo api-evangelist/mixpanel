@@ -22,12 +22,12 @@ servers:
 tags:
   - name: Events
     description: Track and import event data
-  - name: User Profiles
-    description: Manage user profile properties
   - name: Group Profiles
     description: Manage group analytics profiles
   - name: Lookup Tables
     description: Manage lookup tables for data enrichment
+  - name: User Profiles
+    description: Manage user profile properties
 security:
   - basicAuth: []
 paths:
