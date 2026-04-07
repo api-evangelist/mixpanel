@@ -28,7 +28,7 @@ paths:
   /export:
     get:
       operationId: exportRawEvents
-      summary: Export raw events
+      summary: Mixpanel Export raw events
       description: >-
         Download raw event data for a date range. Returns newline-delimited
         JSON (NDJSON) where each line is a JSON object representing one event.

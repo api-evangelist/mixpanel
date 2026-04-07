@@ -30,7 +30,7 @@ paths:
   /nessie/pipeline/list:
     get:
       operationId: listPipelines
-      summary: List pipelines
+      summary: Mixpanel List pipelines
       description: >-
         Retrieve a list of all data export pipelines configured for the project.
       tags:
@@ -58,7 +58,7 @@ paths:
   /nessie/pipeline/create:
     post:
       operationId: createPipeline
-      summary: Create a pipeline
+      summary: Mixpanel Create a pipeline
       description: >-
         Create a new data export pipeline to continuously export Mixpanel
         data to a cloud storage destination such as BigQuery, Snowflake,
@@ -89,7 +89,7 @@ paths:
   /nessie/pipeline/update:
     post:
       operationId: updatePipeline
-      summary: Update a pipeline
+      summary: Mixpanel Update a pipeline
       description: >-
         Update the configuration of an existing data export pipeline.
       tags:
@@ -118,7 +118,7 @@ paths:
   /nessie/pipeline/delete:
     post:
       operationId: deletePipeline
-      summary: Delete a pipeline
+      summary: Mixpanel Delete a pipeline
       description: >-
         Delete a data export pipeline by ID.
       tags:
@@ -147,7 +147,7 @@ paths:
   /nessie/pipeline/pause:
     post:
       operationId: pausePipeline
-      summary: Pause a pipeline
+      summary: Mixpanel Pause a pipeline
       description: >-
         Pause an active data export pipeline.
       tags:
@@ -176,7 +176,7 @@ paths:
   /nessie/pipeline/unpause:
     post:
       operationId: unpausePipeline
-      summary: Resume a pipeline
+      summary: Mixpanel Resume a pipeline
       description: >-
         Resume a previously paused data export pipeline.
       tags:
@@ -205,7 +205,7 @@ paths:
   /nessie/pipeline/runs:
     get:
       operationId: listPipelineRuns
-      summary: List pipeline runs
+      summary: Mixpanel List pipeline runs
       description: >-
         Retrieve the execution history for a specific pipeline.
       tags:

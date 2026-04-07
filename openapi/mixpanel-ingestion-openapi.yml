@@ -34,7 +34,7 @@ paths:
   /track:
     post:
       operationId: trackEvent
-      summary: Track event
+      summary: Mixpanel Track event
       description: >-
         Send a single event or batch of events to Mixpanel in real time.
         Events sent via /track are processed immediately.
@@ -84,7 +84,7 @@ paths:
   /import:
     post:
       operationId: importEvents
-      summary: Import events
+      summary: Mixpanel Import events
       description: >-
         Import events into Mixpanel. Designed for high-throughput historical
         data import. Supports up to 2000 events per batch. Events can have
@@ -138,7 +138,7 @@ paths:
   /engage:
     post:
       operationId: updateUserProfile
-      summary: Update user profile
+      summary: Mixpanel Update user profile
       description: >-
         Create or update user profile properties in Mixpanel People.
         Supports set, set_once, add, append, remove, union, unset,
@@ -176,7 +176,7 @@ paths:
   /groups:
     post:
       operationId: updateGroupProfile
-      summary: Update group profile
+      summary: Mixpanel Update group profile
       description: >-
         Create or update group profile properties. Groups allow you to
         associate events with entities like companies, accounts, or any
@@ -214,7 +214,7 @@ paths:
   /lookup-tables:
     get:
       operationId: listLookupTables
-      summary: List lookup tables
+      summary: Mixpanel List lookup tables
       description: >-
         Retrieve all lookup tables defined for the project.
       tags:
@@ -238,7 +238,7 @@ paths:
   /lookup-tables/{lookupTableId}:
     put:
       operationId: replaceLookupTable
-      summary: Replace lookup table
+      summary: Mixpanel Replace lookup table
       description: >-
         Replace the contents of a lookup table with new CSV data.
         The first column is the join key.
@@ -275,7 +275,7 @@ paths:
         - basicAuth: []
     delete:
       operationId: deleteLookupTable
-      summary: Delete lookup table
+      summary: Mixpanel Delete lookup table
       description: >-
         Delete a lookup table by ID.
       tags:

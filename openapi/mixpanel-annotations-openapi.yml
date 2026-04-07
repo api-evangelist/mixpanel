@@ -28,7 +28,7 @@ paths:
   /projects/{projectId}/annotations:
     get:
       operationId: listAnnotations
-      summary: List annotations
+      summary: Mixpanel List annotations
       description: >-
         Retrieve all annotations for a project within an optional date range.
       tags:
@@ -63,7 +63,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createAnnotation
-      summary: Create annotation
+      summary: Mixpanel Create annotation
       description: >-
         Create a new annotation to mark a specific point in time on
         Mixpanel charts.
@@ -91,7 +91,7 @@ paths:
   /projects/{projectId}/annotations/{annotationId}:
     get:
       operationId: getAnnotation
-      summary: Get annotation
+      summary: Mixpanel Get annotation
       description: >-
         Retrieve a specific annotation by ID.
       tags:
@@ -112,7 +112,7 @@ paths:
           description: Annotation not found
     put:
       operationId: updateAnnotation
-      summary: Update annotation
+      summary: Mixpanel Update annotation
       description: >-
         Update an existing annotation's date or description.
       tags:
@@ -141,7 +141,7 @@ paths:
           description: Annotation not found
     delete:
       operationId: deleteAnnotation
-      summary: Delete annotation
+      summary: Mixpanel Delete annotation
       description: >-
         Delete an annotation by ID.
       tags:

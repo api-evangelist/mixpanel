@@ -28,7 +28,7 @@ paths:
   /identity/create:
     post:
       operationId: createIdentity
-      summary: Create identity
+      summary: Mixpanel Create identity
       description: >-
         Create an identity mapping between an anonymous (device) ID
         and an identified (user) ID. This links pre-login anonymous
@@ -71,7 +71,7 @@ paths:
   /identity/create-alias:
     post:
       operationId: createAlias
-      summary: Create alias
+      summary: Mixpanel Create alias
       description: >-
         Create an alias that maps one distinct_id to another. This is
         a legacy method for identity management. For new implementations,
@@ -115,7 +115,7 @@ paths:
   /identity/merge:
     post:
       operationId: mergeIdentities
-      summary: Merge identities
+      summary: Mixpanel Merge identities
       description: >-
         Merge two distinct_id values into a single identity cluster.
         All events and profile data associated with both IDs will be

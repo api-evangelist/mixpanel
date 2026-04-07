@@ -28,7 +28,7 @@ paths:
   /projects/{projectId}/schemas:
     get:
       operationId: listSchemas
-      summary: List schemas
+      summary: Mixpanel List schemas
       description: >-
         Retrieve all schema definitions for the project including
         event schemas, profile property schemas, and group schemas.
@@ -60,7 +60,7 @@ paths:
           description: Forbidden
     put:
       operationId: replaceSchemas
-      summary: Replace schemas
+      summary: Mixpanel Replace schemas
       description: >-
         Replace all schema definitions for the specified entity type.
         This completely replaces existing schemas with the provided ones.
@@ -104,7 +104,7 @@ paths:
           description: Forbidden
     post:
       operationId: createSchemas
-      summary: Create schemas
+      summary: Mixpanel Create schemas
       description: >-
         Create new schema definitions or update existing ones without
         removing schemas not included in the request.
@@ -141,7 +141,7 @@ paths:
           description: Unauthorized
     delete:
       operationId: deleteSchemas
-      summary: Delete schemas
+      summary: Mixpanel Delete schemas
       description: >-
         Delete specific schema definitions from the project.
       tags:

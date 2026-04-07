@@ -30,7 +30,7 @@ paths:
   /projects/{projectId}/warehouse-sources:
     get:
       operationId: listWarehouseSources
-      summary: List warehouse sources
+      summary: Mixpanel List warehouse sources
       description: >-
         Retrieve all warehouse source connections configured for the project.
       tags:
@@ -55,7 +55,7 @@ paths:
           description: Forbidden
     post:
       operationId: createWarehouseSource
-      summary: Create warehouse source
+      summary: Mixpanel Create warehouse source
       description: >-
         Create a new warehouse source connection for importing data
         from a data warehouse into Mixpanel.
@@ -85,7 +85,7 @@ paths:
   /projects/{projectId}/warehouse-sources/{sourceId}:
     get:
       operationId: getWarehouseSource
-      summary: Get warehouse source
+      summary: Mixpanel Get warehouse source
       description: >-
         Retrieve details of a specific warehouse source connection.
       tags:
@@ -106,7 +106,7 @@ paths:
           description: Source not found
     patch:
       operationId: updateWarehouseSource
-      summary: Update warehouse source
+      summary: Mixpanel Update warehouse source
       description: >-
         Update the configuration of an existing warehouse source connection.
       tags:
@@ -135,7 +135,7 @@ paths:
           description: Source not found
     delete:
       operationId: deleteWarehouseSource
-      summary: Delete warehouse source
+      summary: Mixpanel Delete warehouse source
       description: >-
         Delete a warehouse source connection and all its import configurations.
       tags:
@@ -153,7 +153,7 @@ paths:
   /projects/{projectId}/warehouse-sources/{sourceId}/tables:
     get:
       operationId: listWarehouseTables
-      summary: List warehouse tables
+      summary: Mixpanel List warehouse tables
       description: >-
         List all tables configured for import from a warehouse source.
       tags:
@@ -180,7 +180,7 @@ paths:
   /projects/{projectId}/warehouse-sources/{sourceId}/runs:
     get:
       operationId: listWarehouseRuns
-      summary: List import runs
+      summary: Mixpanel List import runs
       description: >-
         Retrieve the import run history for a specific warehouse source.
       tags:
@@ -206,7 +206,7 @@ paths:
           description: Source not found
     post:
       operationId: triggerWarehouseRun
-      summary: Trigger import run
+      summary: Mixpanel Trigger import run
       description: >-
         Manually trigger an import run for a warehouse source connection.
       tags:

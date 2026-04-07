@@ -30,7 +30,7 @@ paths:
   /data-retrievals/v3.0:
     post:
       operationId: createRetrievalRequest
-      summary: Create data retrieval request
+      summary: Mixpanel Create data retrieval request
       description: >-
         Submit a GDPR or CCPA data retrieval request for a specific user.
         Returns a task ID to check the status of the retrieval.
@@ -60,7 +60,7 @@ paths:
   /data-retrievals/v3.0/{taskId}:
     get:
       operationId: checkRetrievalStatus
-      summary: Check retrieval status
+      summary: Mixpanel Check retrieval status
       description: >-
         Check the status of a previously submitted data retrieval request.
       tags:
@@ -82,7 +82,7 @@ paths:
   /data-deletions/v3.0:
     post:
       operationId: createDeletionRequest
-      summary: Create data deletion request
+      summary: Mixpanel Create data deletion request
       description: >-
         Submit a GDPR or CCPA data deletion request for a specific user.
         Once completed, all event data and profile data for the user
@@ -113,7 +113,7 @@ paths:
   /data-deletions/v3.0/{taskId}:
     get:
       operationId: checkDeletionStatus
-      summary: Check deletion status
+      summary: Mixpanel Check deletion status
       description: >-
         Check the status of a previously submitted data deletion request.
       tags:

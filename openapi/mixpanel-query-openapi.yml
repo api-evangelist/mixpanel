@@ -38,7 +38,7 @@ paths:
   /insights:
     get:
       operationId: queryInsights
-      summary: Query insights
+      summary: Mixpanel Query insights
       description: >-
         Query event data with flexible aggregation, filtering, and
         breakdown capabilities. Returns data suitable for charts and reports.
@@ -72,7 +72,7 @@ paths:
   /funnels:
     get:
       operationId: queryFunnels
-      summary: Query funnel data
+      summary: Mixpanel Query funnel data
       description: >-
         Query funnel conversion data for a defined sequence of events.
         Returns conversion rates and counts at each step.
@@ -152,7 +152,7 @@ paths:
   /funnels/list:
     get:
       operationId: listFunnels
-      summary: List funnels
+      summary: Mixpanel List funnels
       description: >-
         Retrieve a list of all saved funnels in the project.
       tags:
@@ -178,7 +178,7 @@ paths:
   /retention:
     get:
       operationId: queryRetention
-      summary: Query retention data
+      summary: Mixpanel Query retention data
       description: >-
         Query retention analysis data showing how many users return
         after performing an initial event.
@@ -268,7 +268,7 @@ paths:
   /segmentation:
     get:
       operationId: querySegmentation
-      summary: Query event segmentation
+      summary: Mixpanel Query event segmentation
       description: >-
         Query event counts over a time range, optionally segmented
         by a property. Returns time series data.
@@ -346,7 +346,7 @@ paths:
   /segmentation/sum:
     get:
       operationId: querySegmentationSum
-      summary: Query numeric property sum
+      summary: Mixpanel Query numeric property sum
       description: >-
         Query the sum of a numeric event property over a time range.
       tags:
@@ -409,7 +409,7 @@ paths:
   /segmentation/average:
     get:
       operationId: querySegmentationAverage
-      summary: Query numeric property average
+      summary: Mixpanel Query numeric property average
       description: >-
         Query the average of a numeric event property over a time range.
       tags:
@@ -467,7 +467,7 @@ paths:
   /cohorts/list:
     get:
       operationId: listCohorts
-      summary: List cohorts
+      summary: Mixpanel List cohorts
       description: >-
         Retrieve a list of all cohorts defined in the project.
       tags:
