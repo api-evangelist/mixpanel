@@ -1,0 +1,106 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Mixpanel
+providerId: mixpanel
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Product Analytics
+description: Mixpanel event-based pricing across Free / Growth / Enterprise.
+sources:
+  - https://mixpanel.com/pricing/
+plans:
+  - id: mixpanel-free
+    name: Free
+    type: freemium
+    description: Up to 1M monthly events; 5 saved reports; 10K replays.
+    entries:
+      - label: Events
+        name: events
+        type: quota
+        metric: event
+        limit: 1000000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Saved reports
+        name: reports
+        type: quota
+        metric: report
+        limit: 5
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Session replays
+        name: replays
+        type: quota
+        metric: replay
+        limit: 10000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Unlimited seats
+      - name: Slack community support
+  - id: mixpanel-growth
+    name: Growth
+    type: paid
+    description: Starts $0; 1M events free, then $0.28 per 1K events.
+    entries:
+      - label: Events included
+        name: events_free
+        type: quota
+        metric: event
+        limit: 1000000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Events overage per 1K
+        name: events_overage
+        type: metered
+        metric: event
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1000
+        price: '0.28'
+        userMultiplied: false
+    elements:
+      - name: Up to 20M events
+      - name: Unlimited reports
+      - name: 20K monthly session replays
+      - name: Behavioral cohorts
+      - name: Spark AI 60 queries/mo
+      - name: Email support
+  - id: mixpanel-enterprise
+    name: Enterprise
+    type: enterprise
+    description: Custom pricing; unlimited events.
+    entries:
+      - label: Annual contract (custom)
+        name: seat
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: true
+    elements:
+      - name: Unlimited monthly events
+      - name: Advanced analytics
+      - name: Comprehensive data governance
+      - name: Premium 24/7 support
+      - name: HIPAA tools
+      - name: Dedicated account manager
