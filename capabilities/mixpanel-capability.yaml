@@ -1,0 +1,203 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mixpanel Annotations API
+  description: API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel
+    charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
+  tags:
+  - Mixpanel
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: mixpanel
+    baseUri: https://mixpanel.com/api/app
+    description: Mixpanel Annotations API HTTP API.
+    authentication:
+      type: basic
+      username: '{{MIXPANEL_USERNAME}}'
+      password: '{{MIXPANEL_PASSWORD}}'
+    resources:
+    - name: projects-projectid-annotations
+      path: /projects/{projectId}/annotations
+      operations:
+      - name: listannotations
+        method: GET
+        description: Mixpanel List annotations
+        inputParameters:
+        - name: from_date
+          in: query
+          type: string
+          description: Start date filter (YYYY-MM-DD)
+        - name: to_date
+          in: query
+          type: string
+          description: End date filter (YYYY-MM-DD)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createannotation
+        method: POST
+        description: Mixpanel Create annotation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: projects-projectid-annotations-annotationid
+      path: /projects/{projectId}/annotations/{annotationId}
+      operations:
+      - name: getannotation
+        method: GET
+        description: Mixpanel Get annotation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateannotation
+        method: PUT
+        description: Mixpanel Update annotation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteannotation
+        method: DELETE
+        description: Mixpanel Delete annotation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: mixpanel-rest
+    description: REST adapter for Mixpanel Annotations API.
+    resources:
+    - path: /projects/{projectId}/annotations
+      name: listannotations
+      operations:
+      - method: GET
+        name: listannotations
+        description: Mixpanel List annotations
+        call: mixpanel.listannotations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /projects/{projectId}/annotations
+      name: createannotation
+      operations:
+      - method: POST
+        name: createannotation
+        description: Mixpanel Create annotation
+        call: mixpanel.createannotation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /projects/{projectId}/annotations/{annotationId}
+      name: getannotation
+      operations:
+      - method: GET
+        name: getannotation
+        description: Mixpanel Get annotation
+        call: mixpanel.getannotation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /projects/{projectId}/annotations/{annotationId}
+      name: updateannotation
+      operations:
+      - method: PUT
+        name: updateannotation
+        description: Mixpanel Update annotation
+        call: mixpanel.updateannotation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /projects/{projectId}/annotations/{annotationId}
+      name: deleteannotation
+      operations:
+      - method: DELETE
+        name: deleteannotation
+        description: Mixpanel Delete annotation
+        call: mixpanel.deleteannotation
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: mixpanel-mcp
+    transport: http
+    description: MCP adapter for Mixpanel Annotations API for AI agent use.
+    tools:
+    - name: listannotations
+      description: Mixpanel List annotations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: mixpanel.listannotations
+      with:
+        from_date: tools.from_date
+        to_date: tools.to_date
+      inputParameters:
+      - name: from_date
+        type: string
+        description: Start date filter (YYYY-MM-DD)
+      - name: to_date
+        type: string
+        description: End date filter (YYYY-MM-DD)
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createannotation
+      description: Mixpanel Create annotation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: mixpanel.createannotation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getannotation
+      description: Mixpanel Get annotation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: mixpanel.getannotation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateannotation
+      description: Mixpanel Update annotation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: mixpanel.updateannotation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteannotation
+      description: Mixpanel Delete annotation
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: mixpanel.deleteannotation
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    MIXPANEL_USERNAME: MIXPANEL_USERNAME
+    MIXPANEL_PASSWORD: MIXPANEL_PASSWORD
