@@ -283,6 +283,10 @@ common:
     sources:
       - https://mixpanel.com/pricing/
     updated: '2026-05-04'
+integrations:
+  - name: Become a Partner
+  - name: mixpanel
+  - name: Expert Directory
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
