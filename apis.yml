@@ -222,19 +222,19 @@ apis:
 common:
   - type: Portal
     url: https://developer.mixpanel.com/
-  - type: Getting Started
+  - type: GettingStarted
     url: https://developer.mixpanel.com/docs/getting-started
   - type: Authentication
     url: https://developer.mixpanel.com/reference/authentication
   - type: SDKs
     url: https://developer.mixpanel.com/docs/sdks
-  - type: Rate Limits
+  - type: RateLimits
     url: https://developer.mixpanel.com/reference/rate-limits
   - type: API Status
     url: https://www.mixpanelstatus.com/
-  - type: Change Log
+  - type: ChangeLog
     url: https://docs.mixpanel.com/changelogs
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/mixpanel
   - type: Integrations
     url: https://mixpanel.com/partners/integrations
@@ -242,11 +242,11 @@ common:
     url: https://mixpanel.com/legal/security-overview/
   - type: Login
     url: https://mixpanel.com/login/
-  - type: Sign Up
+  - type: SignUp
     url: https://mixpanel.com/register/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://mixpanel.com/legal/terms-of-use
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://mixpanel.com/legal/privacy-policy
   - type: Pricing
     url: https://mixpanel.com/pricing
@@ -254,7 +254,7 @@ common:
     url: https://mixpanel.com/blog
   - type: Support
     url: https://mixpanel.com/get-support
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/mixpanel-context.jsonld
   - type: JSONSchema
     url: json-schema/mixpanel-event-schema.json
