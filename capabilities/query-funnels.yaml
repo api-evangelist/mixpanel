@@ -1,0 +1,180 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mixpanel Query API — Funnels
+  description: 'Mixpanel Query API — Funnels. 2 operations. Lead operation: Mixpanel Query funnel data. Self-contained Naftiko
+    capability covering one Mixpanel business surface.'
+  tags:
+  - Mixpanel
+  - Funnels
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MIXPANEL_API_KEY: MIXPANEL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: query-funnels
+    baseUri: https://mixpanel.com/api/2.0
+    description: Mixpanel Query API — Funnels business capability. Self-contained, no shared references.
+    resources:
+    - name: funnels
+      path: /funnels
+      operations:
+      - name: queryfunnels
+        method: GET
+        description: Mixpanel Query funnel data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: project_id
+          in: query
+          type: integer
+          description: The Mixpanel project ID
+          required: true
+        - name: funnel_id
+          in: query
+          type: integer
+          description: The ID of the funnel to query
+          required: true
+        - name: from_date
+          in: query
+          type: string
+          description: Start date (YYYY-MM-DD)
+          required: true
+        - name: to_date
+          in: query
+          type: string
+          description: End date (YYYY-MM-DD)
+          required: true
+        - name: length
+          in: query
+          type: integer
+          description: Number of units in the conversion window
+        - name: length_unit
+          in: query
+          type: string
+          description: Unit of time for the conversion window
+        - name: interval
+          in: query
+          type: integer
+          description: Number of days per data point
+        - name: true
+          in: query
+          type: string
+          description: Property expression to segment results
+        - name: where
+          in: query
+          type: string
+          description: Expression to filter events
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of segment values to return
+    - name: funnels-list
+      path: /funnels/list
+      operations:
+      - name: listfunnels
+        method: GET
+        description: Mixpanel List funnels
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: project_id
+          in: query
+          type: integer
+          description: The Mixpanel project ID
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.MIXPANEL_USER}}'
+      password: '{{env.MIXPANEL_PASS}}'
+  exposes:
+  - type: rest
+    namespace: query-funnels-rest
+    port: 8080
+    description: REST adapter for Mixpanel Query API — Funnels. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/funnels
+      name: funnels
+      description: REST surface for funnels.
+      operations:
+      - method: GET
+        name: queryfunnels
+        description: Mixpanel Query funnel data
+        call: query-funnels.queryfunnels
+        with:
+          project_id: rest.project_id
+          funnel_id: rest.funnel_id
+          from_date: rest.from_date
+          to_date: rest.to_date
+          length: rest.length
+          length_unit: rest.length_unit
+          interval: rest.interval
+          true: rest.True
+          where: rest.where
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/funnels/list
+      name: funnels-list
+      description: REST surface for funnels-list.
+      operations:
+      - method: GET
+        name: listfunnels
+        description: Mixpanel List funnels
+        call: query-funnels.listfunnels
+        with:
+          project_id: rest.project_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: query-funnels-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mixpanel Query API — Funnels. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: mixpanel-query-funnel-data
+      description: Mixpanel Query funnel data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: query-funnels.queryfunnels
+      with:
+        project_id: tools.project_id
+        funnel_id: tools.funnel_id
+        from_date: tools.from_date
+        to_date: tools.to_date
+        length: tools.length
+        length_unit: tools.length_unit
+        interval: tools.interval
+        true: tools.True
+        where: tools.where
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mixpanel-list-funnels
+      description: Mixpanel List funnels
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: query-funnels.listfunnels
+      with:
+        project_id: tools.project_id
+      outputParameters:
+      - type: object
+        mapping: $.

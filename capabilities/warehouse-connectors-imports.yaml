@@ -1,0 +1,128 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mixpanel Warehouse Connectors API — Imports
+  description: 'Mixpanel Warehouse Connectors API — Imports. 3 operations. Lead operation: Mixpanel List import runs. Self-contained
+    Naftiko capability covering one Mixpanel business surface.'
+  tags:
+  - Mixpanel
+  - Imports
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MIXPANEL_API_KEY: MIXPANEL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: warehouse-connectors-imports
+    baseUri: https://mixpanel.com/api/app
+    description: Mixpanel Warehouse Connectors API — Imports business capability. Self-contained, no shared references.
+    resources:
+    - name: projects-projectId-warehouse-sources-sourceId-runs
+      path: /projects/{projectId}/warehouse-sources/{sourceId}/runs
+      operations:
+      - name: listwarehouseruns
+        method: GET
+        description: Mixpanel List import runs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: triggerwarehouserun
+        method: POST
+        description: Mixpanel Trigger import run
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: projects-projectId-warehouse-sources-sourceId-tables
+      path: /projects/{projectId}/warehouse-sources/{sourceId}/tables
+      operations:
+      - name: listwarehousetables
+        method: GET
+        description: Mixpanel List warehouse tables
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.MIXPANEL_USER}}'
+      password: '{{env.MIXPANEL_PASS}}'
+  exposes:
+  - type: rest
+    namespace: warehouse-connectors-imports-rest
+    port: 8080
+    description: REST adapter for Mixpanel Warehouse Connectors API — Imports. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/projects/{projectid}/warehouse-sources/{sourceid}/runs
+      name: projects-projectid-warehouse-sources-sourceid-runs
+      description: REST surface for projects-projectId-warehouse-sources-sourceId-runs.
+      operations:
+      - method: GET
+        name: listwarehouseruns
+        description: Mixpanel List import runs
+        call: warehouse-connectors-imports.listwarehouseruns
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: triggerwarehouserun
+        description: Mixpanel Trigger import run
+        call: warehouse-connectors-imports.triggerwarehouserun
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectid}/warehouse-sources/{sourceid}/tables
+      name: projects-projectid-warehouse-sources-sourceid-tables
+      description: REST surface for projects-projectId-warehouse-sources-sourceId-tables.
+      operations:
+      - method: GET
+        name: listwarehousetables
+        description: Mixpanel List warehouse tables
+        call: warehouse-connectors-imports.listwarehousetables
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: warehouse-connectors-imports-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mixpanel Warehouse Connectors API — Imports. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: mixpanel-list-import-runs
+      description: Mixpanel List import runs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: warehouse-connectors-imports.listwarehouseruns
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mixpanel-trigger-import-run
+      description: Mixpanel Trigger import run
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: warehouse-connectors-imports.triggerwarehouserun
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mixpanel-list-warehouse-tables
+      description: Mixpanel List warehouse tables
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: warehouse-connectors-imports.listwarehousetables
+      outputParameters:
+      - type: object
+        mapping: $.

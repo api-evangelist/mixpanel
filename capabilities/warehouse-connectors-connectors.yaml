@@ -1,0 +1,198 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mixpanel Warehouse Connectors API — Connectors
+  description: 'Mixpanel Warehouse Connectors API — Connectors. 5 operations. Lead operation: Mixpanel List warehouse sources.
+    Self-contained Naftiko capability covering one Mixpanel business surface.'
+  tags:
+  - Mixpanel
+  - Connectors
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MIXPANEL_API_KEY: MIXPANEL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: warehouse-connectors-connectors
+    baseUri: https://mixpanel.com/api/app
+    description: Mixpanel Warehouse Connectors API — Connectors business capability. Self-contained, no shared references.
+    resources:
+    - name: projects-projectId-warehouse-sources
+      path: /projects/{projectId}/warehouse-sources
+      operations:
+      - name: listwarehousesources
+        method: GET
+        description: Mixpanel List warehouse sources
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createwarehousesource
+        method: POST
+        description: Mixpanel Create warehouse source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: projects-projectId-warehouse-sources-sourceId
+      path: /projects/{projectId}/warehouse-sources/{sourceId}
+      operations:
+      - name: getwarehousesource
+        method: GET
+        description: Mixpanel Get warehouse source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatewarehousesource
+        method: PATCH
+        description: Mixpanel Update warehouse source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletewarehousesource
+        method: DELETE
+        description: Mixpanel Delete warehouse source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.MIXPANEL_USER}}'
+      password: '{{env.MIXPANEL_PASS}}'
+  exposes:
+  - type: rest
+    namespace: warehouse-connectors-connectors-rest
+    port: 8080
+    description: REST adapter for Mixpanel Warehouse Connectors API — Connectors. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/projects/{projectid}/warehouse-sources
+      name: projects-projectid-warehouse-sources
+      description: REST surface for projects-projectId-warehouse-sources.
+      operations:
+      - method: GET
+        name: listwarehousesources
+        description: Mixpanel List warehouse sources
+        call: warehouse-connectors-connectors.listwarehousesources
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createwarehousesource
+        description: Mixpanel Create warehouse source
+        call: warehouse-connectors-connectors.createwarehousesource
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectid}/warehouse-sources/{sourceid}
+      name: projects-projectid-warehouse-sources-sourceid
+      description: REST surface for projects-projectId-warehouse-sources-sourceId.
+      operations:
+      - method: GET
+        name: getwarehousesource
+        description: Mixpanel Get warehouse source
+        call: warehouse-connectors-connectors.getwarehousesource
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatewarehousesource
+        description: Mixpanel Update warehouse source
+        call: warehouse-connectors-connectors.updatewarehousesource
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletewarehousesource
+        description: Mixpanel Delete warehouse source
+        call: warehouse-connectors-connectors.deletewarehousesource
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: warehouse-connectors-connectors-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mixpanel Warehouse Connectors API — Connectors. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: mixpanel-list-warehouse-sources
+      description: Mixpanel List warehouse sources
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: warehouse-connectors-connectors.listwarehousesources
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mixpanel-create-warehouse-source
+      description: Mixpanel Create warehouse source
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: warehouse-connectors-connectors.createwarehousesource
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mixpanel-get-warehouse-source
+      description: Mixpanel Get warehouse source
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: warehouse-connectors-connectors.getwarehousesource
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mixpanel-update-warehouse-source
+      description: Mixpanel Update warehouse source
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: warehouse-connectors-connectors.updatewarehousesource
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mixpanel-delete-warehouse-source
+      description: Mixpanel Delete warehouse source
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: warehouse-connectors-connectors.deletewarehousesource
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,112 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mixpanel GDPR and CCPA API — Deletion
+  description: 'Mixpanel GDPR and CCPA API — Deletion. 2 operations. Lead operation: Mixpanel Create data deletion request.
+    Self-contained Naftiko capability covering one Mixpanel business surface.'
+  tags:
+  - Mixpanel
+  - Deletion
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MIXPANEL_API_KEY: MIXPANEL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gdpr-ccpa-deletion
+    baseUri: https://mixpanel.com/api/app
+    description: Mixpanel GDPR and CCPA API — Deletion business capability. Self-contained, no shared references.
+    resources:
+    - name: data-deletions-v3.0
+      path: /data-deletions/v3.0
+      operations:
+      - name: createdeletionrequest
+        method: POST
+        description: Mixpanel Create data deletion request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: data-deletions-v3.0-taskId
+      path: /data-deletions/v3.0/{taskId}
+      operations:
+      - name: checkdeletionstatus
+        method: GET
+        description: Mixpanel Check deletion status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.MIXPANEL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: gdpr-ccpa-deletion-rest
+    port: 8080
+    description: REST adapter for Mixpanel GDPR and CCPA API — Deletion. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/data-deletions/v3-0
+      name: data-deletions-v3-0
+      description: REST surface for data-deletions-v3.0.
+      operations:
+      - method: POST
+        name: createdeletionrequest
+        description: Mixpanel Create data deletion request
+        call: gdpr-ccpa-deletion.createdeletionrequest
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/data-deletions/v3-0/{taskid}
+      name: data-deletions-v3-0-taskid
+      description: REST surface for data-deletions-v3.0-taskId.
+      operations:
+      - method: GET
+        name: checkdeletionstatus
+        description: Mixpanel Check deletion status
+        call: gdpr-ccpa-deletion.checkdeletionstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gdpr-ccpa-deletion-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mixpanel GDPR and CCPA API — Deletion. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mixpanel-create-data-deletion-request
+      description: Mixpanel Create data deletion request
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: gdpr-ccpa-deletion.createdeletionrequest
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mixpanel-check-deletion-status
+      description: Mixpanel Check deletion status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gdpr-ccpa-deletion.checkdeletionstatus
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,149 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mixpanel Query API — Retention
+  description: 'Mixpanel Query API — Retention. 1 operations. Lead operation: Mixpanel Query retention data. Self-contained
+    Naftiko capability covering one Mixpanel business surface.'
+  tags:
+  - Mixpanel
+  - Retention
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MIXPANEL_API_KEY: MIXPANEL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: query-retention
+    baseUri: https://mixpanel.com/api/2.0
+    description: Mixpanel Query API — Retention business capability. Self-contained, no shared references.
+    resources:
+    - name: retention
+      path: /retention
+      operations:
+      - name: queryretention
+        method: GET
+        description: Mixpanel Query retention data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: project_id
+          in: query
+          type: integer
+          description: The Mixpanel project ID
+          required: true
+        - name: from_date
+          in: query
+          type: string
+          description: Start date (YYYY-MM-DD)
+          required: true
+        - name: to_date
+          in: query
+          type: string
+          description: End date (YYYY-MM-DD)
+          required: true
+        - name: born_event
+          in: query
+          type: string
+          description: The initial event that defines the cohort
+        - name: retention_type
+          in: query
+          type: string
+          description: Type of retention analysis
+        - name: born_where
+          in: query
+          type: string
+          description: Filter expression for the initial event
+        - name: event
+          in: query
+          type: string
+          description: The return event to measure
+        - name: where
+          in: query
+          type: string
+          description: Filter expression for the return event
+        - name: interval
+          in: query
+          type: integer
+          description: Number of days per retention period
+        - name: interval_count
+          in: query
+          type: integer
+          description: Number of retention periods to return
+        - name: unit
+          in: query
+          type: string
+          description: Time unit for retention periods
+        - name: true
+          in: query
+          type: string
+          description: Property to segment results by
+    authentication:
+      type: basic
+      username: '{{env.MIXPANEL_USER}}'
+      password: '{{env.MIXPANEL_PASS}}'
+  exposes:
+  - type: rest
+    namespace: query-retention-rest
+    port: 8080
+    description: REST adapter for Mixpanel Query API — Retention. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/retention
+      name: retention
+      description: REST surface for retention.
+      operations:
+      - method: GET
+        name: queryretention
+        description: Mixpanel Query retention data
+        call: query-retention.queryretention
+        with:
+          project_id: rest.project_id
+          from_date: rest.from_date
+          to_date: rest.to_date
+          born_event: rest.born_event
+          retention_type: rest.retention_type
+          born_where: rest.born_where
+          event: rest.event
+          where: rest.where
+          interval: rest.interval
+          interval_count: rest.interval_count
+          unit: rest.unit
+          true: rest.True
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: query-retention-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mixpanel Query API — Retention. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: mixpanel-query-retention-data
+      description: Mixpanel Query retention data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: query-retention.queryretention
+      with:
+        project_id: tools.project_id
+        from_date: tools.from_date
+        to_date: tools.to_date
+        born_event: tools.born_event
+        retention_type: tools.retention_type
+        born_where: tools.born_where
+        event: tools.event
+        where: tools.where
+        interval: tools.interval
+        interval_count: tools.interval_count
+        unit: tools.unit
+        true: tools.True
+      outputParameters:
+      - type: object
+        mapping: $.

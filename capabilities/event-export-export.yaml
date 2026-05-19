@@ -1,0 +1,106 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mixpanel Event Export API — Export
+  description: 'Mixpanel Event Export API — Export. 1 operations. Lead operation: Mixpanel Export raw events. Self-contained
+    Naftiko capability covering one Mixpanel business surface.'
+  tags:
+  - Mixpanel
+  - Export
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MIXPANEL_API_KEY: MIXPANEL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: event-export-export
+    baseUri: https://data.mixpanel.com/api/2.0
+    description: Mixpanel Event Export API — Export business capability. Self-contained, no shared references.
+    resources:
+    - name: export
+      path: /export
+      operations:
+      - name: exportrawevents
+        method: GET
+        description: Mixpanel Export raw events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: from_date
+          in: query
+          type: string
+          description: Start date for export (YYYY-MM-DD)
+          required: true
+        - name: to_date
+          in: query
+          type: string
+          description: End date for export (YYYY-MM-DD)
+          required: true
+        - name: event
+          in: query
+          type: array
+          description: Filter to specific event names (JSON-encoded array)
+        - name: where
+          in: query
+          type: string
+          description: Expression to filter events (e.g., 'properties["$os"] == "iPhone OS"')
+        - name: project_id
+          in: query
+          type: integer
+          description: The Mixpanel project ID
+    authentication:
+      type: basic
+      username: '{{env.MIXPANEL_USER}}'
+      password: '{{env.MIXPANEL_PASS}}'
+  exposes:
+  - type: rest
+    namespace: event-export-export-rest
+    port: 8080
+    description: REST adapter for Mixpanel Event Export API — Export. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/export
+      name: export
+      description: REST surface for export.
+      operations:
+      - method: GET
+        name: exportrawevents
+        description: Mixpanel Export raw events
+        call: event-export-export.exportrawevents
+        with:
+          from_date: rest.from_date
+          to_date: rest.to_date
+          event: rest.event
+          where: rest.where
+          project_id: rest.project_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: event-export-export-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mixpanel Event Export API — Export. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mixpanel-export-raw-events
+      description: Mixpanel Export raw events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: event-export-export.exportrawevents
+      with:
+        from_date: tools.from_date
+        to_date: tools.to_date
+        event: tools.event
+        where: tools.where
+        project_id: tools.project_id
+      outputParameters:
+      - type: object
+        mapping: $.

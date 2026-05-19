@@ -1,0 +1,136 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mixpanel Ingestion API — Events
+  description: 'Mixpanel Ingestion API — Events. 2 operations. Lead operation: Mixpanel Import events. Self-contained Naftiko
+    capability covering one Mixpanel business surface.'
+  tags:
+  - Mixpanel
+  - Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MIXPANEL_API_KEY: MIXPANEL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ingestion-events
+    baseUri: https://api.mixpanel.com
+    description: Mixpanel Ingestion API — Events business capability. Self-contained, no shared references.
+    resources:
+    - name: import
+      path: /import
+      operations:
+      - name: importevents
+        method: POST
+        description: Mixpanel Import events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: strict
+          in: query
+          type: integer
+          description: When set to 1, validates all properties and rejects the entire batch if any event is invalid
+        - name: project_id
+          in: query
+          type: string
+          description: The project ID to import events into
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: track
+      path: /track
+      operations:
+      - name: trackevent
+        method: POST
+        description: Mixpanel Track event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: token
+      value: '{{env.MIXPANEL_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: ingestion-events-rest
+    port: 8080
+    description: REST adapter for Mixpanel Ingestion API — Events. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/import
+      name: import
+      description: REST surface for import.
+      operations:
+      - method: POST
+        name: importevents
+        description: Mixpanel Import events
+        call: ingestion-events.importevents
+        with:
+          strict: rest.strict
+          project_id: rest.project_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/track
+      name: track
+      description: REST surface for track.
+      operations:
+      - method: POST
+        name: trackevent
+        description: Mixpanel Track event
+        call: ingestion-events.trackevent
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ingestion-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mixpanel Ingestion API — Events. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: mixpanel-import-events
+      description: Mixpanel Import events
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ingestion-events.importevents
+      with:
+        strict: tools.strict
+        project_id: tools.project_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mixpanel-track-event
+      description: Mixpanel Track event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ingestion-events.trackevent
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
