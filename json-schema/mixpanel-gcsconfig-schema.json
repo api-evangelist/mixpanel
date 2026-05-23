@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GCSConfig",
+  "title": "GCSConfig",
+  "type": "object",
+  "properties": {
+    "bucket": {
+      "type": "string",
+      "description": "GCS bucket name"
+    },
+    "prefix": {
+      "type": "string",
+      "description": "GCS path prefix"
+    },
+    "serviceAccountKey": {
+      "type": "string",
+      "description": "Base64-encoded service account JSON key"
+    }
+  }
+}

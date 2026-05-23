@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Cohort",
+  "title": "Cohort",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique cohort identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Cohort name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Cohort description"
+    },
+    "count": {
+      "type": "integer",
+      "description": "Number of users in the cohort"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the cohort was created"
+    }
+  }
+}

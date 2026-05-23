@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FunnelSummary",
+  "title": "FunnelSummary",
+  "type": "object",
+  "properties": {
+    "funnel_id": {
+      "type": "integer",
+      "description": "Unique funnel identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Funnel name"
+    }
+  }
+}

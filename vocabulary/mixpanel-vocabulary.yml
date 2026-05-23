@@ -1,0 +1,15 @@
+name: Mixpanel Domain Vocabulary
+provider: Mixpanel
+providerId: mixpanel
+description: Tag-derived vocabulary for the Mixpanel API surface; sourced from openapi/ tags.
+terms:
+- term: Cohorts
+  description: Manage and query user cohorts
+- term: Funnels
+  description: Analyze conversion funnels
+- term: Insights
+  description: Query event data with aggregation and breakdowns
+- term: Retention
+  description: Query retention analysis data
+- term: Segmentation
+  description: Query event segmentation data over time

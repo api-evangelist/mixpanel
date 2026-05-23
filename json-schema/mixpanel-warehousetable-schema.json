@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WarehouseTable",
+  "title": "WarehouseTable",
+  "type": "object",
+  "properties": {
+    "tableName": {
+      "type": "string",
+      "description": "Full table name"
+    },
+    "importType": {
+      "type": "string",
+      "enum": [
+        "event",
+        "user",
+        "group",
+        "lookup_table"
+      ],
+      "description": "Import type"
+    },
+    "rowCount": {
+      "type": "integer",
+      "description": "Number of rows in the table"
+    },
+    "lastImportedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this table was last imported"
+    }
+  }
+}

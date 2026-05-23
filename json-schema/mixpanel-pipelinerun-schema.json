@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PipelineRun",
+  "title": "PipelineRun",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Run identifier"
+    },
+    "pipelineId": {
+      "type": "string",
+      "description": "Parent pipeline ID"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "running",
+        "completed",
+        "failed"
+      ],
+      "description": "Run status"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the run started"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the run completed"
+    },
+    "recordsExported": {
+      "type": "integer",
+      "description": "Number of records exported in this run"
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message if the run failed"
+    }
+  }
+}

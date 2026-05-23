@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WarehouseSource",
+  "title": "WarehouseSource",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique source identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Source connection name"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "bigquery",
+        "snowflake",
+        "redshift",
+        "databricks",
+        "postgresql"
+      ],
+      "description": "Warehouse type"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "error"
+      ],
+      "description": "Connection status"
+    },
+    "schedule": {
+      "type": "string",
+      "enum": [
+        "hourly",
+        "daily",
+        "weekly"
+      ],
+      "description": "Import schedule"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the source was created"
+    },
+    "lastRunAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the last import ran"
+    }
+  }
+}

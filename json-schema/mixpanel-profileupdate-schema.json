@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileUpdate",
+  "title": "ProfileUpdate",
+  "type": "object",
+  "required": [
+    "$token",
+    "$distinct_id"
+  ],
+  "properties": {
+    "$token": {
+      "type": "string",
+      "description": "Mixpanel project token"
+    },
+    "$distinct_id": {
+      "type": "string",
+      "description": "Unique identifier for the user profile"
+    },
+    "$ip": {
+      "type": "string",
+      "description": "IP address for geolocation"
+    },
+    "$set": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Properties to set (overwrites existing values)"
+    },
+    "$set_once": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Properties to set only if they do not already exist"
+    },
+    "$add": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      },
+      "description": "Numeric properties to increment"
+    },
+    "$append": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Values to append to list properties"
+    },
+    "$remove": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Values to remove from list properties"
+    },
+    "$union": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array"
+      },
+      "description": "Values to merge into list properties without duplicates"
+    },
+    "$unset": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Property names to remove from the profile"
+    },
+    "$delete": {
+      "type": "string",
+      "description": "Set to empty string to delete the profile entirely"
+    }
+  }
+}

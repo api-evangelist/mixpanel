@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorResponse",
+  "title": "ErrorResponse",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message"
+    },
+    "status": {
+      "type": "string",
+      "description": "Status indicator"
+    },
+    "num_records_imported": {
+      "type": "integer",
+      "description": "Number of records imported before failure"
+    },
+    "failed_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "integer",
+            "description": "Index of the failed record"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message for this record"
+          }
+        }
+      }
+    }
+  }
+}

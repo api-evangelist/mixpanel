@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/S3Config",
+  "title": "S3Config",
+  "type": "object",
+  "properties": {
+    "bucket": {
+      "type": "string",
+      "description": "S3 bucket name"
+    },
+    "prefix": {
+      "type": "string",
+      "description": "S3 key prefix for exported files"
+    },
+    "region": {
+      "type": "string",
+      "description": "AWS region"
+    },
+    "roleArn": {
+      "type": "string",
+      "description": "AWS IAM role ARN for cross-account access"
+    }
+  }
+}

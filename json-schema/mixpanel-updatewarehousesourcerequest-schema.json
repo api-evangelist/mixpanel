@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateWarehouseSourceRequest",
+  "title": "UpdateWarehouseSourceRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated source name"
+    },
+    "schedule": {
+      "type": "string",
+      "enum": [
+        "hourly",
+        "daily",
+        "weekly"
+      ],
+      "description": "Updated import schedule"
+    },
+    "tables": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TableConfig"
+      },
+      "description": "Updated table configurations"
+    }
+  }
+}

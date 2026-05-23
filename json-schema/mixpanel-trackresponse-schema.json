@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TrackResponse",
+  "title": "TrackResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "integer",
+      "enum": [
+        0,
+        1
+      ],
+      "description": "1 for success, 0 for failure"
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message if status is 0"
+    }
+  }
+}

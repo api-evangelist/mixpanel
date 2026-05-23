@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateWarehouseSourceRequest",
+  "title": "CreateWarehouseSourceRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "type",
+    "connectionDetails"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Source connection name"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "bigquery",
+        "snowflake",
+        "redshift",
+        "databricks",
+        "postgresql"
+      ],
+      "description": "Warehouse type"
+    },
+    "schedule": {
+      "type": "string",
+      "enum": [
+        "hourly",
+        "daily",
+        "weekly"
+      ],
+      "description": "Import schedule"
+    },
+    "connectionDetails": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Warehouse-specific connection details (credentials, host, etc.)"
+    },
+    "tables": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TableConfig"
+      },
+      "description": "Tables to import"
+    }
+  }
+}

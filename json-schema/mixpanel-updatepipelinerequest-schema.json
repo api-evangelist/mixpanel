@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdatePipelineRequest",
+  "title": "UpdatePipelineRequest",
+  "type": "object",
+  "required": [
+    "id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Pipeline ID to update"
+    },
+    "name": {
+      "type": "string",
+      "description": "Updated pipeline name"
+    },
+    "dataTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Updated data types to export"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "hourly",
+        "daily"
+      ],
+      "description": "Updated export frequency"
+    }
+  }
+}

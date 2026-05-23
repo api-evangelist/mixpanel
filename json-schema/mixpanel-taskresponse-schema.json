@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaskResponse",
+  "title": "TaskResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "error"
+      ],
+      "description": "Whether the request was accepted"
+    },
+    "results": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "description": "Unique task ID for tracking the request"
+        }
+      }
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message if status is error"
+    }
+  }
+}

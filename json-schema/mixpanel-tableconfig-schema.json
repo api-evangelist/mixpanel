@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TableConfig",
+  "title": "TableConfig",
+  "type": "object",
+  "required": [
+    "tableName",
+    "importType"
+  ],
+  "properties": {
+    "tableName": {
+      "type": "string",
+      "description": "Full table name (schema.table)"
+    },
+    "importType": {
+      "type": "string",
+      "enum": [
+        "event",
+        "user",
+        "group",
+        "lookup_table"
+      ],
+      "description": "How to import this table's data"
+    },
+    "eventNameColumn": {
+      "type": "string",
+      "description": "Column to use as event name (event type only)"
+    },
+    "distinctIdColumn": {
+      "type": "string",
+      "description": "Column to use as distinct_id"
+    },
+    "timeColumn": {
+      "type": "string",
+      "description": "Column to use as event timestamp"
+    }
+  }
+}

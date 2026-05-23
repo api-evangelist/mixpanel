@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FunnelStep",
+  "title": "FunnelStep",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "description": "Number of users who completed this step"
+    },
+    "avg_time": {
+      "type": "number",
+      "description": "Average time to complete this step in seconds"
+    },
+    "goal": {
+      "type": "string",
+      "description": "Event name for this step"
+    },
+    "overall_conv_ratio": {
+      "type": "number",
+      "description": "Conversion rate from step 1 to this step"
+    },
+    "step_conv_ratio": {
+      "type": "number",
+      "description": "Conversion rate from previous step to this step"
+    }
+  }
+}

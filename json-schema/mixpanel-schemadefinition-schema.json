@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SchemaDefinition",
+  "title": "SchemaDefinition",
+  "type": "object",
+  "properties": {
+    "entityType": {
+      "type": "string",
+      "enum": [
+        "event",
+        "profile",
+        "group",
+        "lookup_table"
+      ],
+      "description": "The type of entity this schema describes"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the event or property"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description"
+    },
+    "isHidden": {
+      "type": "boolean",
+      "description": "Whether this schema is hidden in the UI"
+    },
+    "isDropped": {
+      "type": "boolean",
+      "description": "Whether events matching this schema should be dropped"
+    },
+    "properties": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/PropertySchema"
+      },
+      "description": "Property definitions for this schema"
+    }
+  }
+}

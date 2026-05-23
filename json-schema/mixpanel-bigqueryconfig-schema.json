@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BigQueryConfig",
+  "title": "BigQueryConfig",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "description": "Google Cloud project ID"
+    },
+    "dataset": {
+      "type": "string",
+      "description": "BigQuery dataset name"
+    },
+    "serviceAccountKey": {
+      "type": "string",
+      "description": "Base64-encoded service account JSON key"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateAnnotationRequest",
+  "title": "CreateAnnotationRequest",
+  "type": "object",
+  "required": [
+    "date",
+    "description"
+  ],
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time to annotate (YYYY-MM-DDThh:mm:ss)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description text for the annotation"
+    }
+  }
+}

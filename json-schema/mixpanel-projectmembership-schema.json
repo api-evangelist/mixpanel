@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProjectMembership",
+  "title": "ProjectMembership",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "type": "integer",
+      "description": "The project ID"
+    },
+    "projectName": {
+      "type": "string",
+      "description": "The project name"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "analyst",
+        "consumer"
+      ],
+      "description": "Role assigned to the service account"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreatePipelineRequest",
+  "title": "CreatePipelineRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "type",
+    "fromDate",
+    "dataTypes"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Pipeline name"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "bigquery",
+        "snowflake",
+        "s3",
+        "gcs",
+        "azure-blob"
+      ],
+      "description": "Destination type"
+    },
+    "fromDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Start date for data export"
+    },
+    "dataTypes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "event",
+          "people",
+          "group"
+        ]
+      },
+      "description": "Types of data to export"
+    },
+    "schemaType": {
+      "type": "string",
+      "enum": [
+        "monoschema",
+        "multischema"
+      ],
+      "description": "Schema type for the export"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "hourly",
+        "daily"
+      ],
+      "description": "Export frequency"
+    },
+    "bigqueryConfig": {
+      "$ref": "#/components/schemas/BigQueryConfig"
+    },
+    "snowflakeConfig": {
+      "$ref": "#/components/schemas/SnowflakeConfig"
+    },
+    "s3Config": {
+      "$ref": "#/components/schemas/S3Config"
+    },
+    "gcsConfig": {
+      "$ref": "#/components/schemas/GCSConfig"
+    }
+  }
+}

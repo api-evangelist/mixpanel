@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PrivacyRequest",
+  "title": "PrivacyRequest",
+  "type": "object",
+  "required": [
+    "distinct_ids",
+    "compliance_type"
+  ],
+  "properties": {
+    "distinct_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of distinct_ids to retrieve or delete data for"
+    },
+    "compliance_type": {
+      "type": "string",
+      "enum": [
+        "GDPR",
+        "CCPA"
+      ],
+      "description": "The compliance regulation for the request"
+    }
+  }
+}

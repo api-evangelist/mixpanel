@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Annotation",
+  "title": "Annotation",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique annotation identifier"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the annotation marks"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description text for the annotation"
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "ID of the user who created the annotation"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the user who created the annotation"
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the annotation was created"
+    }
+  }
+}

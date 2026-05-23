@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GroupUpdate",
+  "title": "GroupUpdate",
+  "type": "object",
+  "required": [
+    "$token",
+    "$group_key",
+    "$group_id"
+  ],
+  "properties": {
+    "$token": {
+      "type": "string",
+      "description": "Mixpanel project token"
+    },
+    "$group_key": {
+      "type": "string",
+      "description": "The group key (e.g., company)"
+    },
+    "$group_id": {
+      "type": "string",
+      "description": "The group identifier value"
+    },
+    "$set": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Properties to set on the group profile"
+    },
+    "$set_once": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Properties to set only if not already set"
+    },
+    "$unset": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Property names to remove from the group profile"
+    },
+    "$delete": {
+      "type": "string",
+      "description": "Set to empty string to delete the group profile"
+    }
+  }
+}

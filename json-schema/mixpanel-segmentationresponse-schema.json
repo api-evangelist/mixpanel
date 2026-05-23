@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SegmentationResponse",
+  "title": "SegmentationResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "series": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "date"
+          },
+          "description": "Dates in the time series"
+        },
+        "values": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number"
+            }
+          },
+          "description": "Values keyed by segment name and date"
+        }
+      }
+    }
+  }
+}

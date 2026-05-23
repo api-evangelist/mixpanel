@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InsightsResponse",
+  "title": "InsightsResponse",
+  "type": "object",
+  "properties": {
+    "series": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "description": "Time series data keyed by metric name"
+    },
+    "date_range": {
+      "type": "object",
+      "properties": {
+        "from_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "to_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    }
+  }
+}

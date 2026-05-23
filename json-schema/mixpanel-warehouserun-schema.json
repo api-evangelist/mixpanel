@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WarehouseRun",
+  "title": "WarehouseRun",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Run identifier"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "running",
+        "completed",
+        "failed"
+      ],
+      "description": "Run status"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the run started"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the run completed"
+    },
+    "recordsImported": {
+      "type": "integer",
+      "description": "Total records imported"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Error messages if any"
+    }
+  }
+}

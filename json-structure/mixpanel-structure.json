@@ -1,0 +1,126 @@
+{
+  "provider": "Mixpanel",
+  "providerId": "mixpanel",
+  "kind": "json-structure",
+  "description": "Structural overview of the Mixpanel API surface; extracted from openapi/.",
+  "schemaCount": 7,
+  "operationCount": 8,
+  "schemas": [
+    {
+      "name": "InsightsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "FunnelResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "FunnelStep",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "FunnelSummary",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "RetentionResponse",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "SegmentationResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Cohort",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/insights",
+      "operationId": "queryInsights",
+      "summary": "Mixpanel Query insights",
+      "tags": [
+        "Insights"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/funnels",
+      "operationId": "queryFunnels",
+      "summary": "Mixpanel Query funnel data",
+      "tags": [
+        "Funnels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/funnels/list",
+      "operationId": "listFunnels",
+      "summary": "Mixpanel List funnels",
+      "tags": [
+        "Funnels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/retention",
+      "operationId": "queryRetention",
+      "summary": "Mixpanel Query retention data",
+      "tags": [
+        "Retention"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/segmentation",
+      "operationId": "querySegmentation",
+      "summary": "Mixpanel Query event segmentation",
+      "tags": [
+        "Segmentation"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/segmentation/sum",
+      "operationId": "querySegmentationSum",
+      "summary": "Mixpanel Query numeric property sum",
+      "tags": [
+        "Segmentation"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/segmentation/average",
+      "operationId": "querySegmentationAverage",
+      "summary": "Mixpanel Query numeric property average",
+      "tags": [
+        "Segmentation"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cohorts/list",
+      "operationId": "listCohorts",
+      "summary": "Mixpanel List cohorts",
+      "tags": [
+        "Cohorts"
+      ]
+    }
+  ]
+}

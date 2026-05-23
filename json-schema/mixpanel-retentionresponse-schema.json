@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RetentionResponse",
+  "title": "RetentionResponse",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "counts": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        },
+        "description": "Retention counts for each period"
+      },
+      "first": {
+        "type": "integer",
+        "description": "Number of users in the initial cohort"
+      }
+    }
+  }
+}

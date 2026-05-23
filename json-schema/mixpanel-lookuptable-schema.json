@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LookupTable",
+  "title": "LookupTable",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the lookup table"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the lookup table"
+    },
+    "rowCount": {
+      "type": "integer",
+      "description": "Number of rows in the lookup table"
+    },
+    "columnCount": {
+      "type": "integer",
+      "description": "Number of columns in the lookup table"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the lookup table was created"
+    },
+    "lastModified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the lookup table was last updated"
+    }
+  }
+}

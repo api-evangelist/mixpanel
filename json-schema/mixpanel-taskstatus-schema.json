@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaskStatus",
+  "title": "TaskStatus",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "error"
+      ],
+      "description": "API call status"
+    },
+    "results": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "PENDING",
+            "STAGING",
+            "STARTED",
+            "SUCCESS",
+            "FAILURE",
+            "REVOKED",
+            "NOT_FOUND",
+            "UNKNOWN"
+          ],
+          "description": "Current status of the task"
+        },
+        "result": {
+          "type": "string",
+          "description": "Additional result details"
+        },
+        "download_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to download retrieval results (retrieval only)"
+        }
+      }
+    }
+  }
+}
