@@ -331,6 +331,8 @@ common:
 - name: Agent Skills
   url: https://github.com/mixpanel/ai-plugins
   type: AgentSkill
+- type: LLMsTxt
+  url: https://developer.mixpanel.com/llms.txt
 integrations:
 - name: Become a Partner
 - name: mixpanel
