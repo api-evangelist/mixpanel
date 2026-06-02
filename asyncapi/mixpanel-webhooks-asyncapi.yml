@@ -1,0 +1,458 @@
+asyncapi: 2.6.0
+info:
+  title: Mixpanel Webhooks
+  version: '1.0.0'
+  description: |-
+    AsyncAPI 2.6 description of Mixpanel's outbound webhook surfaces. Mixpanel
+    delivers two distinct, documented webhook event streams to customer-hosted
+    HTTPS endpoints:
+
+      1. Alert Webhooks (Custom Alerts) - Mixpanel POSTs a JSON payload to a
+         configured Notification Webhook URL whenever a Custom Alert on a
+         report fires. Alerts are configured per project under
+         Project Settings > Integrations > Notification Webhook, and individual
+         alerts route to one of the configured webhooks in addition to (or
+         instead of) email and Slack channels.
+
+      2. Cohort Sync Custom Webhooks - Mixpanel POSTs JSON membership change
+         payloads to a configured webhook URL whenever a Cohort Sync runs.
+         Each sync produces one of three actions ("members" for the initial
+         or refresh load, "add_members" for incremental adds, "remove_members"
+         for incremental removes). Syncs run on a 30-minute cadence and large
+         cohorts are paginated across multiple POSTs sharing a
+         `mixpanel_session_id`. Mixpanel retries 5xx and 429 responses up to
+         five times over 60 seconds with exponential backoff; 4xx responses
+         (400, 401, 403, 404) pause the sync until manual intervention. Add
+         and remove operations are batched at 1000 members per call.
+
+    Source documentation:
+      - Alerts overview (notification channels and webhook setup):
+          https://docs.mixpanel.com/docs/features/alerts
+      - Cohort Sync overview:
+          https://docs.mixpanel.com/docs/cohort-sync/overview
+      - Cohort Sync Custom Webhooks:
+          https://docs.mixpanel.com/docs/cohort-sync/webhooks
+
+    Out of scope - not modelled here:
+      - Data Pipelines (S3, GCS, Azure Blob, BigQuery, Databricks, Redshift
+        Spectrum, Snowflake) deliver data as files into object storage or as
+        rows into a warehouse on an hourly or daily batch cadence. They do
+        not push to subscriber webhooks and therefore are not an AsyncAPI
+        surface.
+      - Native Cohort Sync integrations (Braze, Iterable, Marketo, Facebook
+        Ads, Google Ads, OneSignal, Segment, mParticle, etc.) call each
+        partner's own API rather than a customer-controlled webhook URL.
+        Only the Custom Webhook destination is modelled here.
+      - The `Send Live API` referenced in the request prompt is not present
+        in the public developer documentation surveyed (developer.mixpanel.com
+        llms.txt index and docs.mixpanel.com data-pipelines section) and has
+        therefore been omitted to avoid fabrication.
+  contact:
+    name: Mixpanel Support
+    url: https://mixpanel.com/get-support
+    email: support@mixpanel.com
+  license:
+    name: Mixpanel Terms of Use
+    url: https://mixpanel.com/legal/terms-of-use
+
+defaultContentType: application/json
+
+servers:
+  subscriber:
+    url: '{webhookUrl}'
+    protocol: https
+    description: |-
+      Customer-hosted HTTPS endpoint that receives webhook POSTs from
+      Mixpanel. The full URL (including path) is configured per project
+      under Project Settings (Integrations > Notification Webhook for
+      Alerts, or in the Cohort Sync destination for Cohort Webhooks).
+    variables:
+      webhookUrl:
+        default: https://example.com/mixpanel/webhook
+        description: Fully-qualified HTTPS URL of the subscriber endpoint.
+    security:
+      - basicAuth: []
+
+channels:
+  /mixpanel/alerts:
+    description: |-
+      Subscriber endpoint that receives Mixpanel Custom Alert notifications.
+      Mixpanel POSTs one JSON payload per alert firing. The payload's
+      `event_type` field identifies the event class.
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    publish:
+      operationId: receiveMixpanelAlert
+      summary: Receive a Mixpanel Custom Alert webhook
+      description: |-
+        Mixpanel POSTs a JSON event describing a fired Custom Alert. The
+        payload identifies the alert, its triggering condition, the report
+        it is attached to, and direct links to the report and the Root
+        Cause Analysis board.
+      message:
+        $ref: '#/components/messages/CustomAlertTriggered'
+
+  /mixpanel/cohort-sync:
+    description: |-
+      Subscriber endpoint that receives Mixpanel Cohort Sync membership
+      change notifications. Mixpanel POSTs one JSON payload per page of a
+      sync run. The payload's `action` field identifies whether the call is
+      a full membership load (`members`), an incremental add
+      (`add_members`), or an incremental removal (`remove_members`).
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    publish:
+      operationId: receiveMixpanelCohortSync
+      summary: Receive a Mixpanel Cohort Sync webhook
+      description: |-
+        Mixpanel POSTs a JSON envelope describing a page of cohort
+        membership changes. Large cohorts are paginated across multiple
+        POSTs sharing a `mixpanel_session_id`; `page_info.total_pages` and
+        `page_info.page_count` describe the pagination. The subscriber must
+        reply with a JSON body echoing the `action` and reporting
+        `status: success` or `status: failure`.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/CohortMembers'
+          - $ref: '#/components/messages/CohortAddMembers'
+          - $ref: '#/components/messages/CohortRemoveMembers'
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: |-
+        Optional HTTP Basic Authentication. For Alerts, the subscriber's
+        username and password are entered when registering the Notification
+        Webhook under Project Settings > Integrations. For Cohort Sync
+        Custom Webhooks, basic auth credentials are entered in the sync
+        destination configuration.
+
+  messages:
+    CustomAlertTriggered:
+      name: CustomAlertTriggered
+      title: Custom Alert Triggered
+      summary: A Mixpanel Custom Alert has fired.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/CustomAlertTriggeredPayload'
+
+    CohortMembers:
+      name: CohortMembers
+      title: Cohort Members (Full Load)
+      summary: Full membership snapshot of a cohort, sent on first sync and on refresh.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/CohortMembersPayload'
+
+    CohortAddMembers:
+      name: CohortAddMembers
+      title: Cohort Add Members (Incremental)
+      summary: Incremental add of cohort members since the previous sync.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/CohortAddMembersPayload'
+
+    CohortRemoveMembers:
+      name: CohortRemoveMembers
+      title: Cohort Remove Members (Incremental)
+      summary: Incremental removal of cohort members since the previous sync.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/CohortRemoveMembersPayload'
+
+  schemas:
+    CustomAlertTriggeredPayload:
+      type: object
+      description: |-
+        Payload posted by Mixpanel when a Custom Alert fires. Field names
+        and structure follow the sample payload published in the Mixpanel
+        Alerts documentation.
+      required:
+        - event_type
+        - alert
+        - condition
+        - report
+        - links
+      properties:
+        event_type:
+          type: string
+          description: Constant identifier for this event class.
+          enum:
+            - custom_alert_triggered
+        alert:
+          $ref: '#/components/schemas/AlertMetadata'
+        condition:
+          $ref: '#/components/schemas/AlertCondition'
+        report:
+          $ref: '#/components/schemas/AlertReport'
+        links:
+          $ref: '#/components/schemas/AlertLinks'
+
+    AlertMetadata:
+      type: object
+      description: Metadata describing the alert and the project it belongs to.
+      properties:
+        id:
+          type: integer
+          description: Mixpanel-assigned numeric alert identifier.
+        name:
+          type: string
+          description: Human-readable name of the alert.
+        creator:
+          type: string
+          description: Display name of the user who created the alert.
+        creator_email:
+          type: string
+          format: email
+          description: Email address of the user who created the alert.
+        project_id:
+          type: integer
+          description: Mixpanel project identifier.
+        project_name:
+          type: string
+          description: Mixpanel project name.
+        fired_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp at which the alert fired.
+        workspace_id:
+          type: integer
+          description: Identifier of the workspace the alert belongs to.
+        workspace_name:
+          type: string
+          description: Name of the workspace the alert belongs to.
+
+    AlertCondition:
+      type: object
+      description: |-
+        Trigger condition that evaluated true and caused the alert to fire.
+      properties:
+        type:
+          type: string
+          description: |-
+            Condition type as configured on the alert (for example a fixed
+            threshold or an anomaly detection condition).
+        operator:
+          type: string
+          description: |-
+            Comparison operator applied to the metric value (for example
+            greater_than, less_than).
+        threshold:
+          type: number
+          description: Numeric threshold the metric was compared against.
+        current_value:
+          type: string
+          description: Current metric value at the time the alert fired.
+        formatted_value:
+          type: string
+          description: Display-formatted version of the metric value.
+        sentence:
+          type: string
+          description: |-
+            Human-readable sentence describing the firing condition (the
+            same text Mixpanel surfaces in email and Slack alert bodies).
+
+    AlertReport:
+      type: object
+      description: The Mixpanel report the alert is attached to.
+      properties:
+        name:
+          type: string
+          description: Name of the report.
+        type:
+          type: string
+          description: |-
+            Report type (for example insights, funnels, retention,
+            segmentation).
+        url:
+          type: string
+          format: uri
+          description: Mixpanel URL to view the report.
+
+    AlertLinks:
+      type: object
+      description: |-
+        Convenience links Mixpanel includes to make alert payloads
+        actionable from chatops or incident tooling.
+      properties:
+        report_url:
+          type: string
+          format: uri
+          description: Direct link to the report that triggered the alert.
+        edit_alert_url:
+          type: string
+          format: uri
+          description: Direct link to edit the alert configuration.
+        root_cause_analysis_url:
+          type: string
+          format: uri
+          description: Link to the Root Cause Analysis board for the alert.
+
+    CohortMembersPayload:
+      type: object
+      description: |-
+        Envelope sent on the first sync of a cohort and on each refresh.
+        Contains the full membership snapshot, paginated across multiple
+        POSTs sharing a `mixpanel_session_id`.
+      required:
+        - action
+        - parameters
+      properties:
+        action:
+          type: string
+          enum:
+            - members
+        parameters:
+          $ref: '#/components/schemas/CohortSyncParameters'
+
+    CohortAddMembersPayload:
+      type: object
+      description: |-
+        Envelope sent for incremental adds. Mixpanel batches at 1000 members
+        per call and paginates large diffs across multiple POSTs sharing a
+        `mixpanel_session_id`.
+      required:
+        - action
+        - parameters
+      properties:
+        action:
+          type: string
+          enum:
+            - add_members
+        parameters:
+          $ref: '#/components/schemas/CohortSyncParameters'
+
+    CohortRemoveMembersPayload:
+      type: object
+      description: |-
+        Envelope sent for incremental removals. Mixpanel batches at 1000
+        members per call and paginates large diffs across multiple POSTs
+        sharing a `mixpanel_session_id`.
+      required:
+        - action
+        - parameters
+      properties:
+        action:
+          type: string
+          enum:
+            - remove_members
+        parameters:
+          $ref: '#/components/schemas/CohortSyncParameters'
+
+    CohortSyncParameters:
+      type: object
+      description: |-
+        Common parameter envelope for every Cohort Sync webhook action.
+      required:
+        - mixpanel_project_id
+        - mixpanel_cohort_id
+        - mixpanel_session_id
+        - page_info
+        - members
+      properties:
+        mixpanel_project_id:
+          type: string
+          description: Mixpanel project the cohort belongs to.
+        mixpanel_cohort_name:
+          type: string
+          description: Human-readable name of the cohort.
+        mixpanel_cohort_id:
+          type: string
+          description: Mixpanel-assigned identifier of the cohort.
+        mixpanel_cohort_description:
+          type: string
+          description: Optional description of the cohort.
+        mixpanel_session_id:
+          type: string
+          description: |-
+            Identifier shared by every POST that belongs to the same sync
+            run. Used to correlate paginated calls.
+        page_info:
+          $ref: '#/components/schemas/CohortPageInfo'
+        members:
+          type: array
+          description: |-
+            Page of cohort members. Capped at 1000 per call for incremental
+            add/remove operations.
+          items:
+            $ref: '#/components/schemas/CohortMember'
+
+    CohortPageInfo:
+      type: object
+      description: Pagination metadata shared across the POSTs of a single sync.
+      properties:
+        total_pages:
+          type: integer
+          description: Total number of POSTs in this sync run.
+        page_count:
+          type: integer
+          description: 1-based index of this POST within the sync run.
+
+    CohortMember:
+      type: object
+      description: |-
+        A single cohort member. Mixpanel always sends `mixpanel_distinct_id`;
+        additional identity fields are included only when populated on the
+        underlying user profile and selected via the sync's "Properties to
+        Export" configuration. Custom properties may be appended to this
+        object via the same configuration.
+      properties:
+        email:
+          type: string
+          format: email
+          description: User email, if populated and selected for export.
+        mixpanel_distinct_id:
+          type: string
+          description: Mixpanel distinct ID for the user.
+        first_name:
+          type: string
+          description: User first name, if populated and selected for export.
+        last_name:
+          type: string
+          description: User last name, if populated and selected for export.
+        phone_number:
+          type: string
+          description: User phone number, if populated and selected for export.
+
+    CohortSyncResponse:
+      type: object
+      description: |-
+        Response body the subscriber endpoint must return. Mixpanel
+        interprets `status` to decide whether the page succeeded; failures
+        with 5xx or 429 status codes are retried up to five times over 60
+        seconds with exponential backoff, while 400/401/403/404 responses
+        pause the sync until manual intervention.
+      required:
+        - action
+        - status
+      properties:
+        action:
+          type: string
+          description: Must echo the `action` value from the request.
+          enum:
+            - members
+            - add_members
+            - remove_members
+        status:
+          type: string
+          enum:
+            - success
+            - failure
+        error:
+          type: object
+          description: Populated when `status` is `failure`.
+          properties:
+            message:
+              type: string
+              description: Human-readable error message.
+            code:
+              type: integer
+              description: HTTP status code describing the failure.

@@ -6,7 +6,7 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: https://mixpanel.com
 created: '2024'
-modified: '2026-05-19'
+modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
 - name: Mixpanel Ingestion API
@@ -255,6 +255,31 @@ apis:
     url: capabilities/warehouse-connectors-connectors.yaml
   - type: NaftikoCapability
     url: capabilities/warehouse-connectors-imports.yaml
+  contact:
+  - FN: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+- name: Mixpanel Webhooks
+  description: Outbound webhook surfaces delivered by Mixpanel to customer-hosted HTTPS endpoints, covering Custom Alert
+    notifications (fired from reports configured in Project Settings) and Cohort Sync Custom Webhooks (full and incremental
+    cohort membership change deliveries).
+  image: https://mixpanel.com/wp-content/uploads/2021/07/mixpanel-logo.svg
+  humanURL: https://docs.mixpanel.com/docs/features/alerts
+  baseURL: https://example.com/mixpanel/webhook
+  tags:
+  - Alerts
+  - Cohort Sync
+  - Notifications
+  - Webhooks
+  properties:
+  - type: Documentation
+    url: https://docs.mixpanel.com/docs/features/alerts
+  - type: Documentation
+    url: https://docs.mixpanel.com/docs/cohort-sync/overview
+  - type: Documentation
+    url: https://docs.mixpanel.com/docs/cohort-sync/webhooks
+  - type: AsyncAPI
+    url: asyncapi/mixpanel-webhooks-asyncapi.yml
   contact:
   - FN: Mixpanel Support
     email: support@mixpanel.com
