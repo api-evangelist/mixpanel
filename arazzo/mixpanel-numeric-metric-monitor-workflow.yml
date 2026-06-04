@@ -1,0 +1,135 @@
+arazzo: 1.0.1
+info:
+  title: Mixpanel Numeric Metric Monitor and Annotate
+  summary: Compute the sum and average of a numeric event property, then annotate the period.
+  description: >-
+    A revenue/metric-monitoring workflow. The flow queries the sum of a numeric
+    event property over a date range, then the average of the same property, and
+    finally drops an annotation on the timeline so the monitored period is marked
+    for the team. Each step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: queryApi
+  url: ../openapi/mixpanel-query-openapi.yml
+  type: openapi
+- name: annotationsApi
+  url: ../openapi/mixpanel-annotations-openapi.yml
+  type: openapi
+workflows:
+- workflowId: numeric-metric-monitor
+  summary: Query property sum then average then annotate the monitored window.
+  description: >-
+    Calls /segmentation/sum and /segmentation/average for a numeric property,
+    then creates an annotation marking the monitored window.
+  inputs:
+    type: object
+    required:
+    - projectId
+    - eventName
+    - numericProperty
+    - fromDate
+    - toDate
+    - annotationDate
+    - annotationText
+    properties:
+      projectId:
+        type: integer
+        description: The Mixpanel project ID.
+      eventName:
+        type: string
+        description: The event name whose numeric property is monitored.
+      numericProperty:
+        type: string
+        description: The numeric property to sum and average.
+      fromDate:
+        type: string
+        description: Query start date (YYYY-MM-DD).
+      toDate:
+        type: string
+        description: Query end date (YYYY-MM-DD).
+      annotationDate:
+        type: string
+        description: Date-time to annotate (YYYY-MM-DDThh:mm:ss).
+      annotationText:
+        type: string
+        description: Description text for the annotation.
+  steps:
+  - stepId: querySum
+    description: >-
+      Query the sum of the numeric property for the event over the date range.
+      Uses service account basic auth.
+    operationId: querySegmentationSum
+    parameters:
+    - name: project_id
+      in: query
+      value: $inputs.projectId
+    - name: event
+      in: query
+      value: $inputs.eventName
+    - name: from_date
+      in: query
+      value: $inputs.fromDate
+    - name: to_date
+      in: query
+      value: $inputs.toDate
+    - name: 'on'
+      in: query
+      value: $inputs.numericProperty
+    - name: unit
+      in: query
+      value: day
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      sumValues: $response.body#/data/values
+  - stepId: queryAverage
+    description: >-
+      Query the average of the same numeric property for the event over the same
+      date range.
+    operationId: querySegmentationAverage
+    parameters:
+    - name: project_id
+      in: query
+      value: $inputs.projectId
+    - name: event
+      in: query
+      value: $inputs.eventName
+    - name: from_date
+      in: query
+      value: $inputs.fromDate
+    - name: to_date
+      in: query
+      value: $inputs.toDate
+    - name: 'on'
+      in: query
+      value: $inputs.numericProperty
+    - name: unit
+      in: query
+      value: day
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      averageValues: $response.body#/data/values
+  - stepId: annotatePeriod
+    description: >-
+      Create an annotation marking the monitored window so the sum and average
+      can be overlaid on charts for the team.
+    operationId: createAnnotation
+    parameters:
+    - name: projectId
+      in: path
+      value: $inputs.projectId
+    requestBody:
+      contentType: application/json
+      payload:
+        date: $inputs.annotationDate
+        description: $inputs.annotationText
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      annotationId: $response.body#/id
+  outputs:
+    sumValues: $steps.querySum.outputs.sumValues
+    averageValues: $steps.queryAverage.outputs.averageValues
+    annotationId: $steps.annotatePeriod.outputs.annotationId

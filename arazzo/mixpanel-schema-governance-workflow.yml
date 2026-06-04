@@ -1,0 +1,115 @@
+arazzo: 1.0.1
+info:
+  title: Mixpanel Schema Governance and Verify
+  summary: List event schemas, create or update a schema entry, then segment the governed event.
+  description: >-
+    A tracking-plan governance workflow. The flow lists the Lexicon event schemas
+    for a project, creates or updates a schema entry for an event without
+    removing other schemas, and then queries the Segmentation endpoint for that
+    event to verify governed data is flowing. Each step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: lexiconSchemasApi
+  url: ../openapi/mixpanel-lexicon-schemas-openapi.yml
+  type: openapi
+- name: queryApi
+  url: ../openapi/mixpanel-query-openapi.yml
+  type: openapi
+workflows:
+- workflowId: schema-governance
+  summary: List schemas, create/update an event schema, then segment the event.
+  description: >-
+    Calls GET /projects/{projectId}/schemas for event schemas, POSTs a schema
+    entry to create or update it, then queries /segmentation for the event.
+  inputs:
+    type: object
+    required:
+    - projectId
+    - eventName
+    - eventDescription
+    - fromDate
+    - toDate
+    properties:
+      projectId:
+        type: integer
+        description: The Mixpanel project ID.
+      eventName:
+        type: string
+        description: The event name to govern and verify.
+      eventDescription:
+        type: string
+        description: Human-readable description for the event schema.
+      fromDate:
+        type: string
+        description: Segmentation start date (YYYY-MM-DD).
+      toDate:
+        type: string
+        description: Segmentation end date (YYYY-MM-DD).
+  steps:
+  - stepId: listSchemas
+    description: >-
+      Retrieve the existing event schema definitions for the project. Uses
+      service account basic auth.
+    operationId: listSchemas
+    parameters:
+    - name: projectId
+      in: path
+      value: $inputs.projectId
+    - name: entityType
+      in: query
+      value: event
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      schemas: $response.body#/results
+  - stepId: upsertSchema
+    description: >-
+      Create or update the event schema entry without removing schemas not
+      included in the request.
+    operationId: createSchemas
+    parameters:
+    - name: projectId
+      in: path
+      value: $inputs.projectId
+    requestBody:
+      contentType: application/json
+      payload:
+        entries:
+        - entityType: event
+          name: $inputs.eventName
+          description: $inputs.eventDescription
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      upsertStatus: $response.body#/status
+  - stepId: verifyEvent
+    description: >-
+      Query event segmentation for the governed event to verify data is flowing
+      for it. Uses service account basic auth.
+    operationId: querySegmentation
+    parameters:
+    - name: project_id
+      in: query
+      value: $inputs.projectId
+    - name: event
+      in: query
+      value: $inputs.eventName
+    - name: from_date
+      in: query
+      value: $inputs.fromDate
+    - name: to_date
+      in: query
+      value: $inputs.toDate
+    - name: type
+      in: query
+      value: general
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      values: $response.body#/data/values
+  outputs:
+    schemas: $steps.listSchemas.outputs.schemas
+    upsertStatus: $steps.upsertSchema.outputs.upsertStatus
+    values: $steps.verifyEvent.outputs.values

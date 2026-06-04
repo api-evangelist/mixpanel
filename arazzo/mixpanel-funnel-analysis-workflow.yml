@@ -1,0 +1,110 @@
+arazzo: 1.0.1
+info:
+  title: Mixpanel Funnel Analysis and Annotate
+  summary: Find a saved funnel, query its conversion data, and annotate the chart.
+  description: >-
+    A conversion-analysis workflow. The flow lists the saved funnels in a
+    project, selects the requested funnel, queries its conversion data over a
+    date range, and finally drops an annotation on the timeline so the analysis
+    is marked for the team. Each step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: queryApi
+  url: ../openapi/mixpanel-query-openapi.yml
+  type: openapi
+- name: annotationsApi
+  url: ../openapi/mixpanel-annotations-openapi.yml
+  type: openapi
+workflows:
+- workflowId: funnel-analysis
+  summary: List funnels, query the chosen funnel, then annotate the analysis date.
+  description: >-
+    Calls /funnels/list to confirm the funnel exists, queries /funnels for its
+    conversion data, then creates an annotation marking the analysis.
+  inputs:
+    type: object
+    required:
+    - projectId
+    - funnelId
+    - fromDate
+    - toDate
+    - annotationDate
+    - annotationText
+    properties:
+      projectId:
+        type: integer
+        description: The Mixpanel project ID.
+      funnelId:
+        type: integer
+        description: The ID of the saved funnel to query.
+      fromDate:
+        type: string
+        description: Funnel query start date (YYYY-MM-DD).
+      toDate:
+        type: string
+        description: Funnel query end date (YYYY-MM-DD).
+      annotationDate:
+        type: string
+        description: Date-time to annotate (YYYY-MM-DDThh:mm:ss).
+      annotationText:
+        type: string
+        description: Description text for the annotation.
+  steps:
+  - stepId: listFunnels
+    description: >-
+      List all saved funnels in the project to confirm the requested funnel is
+      available. Uses service account basic auth.
+    operationId: listFunnels
+    parameters:
+    - name: project_id
+      in: query
+      value: $inputs.projectId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      funnels: $response.body
+  - stepId: queryFunnel
+    description: >-
+      Query the conversion data for the chosen funnel over the date range,
+      returning per-step counts and conversion ratios.
+    operationId: queryFunnels
+    parameters:
+    - name: project_id
+      in: query
+      value: $inputs.projectId
+    - name: funnel_id
+      in: query
+      value: $inputs.funnelId
+    - name: from_date
+      in: query
+      value: $inputs.fromDate
+    - name: to_date
+      in: query
+      value: $inputs.toDate
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      funnelMeta: $response.body#/meta
+  - stepId: annotateAnalysis
+    description: >-
+      Create an annotation on the project timeline marking the funnel analysis
+      so the result is visible to the team on charts.
+    operationId: createAnnotation
+    parameters:
+    - name: projectId
+      in: path
+      value: $inputs.projectId
+    requestBody:
+      contentType: application/json
+      payload:
+        date: $inputs.annotationDate
+        description: $inputs.annotationText
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      annotationId: $response.body#/id
+  outputs:
+    funnels: $steps.listFunnels.outputs.funnels
+    funnelMeta: $steps.queryFunnel.outputs.funnelMeta
+    annotationId: $steps.annotateAnalysis.outputs.annotationId

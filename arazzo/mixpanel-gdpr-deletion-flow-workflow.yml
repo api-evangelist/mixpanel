@@ -1,0 +1,91 @@
+arazzo: 1.0.1
+info:
+  title: Mixpanel GDPR Data Deletion Flow
+  summary: Submit a GDPR/CCPA deletion request and poll its task status, branching on completion.
+  description: >-
+    A privacy-compliance workflow. The flow submits a data deletion request for
+    one or more distinct_ids, captures the returned task ID, and then checks the
+    deletion task status — branching on whether the task has reached a terminal
+    SUCCESS state or is still pending so the caller knows whether to re-poll.
+    Each step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: gdprCcpaApi
+  url: ../openapi/mixpanel-gdpr-ccpa-openapi.yml
+  type: openapi
+workflows:
+- workflowId: gdpr-deletion-flow
+  summary: Create a data deletion request then check its task status with branching.
+  description: >-
+    Posts a deletion request to /data-deletions/v3.0, then polls
+    /data-deletions/v3.0/{taskId}, branching on SUCCESS versus still-pending.
+  inputs:
+    type: object
+    required:
+    - projectToken
+    - distinctIds
+    - complianceType
+    properties:
+      projectToken:
+        type: string
+        description: Mixpanel project token (token query parameter, required).
+      distinctIds:
+        type: array
+        description: List of distinct_ids to delete data for.
+        items:
+          type: string
+      complianceType:
+        type: string
+        description: The compliance regulation (GDPR or CCPA).
+  steps:
+  - stepId: createDeletion
+    description: >-
+      Submit a GDPR or CCPA data deletion request. Authentication uses an OAuth
+      bearer token; the project token is passed as the token query parameter.
+    operationId: createDeletionRequest
+    parameters:
+    - name: token
+      in: query
+      value: $inputs.projectToken
+    requestBody:
+      contentType: application/json
+      payload:
+        distinct_ids: $inputs.distinctIds
+        compliance_type: $inputs.complianceType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      taskId: $response.body#/results/task_id
+  - stepId: checkDeletion
+    description: >-
+      Check the status of the deletion task. Branches to completion when the
+      task status is SUCCESS, otherwise reports it is still pending.
+    operationId: checkDeletionStatus
+    parameters:
+    - name: taskId
+      in: path
+      value: $steps.createDeletion.outputs.taskId
+    - name: token
+      in: query
+      value: $inputs.projectToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      taskStatus: $response.body#/results/status
+    onSuccess:
+    - name: deletionComplete
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.results.status == "SUCCESS"
+        type: jsonpath
+    - name: deletionPending
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.results.status != "SUCCESS"
+        type: jsonpath
+  outputs:
+    taskId: $steps.createDeletion.outputs.taskId
+    taskStatus: $steps.checkDeletion.outputs.taskStatus

@@ -1,0 +1,112 @@
+arazzo: 1.0.1
+info:
+  title: Mixpanel Refresh Lookup Table and Track Enriched Event
+  summary: Refresh a lookup table's CSV contents then track an event that references the join key.
+  description: >-
+    A data-enrichment workflow. The flow lists the project's lookup tables to
+    confirm the target exists, replaces that lookup table's contents with fresh
+    CSV data, and then tracks an event carrying the join-key property so newly
+    enriched dimensions resolve against the refreshed table. Each step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: ingestionApi
+  url: ../openapi/mixpanel-ingestion-openapi.yml
+  type: openapi
+workflows:
+- workflowId: lookup-table-enrichment
+  summary: List lookup tables, replace one with new CSV, then track an event using the join key.
+  description: >-
+    Calls /lookup-tables to confirm the table exists, replaces it via PUT
+    /lookup-tables/{lookupTableId} with CSV data, then sends an event referencing
+    the join key via /track.
+  inputs:
+    type: object
+    required:
+    - projectToken
+    - lookupTableId
+    - csvData
+    - eventName
+    - distinctId
+    - joinKeyProperty
+    - joinKeyValue
+    properties:
+      projectToken:
+        type: string
+        description: Mixpanel project token used for ingestion auth.
+      lookupTableId:
+        type: string
+        description: The ID of the lookup table to replace.
+      csvData:
+        type: string
+        description: CSV data with headers in the first row; first column is the join key.
+      eventName:
+        type: string
+        description: Event name to track after the table is refreshed.
+      distinctId:
+        type: string
+        description: Unique identifier for the user performing the event.
+      joinKeyProperty:
+        type: string
+        description: Event property name that holds the lookup join key.
+      joinKeyValue:
+        type: string
+        description: The join-key value to set on the event property.
+  steps:
+  - stepId: listLookupTables
+    description: >-
+      Retrieve all lookup tables for the project to confirm the target table
+      exists before replacing it. Uses service account basic auth.
+    operationId: listLookupTables
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tables: $response.body#/results
+  - stepId: replaceLookupTable
+    description: >-
+      Replace the contents of the lookup table with fresh CSV data. The first
+      column is the join key.
+    operationId: replaceLookupTable
+    parameters:
+    - name: lookupTableId
+      in: path
+      value: $inputs.lookupTableId
+    requestBody:
+      contentType: text/csv
+      payload: $inputs.csvData
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tableId: $response.body#/id
+      rowCount: $response.body#/rowCount
+  - stepId: trackEnrichedEvent
+    description: >-
+      Send an event carrying the join-key property so enriched dimensions
+      resolve against the refreshed lookup table. Auth uses the project token in
+      the query parameter.
+    operationId: trackEvent
+    parameters:
+    - name: token
+      in: query
+      value: $inputs.projectToken
+    - name: verbose
+      in: query
+      value: 1
+    requestBody:
+      contentType: application/json
+      payload:
+        data:
+          event: $inputs.eventName
+          properties:
+            distinct_id: $inputs.distinctId
+            token: $inputs.projectToken
+            $join_key: $inputs.joinKeyValue
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      trackStatus: $response.body#/status
+  outputs:
+    tableId: $steps.replaceLookupTable.outputs.tableId
+    rowCount: $steps.replaceLookupTable.outputs.rowCount
+    trackStatus: $steps.trackEnrichedEvent.outputs.trackStatus

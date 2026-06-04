@@ -1,0 +1,99 @@
+arazzo: 1.0.1
+info:
+  title: Mixpanel Import Events and Export Raw
+  summary: Bulk-import historical events into Mixpanel and then export the raw events back out.
+  description: >-
+    A round-trip data-movement workflow for backfill and verification. The flow
+    first imports a batch of historical events through the high-throughput
+    /import endpoint of the Ingestion API, then reads the raw events back out of
+    the Event Export API for the same date range so the import can be verified
+    line-by-line. Each step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: ingestionApi
+  url: ../openapi/mixpanel-ingestion-openapi.yml
+  type: openapi
+- name: eventExportApi
+  url: ../openapi/mixpanel-event-export-openapi.yml
+  type: openapi
+workflows:
+- workflowId: import-and-export
+  summary: Import a batch of historical events then export the raw events for verification.
+  description: >-
+    Posts a batch of events to /import (service account basic auth), then pulls
+    the raw newline-delimited JSON back from /export for the same date range and
+    event name.
+  inputs:
+    type: object
+    required:
+    - projectId
+    - events
+    - eventName
+    - fromDate
+    - toDate
+    properties:
+      projectId:
+        type: string
+        description: The project ID to import events into and export from.
+      events:
+        type: array
+        description: Array of event objects to import (each with event and properties).
+        items:
+          type: object
+      eventName:
+        type: string
+        description: Event name to filter the raw export to.
+      fromDate:
+        type: string
+        description: Export start date (YYYY-MM-DD).
+      toDate:
+        type: string
+        description: Export end date (YYYY-MM-DD).
+  steps:
+  - stepId: importEvents
+    description: >-
+      Import a batch of historical events into the project. Uses service account
+      basic auth and rejects the whole batch when strict validation fails.
+    operationId: importEvents
+    parameters:
+    - name: project_id
+      in: query
+      value: $inputs.projectId
+    - name: strict
+      in: query
+      value: 1
+    requestBody:
+      contentType: application/json
+      payload: $inputs.events
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      numImported: $response.body#/num_records_imported
+      importStatus: $response.body#/status
+  - stepId: exportRaw
+    description: >-
+      Download the raw events for the same date range, filtered to the imported
+      event name, to verify the import landed. The response is newline-delimited
+      JSON.
+    operationId: exportRawEvents
+    parameters:
+    - name: project_id
+      in: query
+      value: $inputs.projectId
+    - name: from_date
+      in: query
+      value: $inputs.fromDate
+    - name: to_date
+      in: query
+      value: $inputs.toDate
+    - name: event
+      in: query
+      value: $inputs.eventName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      rawEvents: $response.body
+  outputs:
+    numImported: $steps.importEvents.outputs.numImported
+    rawEvents: $steps.exportRaw.outputs.rawEvents

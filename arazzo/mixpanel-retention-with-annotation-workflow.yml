@@ -1,0 +1,112 @@
+arazzo: 1.0.1
+info:
+  title: Mixpanel Annotate Release and Measure Retention
+  summary: Mark a release on the timeline and then measure retention from that born event.
+  description: >-
+    A release-impact workflow. The flow first creates an annotation marking a
+    product release on the project timeline, then queries the Retention endpoint
+    using a born event and return event to measure how many users came back over
+    successive periods. The created annotation date gives the team a visible
+    marker to overlay against the retention curve. Each step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: annotationsApi
+  url: ../openapi/mixpanel-annotations-openapi.yml
+  type: openapi
+- name: queryApi
+  url: ../openapi/mixpanel-query-openapi.yml
+  type: openapi
+workflows:
+- workflowId: retention-with-annotation
+  summary: Annotate a release date then query birth retention for a born and return event.
+  description: >-
+    Creates an annotation via /projects/{projectId}/annotations, then queries
+    /retention with the born event and return event to produce the retention
+    matrix.
+  inputs:
+    type: object
+    required:
+    - projectId
+    - annotationDate
+    - annotationText
+    - bornEvent
+    - returnEvent
+    - fromDate
+    - toDate
+    properties:
+      projectId:
+        type: integer
+        description: The Mixpanel project ID.
+      annotationDate:
+        type: string
+        description: Release date-time to annotate (YYYY-MM-DDThh:mm:ss).
+      annotationText:
+        type: string
+        description: Description text for the release annotation.
+      bornEvent:
+        type: string
+        description: The initial event that defines the retention cohort.
+      returnEvent:
+        type: string
+        description: The return event used to measure retention.
+      fromDate:
+        type: string
+        description: Retention start date (YYYY-MM-DD).
+      toDate:
+        type: string
+        description: Retention end date (YYYY-MM-DD).
+  steps:
+  - stepId: annotateRelease
+    description: >-
+      Create an annotation marking the release date so it can be overlaid on the
+      retention chart. Uses service account basic auth.
+    operationId: createAnnotation
+    parameters:
+    - name: projectId
+      in: path
+      value: $inputs.projectId
+    requestBody:
+      contentType: application/json
+      payload:
+        date: $inputs.annotationDate
+        description: $inputs.annotationText
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      annotationId: $response.body#/id
+  - stepId: queryRetention
+    description: >-
+      Query birth retention for the born event and return event over the date
+      range, returning counts per retention period.
+    operationId: queryRetention
+    parameters:
+    - name: project_id
+      in: query
+      value: $inputs.projectId
+    - name: from_date
+      in: query
+      value: $inputs.fromDate
+    - name: to_date
+      in: query
+      value: $inputs.toDate
+    - name: born_event
+      in: query
+      value: $inputs.bornEvent
+    - name: event
+      in: query
+      value: $inputs.returnEvent
+    - name: retention_type
+      in: query
+      value: birth
+    - name: unit
+      in: query
+      value: week
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      retention: $response.body
+  outputs:
+    annotationId: $steps.annotateRelease.outputs.annotationId
+    retention: $steps.queryRetention.outputs.retention

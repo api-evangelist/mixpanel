@@ -1,0 +1,102 @@
+arazzo: 1.0.1
+info:
+  title: Mixpanel Provision Warehouse Source and Trigger Import
+  summary: Create a warehouse source connection, trigger an import run, and read the run history.
+  description: >-
+    A warehouse-connector onboarding workflow. The flow creates a new warehouse
+    source connection for a project, manually triggers an import run for that
+    source, and then reads the run history so the freshly triggered run can be
+    confirmed in context. Each step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: warehouseConnectorsApi
+  url: ../openapi/mixpanel-warehouse-connectors-openapi.yml
+  type: openapi
+workflows:
+- workflowId: warehouse-import-run
+  summary: Create a warehouse source, trigger an import run, then list run history.
+  description: >-
+    Posts a new source to /projects/{projectId}/warehouse-sources, triggers a
+    run via the runs POST, then lists runs to confirm.
+  inputs:
+    type: object
+    required:
+    - projectId
+    - sourceName
+    - sourceType
+    - connectionDetails
+    properties:
+      projectId:
+        type: integer
+        description: The Mixpanel project ID.
+      sourceName:
+        type: string
+        description: Name for the new warehouse source connection.
+      sourceType:
+        type: string
+        description: Warehouse type (bigquery, snowflake, redshift, databricks, postgresql).
+      schedule:
+        type: string
+        description: Optional import schedule (hourly, daily, weekly).
+      connectionDetails:
+        type: object
+        description: Warehouse-specific connection details (credentials, host, etc.).
+  steps:
+  - stepId: createSource
+    description: >-
+      Create a new warehouse source connection for importing data into Mixpanel.
+      Uses service account basic auth.
+    operationId: createWarehouseSource
+    parameters:
+    - name: projectId
+      in: path
+      value: $inputs.projectId
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.sourceName
+        type: $inputs.sourceType
+        schedule: $inputs.schedule
+        connectionDetails: $inputs.connectionDetails
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      sourceId: $response.body#/id
+      sourceStatus: $response.body#/status
+  - stepId: triggerRun
+    description: >-
+      Manually trigger an import run for the newly created warehouse source.
+    operationId: triggerWarehouseRun
+    parameters:
+    - name: projectId
+      in: path
+      value: $inputs.projectId
+    - name: sourceId
+      in: path
+      value: $steps.createSource.outputs.sourceId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      runId: $response.body#/id
+      runStatus: $response.body#/status
+  - stepId: listRuns
+    description: >-
+      Retrieve the import run history for the source so the triggered run can be
+      confirmed alongside prior runs.
+    operationId: listWarehouseRuns
+    parameters:
+    - name: projectId
+      in: path
+      value: $inputs.projectId
+    - name: sourceId
+      in: path
+      value: $steps.createSource.outputs.sourceId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      runs: $response.body#/results
+  outputs:
+    sourceId: $steps.createSource.outputs.sourceId
+    runId: $steps.triggerRun.outputs.runId
+    runs: $steps.listRuns.outputs.runs

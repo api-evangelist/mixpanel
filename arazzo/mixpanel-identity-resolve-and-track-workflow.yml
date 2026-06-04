@@ -1,0 +1,130 @@
+arazzo: 1.0.1
+info:
+  title: Mixpanel Resolve Identity and Track
+  summary: Link an anonymous ID to a known user, track an event, then segment that event.
+  description: >-
+    The post-login identity-resolution loop. The workflow first creates an
+    identity mapping between an anonymous device ID and a known user ID, then
+    sends an event for the identified user, and finally reads the event back from
+    the Segmentation endpoint to confirm activity is attributed to the resolved
+    identity. Each step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: identityApi
+  url: ../openapi/mixpanel-identity-openapi.yml
+  type: openapi
+- name: ingestionApi
+  url: ../openapi/mixpanel-ingestion-openapi.yml
+  type: openapi
+- name: queryApi
+  url: ../openapi/mixpanel-query-openapi.yml
+  type: openapi
+workflows:
+- workflowId: identity-resolve-and-track
+  summary: Create an identity mapping, track an event for the user, then segment it.
+  description: >-
+    Calls /identity/create to link an anonymous ID to an identified ID, sends an
+    event for the identified ID via /track, then queries /segmentation for that
+    event.
+  inputs:
+    type: object
+    required:
+    - projectToken
+    - projectId
+    - identifiedId
+    - anonId
+    - eventName
+    - fromDate
+    - toDate
+    properties:
+      projectToken:
+        type: string
+        description: Mixpanel project token used for ingestion and identity auth.
+      projectId:
+        type: integer
+        description: The Mixpanel project ID used by the Query API.
+      identifiedId:
+        type: string
+        description: The known user ID to link the anonymous activity to.
+      anonId:
+        type: string
+        description: The anonymous device ID to link.
+      eventName:
+        type: string
+        description: Event name to track for the identified user and then segment.
+      fromDate:
+        type: string
+        description: Segmentation start date (YYYY-MM-DD).
+      toDate:
+        type: string
+        description: Segmentation end date (YYYY-MM-DD).
+  steps:
+  - stepId: createIdentity
+    description: >-
+      Create an identity mapping linking the anonymous device ID to the known
+      user ID. The project token is carried in the $token body field.
+    operationId: createIdentity
+    requestBody:
+      contentType: application/json
+      payload:
+        $identified_id: $inputs.identifiedId
+        $anon_id: $inputs.anonId
+        $token: $inputs.projectToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      identityStatus: $response.body#/status
+  - stepId: trackForUser
+    description: >-
+      Send an event for the now-identified user. Authentication uses the project
+      token passed as the query parameter.
+    operationId: trackEvent
+    parameters:
+    - name: token
+      in: query
+      value: $inputs.projectToken
+    - name: verbose
+      in: query
+      value: 1
+    requestBody:
+      contentType: application/json
+      payload:
+        data:
+          event: $inputs.eventName
+          properties:
+            distinct_id: $inputs.identifiedId
+            token: $inputs.projectToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      trackStatus: $response.body#/status
+  - stepId: segmentEvent
+    description: >-
+      Query event segmentation for the tracked event to confirm activity is
+      attributed to the resolved identity. Uses service account basic auth.
+    operationId: querySegmentation
+    parameters:
+    - name: project_id
+      in: query
+      value: $inputs.projectId
+    - name: event
+      in: query
+      value: $inputs.eventName
+    - name: from_date
+      in: query
+      value: $inputs.fromDate
+    - name: to_date
+      in: query
+      value: $inputs.toDate
+    - name: type
+      in: query
+      value: unique
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      values: $response.body#/data/values
+  outputs:
+    identityStatus: $steps.createIdentity.outputs.identityStatus
+    trackStatus: $steps.trackForUser.outputs.trackStatus
+    values: $steps.segmentEvent.outputs.values

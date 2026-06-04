@@ -1,0 +1,94 @@
+arazzo: 1.0.1
+info:
+  title: Mixpanel GDPR Data Retrieval Flow
+  summary: Submit a GDPR/CCPA retrieval request and poll for the download URL, branching on completion.
+  description: >-
+    A privacy data-subject-access workflow. The flow submits a data retrieval
+    request for one or more distinct_ids, captures the returned task ID, and then
+    checks the retrieval task status — branching on whether the task has reached
+    SUCCESS (exposing the download URL) or is still pending so the caller knows
+    whether to re-poll. Each step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: gdprCcpaApi
+  url: ../openapi/mixpanel-gdpr-ccpa-openapi.yml
+  type: openapi
+workflows:
+- workflowId: gdpr-retrieval-flow
+  summary: Create a data retrieval request then check its status for the download URL.
+  description: >-
+    Posts a retrieval request to /data-retrievals/v3.0, then polls
+    /data-retrievals/v3.0/{taskId}, branching on SUCCESS versus still-pending.
+  inputs:
+    type: object
+    required:
+    - projectToken
+    - distinctIds
+    - complianceType
+    properties:
+      projectToken:
+        type: string
+        description: Mixpanel project token (token query parameter, required).
+      distinctIds:
+        type: array
+        description: List of distinct_ids to retrieve data for.
+        items:
+          type: string
+      complianceType:
+        type: string
+        description: The compliance regulation (GDPR or CCPA).
+  steps:
+  - stepId: createRetrieval
+    description: >-
+      Submit a GDPR or CCPA data retrieval request. Authentication uses an OAuth
+      bearer token; the project token is passed as the token query parameter.
+    operationId: createRetrievalRequest
+    parameters:
+    - name: token
+      in: query
+      value: $inputs.projectToken
+    requestBody:
+      contentType: application/json
+      payload:
+        distinct_ids: $inputs.distinctIds
+        compliance_type: $inputs.complianceType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      taskId: $response.body#/results/task_id
+  - stepId: checkRetrieval
+    description: >-
+      Check the status of the retrieval task. Branches to completion when the
+      task status is SUCCESS and a download URL is available, otherwise reports
+      it is still pending.
+    operationId: checkRetrievalStatus
+    parameters:
+    - name: taskId
+      in: path
+      value: $steps.createRetrieval.outputs.taskId
+    - name: token
+      in: query
+      value: $inputs.projectToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      taskStatus: $response.body#/results/status
+      downloadUrl: $response.body#/results/download_url
+    onSuccess:
+    - name: retrievalComplete
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.results.status == "SUCCESS"
+        type: jsonpath
+    - name: retrievalPending
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.results.status != "SUCCESS"
+        type: jsonpath
+  outputs:
+    taskId: $steps.createRetrieval.outputs.taskId
+    taskStatus: $steps.checkRetrieval.outputs.taskStatus
+    downloadUrl: $steps.checkRetrieval.outputs.downloadUrl

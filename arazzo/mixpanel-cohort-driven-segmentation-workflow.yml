@@ -1,0 +1,91 @@
+arazzo: 1.0.1
+info:
+  title: Mixpanel Cohort-Driven Segmentation
+  summary: List project cohorts then segment an event filtered to a chosen cohort.
+  description: >-
+    A cohort-analysis workflow. The flow lists the cohorts defined in a project,
+    then queries the Segmentation endpoint for an event filtered to a specific
+    cohort using the where expression so an event's volume can be read for just
+    the members of that cohort. Each step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: queryApi
+  url: ../openapi/mixpanel-query-openapi.yml
+  type: openapi
+workflows:
+- workflowId: cohort-driven-segmentation
+  summary: List cohorts then segment an event scoped to one cohort.
+  description: >-
+    Calls /cohorts/list to retrieve cohorts, then queries /segmentation for the
+    event filtered with a cohort where expression.
+  inputs:
+    type: object
+    required:
+    - projectId
+    - cohortId
+    - eventName
+    - fromDate
+    - toDate
+    properties:
+      projectId:
+        type: integer
+        description: The Mixpanel project ID.
+      cohortId:
+        type: integer
+        description: The cohort ID to scope the segmentation to.
+      eventName:
+        type: string
+        description: The event name to segment.
+      fromDate:
+        type: string
+        description: Segmentation start date (YYYY-MM-DD).
+      toDate:
+        type: string
+        description: Segmentation end date (YYYY-MM-DD).
+  steps:
+  - stepId: listCohorts
+    description: >-
+      Retrieve all cohorts defined in the project to confirm the requested
+      cohort exists. Uses service account basic auth.
+    operationId: listCohorts
+    parameters:
+    - name: project_id
+      in: query
+      value: $inputs.projectId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cohorts: $response.body
+  - stepId: segmentByCohort
+    description: >-
+      Query event segmentation for the event scoped to the chosen cohort using a
+      where expression that references the cohort ID.
+    operationId: querySegmentation
+    parameters:
+    - name: project_id
+      in: query
+      value: $inputs.projectId
+    - name: event
+      in: query
+      value: $inputs.eventName
+    - name: from_date
+      in: query
+      value: $inputs.fromDate
+    - name: to_date
+      in: query
+      value: $inputs.toDate
+    - name: where
+      in: query
+      value: '("$inputs.cohortId" in cohorts)'
+    - name: type
+      in: query
+      value: unique
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      values: $response.body#/data/values
+  outputs:
+    cohorts: $steps.listCohorts.outputs.cohorts
+    values: $steps.segmentByCohort.outputs.values

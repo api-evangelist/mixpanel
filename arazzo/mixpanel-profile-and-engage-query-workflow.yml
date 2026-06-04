@@ -1,0 +1,110 @@
+arazzo: 1.0.1
+info:
+  title: Mixpanel Update Profile and Query Engagement
+  summary: Set a user's People profile and then query an engagement event for that activity.
+  description: >-
+    Connects Mixpanel People (engage) to the Query API. The workflow first sets
+    profile properties on a user via the /engage endpoint, then queries the
+    Segmentation endpoint for an engagement event filtered to that user so the
+    profile change can be tied back to behavior. Each step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: ingestionApi
+  url: ../openapi/mixpanel-ingestion-openapi.yml
+  type: openapi
+- name: queryApi
+  url: ../openapi/mixpanel-query-openapi.yml
+  type: openapi
+workflows:
+- workflowId: profile-and-engage-query
+  summary: Set People profile properties then query an engagement event for the user.
+  description: >-
+    Posts a $set profile update to /engage with the project token, then queries
+    /segmentation for an engagement event filtered to that distinct_id.
+  inputs:
+    type: object
+    required:
+    - projectToken
+    - projectId
+    - distinctId
+    - profileProperties
+    - engagementEvent
+    - fromDate
+    - toDate
+    properties:
+      projectToken:
+        type: string
+        description: Mixpanel project token used for People ingestion auth.
+      projectId:
+        type: integer
+        description: The Mixpanel project ID used by the Query API.
+      distinctId:
+        type: string
+        description: Unique identifier for the user profile.
+      profileProperties:
+        type: object
+        description: Map of profile property name/value pairs to set.
+      engagementEvent:
+        type: string
+        description: The engagement event name to query for the user.
+      fromDate:
+        type: string
+        description: Segmentation start date (YYYY-MM-DD).
+      toDate:
+        type: string
+        description: Segmentation end date (YYYY-MM-DD).
+  steps:
+  - stepId: setProfile
+    description: >-
+      Set profile properties on the user via Mixpanel People. Authentication
+      uses the project token carried in the $token body field.
+    operationId: updateUserProfile
+    parameters:
+    - name: verbose
+      in: query
+      value: 1
+    requestBody:
+      contentType: application/json
+      payload:
+        $token: $inputs.projectToken
+        $distinct_id: $inputs.distinctId
+        $set: $inputs.profileProperties
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      profileStatus: $response.body#/status
+  - stepId: queryEngagement
+    description: >-
+      Query event segmentation for the engagement event filtered to the user so
+      the profile update can be related to behavior. Uses service account basic
+      auth.
+    operationId: querySegmentation
+    parameters:
+    - name: project_id
+      in: query
+      value: $inputs.projectId
+    - name: event
+      in: query
+      value: $inputs.engagementEvent
+    - name: from_date
+      in: query
+      value: $inputs.fromDate
+    - name: to_date
+      in: query
+      value: $inputs.toDate
+    - name: where
+      in: query
+      value: 'properties["$distinct_id"] == "$inputs.distinctId"'
+    - name: type
+      in: query
+      value: unique
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      series: $response.body#/data/series
+      values: $response.body#/data/values
+  outputs:
+    profileStatus: $steps.setProfile.outputs.profileStatus
+    values: $steps.queryEngagement.outputs.values

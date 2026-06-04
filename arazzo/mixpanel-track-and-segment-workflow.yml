@@ -1,0 +1,117 @@
+arazzo: 1.0.1
+info:
+  title: Mixpanel Track Event and Segment
+  summary: Send a live event to Mixpanel and then segment that event over a date range.
+  description: >-
+    The core product-analytics loop. The workflow first sends a single event to
+    Mixpanel in real time via the Ingestion API, then turns around and queries
+    the Segmentation endpoint of the Query API for that same event name to read
+    back a time series — optionally segmented by a property. Because ingestion
+    is asynchronous, the segmentation read is best run for a historical window;
+    each step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: ingestionApi
+  url: ../openapi/mixpanel-ingestion-openapi.yml
+  type: openapi
+- name: queryApi
+  url: ../openapi/mixpanel-query-openapi.yml
+  type: openapi
+workflows:
+- workflowId: track-and-segment
+  summary: Track an event then read its segmentation time series.
+  description: >-
+    Sends one event to /track using the project token, then queries
+    /segmentation for the same event name over a date range, segmenting by an
+    optional property.
+  inputs:
+    type: object
+    required:
+    - projectToken
+    - projectId
+    - distinctId
+    - eventName
+    - fromDate
+    - toDate
+    properties:
+      projectToken:
+        type: string
+        description: Mixpanel project token used for client-side ingestion auth.
+      projectId:
+        type: integer
+        description: The Mixpanel project ID used by the Query API.
+      distinctId:
+        type: string
+        description: Unique identifier for the user who performed the event.
+      eventName:
+        type: string
+        description: The event name to track and then segment on.
+      fromDate:
+        type: string
+        description: Segmentation start date (YYYY-MM-DD).
+      toDate:
+        type: string
+        description: Segmentation end date (YYYY-MM-DD).
+      segmentOn:
+        type: string
+        description: Optional property expression to segment results by.
+  steps:
+  - stepId: trackEvent
+    description: >-
+      Send a single event to Mixpanel in real time. Authentication uses the
+      project token passed as the query parameter.
+    operationId: trackEvent
+    parameters:
+    - name: token
+      in: query
+      value: $inputs.projectToken
+    - name: verbose
+      in: query
+      value: 1
+    requestBody:
+      contentType: application/json
+      payload:
+        data:
+          event: $inputs.eventName
+          properties:
+            distinct_id: $inputs.distinctId
+            token: $inputs.projectToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      ingestStatus: $response.body#/status
+  - stepId: segmentEvent
+    description: >-
+      Query event segmentation for the tracked event over the supplied date
+      range, segmenting by the optional property expression. The Query API uses
+      service account basic auth.
+    operationId: querySegmentation
+    parameters:
+    - name: project_id
+      in: query
+      value: $inputs.projectId
+    - name: event
+      in: query
+      value: $inputs.eventName
+    - name: from_date
+      in: query
+      value: $inputs.fromDate
+    - name: to_date
+      in: query
+      value: $inputs.toDate
+    - name: 'on'
+      in: query
+      value: $inputs.segmentOn
+    - name: type
+      in: query
+      value: general
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      series: $response.body#/data/series
+      values: $response.body#/data/values
+  outputs:
+    ingestStatus: $steps.trackEvent.outputs.ingestStatus
+    series: $steps.segmentEvent.outputs.series
+    values: $steps.segmentEvent.outputs.values
