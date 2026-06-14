@@ -1,0 +1,853 @@
+"""
+Mixpanel GraphQL Schema
+Conceptual schema representing the Mixpanel product analytics platform.
+Covers ingestion, query, export, identity, lexicon, and governance APIs.
+Reference: https://developer.mixpanel.com/reference/
+"""
+
+scalar JSON
+scalar DateTime
+scalar Date
+
+# ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum DataType {
+  STRING
+  NUMBER
+  BOOLEAN
+  DATETIME
+  LIST
+  OBJECT
+}
+
+enum RetentionType {
+  BIRTH
+  COMPOUNDED
+}
+
+enum FunnelOrderType {
+  ORDERED
+  UNORDERED
+  SKIPPABLE
+}
+
+enum ExportJobStatus {
+  PENDING
+  RUNNING
+  COMPLETE
+  FAILED
+}
+
+enum PipelineStatus {
+  ACTIVE
+  PAUSED
+  DELETED
+  ERROR
+}
+
+enum ComplianceRequestType {
+  RETRIEVAL
+  DELETION
+}
+
+enum ComplianceRequestStatus {
+  PENDING
+  RUNNING
+  COMPLETE
+  FAILED
+}
+
+enum RoleLevel {
+  VIEWER
+  ANALYST
+  ADMIN
+  OWNER
+}
+
+enum PropertyType {
+  EVENT
+  USER
+  GROUP
+}
+
+# ─── Event Types ──────────────────────────────────────────────────────────────
+
+"""A single analytics event tracked in Mixpanel."""
+type Event {
+  event: String!
+  distinctId: String!
+  insertId: String
+  time: DateTime!
+  properties: EventProperties!
+  projectId: String
+  token: String
+}
+
+"""Arbitrary key-value properties attached to an Event."""
+type EventProperties {
+  mp_lib: String
+  mp_lib_version: String
+  os: String
+  browser: String
+  browserVersion: String
+  city: String
+  region: String
+  country: String
+  initialReferrer: String
+  initialReferringDomain: String
+  currentUrl: String
+  screenWidth: Int
+  screenHeight: Int
+  extra: JSON
+}
+
+"""Input for ingesting a new event."""
+input EventInput {
+  event: String!
+  distinctId: String!
+  insertId: String
+  time: DateTime
+  properties: JSON
+  token: String!
+}
+
+# ─── User Profile Types ───────────────────────────────────────────────────────
+
+"""A People profile representing a single identified user."""
+type UserProfile {
+  distinctId: String!
+  email: String
+  firstName: String
+  lastName: String
+  name: String
+  createdAt: DateTime
+  lastSeen: DateTime
+  properties: UserProperties!
+  projectId: String
+}
+
+"""Arbitrary properties on a UserProfile."""
+type UserProperties {
+  email: String
+  firstName: String
+  lastName: String
+  phone: String
+  timezone: String
+  avatar: String
+  extra: JSON
+}
+
+"""Input for setting or updating a UserProfile."""
+input UserProfileInput {
+  distinctId: String!
+  token: String!
+  set: JSON
+  setOnce: JSON
+  add: JSON
+  append: JSON
+  remove: JSON
+  unset: [String!]
+}
+
+# ─── Group Profile Types ──────────────────────────────────────────────────────
+
+"""A Group Analytics profile for a B2B account or company."""
+type GroupProfile {
+  groupKey: String!
+  groupId: String!
+  properties: GroupProperties!
+  projectId: String
+}
+
+"""Arbitrary properties on a GroupProfile."""
+type GroupProperties {
+  name: String
+  industry: String
+  plan: String
+  employeeCount: Int
+  extra: JSON
+}
+
+"""Input for setting or updating a GroupProfile."""
+input GroupProfileInput {
+  groupKey: String!
+  groupId: String!
+  token: String!
+  set: JSON
+  setOnce: JSON
+  add: JSON
+  remove: JSON
+  unset: [String!]
+}
+
+# ─── Lookup Table Types ───────────────────────────────────────────────────────
+
+"""A Lookup Table used to join additional dimensions onto events."""
+type LookupTable {
+  id: String!
+  name: String!
+  projectId: String!
+  joinKey: String!
+  description: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""A single row in a LookupTable."""
+type LookupTableRow {
+  joinValue: String!
+  columns: JSON!
+}
+
+# ─── Funnel Types ─────────────────────────────────────────────────────────────
+
+"""A saved Funnel definition in a Mixpanel project."""
+type Funnel {
+  funnelId: Int!
+  name: String!
+  steps: [FunnelStep!]!
+  projectId: String
+}
+
+"""A single step within a Funnel."""
+type FunnelStep {
+  stepLabel: String
+  event: String!
+  filters: [InsightFilter!]
+  orderIndex: Int!
+}
+
+"""Aggregated results for a Funnel query."""
+type FunnelResults {
+  funnel: Funnel!
+  dateRange: DateRange!
+  orderType: FunnelOrderType
+  totalEntrants: Int!
+  steps: [FunnelStepResult!]!
+  breakdowns: [FunnelBreakdown!]
+}
+
+"""Conversion statistics for a single funnel step."""
+type FunnelStepResult {
+  step: FunnelStep!
+  count: Int!
+  conversionRateFromPrevious: Float
+  conversionRateFromFirst: Float
+  avgTimeSincePreviousStep: Float
+  dropoffCount: Int
+}
+
+"""A property-based breakdown slice of FunnelResults."""
+type FunnelBreakdown {
+  propertyName: String!
+  propertyValue: String
+  steps: [FunnelStepResult!]!
+}
+
+# ─── Retention Types ──────────────────────────────────────────────────────────
+
+"""Retention analysis result for a project."""
+type Retention {
+  projectId: String!
+  dateRange: DateRange!
+  retentionType: RetentionType!
+  bornEvent: String!
+  returnEvent: String!
+  intervals: [RetentionInterval!]!
+}
+
+"""One cohort period's retention statistics."""
+type RetentionInterval {
+  date: Date!
+  cohortSize: Int!
+  counts: [Int!]!
+  percentages: [Float!]!
+}
+
+# ─── Segmentation Types ───────────────────────────────────────────────────────
+
+"""The result of a segmentation (breakdown) query."""
+type Segmentation {
+  event: String!
+  dateRange: DateRange!
+  interval: String
+  unit: String
+  results: [SegmentResult!]!
+}
+
+"""A single series within a Segmentation result."""
+type SegmentResult {
+  label: String
+  data: JSON!
+  total: Float
+}
+
+"""Distinct values for a given event property."""
+type PropertyValues {
+  propertyName: String!
+  event: String
+  values: [String!]!
+}
+
+# ─── Cohort Types ─────────────────────────────────────────────────────────────
+
+"""A behavioral cohort of users sharing certain criteria."""
+type Cohort {
+  id: Int!
+  name: String!
+  description: String
+  count: Int
+  isVisible: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  definition: CohortDefinition
+  projectId: String
+}
+
+"""The logical definition of a cohort."""
+type CohortDefinition {
+  type: String!
+  filters: [CohortFilter!]!
+}
+
+"""A single filter clause within a CohortDefinition."""
+type CohortFilter {
+  filterType: String!
+  eventName: String
+  propertyName: String
+  operator: String!
+  value: JSON
+  windowDays: Int
+}
+
+# ─── Dashboard and Report Types ───────────────────────────────────────────────
+
+"""A Mixpanel dashboard (Board) containing reports."""
+type Dashboard {
+  id: Int!
+  title: String!
+  description: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  projectId: String
+  reports: [DashboardReport!]
+}
+
+"""A reference to a report pinned on a Dashboard."""
+type DashboardReport {
+  reportId: Int!
+  title: String!
+  type: String!
+  position: JSON
+}
+
+"""A Board report (e.g. Insight, Funnel, Retention, Flow)."""
+type BoardReport {
+  id: Int!
+  title: String!
+  type: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+  projectId: String
+}
+
+# ─── Insight Types ────────────────────────────────────────────────────────────
+
+"""A saved Insight (metric or trend) report."""
+type Insight {
+  id: Int!
+  title: String!
+  description: String
+  projectId: String
+  query: InsightQuery!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""Filter condition applied to an Insight or Funnel."""
+type InsightFilter {
+  propertyName: String!
+  operator: String!
+  value: JSON
+  propertyType: PropertyType
+}
+
+"""The query specification backing an Insight."""
+type InsightQuery {
+  event: String!
+  type: String
+  unit: String
+  filters: [InsightFilter!]
+  breakdowns: [String!]
+  dateRange: DateRange
+}
+
+# ─── Flow Types ───────────────────────────────────────────────────────────────
+
+"""A user Flow (path analysis) report."""
+type Flow {
+  id: Int!
+  title: String!
+  startEvent: String
+  endEvent: String
+  paths: [FlowPath!]
+  projectId: String
+}
+
+"""A discovered path through the product."""
+type FlowPath {
+  steps: [FlowStep!]!
+  userCount: Int!
+  percentage: Float
+}
+
+"""A single event step within a FlowPath."""
+type FlowStep {
+  event: String!
+  count: Int!
+  avgTimeToNext: Float
+}
+
+# ─── Experiment Types ─────────────────────────────────────────────────────────
+
+"""A Web Experimentation experiment."""
+type Experiment {
+  id: String!
+  name: String!
+  status: String!
+  variants: [ExperimentVariant!]!
+  startDate: DateTime
+  endDate: DateTime
+  projectId: String
+}
+
+"""A variant within an Experiment."""
+type ExperimentVariant {
+  variantId: String!
+  name: String!
+  weight: Float!
+}
+
+"""Statistical results for an Experiment."""
+type ExperimentResult {
+  experiment: Experiment!
+  winningVariant: String
+  pValue: Float
+  confidenceLevel: Float
+  variantMetrics: [VariantMetric!]!
+}
+
+"""Metrics for a single experiment variant."""
+type VariantMetric {
+  variantId: String!
+  conversionRate: Float!
+  sampleSize: Int!
+  lift: Float
+}
+
+# ─── Annotation Types ─────────────────────────────────────────────────────────
+
+"""A time-stamped annotation on a Mixpanel chart."""
+type Annotation {
+  id: Int!
+  projectId: Int!
+  date: Date!
+  description: String!
+  user: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""Input for creating or updating an Annotation."""
+input AnnotationInput {
+  projectId: Int!
+  date: Date!
+  description: String!
+}
+
+# ─── Identity Types ───────────────────────────────────────────────────────────
+
+"""An ID Merge identity record linking anonymous and known IDs."""
+type Identity {
+  distinctId: String!
+  anonId: String
+  userId: String
+  projectId: String
+  createdAt: DateTime
+}
+
+"""An alias mapping one distinct ID to another."""
+type Alias {
+  alias: String!
+  distinctId: String!
+  token: String!
+}
+
+"""A merged distinct ID record."""
+type UserDistinct {
+  originalId: String!
+  mergedId: String!
+  mergedAt: DateTime
+}
+
+# ─── Data Export Types ────────────────────────────────────────────────────────
+
+"""A raw data export request."""
+type DataExport {
+  fromDate: Date!
+  toDate: Date!
+  event: [String!]
+  where: String
+  projectId: String
+}
+
+"""A batch export job."""
+type ExportJob {
+  jobId: String!
+  status: ExportJobStatus!
+  createdAt: DateTime
+  completedAt: DateTime
+  downloadUrl: String
+  projectId: String
+}
+
+# ─── Lexicon Types ────────────────────────────────────────────────────────────
+
+"""The project Lexicon (data dictionary / tracking plan)."""
+type Lexicon {
+  projectId: String!
+  entries: [LexiconEntry!]!
+  updatedAt: DateTime
+}
+
+"""A single entry in the Lexicon for an event or property."""
+type LexiconEntry {
+  name: String!
+  displayName: String
+  description: String
+  propertyType: PropertyType
+  dataType: DataType
+  hidden: Boolean
+  dropped: Boolean
+  owners: [String!]
+  tags: [String!]
+}
+
+# ─── Schema / Governance Types ────────────────────────────────────────────────
+
+"""A Schema definition governing an event or property."""
+type Schema {
+  projectId: String!
+  schemaType: String!
+  entityName: String!
+  version: Int!
+  description: String
+  properties: [SchemaProperty!]!
+}
+
+"""A property definition within a Schema."""
+type SchemaProperty {
+  name: String!
+  displayName: String
+  description: String
+  dataType: DataType!
+  required: Boolean
+  examples: [String!]
+  enum: [String!]
+}
+
+# ─── Transform Types ──────────────────────────────────────────────────────────
+
+"""A data transform rule applied during ingestion."""
+type Transform {
+  id: String!
+  name: String!
+  projectId: String!
+  enabled: Boolean!
+  filters: [TransformFilter!]!
+  actions: JSON!
+  createdAt: DateTime
+}
+
+"""A filter condition that determines when a Transform applies."""
+type TransformFilter {
+  propertyName: String!
+  operator: String!
+  value: JSON
+}
+
+# ─── Lookup (Join) Types ──────────────────────────────────────────────────────
+
+"""A Lookup (join) configuration linking event properties to a LookupTable."""
+type Lookup {
+  id: String!
+  projectId: String!
+  eventProperty: String!
+  lookupTable: LookupTable!
+  targetColumns: [String!]!
+  createdAt: DateTime
+}
+
+# ─── Service Account Types ────────────────────────────────────────────────────
+
+"""A Mixpanel Service Account for programmatic API access."""
+type ServiceAccount {
+  username: String!
+  id: String!
+  name: String
+  secret: String
+  createdAt: DateTime
+  projectMemberships: [ProjectMembership!]
+  organizationId: String
+}
+
+"""Association between a ServiceAccount and a Project with a role."""
+type ProjectMembership {
+  project: APIProject!
+  role: RoleLevel!
+}
+
+# ─── Organization / Project Types ─────────────────────────────────────────────
+
+"""A Mixpanel project within an organization."""
+type APIProject {
+  id: Int!
+  name: String!
+  token: String!
+  timezone: String
+  createdAt: DateTime
+  dataResidency: String
+  organization: Organization
+}
+
+"""A Mixpanel organization grouping projects and users."""
+type Organization {
+  id: Int!
+  name: String!
+  plan: String
+  projects: [APIProject!]
+  users: [User!]
+  serviceAccounts: [ServiceAccount!]
+}
+
+"""A human user within an Organization."""
+type User {
+  id: String!
+  email: String!
+  name: String
+  role: RoleLevel
+  lastLoginAt: DateTime
+  createdAt: DateTime
+}
+
+"""A role granting permissions to users or service accounts."""
+type Role {
+  id: String!
+  name: String!
+  level: RoleLevel!
+  permissions: [Permission!]!
+}
+
+"""A discrete permission granted by a Role."""
+type Permission {
+  resource: String!
+  actions: [String!]!
+}
+
+# ─── Shared / Utility Types ───────────────────────────────────────────────────
+
+"""A calendar date range for queries."""
+type DateRange {
+  fromDate: Date!
+  toDate: Date!
+}
+
+"""Input form of a date range."""
+input DateRangeInput {
+  fromDate: Date!
+  toDate: Date!
+}
+
+"""Compliance (GDPR / CCPA) request."""
+type ComplianceRequest {
+  taskId: String!
+  requestType: ComplianceRequestType!
+  status: ComplianceRequestStatus!
+  submittedAt: DateTime
+  completedAt: DateTime
+  downloadUrl: String
+  distinctIds: [String!]!
+  projectId: String
+}
+
+"""A data pipeline (warehouse connector) definition."""
+type DataPipeline {
+  id: String!
+  name: String!
+  status: PipelineStatus!
+  warehouseType: String!
+  schedule: String
+  lastRunAt: DateTime
+  nextRunAt: DateTime
+  projectId: String
+}
+
+# ─── Root Types ───────────────────────────────────────────────────────────────
+
+type Query {
+  """Retrieve events via the Query API."""
+  events(projectId: String!, dateRange: DateRangeInput!, eventName: String, where: String, limit: Int): [Event!]!
+
+  """Query a segmentation breakdown."""
+  segmentation(projectId: String!, event: String!, dateRange: DateRangeInput!, on: String, unit: String, where: String): Segmentation!
+
+  """Get funnel conversion results."""
+  funnelResults(projectId: String!, funnelId: Int!, dateRange: DateRangeInput!): FunnelResults!
+
+  """List all saved funnels in a project."""
+  funnels(projectId: String!): [Funnel!]!
+
+  """Compute retention for a project."""
+  retention(projectId: String!, bornEvent: String!, returnEvent: String!, dateRange: DateRangeInput!, retentionType: RetentionType): Retention!
+
+  """List cohorts in a project."""
+  cohorts(projectId: String!): [Cohort!]!
+
+  """Get a single cohort by ID."""
+  cohort(projectId: String!, cohortId: Int!): Cohort
+
+  """Retrieve a user profile."""
+  userProfile(projectId: String!, distinctId: String!): UserProfile
+
+  """Query user profiles (Engage API)."""
+  userProfiles(projectId: String!, where: String, sessionId: String, page: Int): [UserProfile!]!
+
+  """Retrieve a group profile."""
+  groupProfile(projectId: String!, groupKey: String!, groupId: String!): GroupProfile
+
+  """List lookup tables in a project."""
+  lookupTables(projectId: String!): [LookupTable!]!
+
+  """Get property values for an event property."""
+  propertyValues(projectId: String!, event: String!, propertyName: String!, limit: Int): PropertyValues!
+
+  """List dashboards for a project."""
+  dashboards(projectId: String!): [Dashboard!]!
+
+  """List annotations for a project."""
+  annotations(projectId: String!, dateRange: DateRangeInput): [Annotation!]!
+
+  """Get lexicon entries for a project."""
+  lexicon(projectId: String!): Lexicon!
+
+  """List schemas for a project."""
+  schemas(projectId: String!): [Schema!]!
+
+  """List service accounts in an organization."""
+  serviceAccounts(organizationId: String!): [ServiceAccount!]!
+
+  """Get organization details."""
+  organization(organizationId: String!): Organization
+
+  """List projects in an organization."""
+  projects(organizationId: String!): [APIProject!]!
+
+  """List export jobs."""
+  exportJobs(projectId: String!): [ExportJob!]!
+
+  """Get a single export job."""
+  exportJob(projectId: String!, jobId: String!): ExportJob
+
+  """List data pipelines."""
+  dataPipelines(projectId: String!): [DataPipeline!]!
+
+  """List compliance requests."""
+  complianceRequests(projectId: String!): [ComplianceRequest!]!
+
+  """Get a single compliance request."""
+  complianceRequest(projectId: String!, taskId: String!): ComplianceRequest
+
+  """List transforms for a project."""
+  transforms(projectId: String!): [Transform!]!
+
+  """List experiments for a project."""
+  experiments(projectId: String!): [Experiment!]!
+
+  """Get experiment results."""
+  experimentResult(projectId: String!, experimentId: String!): ExperimentResult
+}
+
+type Mutation {
+  """Track a single event."""
+  trackEvent(input: EventInput!): Boolean!
+
+  """Import a batch of events."""
+  importEvents(token: String!, strict: Int, inputs: [EventInput!]!): JSON!
+
+  """Set or update a user profile."""
+  setUserProfile(input: UserProfileInput!): Boolean!
+
+  """Delete a user profile."""
+  deleteUserProfile(token: String!, distinctId: String!, ignoreAlias: Boolean): Boolean!
+
+  """Set or update a group profile."""
+  setGroupProfile(input: GroupProfileInput!): Boolean!
+
+  """Create or replace a lookup table."""
+  upsertLookupTable(projectId: String!, tableId: String!, name: String!, joinKey: String!, csv: String!): LookupTable!
+
+  """Create an annotation."""
+  createAnnotation(input: AnnotationInput!): Annotation!
+
+  """Update an annotation."""
+  updateAnnotation(annotationId: Int!, input: AnnotationInput!): Annotation!
+
+  """Delete an annotation."""
+  deleteAnnotation(projectId: Int!, annotationId: Int!): Boolean!
+
+  """Create an identity link."""
+  createIdentity(token: String!, anonymousId: String!, userId: String!): Identity!
+
+  """Create an alias."""
+  createAlias(token: String!, alias: String!, distinctId: String!): Boolean!
+
+  """Merge two distinct IDs."""
+  mergeDistinctIds(token: String!, distinctId1: String!, distinctId2: String!): UserDistinct!
+
+  """Create or replace a schema."""
+  upsertSchema(projectId: String!, schemaType: String!, entityName: String!, schema: JSON!): Schema!
+
+  """Delete a schema."""
+  deleteSchema(projectId: String!, schemaType: String!, entityName: String!): Boolean!
+
+  """Create a service account."""
+  createServiceAccount(organizationId: String!, name: String!, projectMemberships: [JSON!]): ServiceAccount!
+
+  """Delete a service account."""
+  deleteServiceAccount(organizationId: String!, username: String!): Boolean!
+
+  """Submit a GDPR/CCPA compliance request."""
+  submitComplianceRequest(projectId: String!, requestType: ComplianceRequestType!, distinctIds: [String!]!): ComplianceRequest!
+
+  """Create an export job."""
+  createExportJob(projectId: String!, fromDate: Date!, toDate: Date!, event: [String!], where: String): ExportJob!
+
+  """Create a data pipeline."""
+  createDataPipeline(projectId: String!, name: String!, warehouseType: String!, config: JSON!): DataPipeline!
+
+  """Pause a data pipeline."""
+  pauseDataPipeline(projectId: String!, pipelineId: String!): DataPipeline!
+
+  """Resume a data pipeline."""
+  resumeDataPipeline(projectId: String!, pipelineId: String!): DataPipeline!
+
+  """Delete a data pipeline."""
+  deleteDataPipeline(projectId: String!, pipelineId: String!): Boolean!
+
+  """Trigger a warehouse import run."""
+  triggerWarehouseImport(projectId: String!, pipelineId: String!): JSON!
+
+  """Create or update a transform."""
+  upsertTransform(projectId: String!, transform: JSON!): Transform!
+}
