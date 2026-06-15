@@ -1,0 +1,979 @@
+{
+  "info": {
+    "_postman_id": "e6383fee-feaa-436c-9fed-ba595abe7bbe",
+    "name": "Mixpanel Lexicon Schemas API",
+    "description": "API for syncing your internal data dictionary or tracking plan with Mixpanel using schemas, allowing you to create, replace, retrieve, and delete schema definitions that describe the data you send to Mixpanel.\n\nContact Support:\n Name: Mixpanel Support\n Email: support@mixpanel.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:12:56.000Z",
+    "updatedAt": "2026-06-05T15:12:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e6383fee-feaa-436c-9fed-ba595abe7bbe"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{projectId}",
+          "item": [
+            {
+              "name": "schemas",
+              "item": [
+                {
+                  "name": "Mixpanel List schemas",
+                  "id": "4a8cbb9d-874f-4d5c-bbae-30b714ebcc4f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/schemas?entityType=event",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "schemas"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter schemas by entity type",
+                          "key": "entityType",
+                          "value": "event"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "37a11c03-675e-40a9-9b08-547a86fe222e",
+                          "key": "projectId",
+                          "value": "<integer>",
+                          "description": "(Required) The Mixpanel project ID"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all schema definitions for the project including event schemas, profile property schemas, and group schemas."
+                  },
+                  "response": [
+                    {
+                      "id": "f4991a9f-9376-40ef-8b43-b4cc4252aee8",
+                      "name": "List of schemas",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/schemas?entityType=event",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "schemas"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter schemas by entity type",
+                              "key": "entityType",
+                              "value": "event"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"results\": [\n    {\n      \"entityType\": \"lookup_table\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"eu07f\": {\n          \"type\": \"string\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"deserunt801\": {\n          \"type\": \"object\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    },\n    {\n      \"entityType\": \"lookup_table\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"mollit60b\": {\n          \"type\": \"boolean\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:12:57.000Z",
+                      "updatedAt": "2026-06-05T15:12:57.000Z",
+                      "uid": "35240-f4991a9f-9376-40ef-8b43-b4cc4252aee8"
+                    },
+                    {
+                      "id": "15b749e0-9cd0-494d-98ad-374aeb9616ff",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/schemas?entityType=event",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "schemas"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter schemas by entity type",
+                              "key": "entityType",
+                              "value": "event"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:57.000Z",
+                      "updatedAt": "2026-06-05T15:12:57.000Z",
+                      "uid": "35240-15b749e0-9cd0-494d-98ad-374aeb9616ff"
+                    },
+                    {
+                      "id": "d0e8c0d3-51a6-4ba5-b50d-e7ff09c2fa53",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/schemas?entityType=event",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "schemas"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter schemas by entity type",
+                              "key": "entityType",
+                              "value": "event"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:57.000Z",
+                      "updatedAt": "2026-06-05T15:12:57.000Z",
+                      "uid": "35240-d0e8c0d3-51a6-4ba5-b50d-e7ff09c2fa53"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:12:57.000Z",
+                  "updatedAt": "2026-06-05T15:12:57.000Z",
+                  "uid": "35240-4a8cbb9d-874f-4d5c-bbae-30b714ebcc4f"
+                },
+                {
+                  "name": "Mixpanel Replace schemas",
+                  "id": "67a3e194-71ef-4edf-aebe-837f55a5f64f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"event\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"non57\": {\n          \"type\": \"list\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"minim_3\": {\n          \"type\": \"object\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    },\n    {\n      \"entityType\": \"event\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"ind\": {\n          \"type\": \"string\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"magnac5\": {\n          \"type\": \"number\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"consequat1\": {\n          \"type\": \"boolean\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"adipisicing_e8\": {\n          \"type\": \"datetime\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    }\n  ],\n  \"truncate\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/schemas",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "schemas"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a2b07c25-09d8-41fa-b18d-b276abcc0b1a",
+                          "key": "projectId",
+                          "value": "<integer>",
+                          "description": "(Required) The Mixpanel project ID"
+                        }
+                      ]
+                    },
+                    "description": "Replace all schema definitions for the specified entity type. This completely replaces existing schemas with the provided ones."
+                  },
+                  "response": [
+                    {
+                      "id": "746d3b92-7901-408b-ac30-18e8b1492618",
+                      "name": "Schemas replaced successfully",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"event\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"non57\": {\n          \"type\": \"list\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"minim_3\": {\n          \"type\": \"object\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    },\n    {\n      \"entityType\": \"event\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"ind\": {\n          \"type\": \"string\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"magnac5\": {\n          \"type\": \"number\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"consequat1\": {\n          \"type\": \"boolean\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"adipisicing_e8\": {\n          \"type\": \"datetime\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    }\n  ],\n  \"truncate\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/schemas",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "schemas"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:12:57.000Z",
+                      "updatedAt": "2026-06-05T15:12:57.000Z",
+                      "uid": "35240-746d3b92-7901-408b-ac30-18e8b1492618"
+                    },
+                    {
+                      "id": "cfc3d99f-edf4-410a-8944-9000a220db35",
+                      "name": "Invalid schema definitions",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"event\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"non57\": {\n          \"type\": \"list\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"minim_3\": {\n          \"type\": \"object\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    },\n    {\n      \"entityType\": \"event\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"ind\": {\n          \"type\": \"string\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"magnac5\": {\n          \"type\": \"number\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"consequat1\": {\n          \"type\": \"boolean\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"adipisicing_e8\": {\n          \"type\": \"datetime\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    }\n  ],\n  \"truncate\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/schemas",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "schemas"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:57.000Z",
+                      "updatedAt": "2026-06-05T15:12:57.000Z",
+                      "uid": "35240-cfc3d99f-edf4-410a-8944-9000a220db35"
+                    },
+                    {
+                      "id": "e41c5e34-2c28-4b10-adc9-e5be47ed4ec3",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"event\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"non57\": {\n          \"type\": \"list\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"minim_3\": {\n          \"type\": \"object\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    },\n    {\n      \"entityType\": \"event\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"ind\": {\n          \"type\": \"string\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"magnac5\": {\n          \"type\": \"number\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"consequat1\": {\n          \"type\": \"boolean\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"adipisicing_e8\": {\n          \"type\": \"datetime\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    }\n  ],\n  \"truncate\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/schemas",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "schemas"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:57.000Z",
+                      "updatedAt": "2026-06-05T15:12:57.000Z",
+                      "uid": "35240-e41c5e34-2c28-4b10-adc9-e5be47ed4ec3"
+                    },
+                    {
+                      "id": "19c46c0e-1389-4fc8-a909-d7bdf49e5658",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"event\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"non57\": {\n          \"type\": \"list\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"minim_3\": {\n          \"type\": \"object\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    },\n    {\n      \"entityType\": \"event\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"ind\": {\n          \"type\": \"string\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"magnac5\": {\n          \"type\": \"number\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"consequat1\": {\n          \"type\": \"boolean\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"adipisicing_e8\": {\n          \"type\": \"datetime\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    }\n  ],\n  \"truncate\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/schemas",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "schemas"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:57.000Z",
+                      "updatedAt": "2026-06-05T15:12:57.000Z",
+                      "uid": "35240-19c46c0e-1389-4fc8-a909-d7bdf49e5658"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:12:57.000Z",
+                  "updatedAt": "2026-06-05T15:12:57.000Z",
+                  "uid": "35240-67a3e194-71ef-4edf-aebe-837f55a5f64f"
+                },
+                {
+                  "name": "Mixpanel Create schemas",
+                  "id": "8bb4f224-91eb-44e6-ba22-30db0e7460fa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"lookup_table\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"sitfc\": {\n          \"type\": \"list\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"ea_78\": {\n          \"type\": \"list\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    },\n    {\n      \"entityType\": \"group\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"in_b72\": {\n          \"type\": \"string\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"laboree68\": {\n          \"type\": \"boolean\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/schemas",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "schemas"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4e6a0489-5e61-4afd-8445-46d7189e66d5",
+                          "key": "projectId",
+                          "value": "<integer>",
+                          "description": "(Required) The Mixpanel project ID"
+                        }
+                      ]
+                    },
+                    "description": "Create new schema definitions or update existing ones without removing schemas not included in the request."
+                  },
+                  "response": [
+                    {
+                      "id": "00de6c74-3aff-4025-bb88-eb09f47325c3",
+                      "name": "Schemas created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"lookup_table\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"sitfc\": {\n          \"type\": \"list\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"ea_78\": {\n          \"type\": \"list\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    },\n    {\n      \"entityType\": \"group\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"in_b72\": {\n          \"type\": \"string\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"laboree68\": {\n          \"type\": \"boolean\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/schemas",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "schemas"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:12:57.000Z",
+                      "updatedAt": "2026-06-05T15:12:57.000Z",
+                      "uid": "35240-00de6c74-3aff-4025-bb88-eb09f47325c3"
+                    },
+                    {
+                      "id": "3f935130-ed84-4b66-bc21-180574dc6909",
+                      "name": "Invalid schema definitions",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"lookup_table\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"sitfc\": {\n          \"type\": \"list\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"ea_78\": {\n          \"type\": \"list\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    },\n    {\n      \"entityType\": \"group\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"in_b72\": {\n          \"type\": \"string\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"laboree68\": {\n          \"type\": \"boolean\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/schemas",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "schemas"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:57.000Z",
+                      "updatedAt": "2026-06-05T15:12:57.000Z",
+                      "uid": "35240-3f935130-ed84-4b66-bc21-180574dc6909"
+                    },
+                    {
+                      "id": "09427498-4230-4d97-a6d4-1d87c0672f96",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"lookup_table\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"sitfc\": {\n          \"type\": \"list\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"ea_78\": {\n          \"type\": \"list\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    },\n    {\n      \"entityType\": \"group\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"in_b72\": {\n          \"type\": \"string\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"laboree68\": {\n          \"type\": \"boolean\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/schemas",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "schemas"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:57.000Z",
+                      "updatedAt": "2026-06-05T15:12:57.000Z",
+                      "uid": "35240-09427498-4230-4d97-a6d4-1d87c0672f96"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:12:57.000Z",
+                  "updatedAt": "2026-06-05T15:12:57.000Z",
+                  "uid": "35240-8bb4f224-91eb-44e6-ba22-30db0e7460fa"
+                },
+                {
+                  "name": "Mixpanel Delete schemas",
+                  "id": "78974c2b-9eb7-45fc-803e-84b6afeeaed2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"group\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"entityType\": \"profile\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/schemas",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "schemas"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5cf96913-45a5-4ae5-b383-fe134aea200b",
+                          "key": "projectId",
+                          "value": "<integer>",
+                          "description": "(Required) The Mixpanel project ID"
+                        }
+                      ]
+                    },
+                    "description": "Delete specific schema definitions from the project."
+                  },
+                  "response": [
+                    {
+                      "id": "2988951f-1c20-4fa5-9c1f-86fad956c161",
+                      "name": "Schemas deleted successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"group\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"entityType\": \"profile\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/schemas",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "schemas"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:57.000Z",
+                      "updatedAt": "2026-06-05T15:12:57.000Z",
+                      "uid": "35240-2988951f-1c20-4fa5-9c1f-86fad956c161"
+                    },
+                    {
+                      "id": "5303174a-49f6-406f-b9bb-a5fdee910904",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"group\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"entityType\": \"profile\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/schemas",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "schemas"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:57.000Z",
+                      "updatedAt": "2026-06-05T15:12:57.000Z",
+                      "uid": "35240-5303174a-49f6-406f-b9bb-a5fdee910904"
+                    },
+                    {
+                      "id": "38a6a7da-7299-4295-82d9-96e9b503d2bf",
+                      "name": "Schema not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"group\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"entityType\": \"profile\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/schemas",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "schemas"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:57.000Z",
+                      "updatedAt": "2026-06-05T15:12:57.000Z",
+                      "uid": "35240-38a6a7da-7299-4295-82d9-96e9b503d2bf"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:12:57.000Z",
+                  "updatedAt": "2026-06-05T15:12:57.000Z",
+                  "uid": "35240-78974c2b-9eb7-45fc-803e-84b6afeeaed2"
+                }
+              ],
+              "id": "e1efa851-d3ba-4947-a705-3b0cae6fc926",
+              "createdAt": "2026-06-05T15:12:57.000Z",
+              "updatedAt": "2026-06-05T15:12:57.000Z",
+              "uid": "35240-e1efa851-d3ba-4947-a705-3b0cae6fc926"
+            }
+          ],
+          "id": "efcda7b0-7a4b-4891-a48e-126883bb85f0",
+          "createdAt": "2026-06-05T15:12:57.000Z",
+          "updatedAt": "2026-06-05T15:12:57.000Z",
+          "uid": "35240-efcda7b0-7a4b-4891-a48e-126883bb85f0"
+        }
+      ],
+      "id": "5026a210-eacd-4c07-b784-bda95051d64d",
+      "createdAt": "2026-06-05T15:12:57.000Z",
+      "updatedAt": "2026-06-05T15:12:57.000Z",
+      "uid": "35240-5026a210-eacd-4c07-b784-bda95051d64d"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://mixpanel.com/api/app"
+    }
+  ]
+}

@@ -1,0 +1,449 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Query API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Insights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Query insights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/2.0/insights",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "bookmark_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of a saved report to query"
+              }
+            ]
+          },
+          "docs": "Query event data with flexible aggregation, filtering, and breakdown capabilities. Returns data suitable for charts and reports."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Funnels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Query funnel data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/2.0/funnels",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "funnel_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the funnel to query"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)"
+              },
+              {
+                "name": "length",
+                "value": "",
+                "type": "query",
+                "description": "Number of units in the conversion window"
+              },
+              {
+                "name": "length_unit",
+                "value": "",
+                "type": "query",
+                "description": "Unit of time for the conversion window"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Number of days per data point"
+              },
+              {
+                "name": "on",
+                "value": "",
+                "type": "query",
+                "description": "Property expression to segment results"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Expression to filter events"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of segment values to return"
+              }
+            ]
+          },
+          "docs": "Query funnel conversion data for a defined sequence of events. Returns conversion rates and counts at each step."
+        },
+        {
+          "info": {
+            "name": "Mixpanel List funnels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/2.0/funnels/list",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The Mixpanel project ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all saved funnels in the project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Retention",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Query retention data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/2.0/retention",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)"
+              },
+              {
+                "name": "born_event",
+                "value": "",
+                "type": "query",
+                "description": "The initial event that defines the cohort"
+              },
+              {
+                "name": "retention_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of retention analysis"
+              },
+              {
+                "name": "born_where",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression for the initial event"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "query",
+                "description": "The return event to measure"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression for the return event"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Number of days per retention period"
+              },
+              {
+                "name": "interval_count",
+                "value": "",
+                "type": "query",
+                "description": "Number of retention periods to return"
+              },
+              {
+                "name": "unit",
+                "value": "",
+                "type": "query",
+                "description": "Time unit for retention periods"
+              },
+              {
+                "name": "on",
+                "value": "",
+                "type": "query",
+                "description": "Property to segment results by"
+              }
+            ]
+          },
+          "docs": "Query retention analysis data showing how many users return after performing an initial event."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Segmentation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Query event segmentation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/2.0/segmentation",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "query",
+                "description": "The event name to query"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Aggregation type - general (total count), unique (unique users), or average (average per user)"
+              },
+              {
+                "name": "on",
+                "value": "",
+                "type": "query",
+                "description": "Property expression to segment results by"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Expression to filter events"
+              },
+              {
+                "name": "unit",
+                "value": "",
+                "type": "query",
+                "description": "Time granularity for the results"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of segment values"
+              }
+            ]
+          },
+          "docs": "Query event counts over a time range, optionally segmented by a property. Returns time series data."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Query numeric property sum",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/2.0/segmentation/sum",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "query",
+                "description": "The event name to query"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)"
+              },
+              {
+                "name": "on",
+                "value": "",
+                "type": "query",
+                "description": "The numeric property to sum"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Expression to filter events"
+              },
+              {
+                "name": "unit",
+                "value": "",
+                "type": "query",
+                "description": "Time granularity for the results"
+              }
+            ]
+          },
+          "docs": "Query the sum of a numeric event property over a time range."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Query numeric property average",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/2.0/segmentation/average",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "query",
+                "description": "The event name to query"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)"
+              },
+              {
+                "name": "on",
+                "value": "",
+                "type": "query",
+                "description": "The numeric property to average"
+              },
+              {
+                "name": "unit",
+                "value": "",
+                "type": "query",
+                "description": "Time granularity for the results"
+              }
+            ]
+          },
+          "docs": "Query the average of a numeric event property over a time range."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cohorts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel List cohorts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/2.0/cohorts/list",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The Mixpanel project ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all cohorts defined in the project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

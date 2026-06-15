@@ -1,0 +1,1044 @@
+{
+  "info": {
+    "_postman_id": "6467101d-bf83-41df-a9c8-4fb3c522e86e",
+    "name": "Mixpanel GDPR and CCPA API",
+    "description": "API for submitting data retrieval and deletion requests to help meet GDPR and CCPA compliance requirements, including creating and checking the status of retrieval and deletion tasks.\n\nContact Support:\n Name: Mixpanel Support\n Email: support@mixpanel.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:13:00.000Z",
+    "updatedAt": "2026-06-05T15:13:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6467101d-bf83-41df-a9c8-4fb3c522e86e"
+  },
+  "item": [
+    {
+      "name": "data-retrievals",
+      "item": [
+        {
+          "name": "v3.0",
+          "item": [
+            {
+              "name": "{taskId}",
+              "item": [
+                {
+                  "name": "Mixpanel Check retrieval status",
+                  "id": "d6b9d987-c598-4df1-b41c-4b5665a832b6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/data-retrievals/v3.0/:taskId?token=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-retrievals",
+                        "v3.0",
+                        ":taskId"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Mixpanel project token",
+                          "key": "token",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "ab09e373-2122-412c-a081-19e22658f1e1",
+                          "key": "taskId",
+                          "value": "<string>",
+                          "description": "(Required) The task ID returned when the request was created"
+                        }
+                      ]
+                    },
+                    "description": "Check the status of a previously submitted data retrieval request."
+                  },
+                  "response": [
+                    {
+                      "id": "e41ee277-57ed-419d-8f04-eb27870d0070",
+                      "name": "Retrieval task status",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/data-retrievals/v3.0/:taskId?token=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data-retrievals",
+                            "v3.0",
+                            ":taskId"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Mixpanel project token",
+                              "key": "token",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"error\",\n  \"results\": {\n    \"status\": \"STARTED\",\n    \"result\": \"<string>\",\n    \"download_url\": \"<uri>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:13:00.000Z",
+                      "updatedAt": "2026-06-05T15:13:00.000Z",
+                      "uid": "35240-e41ee277-57ed-419d-8f04-eb27870d0070"
+                    },
+                    {
+                      "id": "9f74414d-196b-47bf-b355-1bdc980d1237",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/data-retrievals/v3.0/:taskId?token=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data-retrievals",
+                            "v3.0",
+                            ":taskId"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Mixpanel project token",
+                              "key": "token",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:13:00.000Z",
+                      "updatedAt": "2026-06-05T15:13:00.000Z",
+                      "uid": "35240-9f74414d-196b-47bf-b355-1bdc980d1237"
+                    },
+                    {
+                      "id": "7c75da48-e78d-46cb-859a-575799f25d57",
+                      "name": "Task not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/data-retrievals/v3.0/:taskId?token=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data-retrievals",
+                            "v3.0",
+                            ":taskId"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Mixpanel project token",
+                              "key": "token",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:13:00.000Z",
+                      "updatedAt": "2026-06-05T15:13:00.000Z",
+                      "uid": "35240-7c75da48-e78d-46cb-859a-575799f25d57"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:00.000Z",
+                  "updatedAt": "2026-06-05T15:13:00.000Z",
+                  "uid": "35240-d6b9d987-c598-4df1-b41c-4b5665a832b6"
+                }
+              ],
+              "id": "aa4447fe-7906-4e80-8643-033302c84cd4",
+              "createdAt": "2026-06-05T15:13:00.000Z",
+              "updatedAt": "2026-06-05T15:13:00.000Z",
+              "uid": "35240-aa4447fe-7906-4e80-8643-033302c84cd4"
+            },
+            {
+              "name": "Mixpanel Create data retrieval request",
+              "id": "d3257f88-c135-497f-aa5a-8f960de6e1d2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"distinct_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compliance_type\": \"GDPR\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/data-retrievals/v3.0?token=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "data-retrievals",
+                    "v3.0"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Mixpanel project token",
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Submit a GDPR or CCPA data retrieval request for a specific user. Returns a task ID to check the status of the retrieval."
+              },
+              "response": [
+                {
+                  "id": "cf73e873-7866-4afb-a2be-f4eddd9a115e",
+                  "name": "Retrieval request submitted",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"distinct_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compliance_type\": \"GDPR\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/data-retrievals/v3.0?token=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-retrievals",
+                        "v3.0"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Mixpanel project token",
+                          "key": "token",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"error\",\n  \"results\": {\n    \"task_id\": \"<string>\"\n  },\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:13:00.000Z",
+                  "updatedAt": "2026-06-05T15:13:00.000Z",
+                  "uid": "35240-cf73e873-7866-4afb-a2be-f4eddd9a115e"
+                },
+                {
+                  "id": "e442a791-e5d7-47ae-b591-1998484ef2ad",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"distinct_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compliance_type\": \"GDPR\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/data-retrievals/v3.0?token=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-retrievals",
+                        "v3.0"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Mixpanel project token",
+                          "key": "token",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:13:00.000Z",
+                  "updatedAt": "2026-06-05T15:13:00.000Z",
+                  "uid": "35240-e442a791-e5d7-47ae-b591-1998484ef2ad"
+                },
+                {
+                  "id": "8f55c1c3-45f1-4088-92e6-afa58267db39",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"distinct_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compliance_type\": \"GDPR\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/data-retrievals/v3.0?token=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-retrievals",
+                        "v3.0"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Mixpanel project token",
+                          "key": "token",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:13:00.000Z",
+                  "updatedAt": "2026-06-05T15:13:00.000Z",
+                  "uid": "35240-8f55c1c3-45f1-4088-92e6-afa58267db39"
+                },
+                {
+                  "id": "f6028ad5-55dc-44a1-9372-5fe8b54f2a96",
+                  "name": "Rate limit exceeded",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"distinct_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compliance_type\": \"GDPR\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/data-retrievals/v3.0?token=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-retrievals",
+                        "v3.0"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Mixpanel project token",
+                          "key": "token",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:13:00.000Z",
+                  "updatedAt": "2026-06-05T15:13:00.000Z",
+                  "uid": "35240-f6028ad5-55dc-44a1-9372-5fe8b54f2a96"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:00.000Z",
+              "updatedAt": "2026-06-05T15:13:00.000Z",
+              "uid": "35240-d3257f88-c135-497f-aa5a-8f960de6e1d2"
+            }
+          ],
+          "id": "39331c1e-367a-4bec-bbe1-11fef9b935ee",
+          "createdAt": "2026-06-05T15:13:00.000Z",
+          "updatedAt": "2026-06-05T15:13:00.000Z",
+          "uid": "35240-39331c1e-367a-4bec-bbe1-11fef9b935ee"
+        }
+      ],
+      "id": "bbf108b1-324e-4e6b-aed0-9b132ad94da7",
+      "createdAt": "2026-06-05T15:13:00.000Z",
+      "updatedAt": "2026-06-05T15:13:00.000Z",
+      "uid": "35240-bbf108b1-324e-4e6b-aed0-9b132ad94da7"
+    },
+    {
+      "name": "data-deletions",
+      "item": [
+        {
+          "name": "v3.0",
+          "item": [
+            {
+              "name": "{taskId}",
+              "item": [
+                {
+                  "name": "Mixpanel Check deletion status",
+                  "id": "60365440-7d16-4bb8-be6a-cc5b6500ce4f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/data-deletions/v3.0/:taskId?token=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-deletions",
+                        "v3.0",
+                        ":taskId"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Mixpanel project token",
+                          "key": "token",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "8172ba46-2be7-4946-bc3a-5a4de931647a",
+                          "key": "taskId",
+                          "value": "<string>",
+                          "description": "(Required) The task ID returned when the request was created"
+                        }
+                      ]
+                    },
+                    "description": "Check the status of a previously submitted data deletion request."
+                  },
+                  "response": [
+                    {
+                      "id": "38333225-0967-493f-b4d8-a6a12312914f",
+                      "name": "Deletion task status",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/data-deletions/v3.0/:taskId?token=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data-deletions",
+                            "v3.0",
+                            ":taskId"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Mixpanel project token",
+                              "key": "token",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"error\",\n  \"results\": {\n    \"status\": \"STARTED\",\n    \"result\": \"<string>\",\n    \"download_url\": \"<uri>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:13:00.000Z",
+                      "updatedAt": "2026-06-05T15:13:00.000Z",
+                      "uid": "35240-38333225-0967-493f-b4d8-a6a12312914f"
+                    },
+                    {
+                      "id": "e301bda2-4e59-42be-979e-4f9586da543c",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/data-deletions/v3.0/:taskId?token=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data-deletions",
+                            "v3.0",
+                            ":taskId"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Mixpanel project token",
+                              "key": "token",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:13:00.000Z",
+                      "updatedAt": "2026-06-05T15:13:00.000Z",
+                      "uid": "35240-e301bda2-4e59-42be-979e-4f9586da543c"
+                    },
+                    {
+                      "id": "07fef6c4-1884-4e38-8dff-8200a0db3346",
+                      "name": "Task not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/data-deletions/v3.0/:taskId?token=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data-deletions",
+                            "v3.0",
+                            ":taskId"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Mixpanel project token",
+                              "key": "token",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:13:00.000Z",
+                      "updatedAt": "2026-06-05T15:13:00.000Z",
+                      "uid": "35240-07fef6c4-1884-4e38-8dff-8200a0db3346"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:00.000Z",
+                  "updatedAt": "2026-06-05T15:13:00.000Z",
+                  "uid": "35240-60365440-7d16-4bb8-be6a-cc5b6500ce4f"
+                }
+              ],
+              "id": "0ac33909-1cf4-4c9c-be45-d49468e08dec",
+              "createdAt": "2026-06-05T15:13:00.000Z",
+              "updatedAt": "2026-06-05T15:13:00.000Z",
+              "uid": "35240-0ac33909-1cf4-4c9c-be45-d49468e08dec"
+            },
+            {
+              "name": "Mixpanel Create data deletion request",
+              "id": "54217a82-7ffa-4447-8aab-a10f1c358db0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"distinct_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compliance_type\": \"GDPR\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/data-deletions/v3.0?token=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "data-deletions",
+                    "v3.0"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Mixpanel project token",
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Submit a GDPR or CCPA data deletion request for a specific user. Once completed, all event data and profile data for the user will be permanently deleted."
+              },
+              "response": [
+                {
+                  "id": "c8f54f61-3cf7-4011-94e7-1b94739bcff0",
+                  "name": "Deletion request submitted",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"distinct_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compliance_type\": \"GDPR\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/data-deletions/v3.0?token=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-deletions",
+                        "v3.0"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Mixpanel project token",
+                          "key": "token",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"error\",\n  \"results\": {\n    \"task_id\": \"<string>\"\n  },\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:13:00.000Z",
+                  "updatedAt": "2026-06-05T15:13:00.000Z",
+                  "uid": "35240-c8f54f61-3cf7-4011-94e7-1b94739bcff0"
+                },
+                {
+                  "id": "a0b45c6c-7a29-4ab0-aa80-fda8dea56719",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"distinct_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compliance_type\": \"GDPR\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/data-deletions/v3.0?token=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-deletions",
+                        "v3.0"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Mixpanel project token",
+                          "key": "token",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:13:00.000Z",
+                  "updatedAt": "2026-06-05T15:13:00.000Z",
+                  "uid": "35240-a0b45c6c-7a29-4ab0-aa80-fda8dea56719"
+                },
+                {
+                  "id": "b33623b4-4dfb-44b9-a5fa-f85743b89edc",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"distinct_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compliance_type\": \"GDPR\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/data-deletions/v3.0?token=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-deletions",
+                        "v3.0"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Mixpanel project token",
+                          "key": "token",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:13:00.000Z",
+                  "updatedAt": "2026-06-05T15:13:00.000Z",
+                  "uid": "35240-b33623b4-4dfb-44b9-a5fa-f85743b89edc"
+                },
+                {
+                  "id": "3543973a-013d-4664-b875-e71549088acd",
+                  "name": "Rate limit exceeded",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"distinct_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"compliance_type\": \"GDPR\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/data-deletions/v3.0?token=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-deletions",
+                        "v3.0"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Mixpanel project token",
+                          "key": "token",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:13:00.000Z",
+                  "updatedAt": "2026-06-05T15:13:00.000Z",
+                  "uid": "35240-3543973a-013d-4664-b875-e71549088acd"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:00.000Z",
+              "updatedAt": "2026-06-05T15:13:00.000Z",
+              "uid": "35240-54217a82-7ffa-4447-8aab-a10f1c358db0"
+            }
+          ],
+          "id": "152c6fdb-a194-42e9-9215-61c1889fc096",
+          "createdAt": "2026-06-05T15:13:00.000Z",
+          "updatedAt": "2026-06-05T15:13:00.000Z",
+          "uid": "35240-152c6fdb-a194-42e9-9215-61c1889fc096"
+        }
+      ],
+      "id": "7c09d701-c58e-485c-8c51-886ffa02718a",
+      "createdAt": "2026-06-05T15:13:00.000Z",
+      "updatedAt": "2026-06-05T15:13:00.000Z",
+      "uid": "35240-7c09d701-c58e-485c-8c51-886ffa02718a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://mixpanel.com/api/app"
+    }
+  ]
+}

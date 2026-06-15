@@ -1,0 +1,1879 @@
+{
+  "info": {
+    "_postman_id": "a696d094-3d14-4473-aa2b-10c802b41af0",
+    "name": "Mixpanel Ingestion API",
+    "description": "API for sending event data to Mixpanel for tracking and analysis, including importing events, tracking events, managing user profiles, group profiles, and lookup tables.\n\nContact Support:\n Name: Mixpanel Support\n Email: support@mixpanel.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:12:51.000Z",
+    "updatedAt": "2026-06-05T15:12:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a696d094-3d14-4473-aa2b-10c802b41af0"
+  },
+  "item": [
+    {
+      "name": "track",
+      "item": [
+        {
+          "name": "Mixpanel Track event",
+          "id": "75d91c41-7b91-44f5-85fe-9debd1cd8fde",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"event\": \"<string>\",\n    \"properties\": {\n      \"distinct_id\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"$insert_id\": \"<string>\",\n      \"token\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/track?verbose=1&ip=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "track"
+              ],
+              "query": [
+                {
+                  "description": "When set to 1, returns a JSON response with status and error details",
+                  "key": "verbose",
+                  "value": "1"
+                },
+                {
+                  "description": "When set to 1, use the IP address for geolocation",
+                  "key": "ip",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Send a single event or batch of events to Mixpanel in real time. Events sent via /track are processed immediately."
+          },
+          "response": [
+            {
+              "id": "f309a9e5-11ef-4962-97bb-6063306959b5",
+              "name": "Events accepted",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"event\": \"<string>\",\n    \"properties\": {\n      \"distinct_id\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"$insert_id\": \"<string>\",\n      \"token\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/track?verbose=1&ip=1&token=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "track"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, returns a JSON response with status and error details",
+                      "key": "verbose",
+                      "value": "1"
+                    },
+                    {
+                      "description": "When set to 1, use the IP address for geolocation",
+                      "key": "ip",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": 1,\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-f309a9e5-11ef-4962-97bb-6063306959b5"
+            },
+            {
+              "id": "498990cc-8d04-4ae0-a7b7-226bb088a575",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"event\": \"<string>\",\n    \"properties\": {\n      \"distinct_id\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"$insert_id\": \"<string>\",\n      \"token\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/track?verbose=1&ip=1&token=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "track"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, returns a JSON response with status and error details",
+                      "key": "verbose",
+                      "value": "1"
+                    },
+                    {
+                      "description": "When set to 1, use the IP address for geolocation",
+                      "key": "ip",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-498990cc-8d04-4ae0-a7b7-226bb088a575"
+            },
+            {
+              "id": "5c387d6d-0071-4df8-8f69-b4e614277829",
+              "name": "Unauthorized - invalid token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"event\": \"<string>\",\n    \"properties\": {\n      \"distinct_id\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"$insert_id\": \"<string>\",\n      \"token\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/track?verbose=1&ip=1&token=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "track"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, returns a JSON response with status and error details",
+                      "key": "verbose",
+                      "value": "1"
+                    },
+                    {
+                      "description": "When set to 1, use the IP address for geolocation",
+                      "key": "ip",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-5c387d6d-0071-4df8-8f69-b4e614277829"
+            },
+            {
+              "id": "8001d6cf-4fb4-4f0d-add5-bd9b959b5e9d",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"event\": \"<string>\",\n    \"properties\": {\n      \"distinct_id\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"$insert_id\": \"<string>\",\n      \"token\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/track?verbose=1&ip=1&token=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "track"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, returns a JSON response with status and error details",
+                      "key": "verbose",
+                      "value": "1"
+                    },
+                    {
+                      "description": "When set to 1, use the IP address for geolocation",
+                      "key": "ip",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-8001d6cf-4fb4-4f0d-add5-bd9b959b5e9d"
+            }
+          ],
+          "createdAt": "2026-06-05T15:12:52.000Z",
+          "updatedAt": "2026-06-05T15:12:52.000Z",
+          "uid": "35240-75d91c41-7b91-44f5-85fe-9debd1cd8fde"
+        }
+      ],
+      "id": "2f962fbc-e823-4ed3-9374-8a04e8b2a0c9",
+      "createdAt": "2026-06-05T15:12:52.000Z",
+      "updatedAt": "2026-06-05T15:12:52.000Z",
+      "uid": "35240-2f962fbc-e823-4ed3-9374-8a04e8b2a0c9"
+    },
+    {
+      "name": "import",
+      "item": [
+        {
+          "name": "Mixpanel Import events",
+          "id": "61a1e259-7d14-4b0e-9d0e-eb003c69080e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"event\": \"<string>\",\n    \"properties\": {\n      \"distinct_id\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"$insert_id\": \"<string>\",\n      \"token\": \"<string>\"\n    }\n  },\n  {\n    \"event\": \"<string>\",\n    \"properties\": {\n      \"distinct_id\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"$insert_id\": \"<string>\",\n      \"token\": \"<string>\",\n      \"tempor6\": 86861502\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/import?strict=1&project_id=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "import"
+              ],
+              "query": [
+                {
+                  "description": "When set to 1, validates all properties and rejects the entire batch if any event is invalid",
+                  "key": "strict",
+                  "value": "1"
+                },
+                {
+                  "description": "The project ID to import events into",
+                  "key": "project_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Import events into Mixpanel. Designed for high-throughput historical data import. Supports up to 2000 events per batch. Events can have timestamps in the past."
+          },
+          "response": [
+            {
+              "id": "7cc6d73f-0e4e-405d-91fe-2da4117b0c7c",
+              "name": "Events imported successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"event\": \"<string>\",\n    \"properties\": {\n      \"distinct_id\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"$insert_id\": \"<string>\",\n      \"token\": \"<string>\"\n    }\n  },\n  {\n    \"event\": \"<string>\",\n    \"properties\": {\n      \"distinct_id\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"$insert_id\": \"<string>\",\n      \"token\": \"<string>\",\n      \"tempor6\": 86861502\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/import?strict=1&project_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "import"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, validates all properties and rejects the entire batch if any event is invalid",
+                      "key": "strict",
+                      "value": "1"
+                    },
+                    {
+                      "description": "The project ID to import events into",
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"num_records_imported\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-7cc6d73f-0e4e-405d-91fe-2da4117b0c7c"
+            },
+            {
+              "id": "ba35ff2f-6786-4cac-b17f-86230e3be0d2",
+              "name": "Invalid event data",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"event\": \"<string>\",\n    \"properties\": {\n      \"distinct_id\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"$insert_id\": \"<string>\",\n      \"token\": \"<string>\"\n    }\n  },\n  {\n    \"event\": \"<string>\",\n    \"properties\": {\n      \"distinct_id\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"$insert_id\": \"<string>\",\n      \"token\": \"<string>\",\n      \"tempor6\": 86861502\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/import?strict=1&project_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "import"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, validates all properties and rejects the entire batch if any event is invalid",
+                      "key": "strict",
+                      "value": "1"
+                    },
+                    {
+                      "description": "The project ID to import events into",
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"status\": \"<string>\",\n  \"num_records_imported\": \"<integer>\",\n  \"failed_records\": [\n    {\n      \"index\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"index\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-ba35ff2f-6786-4cac-b17f-86230e3be0d2"
+            },
+            {
+              "id": "b7e19f64-5a80-4e6d-b596-d5d3bb8b7580",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"event\": \"<string>\",\n    \"properties\": {\n      \"distinct_id\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"$insert_id\": \"<string>\",\n      \"token\": \"<string>\"\n    }\n  },\n  {\n    \"event\": \"<string>\",\n    \"properties\": {\n      \"distinct_id\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"$insert_id\": \"<string>\",\n      \"token\": \"<string>\",\n      \"tempor6\": 86861502\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/import?strict=1&project_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "import"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, validates all properties and rejects the entire batch if any event is invalid",
+                      "key": "strict",
+                      "value": "1"
+                    },
+                    {
+                      "description": "The project ID to import events into",
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-b7e19f64-5a80-4e6d-b596-d5d3bb8b7580"
+            },
+            {
+              "id": "b36aba8e-07c4-412e-ab12-ba81e6f3ab08",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"event\": \"<string>\",\n    \"properties\": {\n      \"distinct_id\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"$insert_id\": \"<string>\",\n      \"token\": \"<string>\"\n    }\n  },\n  {\n    \"event\": \"<string>\",\n    \"properties\": {\n      \"distinct_id\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"$insert_id\": \"<string>\",\n      \"token\": \"<string>\",\n      \"tempor6\": 86861502\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/import?strict=1&project_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "import"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, validates all properties and rejects the entire batch if any event is invalid",
+                      "key": "strict",
+                      "value": "1"
+                    },
+                    {
+                      "description": "The project ID to import events into",
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-b36aba8e-07c4-412e-ab12-ba81e6f3ab08"
+            }
+          ],
+          "createdAt": "2026-06-05T15:12:52.000Z",
+          "updatedAt": "2026-06-05T15:12:52.000Z",
+          "uid": "35240-61a1e259-7d14-4b0e-9d0e-eb003c69080e"
+        }
+      ],
+      "id": "1685249e-b5d9-4ecf-8bc4-35716e952b20",
+      "createdAt": "2026-06-05T15:12:52.000Z",
+      "updatedAt": "2026-06-05T15:12:52.000Z",
+      "uid": "35240-1685249e-b5d9-4ecf-8bc4-35716e952b20"
+    },
+    {
+      "name": "engage",
+      "item": [
+        {
+          "name": "Mixpanel Update user profile",
+          "id": "3c8d36f6-904f-4f06-a967-634263ee0bb8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"$token\": \"<string>\",\n  \"$distinct_id\": \"<string>\",\n  \"$ip\": \"<string>\",\n  \"$set\": {\n    \"nulla37\": \"aliquip labore fugiat ut\",\n    \"eu_8\": true\n  },\n  \"$set_once\": {\n    \"eufbd\": 93760541\n  },\n  \"$add\": {\n    \"iruref_\": \"<number>\",\n    \"sunt__\": \"<number>\"\n  },\n  \"$append\": {\n    \"do_15\": false\n  },\n  \"$remove\": {\n    \"ullamco_e5\": -15757497,\n    \"amet_6e\": 93717179.71272612,\n    \"labore_43\": \"ut\"\n  },\n  \"$union\": {\n    \"fugiat96\": \"<array>\",\n    \"Lorem5\": \"<array>\"\n  },\n  \"$unset\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$delete\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/engage?verbose=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "engage"
+              ],
+              "query": [
+                {
+                  "description": "When set to 1, returns a JSON response with status and error details",
+                  "key": "verbose",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Create or update user profile properties in Mixpanel People. Supports set, set_once, add, append, remove, union, unset, and delete operations."
+          },
+          "response": [
+            {
+              "id": "da3ba7a0-f036-4e99-b472-0c575fff1cec",
+              "name": "Profile updated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"<string>\",\n  \"$distinct_id\": \"<string>\",\n  \"$ip\": \"<string>\",\n  \"$set\": {\n    \"nulla37\": \"aliquip labore fugiat ut\",\n    \"eu_8\": true\n  },\n  \"$set_once\": {\n    \"eufbd\": 93760541\n  },\n  \"$add\": {\n    \"iruref_\": \"<number>\",\n    \"sunt__\": \"<number>\"\n  },\n  \"$append\": {\n    \"do_15\": false\n  },\n  \"$remove\": {\n    \"ullamco_e5\": -15757497,\n    \"amet_6e\": 93717179.71272612,\n    \"labore_43\": \"ut\"\n  },\n  \"$union\": {\n    \"fugiat96\": \"<array>\",\n    \"Lorem5\": \"<array>\"\n  },\n  \"$unset\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$delete\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/engage?verbose=1&token=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "engage"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, returns a JSON response with status and error details",
+                      "key": "verbose",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": 1,\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-da3ba7a0-f036-4e99-b472-0c575fff1cec"
+            },
+            {
+              "id": "fb67ac8c-6a27-438e-8139-7b4fadc10ee7",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"<string>\",\n  \"$distinct_id\": \"<string>\",\n  \"$ip\": \"<string>\",\n  \"$set\": {\n    \"nulla37\": \"aliquip labore fugiat ut\",\n    \"eu_8\": true\n  },\n  \"$set_once\": {\n    \"eufbd\": 93760541\n  },\n  \"$add\": {\n    \"iruref_\": \"<number>\",\n    \"sunt__\": \"<number>\"\n  },\n  \"$append\": {\n    \"do_15\": false\n  },\n  \"$remove\": {\n    \"ullamco_e5\": -15757497,\n    \"amet_6e\": 93717179.71272612,\n    \"labore_43\": \"ut\"\n  },\n  \"$union\": {\n    \"fugiat96\": \"<array>\",\n    \"Lorem5\": \"<array>\"\n  },\n  \"$unset\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$delete\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/engage?verbose=1&token=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "engage"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, returns a JSON response with status and error details",
+                      "key": "verbose",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-fb67ac8c-6a27-438e-8139-7b4fadc10ee7"
+            },
+            {
+              "id": "0812c3c0-5134-443d-aa27-2f60c534a967",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"<string>\",\n  \"$distinct_id\": \"<string>\",\n  \"$ip\": \"<string>\",\n  \"$set\": {\n    \"nulla37\": \"aliquip labore fugiat ut\",\n    \"eu_8\": true\n  },\n  \"$set_once\": {\n    \"eufbd\": 93760541\n  },\n  \"$add\": {\n    \"iruref_\": \"<number>\",\n    \"sunt__\": \"<number>\"\n  },\n  \"$append\": {\n    \"do_15\": false\n  },\n  \"$remove\": {\n    \"ullamco_e5\": -15757497,\n    \"amet_6e\": 93717179.71272612,\n    \"labore_43\": \"ut\"\n  },\n  \"$union\": {\n    \"fugiat96\": \"<array>\",\n    \"Lorem5\": \"<array>\"\n  },\n  \"$unset\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$delete\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/engage?verbose=1&token=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "engage"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, returns a JSON response with status and error details",
+                      "key": "verbose",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-0812c3c0-5134-443d-aa27-2f60c534a967"
+            },
+            {
+              "id": "0706ea9f-6842-4dc9-9c43-0380854523b2",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"<string>\",\n  \"$distinct_id\": \"<string>\",\n  \"$ip\": \"<string>\",\n  \"$set\": {\n    \"nulla37\": \"aliquip labore fugiat ut\",\n    \"eu_8\": true\n  },\n  \"$set_once\": {\n    \"eufbd\": 93760541\n  },\n  \"$add\": {\n    \"iruref_\": \"<number>\",\n    \"sunt__\": \"<number>\"\n  },\n  \"$append\": {\n    \"do_15\": false\n  },\n  \"$remove\": {\n    \"ullamco_e5\": -15757497,\n    \"amet_6e\": 93717179.71272612,\n    \"labore_43\": \"ut\"\n  },\n  \"$union\": {\n    \"fugiat96\": \"<array>\",\n    \"Lorem5\": \"<array>\"\n  },\n  \"$unset\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$delete\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/engage?verbose=1&token=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "engage"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, returns a JSON response with status and error details",
+                      "key": "verbose",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-0706ea9f-6842-4dc9-9c43-0380854523b2"
+            }
+          ],
+          "createdAt": "2026-06-05T15:12:52.000Z",
+          "updatedAt": "2026-06-05T15:12:52.000Z",
+          "uid": "35240-3c8d36f6-904f-4f06-a967-634263ee0bb8"
+        }
+      ],
+      "id": "aec86ca4-5150-4771-854d-3b4dd26a454c",
+      "createdAt": "2026-06-05T15:12:52.000Z",
+      "updatedAt": "2026-06-05T15:12:52.000Z",
+      "uid": "35240-aec86ca4-5150-4771-854d-3b4dd26a454c"
+    },
+    {
+      "name": "groups",
+      "item": [
+        {
+          "name": "Mixpanel Update group profile",
+          "id": "17daf5b6-5867-4287-9c9a-38b25d2ea480",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"$token\": \"<string>\",\n  \"$group_key\": \"<string>\",\n  \"$group_id\": \"<string>\",\n  \"$set\": {\n    \"consequat_1\": true\n  },\n  \"$set_once\": {\n    \"anim_4e\": 97048148.26031679\n  },\n  \"$unset\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$delete\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/groups?verbose=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "groups"
+              ],
+              "query": [
+                {
+                  "description": "When set to 1, returns a JSON response with status and error details",
+                  "key": "verbose",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Create or update group profile properties. Groups allow you to associate events with entities like companies, accounts, or any custom group type."
+          },
+          "response": [
+            {
+              "id": "60fa8b47-382f-40ac-9e17-334a4facbcba",
+              "name": "Group profile updated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"<string>\",\n  \"$group_key\": \"<string>\",\n  \"$group_id\": \"<string>\",\n  \"$set\": {\n    \"consequat_1\": true\n  },\n  \"$set_once\": {\n    \"anim_4e\": 97048148.26031679\n  },\n  \"$unset\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$delete\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/groups?verbose=1&token=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, returns a JSON response with status and error details",
+                      "key": "verbose",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": 1,\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-60fa8b47-382f-40ac-9e17-334a4facbcba"
+            },
+            {
+              "id": "7a09b5d0-f7d4-4c2c-961e-24727f204dd5",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"<string>\",\n  \"$group_key\": \"<string>\",\n  \"$group_id\": \"<string>\",\n  \"$set\": {\n    \"consequat_1\": true\n  },\n  \"$set_once\": {\n    \"anim_4e\": 97048148.26031679\n  },\n  \"$unset\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$delete\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/groups?verbose=1&token=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, returns a JSON response with status and error details",
+                      "key": "verbose",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-7a09b5d0-f7d4-4c2c-961e-24727f204dd5"
+            },
+            {
+              "id": "415725df-31aa-4212-8dd5-fc3c391cc414",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"<string>\",\n  \"$group_key\": \"<string>\",\n  \"$group_id\": \"<string>\",\n  \"$set\": {\n    \"consequat_1\": true\n  },\n  \"$set_once\": {\n    \"anim_4e\": 97048148.26031679\n  },\n  \"$unset\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$delete\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/groups?verbose=1&token=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, returns a JSON response with status and error details",
+                      "key": "verbose",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-415725df-31aa-4212-8dd5-fc3c391cc414"
+            },
+            {
+              "id": "0169361b-ec19-4d1b-9d5b-e59a74f60153",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"<string>\",\n  \"$group_key\": \"<string>\",\n  \"$group_id\": \"<string>\",\n  \"$set\": {\n    \"consequat_1\": true\n  },\n  \"$set_once\": {\n    \"anim_4e\": 97048148.26031679\n  },\n  \"$unset\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$delete\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/groups?verbose=1&token=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to 1, returns a JSON response with status and error details",
+                      "key": "verbose",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-0169361b-ec19-4d1b-9d5b-e59a74f60153"
+            }
+          ],
+          "createdAt": "2026-06-05T15:12:52.000Z",
+          "updatedAt": "2026-06-05T15:12:52.000Z",
+          "uid": "35240-17daf5b6-5867-4287-9c9a-38b25d2ea480"
+        }
+      ],
+      "id": "ce6bc3d1-a346-48af-b668-eb44fc87930f",
+      "createdAt": "2026-06-05T15:12:52.000Z",
+      "updatedAt": "2026-06-05T15:12:52.000Z",
+      "uid": "35240-ce6bc3d1-a346-48af-b668-eb44fc87930f"
+    },
+    {
+      "name": "lookup-tables",
+      "item": [
+        {
+          "name": "{lookupTableId}",
+          "item": [
+            {
+              "name": "Mixpanel Replace lookup table",
+              "id": "83534e2a-ce2b-455e-9d78-a0f615b8066d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "text/csv"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/lookup-tables/:lookupTableId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "lookup-tables",
+                    ":lookupTableId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e162b1be-a247-43f5-9d18-76d1613cedb4",
+                      "key": "lookupTableId",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the lookup table to replace"
+                    }
+                  ]
+                },
+                "description": "Replace the contents of a lookup table with new CSV data. The first column is the join key."
+              },
+              "response": [
+                {
+                  "id": "e3925fa5-d429-42e7-b925-7900619a7bdf",
+                  "name": "Lookup table replaced",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "text/csv"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<string>"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/lookup-tables/:lookupTableId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lookup-tables",
+                        ":lookupTableId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "lookupTableId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"rowCount\": \"<integer>\",\n  \"columnCount\": \"<integer>\",\n  \"createdAt\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:12:52.000Z",
+                  "updatedAt": "2026-06-05T15:12:52.000Z",
+                  "uid": "35240-e3925fa5-d429-42e7-b925-7900619a7bdf"
+                },
+                {
+                  "id": "03322ca5-fbb3-4466-86f4-83256cd25e9e",
+                  "name": "Invalid CSV data",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "text/csv"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<string>"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/lookup-tables/:lookupTableId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lookup-tables",
+                        ":lookupTableId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "lookupTableId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:52.000Z",
+                  "updatedAt": "2026-06-05T15:12:52.000Z",
+                  "uid": "35240-03322ca5-fbb3-4466-86f4-83256cd25e9e"
+                },
+                {
+                  "id": "b24e172f-38af-4ff0-8d64-d6d6a27977ce",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "text/csv"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<string>"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/lookup-tables/:lookupTableId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lookup-tables",
+                        ":lookupTableId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "lookupTableId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:52.000Z",
+                  "updatedAt": "2026-06-05T15:12:52.000Z",
+                  "uid": "35240-b24e172f-38af-4ff0-8d64-d6d6a27977ce"
+                },
+                {
+                  "id": "59e274ca-9d1d-4557-ac67-92beff6067d7",
+                  "name": "Lookup table not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "text/csv"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<string>"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/lookup-tables/:lookupTableId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lookup-tables",
+                        ":lookupTableId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "lookupTableId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:52.000Z",
+                  "updatedAt": "2026-06-05T15:12:52.000Z",
+                  "uid": "35240-59e274ca-9d1d-4557-ac67-92beff6067d7"
+                }
+              ],
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-83534e2a-ce2b-455e-9d78-a0f615b8066d"
+            },
+            {
+              "name": "Mixpanel Delete lookup table",
+              "id": "a7463791-426d-48d9-8048-d9d42a23a407",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/lookup-tables/:lookupTableId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "lookup-tables",
+                    ":lookupTableId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "fbe01f20-6204-4347-853a-22290e9467ac",
+                      "key": "lookupTableId",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the lookup table to delete"
+                    }
+                  ]
+                },
+                "description": "Delete a lookup table by ID."
+              },
+              "response": [
+                {
+                  "id": "b7c3d272-57ba-41a1-803e-ee452cdbcea6",
+                  "name": "Lookup table deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/lookup-tables/:lookupTableId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lookup-tables",
+                        ":lookupTableId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "lookupTableId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:52.000Z",
+                  "updatedAt": "2026-06-05T15:12:52.000Z",
+                  "uid": "35240-b7c3d272-57ba-41a1-803e-ee452cdbcea6"
+                },
+                {
+                  "id": "afb59cd3-e296-4904-9676-26ec1ec45aac",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/lookup-tables/:lookupTableId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lookup-tables",
+                        ":lookupTableId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "lookupTableId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:52.000Z",
+                  "updatedAt": "2026-06-05T15:12:52.000Z",
+                  "uid": "35240-afb59cd3-e296-4904-9676-26ec1ec45aac"
+                },
+                {
+                  "id": "bd26098f-a331-4ad4-9056-533c3f189322",
+                  "name": "Lookup table not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/lookup-tables/:lookupTableId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lookup-tables",
+                        ":lookupTableId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "lookupTableId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:52.000Z",
+                  "updatedAt": "2026-06-05T15:12:52.000Z",
+                  "uid": "35240-bd26098f-a331-4ad4-9056-533c3f189322"
+                }
+              ],
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-a7463791-426d-48d9-8048-d9d42a23a407"
+            }
+          ],
+          "id": "d86fe67c-c9a5-4a4c-b151-ba5895d0c67a",
+          "createdAt": "2026-06-05T15:12:52.000Z",
+          "updatedAt": "2026-06-05T15:12:52.000Z",
+          "uid": "35240-d86fe67c-c9a5-4a4c-b151-ba5895d0c67a"
+        },
+        {
+          "name": "Mixpanel List lookup tables",
+          "id": "83d306f6-16b4-4b3d-b4ee-d2b83055f7dd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/lookup-tables",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "lookup-tables"
+              ]
+            },
+            "description": "Retrieve all lookup tables defined for the project."
+          },
+          "response": [
+            {
+              "id": "d84c6008-f652-4fa1-9629-285481c7875e",
+              "name": "List of lookup tables",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/lookup-tables",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "lookup-tables"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"rowCount\": \"<integer>\",\n      \"columnCount\": \"<integer>\",\n      \"createdAt\": \"<dateTime>\",\n      \"lastModified\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"rowCount\": \"<integer>\",\n      \"columnCount\": \"<integer>\",\n      \"createdAt\": \"<dateTime>\",\n      \"lastModified\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-d84c6008-f652-4fa1-9629-285481c7875e"
+            },
+            {
+              "id": "f8ae5762-4ac5-4fb7-9c93-378be120534d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/lookup-tables",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "lookup-tables"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:52.000Z",
+              "updatedAt": "2026-06-05T15:12:52.000Z",
+              "uid": "35240-f8ae5762-4ac5-4fb7-9c93-378be120534d"
+            }
+          ],
+          "createdAt": "2026-06-05T15:12:52.000Z",
+          "updatedAt": "2026-06-05T15:12:52.000Z",
+          "uid": "35240-83d306f6-16b4-4b3d-b4ee-d2b83055f7dd"
+        }
+      ],
+      "id": "a7502425-3fd4-414a-afde-cede2a0f03ac",
+      "createdAt": "2026-06-05T15:12:52.000Z",
+      "updatedAt": "2026-06-05T15:12:52.000Z",
+      "uid": "35240-a7502425-3fd4-414a-afde-cede2a0f03ac"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.mixpanel.com"
+    }
+  ]
+}

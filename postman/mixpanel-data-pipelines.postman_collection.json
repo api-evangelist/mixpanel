@@ -1,0 +1,1714 @@
+{
+  "info": {
+    "_postman_id": "cf6d8868-ddfb-4b05-9c19-e0637c6ff70d",
+    "name": "Mixpanel Data Pipelines API",
+    "description": "API for creating, managing, and monitoring data export pipelines in Mixpanel, including creating, editing, pausing, resuming, and deleting pipelines that export data to cloud storage and data warehouses.\n\nContact Support:\n Name: Mixpanel Support\n Email: support@mixpanel.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:12:53.000Z",
+    "updatedAt": "2026-06-05T15:12:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cf6d8868-ddfb-4b05-9c19-e0637c6ff70d"
+  },
+  "item": [
+    {
+      "name": "nessie",
+      "item": [
+        {
+          "name": "pipeline",
+          "item": [
+            {
+              "name": "list",
+              "item": [
+                {
+                  "name": "Mixpanel List pipelines",
+                  "id": "f5548513-21bb-4b57-a644-475d315404eb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/nessie/pipeline/list?project_id=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nessie",
+                        "pipeline",
+                        "list"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a list of all data export pipelines configured for the project."
+                  },
+                  "response": [
+                    {
+                      "id": "cc609f83-0877-4904-8ef2-9e0f616d5dc7",
+                      "name": "List of pipelines",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/list?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "list"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"azure-blob\",\n      \"status\": \"error\",\n      \"fromDate\": \"<date>\",\n      \"dataTypes\": [\n        \"group\",\n        \"group\"\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"lastRunAt\": \"<dateTime>\",\n      \"schemaType\": \"multischema\",\n      \"frequency\": \"daily\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"snowflake\",\n      \"status\": \"paused\",\n      \"fromDate\": \"<date>\",\n      \"dataTypes\": [\n        \"people\",\n        \"group\"\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"lastRunAt\": \"<dateTime>\",\n      \"schemaType\": \"multischema\",\n      \"frequency\": \"hourly\"\n    }\n  ],\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-cc609f83-0877-4904-8ef2-9e0f616d5dc7"
+                    },
+                    {
+                      "id": "76aa84c1-634b-4dad-93ec-48ba5dfa1195",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/list?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "list"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-76aa84c1-634b-4dad-93ec-48ba5dfa1195"
+                    },
+                    {
+                      "id": "02482f93-fc0a-45d3-81d5-78c98f33a2bc",
+                      "name": "Forbidden - insufficient permissions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/list?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "list"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-02482f93-fc0a-45d3-81d5-78c98f33a2bc"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:12:54.000Z",
+                  "updatedAt": "2026-06-05T15:12:54.000Z",
+                  "uid": "35240-f5548513-21bb-4b57-a644-475d315404eb"
+                }
+              ],
+              "id": "85108c00-aaa0-44f3-b345-2b3ae5dc7a34",
+              "createdAt": "2026-06-05T15:12:54.000Z",
+              "updatedAt": "2026-06-05T15:12:54.000Z",
+              "uid": "35240-85108c00-aaa0-44f3-b345-2b3ae5dc7a34"
+            },
+            {
+              "name": "create",
+              "item": [
+                {
+                  "name": "Mixpanel Create a pipeline",
+                  "id": "232d2f3e-b521-4674-8c6a-e97f277bec1d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"azure-blob\",\n  \"fromDate\": \"<date>\",\n  \"dataTypes\": [\n    \"group\",\n    \"people\"\n  ],\n  \"schemaType\": \"monoschema\",\n  \"frequency\": \"hourly\",\n  \"bigqueryConfig\": {\n    \"projectId\": \"<string>\",\n    \"dataset\": \"<string>\",\n    \"serviceAccountKey\": \"<string>\"\n  },\n  \"snowflakeConfig\": {\n    \"account\": \"<string>\",\n    \"warehouse\": \"<string>\",\n    \"database\": \"<string>\",\n    \"schema\": \"<string>\",\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"s3Config\": {\n    \"bucket\": \"<string>\",\n    \"prefix\": \"<string>\",\n    \"region\": \"<string>\",\n    \"roleArn\": \"<string>\"\n  },\n  \"gcsConfig\": {\n    \"bucket\": \"<string>\",\n    \"prefix\": \"<string>\",\n    \"serviceAccountKey\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/nessie/pipeline/create?project_id=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nessie",
+                        "pipeline",
+                        "create"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "Create a new data export pipeline to continuously export Mixpanel data to a cloud storage destination such as BigQuery, Snowflake, S3, or GCS."
+                  },
+                  "response": [
+                    {
+                      "id": "72a2bcb8-98d6-4203-a9f4-66cb40985798",
+                      "name": "Pipeline created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"azure-blob\",\n  \"fromDate\": \"<date>\",\n  \"dataTypes\": [\n    \"group\",\n    \"people\"\n  ],\n  \"schemaType\": \"monoschema\",\n  \"frequency\": \"hourly\",\n  \"bigqueryConfig\": {\n    \"projectId\": \"<string>\",\n    \"dataset\": \"<string>\",\n    \"serviceAccountKey\": \"<string>\"\n  },\n  \"snowflakeConfig\": {\n    \"account\": \"<string>\",\n    \"warehouse\": \"<string>\",\n    \"database\": \"<string>\",\n    \"schema\": \"<string>\",\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"s3Config\": {\n    \"bucket\": \"<string>\",\n    \"prefix\": \"<string>\",\n    \"region\": \"<string>\",\n    \"roleArn\": \"<string>\"\n  },\n  \"gcsConfig\": {\n    \"bucket\": \"<string>\",\n    \"prefix\": \"<string>\",\n    \"serviceAccountKey\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/create?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "create"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"s3\",\n  \"status\": \"active\",\n  \"fromDate\": \"<date>\",\n  \"dataTypes\": [\n    \"event\",\n    \"people\"\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"lastRunAt\": \"<dateTime>\",\n  \"schemaType\": \"monoschema\",\n  \"frequency\": \"hourly\"\n}",
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-72a2bcb8-98d6-4203-a9f4-66cb40985798"
+                    },
+                    {
+                      "id": "ab26818a-989e-40f5-9273-5024d3e9278d",
+                      "name": "Invalid pipeline configuration",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"azure-blob\",\n  \"fromDate\": \"<date>\",\n  \"dataTypes\": [\n    \"group\",\n    \"people\"\n  ],\n  \"schemaType\": \"monoschema\",\n  \"frequency\": \"hourly\",\n  \"bigqueryConfig\": {\n    \"projectId\": \"<string>\",\n    \"dataset\": \"<string>\",\n    \"serviceAccountKey\": \"<string>\"\n  },\n  \"snowflakeConfig\": {\n    \"account\": \"<string>\",\n    \"warehouse\": \"<string>\",\n    \"database\": \"<string>\",\n    \"schema\": \"<string>\",\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"s3Config\": {\n    \"bucket\": \"<string>\",\n    \"prefix\": \"<string>\",\n    \"region\": \"<string>\",\n    \"roleArn\": \"<string>\"\n  },\n  \"gcsConfig\": {\n    \"bucket\": \"<string>\",\n    \"prefix\": \"<string>\",\n    \"serviceAccountKey\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/create?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "create"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-ab26818a-989e-40f5-9273-5024d3e9278d"
+                    },
+                    {
+                      "id": "64692931-ea17-4d69-8938-1544956cb240",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"azure-blob\",\n  \"fromDate\": \"<date>\",\n  \"dataTypes\": [\n    \"group\",\n    \"people\"\n  ],\n  \"schemaType\": \"monoschema\",\n  \"frequency\": \"hourly\",\n  \"bigqueryConfig\": {\n    \"projectId\": \"<string>\",\n    \"dataset\": \"<string>\",\n    \"serviceAccountKey\": \"<string>\"\n  },\n  \"snowflakeConfig\": {\n    \"account\": \"<string>\",\n    \"warehouse\": \"<string>\",\n    \"database\": \"<string>\",\n    \"schema\": \"<string>\",\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"s3Config\": {\n    \"bucket\": \"<string>\",\n    \"prefix\": \"<string>\",\n    \"region\": \"<string>\",\n    \"roleArn\": \"<string>\"\n  },\n  \"gcsConfig\": {\n    \"bucket\": \"<string>\",\n    \"prefix\": \"<string>\",\n    \"serviceAccountKey\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/create?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "create"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-64692931-ea17-4d69-8938-1544956cb240"
+                    },
+                    {
+                      "id": "5c93eea2-f009-4548-88de-84d5ffa5aba2",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"azure-blob\",\n  \"fromDate\": \"<date>\",\n  \"dataTypes\": [\n    \"group\",\n    \"people\"\n  ],\n  \"schemaType\": \"monoschema\",\n  \"frequency\": \"hourly\",\n  \"bigqueryConfig\": {\n    \"projectId\": \"<string>\",\n    \"dataset\": \"<string>\",\n    \"serviceAccountKey\": \"<string>\"\n  },\n  \"snowflakeConfig\": {\n    \"account\": \"<string>\",\n    \"warehouse\": \"<string>\",\n    \"database\": \"<string>\",\n    \"schema\": \"<string>\",\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"s3Config\": {\n    \"bucket\": \"<string>\",\n    \"prefix\": \"<string>\",\n    \"region\": \"<string>\",\n    \"roleArn\": \"<string>\"\n  },\n  \"gcsConfig\": {\n    \"bucket\": \"<string>\",\n    \"prefix\": \"<string>\",\n    \"serviceAccountKey\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/create?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "create"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-5c93eea2-f009-4548-88de-84d5ffa5aba2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:12:54.000Z",
+                  "updatedAt": "2026-06-05T15:12:54.000Z",
+                  "uid": "35240-232d2f3e-b521-4674-8c6a-e97f277bec1d"
+                }
+              ],
+              "id": "524724a8-2252-4cc6-84ba-04d6601472da",
+              "createdAt": "2026-06-05T15:12:54.000Z",
+              "updatedAt": "2026-06-05T15:12:54.000Z",
+              "uid": "35240-524724a8-2252-4cc6-84ba-04d6601472da"
+            },
+            {
+              "name": "update",
+              "item": [
+                {
+                  "name": "Mixpanel Update a pipeline",
+                  "id": "efc045ca-064a-4b18-94df-85742e811fc3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"dataTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"frequency\": \"daily\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/nessie/pipeline/update?project_id=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nessie",
+                        "pipeline",
+                        "update"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "Update the configuration of an existing data export pipeline."
+                  },
+                  "response": [
+                    {
+                      "id": "fc779338-3642-4450-a442-267096bb8e55",
+                      "name": "Pipeline updated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"dataTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"frequency\": \"daily\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/update?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "update"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"s3\",\n  \"status\": \"active\",\n  \"fromDate\": \"<date>\",\n  \"dataTypes\": [\n    \"event\",\n    \"people\"\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"lastRunAt\": \"<dateTime>\",\n  \"schemaType\": \"monoschema\",\n  \"frequency\": \"hourly\"\n}",
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-fc779338-3642-4450-a442-267096bb8e55"
+                    },
+                    {
+                      "id": "0a74ce73-9f67-4bf3-b3ea-b13cde0369e0",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"dataTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"frequency\": \"daily\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/update?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "update"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-0a74ce73-9f67-4bf3-b3ea-b13cde0369e0"
+                    },
+                    {
+                      "id": "3506de79-b732-4ff6-b4bc-863dffbe71d9",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"dataTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"frequency\": \"daily\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/update?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "update"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-3506de79-b732-4ff6-b4bc-863dffbe71d9"
+                    },
+                    {
+                      "id": "9ab3d52d-a376-4ad8-a4c7-0a55a9acc2d7",
+                      "name": "Pipeline not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"dataTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"frequency\": \"daily\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/update?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "update"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-9ab3d52d-a376-4ad8-a4c7-0a55a9acc2d7"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:12:54.000Z",
+                  "updatedAt": "2026-06-05T15:12:54.000Z",
+                  "uid": "35240-efc045ca-064a-4b18-94df-85742e811fc3"
+                }
+              ],
+              "id": "42c26062-61fb-4e4f-a2ae-ea2e347ac3fb",
+              "createdAt": "2026-06-05T15:12:54.000Z",
+              "updatedAt": "2026-06-05T15:12:54.000Z",
+              "uid": "35240-42c26062-61fb-4e4f-a2ae-ea2e347ac3fb"
+            },
+            {
+              "name": "delete",
+              "item": [
+                {
+                  "name": "Mixpanel Delete a pipeline",
+                  "id": "3b640d59-219b-4eec-bde9-932c39d11675",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/nessie/pipeline/delete?project_id=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nessie",
+                        "pipeline",
+                        "delete"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "Delete a data export pipeline by ID."
+                  },
+                  "response": [
+                    {
+                      "id": "a5df1e8d-cb7f-4eec-9cca-09c1e34db76a",
+                      "name": "Pipeline deleted",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/delete?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "delete"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-a5df1e8d-cb7f-4eec-9cca-09c1e34db76a"
+                    },
+                    {
+                      "id": "67f1d707-d900-4506-b7c4-ef1c85d0b023",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/delete?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "delete"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-67f1d707-d900-4506-b7c4-ef1c85d0b023"
+                    },
+                    {
+                      "id": "0f1b52b4-af41-4730-b338-3deef564dcad",
+                      "name": "Pipeline not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/delete?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "delete"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-0f1b52b4-af41-4730-b338-3deef564dcad"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:12:54.000Z",
+                  "updatedAt": "2026-06-05T15:12:54.000Z",
+                  "uid": "35240-3b640d59-219b-4eec-bde9-932c39d11675"
+                }
+              ],
+              "id": "85cc19da-11b2-42cc-944a-60ddb3ee846c",
+              "createdAt": "2026-06-05T15:12:54.000Z",
+              "updatedAt": "2026-06-05T15:12:54.000Z",
+              "uid": "35240-85cc19da-11b2-42cc-944a-60ddb3ee846c"
+            },
+            {
+              "name": "pause",
+              "item": [
+                {
+                  "name": "Mixpanel Pause a pipeline",
+                  "id": "f365b5d8-4661-4dfa-8ea7-5bd1b3bca675",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/nessie/pipeline/pause?project_id=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nessie",
+                        "pipeline",
+                        "pause"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "Pause an active data export pipeline."
+                  },
+                  "response": [
+                    {
+                      "id": "c25b87ae-6944-41c0-b790-ef23fea8c584",
+                      "name": "Pipeline paused",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/pause?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "pause"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-c25b87ae-6944-41c0-b790-ef23fea8c584"
+                    },
+                    {
+                      "id": "df99921b-7d12-41b9-96fe-387ef3c7ce2c",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/pause?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "pause"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-df99921b-7d12-41b9-96fe-387ef3c7ce2c"
+                    },
+                    {
+                      "id": "54bc5f6c-246d-49b7-be1d-5a49d1516be9",
+                      "name": "Pipeline not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/pause?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "pause"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-54bc5f6c-246d-49b7-be1d-5a49d1516be9"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:12:54.000Z",
+                  "updatedAt": "2026-06-05T15:12:54.000Z",
+                  "uid": "35240-f365b5d8-4661-4dfa-8ea7-5bd1b3bca675"
+                }
+              ],
+              "id": "36673c14-0b49-4173-a1df-8d68f13f4b81",
+              "createdAt": "2026-06-05T15:12:54.000Z",
+              "updatedAt": "2026-06-05T15:12:54.000Z",
+              "uid": "35240-36673c14-0b49-4173-a1df-8d68f13f4b81"
+            },
+            {
+              "name": "unpause",
+              "item": [
+                {
+                  "name": "Mixpanel Resume a pipeline",
+                  "id": "b2ea07db-7de3-430d-a97c-16ae93028178",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/nessie/pipeline/unpause?project_id=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nessie",
+                        "pipeline",
+                        "unpause"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "Resume a previously paused data export pipeline."
+                  },
+                  "response": [
+                    {
+                      "id": "84b531ed-9fd4-4b57-baf9-34e2e6993fa8",
+                      "name": "Pipeline resumed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/unpause?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "unpause"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-84b531ed-9fd4-4b57-baf9-34e2e6993fa8"
+                    },
+                    {
+                      "id": "9b045de6-1466-4897-84ce-a4b0e85b9a6d",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/unpause?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "unpause"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-9b045de6-1466-4897-84ce-a4b0e85b9a6d"
+                    },
+                    {
+                      "id": "da7a4965-2c21-4ff4-b897-df33ac5a063b",
+                      "name": "Pipeline not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/unpause?project_id=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "unpause"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-da7a4965-2c21-4ff4-b897-df33ac5a063b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:12:54.000Z",
+                  "updatedAt": "2026-06-05T15:12:54.000Z",
+                  "uid": "35240-b2ea07db-7de3-430d-a97c-16ae93028178"
+                }
+              ],
+              "id": "463257ce-2f37-4726-9911-d3051603d11d",
+              "createdAt": "2026-06-05T15:12:54.000Z",
+              "updatedAt": "2026-06-05T15:12:54.000Z",
+              "uid": "35240-463257ce-2f37-4726-9911-d3051603d11d"
+            },
+            {
+              "name": "runs",
+              "item": [
+                {
+                  "name": "Mixpanel List pipeline runs",
+                  "id": "7c2d48b6-b396-4bc8-915b-478723f4c94c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/nessie/pipeline/runs?project_id=<integer>&id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nessie",
+                        "pipeline",
+                        "runs"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "(Required) Pipeline ID",
+                          "key": "id",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve the execution history for a specific pipeline."
+                  },
+                  "response": [
+                    {
+                      "id": "02a2472f-8fa8-4fb1-a1f8-5cdc8487d42e",
+                      "name": "List of pipeline runs",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/runs?project_id=<integer>&id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "runs"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "(Required) Pipeline ID",
+                              "key": "id",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"pipelineId\": \"<string>\",\n      \"status\": \"failed\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"recordsExported\": \"<integer>\",\n      \"error\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"pipelineId\": \"<string>\",\n      \"status\": \"running\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"recordsExported\": \"<integer>\",\n      \"error\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-02a2472f-8fa8-4fb1-a1f8-5cdc8487d42e"
+                    },
+                    {
+                      "id": "95d26a44-7d5d-4023-8ca3-070ee1c098f2",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/runs?project_id=<integer>&id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "runs"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "(Required) Pipeline ID",
+                              "key": "id",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-95d26a44-7d5d-4023-8ca3-070ee1c098f2"
+                    },
+                    {
+                      "id": "1a9a3e63-bfce-4f3c-8d76-7696a205d343",
+                      "name": "Pipeline not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/nessie/pipeline/runs?project_id=<integer>&id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "nessie",
+                            "pipeline",
+                            "runs"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The Mixpanel project ID",
+                              "key": "project_id",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "(Required) Pipeline ID",
+                              "key": "id",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:54.000Z",
+                      "updatedAt": "2026-06-05T15:12:54.000Z",
+                      "uid": "35240-1a9a3e63-bfce-4f3c-8d76-7696a205d343"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:12:54.000Z",
+                  "updatedAt": "2026-06-05T15:12:54.000Z",
+                  "uid": "35240-7c2d48b6-b396-4bc8-915b-478723f4c94c"
+                }
+              ],
+              "id": "1aef09fc-e91b-4874-8cc5-7de6a8cc8665",
+              "createdAt": "2026-06-05T15:12:54.000Z",
+              "updatedAt": "2026-06-05T15:12:54.000Z",
+              "uid": "35240-1aef09fc-e91b-4874-8cc5-7de6a8cc8665"
+            }
+          ],
+          "id": "531886c8-403f-4377-aca4-da8bcb1e8bc5",
+          "createdAt": "2026-06-05T15:12:54.000Z",
+          "updatedAt": "2026-06-05T15:12:54.000Z",
+          "uid": "35240-531886c8-403f-4377-aca4-da8bcb1e8bc5"
+        }
+      ],
+      "id": "df0ecece-6d35-4bf4-8101-ca5142409b92",
+      "createdAt": "2026-06-05T15:12:54.000Z",
+      "updatedAt": "2026-06-05T15:12:54.000Z",
+      "uid": "35240-df0ecece-6d35-4bf4-8101-ca5142409b92"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://data.mixpanel.com/api/2.0"
+    }
+  ]
+}

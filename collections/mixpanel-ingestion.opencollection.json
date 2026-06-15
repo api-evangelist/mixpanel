@@ -1,0 +1,240 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Ingestion API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Track event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mixpanel.com/track",
+            "params": [
+              {
+                "name": "verbose",
+                "value": "",
+                "type": "query",
+                "description": "When set to 1, returns a JSON response with status and error details"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "query",
+                "description": "When set to 1, use the IP address for geolocation"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "token",
+              "value": "{{token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Send a single event or batch of events to Mixpanel in real time. Events sent via /track are processed immediately."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Import events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mixpanel.com/import",
+            "params": [
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When set to 1, validates all properties and rejects the entire batch if any event is invalid"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The project ID to import events into"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Import events into Mixpanel. Designed for high-throughput historical data import. Supports up to 2000 events per batch. Events can have timestamps in the past."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "User Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Update user profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mixpanel.com/engage",
+            "params": [
+              {
+                "name": "verbose",
+                "value": "",
+                "type": "query",
+                "description": "When set to 1, returns a JSON response with status and error details"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "token",
+              "value": "{{token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Create or update user profile properties in Mixpanel People. Supports set, set_once, add, append, remove, union, unset, and delete operations."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Group Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Update group profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mixpanel.com/groups",
+            "params": [
+              {
+                "name": "verbose",
+                "value": "",
+                "type": "query",
+                "description": "When set to 1, returns a JSON response with status and error details"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "token",
+              "value": "{{token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Create or update group profile properties. Groups allow you to associate events with entities like companies, accounts, or any custom group type."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Lookup Tables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel List lookup tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mixpanel.com/lookup-tables",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieve all lookup tables defined for the project."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Replace lookup table",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.mixpanel.com/lookup-tables/:lookupTableId",
+            "params": [
+              {
+                "name": "lookupTableId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the lookup table to replace"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Replace the contents of a lookup table with new CSV data. The first column is the join key."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Delete lookup table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.mixpanel.com/lookup-tables/:lookupTableId",
+            "params": [
+              {
+                "name": "lookupTableId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the lookup table to delete"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Delete a lookup table by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

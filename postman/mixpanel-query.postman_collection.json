@@ -1,0 +1,2491 @@
+{
+  "info": {
+    "_postman_id": "aacf6ecc-a91d-49d7-87ab-5f27e3a40cf3",
+    "name": "Mixpanel Query API",
+    "description": "API for querying and retrieving analytics data from Mixpanel, including cohorts, funnels, insights, retention, segmentation, activity feeds, and event breakdowns.\n\nContact Support:\n Name: Mixpanel Support\n Email: support@mixpanel.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:12:52.000Z",
+    "updatedAt": "2026-06-05T15:12:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-aacf6ecc-a91d-49d7-87ab-5f27e3a40cf3"
+  },
+  "item": [
+    {
+      "name": "insights",
+      "item": [
+        {
+          "name": "Mixpanel Query insights",
+          "id": "8b4533f8-3358-4199-8542-438f826cb77a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/insights?project_id=<integer>&bookmark_id=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "insights"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The Mixpanel project ID",
+                  "key": "project_id",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "ID of a saved report to query",
+                  "key": "bookmark_id",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Query event data with flexible aggregation, filtering, and breakdown capabilities. Returns data suitable for charts and reports."
+          },
+          "response": [
+            {
+              "id": "fcbc56b6-8466-4ce6-a3d9-351b53ffb0f1",
+              "name": "Insights query results",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/insights?project_id=<integer>&bookmark_id=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "insights"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "ID of a saved report to query",
+                      "key": "bookmark_id",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"series\": {\n    \"sunt_f5\": {\n      \"voluptate_a8\": -35190486,\n      \"ut_b99\": -2314232.308681816\n    }\n  },\n  \"date_range\": {\n    \"from_date\": \"<date>\",\n    \"to_date\": \"<date>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-fcbc56b6-8466-4ce6-a3d9-351b53ffb0f1"
+            },
+            {
+              "id": "409c9dc7-cce3-4825-8e38-a70098e4a66d",
+              "name": "Invalid query parameters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/insights?project_id=<integer>&bookmark_id=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "insights"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "ID of a saved report to query",
+                      "key": "bookmark_id",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-409c9dc7-cce3-4825-8e38-a70098e4a66d"
+            },
+            {
+              "id": "abecf66d-6b7f-4fbe-8b59-8b4faeafebd6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/insights?project_id=<integer>&bookmark_id=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "insights"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "ID of a saved report to query",
+                      "key": "bookmark_id",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-abecf66d-6b7f-4fbe-8b59-8b4faeafebd6"
+            },
+            {
+              "id": "39a99e65-84c4-4c5a-b8a3-2b934d43a3c5",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/insights?project_id=<integer>&bookmark_id=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "insights"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "ID of a saved report to query",
+                      "key": "bookmark_id",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-39a99e65-84c4-4c5a-b8a3-2b934d43a3c5"
+            }
+          ],
+          "createdAt": "2026-06-05T15:12:53.000Z",
+          "updatedAt": "2026-06-05T15:12:53.000Z",
+          "uid": "35240-8b4533f8-3358-4199-8542-438f826cb77a"
+        }
+      ],
+      "id": "fa04bf2a-d1db-4c9f-b3d5-eebc527409e6",
+      "createdAt": "2026-06-05T15:12:53.000Z",
+      "updatedAt": "2026-06-05T15:12:53.000Z",
+      "uid": "35240-fa04bf2a-d1db-4c9f-b3d5-eebc527409e6"
+    },
+    {
+      "name": "funnels",
+      "item": [
+        {
+          "name": "list",
+          "item": [
+            {
+              "name": "Mixpanel List funnels",
+              "id": "e0a43360-71b3-4d3f-926e-a95c972eb27c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/funnels/list?project_id=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "funnels",
+                    "list"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Retrieve a list of all saved funnels in the project."
+              },
+              "response": [
+                {
+                  "id": "78568fe5-e31c-4eb7-ac4b-611b0015d18b",
+                  "name": "List of funnels",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/funnels/list?project_id=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "funnels",
+                        "list"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"funnel_id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  {\n    \"funnel_id\": \"<integer>\",\n    \"name\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:12:53.000Z",
+                  "updatedAt": "2026-06-05T15:12:53.000Z",
+                  "uid": "35240-78568fe5-e31c-4eb7-ac4b-611b0015d18b"
+                },
+                {
+                  "id": "0c8ba7f7-88e1-439b-ac9f-3ef7d1359e80",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/funnels/list?project_id=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "funnels",
+                        "list"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:53.000Z",
+                  "updatedAt": "2026-06-05T15:12:53.000Z",
+                  "uid": "35240-0c8ba7f7-88e1-439b-ac9f-3ef7d1359e80"
+                }
+              ],
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-e0a43360-71b3-4d3f-926e-a95c972eb27c"
+            }
+          ],
+          "id": "cb178e2a-4fc5-4154-853f-19639f4e2b06",
+          "createdAt": "2026-06-05T15:12:53.000Z",
+          "updatedAt": "2026-06-05T15:12:53.000Z",
+          "uid": "35240-cb178e2a-4fc5-4154-853f-19639f4e2b06"
+        },
+        {
+          "name": "Mixpanel Query funnel data",
+          "id": "e2a054a4-d72f-4f4f-ac5e-a6bb980fd03f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/funnels?project_id=<integer>&funnel_id=<integer>&from_date=<date>&to_date=<date>&length=<integer>&length_unit=hour&interval=<integer>&on=<string>&where=<string>&limit=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "funnels"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The Mixpanel project ID",
+                  "key": "project_id",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "(Required) The ID of the funnel to query",
+                  "key": "funnel_id",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "(Required) Start date (YYYY-MM-DD)",
+                  "key": "from_date",
+                  "value": "<date>"
+                },
+                {
+                  "description": "(Required) End date (YYYY-MM-DD)",
+                  "key": "to_date",
+                  "value": "<date>"
+                },
+                {
+                  "description": "Number of units in the conversion window",
+                  "key": "length",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Unit of time for the conversion window",
+                  "key": "length_unit",
+                  "value": "hour"
+                },
+                {
+                  "description": "Number of days per data point",
+                  "key": "interval",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Property expression to segment results",
+                  "key": "on",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Expression to filter events",
+                  "key": "where",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of segment values to return",
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Query funnel conversion data for a defined sequence of events. Returns conversion rates and counts at each step."
+          },
+          "response": [
+            {
+              "id": "1e8cb04b-857f-41cd-a446-d9586e47b4f8",
+              "name": "Funnel query results",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/funnels?project_id=<integer>&funnel_id=<integer>&from_date=<date>&to_date=<date>&length=<integer>&length_unit=hour&interval=<integer>&on=<string>&where=<string>&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "funnels"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) The ID of the funnel to query",
+                      "key": "funnel_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) Start date (YYYY-MM-DD)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date (YYYY-MM-DD)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Number of units in the conversion window",
+                      "key": "length",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Unit of time for the conversion window",
+                      "key": "length_unit",
+                      "value": "hour"
+                    },
+                    {
+                      "description": "Number of days per data point",
+                      "key": "interval",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Property expression to segment results",
+                      "key": "on",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Expression to filter events",
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of segment values to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"meta\": {\n    \"dates\": {\n      \"sed0\": {\n        \"steps\": [\n          {\n            \"count\": \"<integer>\",\n            \"avg_time\": \"<number>\",\n            \"goal\": \"<string>\",\n            \"overall_conv_ratio\": \"<number>\",\n            \"step_conv_ratio\": \"<number>\"\n          },\n          {\n            \"count\": \"<integer>\",\n            \"avg_time\": \"<number>\",\n            \"goal\": \"<string>\",\n            \"overall_conv_ratio\": \"<number>\",\n            \"step_conv_ratio\": \"<number>\"\n          }\n        ]\n      }\n    }\n  }\n}",
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-1e8cb04b-857f-41cd-a446-d9586e47b4f8"
+            },
+            {
+              "id": "b721ba1c-3386-446c-99e4-a9ffde6d5b53",
+              "name": "Invalid query parameters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/funnels?project_id=<integer>&funnel_id=<integer>&from_date=<date>&to_date=<date>&length=<integer>&length_unit=hour&interval=<integer>&on=<string>&where=<string>&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "funnels"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) The ID of the funnel to query",
+                      "key": "funnel_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) Start date (YYYY-MM-DD)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date (YYYY-MM-DD)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Number of units in the conversion window",
+                      "key": "length",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Unit of time for the conversion window",
+                      "key": "length_unit",
+                      "value": "hour"
+                    },
+                    {
+                      "description": "Number of days per data point",
+                      "key": "interval",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Property expression to segment results",
+                      "key": "on",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Expression to filter events",
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of segment values to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-b721ba1c-3386-446c-99e4-a9ffde6d5b53"
+            },
+            {
+              "id": "7facb4ea-decc-40de-86ff-7c4a972011b1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/funnels?project_id=<integer>&funnel_id=<integer>&from_date=<date>&to_date=<date>&length=<integer>&length_unit=hour&interval=<integer>&on=<string>&where=<string>&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "funnels"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) The ID of the funnel to query",
+                      "key": "funnel_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) Start date (YYYY-MM-DD)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date (YYYY-MM-DD)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Number of units in the conversion window",
+                      "key": "length",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Unit of time for the conversion window",
+                      "key": "length_unit",
+                      "value": "hour"
+                    },
+                    {
+                      "description": "Number of days per data point",
+                      "key": "interval",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Property expression to segment results",
+                      "key": "on",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Expression to filter events",
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of segment values to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-7facb4ea-decc-40de-86ff-7c4a972011b1"
+            },
+            {
+              "id": "348eba99-8c3b-4c1b-b959-255ca448dc0e",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/funnels?project_id=<integer>&funnel_id=<integer>&from_date=<date>&to_date=<date>&length=<integer>&length_unit=hour&interval=<integer>&on=<string>&where=<string>&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "funnels"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) The ID of the funnel to query",
+                      "key": "funnel_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) Start date (YYYY-MM-DD)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date (YYYY-MM-DD)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Number of units in the conversion window",
+                      "key": "length",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Unit of time for the conversion window",
+                      "key": "length_unit",
+                      "value": "hour"
+                    },
+                    {
+                      "description": "Number of days per data point",
+                      "key": "interval",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Property expression to segment results",
+                      "key": "on",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Expression to filter events",
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of segment values to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-348eba99-8c3b-4c1b-b959-255ca448dc0e"
+            }
+          ],
+          "createdAt": "2026-06-05T15:12:53.000Z",
+          "updatedAt": "2026-06-05T15:12:53.000Z",
+          "uid": "35240-e2a054a4-d72f-4f4f-ac5e-a6bb980fd03f"
+        }
+      ],
+      "id": "48bbacab-779d-4572-aae0-582c91e5fea5",
+      "createdAt": "2026-06-05T15:12:53.000Z",
+      "updatedAt": "2026-06-05T15:12:53.000Z",
+      "uid": "35240-48bbacab-779d-4572-aae0-582c91e5fea5"
+    },
+    {
+      "name": "retention",
+      "item": [
+        {
+          "name": "Mixpanel Query retention data",
+          "id": "7d9cc310-c8bc-485b-b276-640ac01c31d5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/retention?project_id=<integer>&from_date=<date>&to_date=<date>&born_event=<string>&retention_type=birth&born_where=<string>&event=<string>&where=<string>&interval=<integer>&interval_count=<integer>&unit=day&on=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "retention"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The Mixpanel project ID",
+                  "key": "project_id",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "(Required) Start date (YYYY-MM-DD)",
+                  "key": "from_date",
+                  "value": "<date>"
+                },
+                {
+                  "description": "(Required) End date (YYYY-MM-DD)",
+                  "key": "to_date",
+                  "value": "<date>"
+                },
+                {
+                  "description": "The initial event that defines the cohort",
+                  "key": "born_event",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Type of retention analysis",
+                  "key": "retention_type",
+                  "value": "birth"
+                },
+                {
+                  "description": "Filter expression for the initial event",
+                  "key": "born_where",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The return event to measure",
+                  "key": "event",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter expression for the return event",
+                  "key": "where",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Number of days per retention period",
+                  "key": "interval",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Number of retention periods to return",
+                  "key": "interval_count",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Time unit for retention periods",
+                  "key": "unit",
+                  "value": "day"
+                },
+                {
+                  "description": "Property to segment results by",
+                  "key": "on",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Query retention analysis data showing how many users return after performing an initial event."
+          },
+          "response": [
+            {
+              "id": "222da54d-87ef-46d9-a905-1ba73b8827ae",
+              "name": "Retention query results",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/retention?project_id=<integer>&from_date=<date>&to_date=<date>&born_event=<string>&retention_type=birth&born_where=<string>&event=<string>&where=<string>&interval=<integer>&interval_count=<integer>&unit=day&on=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "retention"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) Start date (YYYY-MM-DD)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date (YYYY-MM-DD)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "The initial event that defines the cohort",
+                      "key": "born_event",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Type of retention analysis",
+                      "key": "retention_type",
+                      "value": "birth"
+                    },
+                    {
+                      "description": "Filter expression for the initial event",
+                      "key": "born_where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The return event to measure",
+                      "key": "event",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter expression for the return event",
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of days per retention period",
+                      "key": "interval",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of retention periods to return",
+                      "key": "interval_count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Time unit for retention periods",
+                      "key": "unit",
+                      "value": "day"
+                    },
+                    {
+                      "description": "Property to segment results by",
+                      "key": "on",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"quis_6e8\": {\n    \"counts\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"first\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-222da54d-87ef-46d9-a905-1ba73b8827ae"
+            },
+            {
+              "id": "5723cd40-fedd-4ffb-8bb3-f9581822884d",
+              "name": "Invalid query parameters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/retention?project_id=<integer>&from_date=<date>&to_date=<date>&born_event=<string>&retention_type=birth&born_where=<string>&event=<string>&where=<string>&interval=<integer>&interval_count=<integer>&unit=day&on=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "retention"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) Start date (YYYY-MM-DD)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date (YYYY-MM-DD)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "The initial event that defines the cohort",
+                      "key": "born_event",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Type of retention analysis",
+                      "key": "retention_type",
+                      "value": "birth"
+                    },
+                    {
+                      "description": "Filter expression for the initial event",
+                      "key": "born_where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The return event to measure",
+                      "key": "event",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter expression for the return event",
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of days per retention period",
+                      "key": "interval",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of retention periods to return",
+                      "key": "interval_count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Time unit for retention periods",
+                      "key": "unit",
+                      "value": "day"
+                    },
+                    {
+                      "description": "Property to segment results by",
+                      "key": "on",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-5723cd40-fedd-4ffb-8bb3-f9581822884d"
+            },
+            {
+              "id": "ee92982e-c477-4371-b639-de598f94160c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/retention?project_id=<integer>&from_date=<date>&to_date=<date>&born_event=<string>&retention_type=birth&born_where=<string>&event=<string>&where=<string>&interval=<integer>&interval_count=<integer>&unit=day&on=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "retention"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) Start date (YYYY-MM-DD)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date (YYYY-MM-DD)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "The initial event that defines the cohort",
+                      "key": "born_event",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Type of retention analysis",
+                      "key": "retention_type",
+                      "value": "birth"
+                    },
+                    {
+                      "description": "Filter expression for the initial event",
+                      "key": "born_where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The return event to measure",
+                      "key": "event",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter expression for the return event",
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of days per retention period",
+                      "key": "interval",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of retention periods to return",
+                      "key": "interval_count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Time unit for retention periods",
+                      "key": "unit",
+                      "value": "day"
+                    },
+                    {
+                      "description": "Property to segment results by",
+                      "key": "on",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-ee92982e-c477-4371-b639-de598f94160c"
+            },
+            {
+              "id": "05eb5950-dc07-452a-9246-2af4ff05a91d",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/retention?project_id=<integer>&from_date=<date>&to_date=<date>&born_event=<string>&retention_type=birth&born_where=<string>&event=<string>&where=<string>&interval=<integer>&interval_count=<integer>&unit=day&on=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "retention"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) Start date (YYYY-MM-DD)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date (YYYY-MM-DD)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "The initial event that defines the cohort",
+                      "key": "born_event",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Type of retention analysis",
+                      "key": "retention_type",
+                      "value": "birth"
+                    },
+                    {
+                      "description": "Filter expression for the initial event",
+                      "key": "born_where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The return event to measure",
+                      "key": "event",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter expression for the return event",
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of days per retention period",
+                      "key": "interval",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of retention periods to return",
+                      "key": "interval_count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Time unit for retention periods",
+                      "key": "unit",
+                      "value": "day"
+                    },
+                    {
+                      "description": "Property to segment results by",
+                      "key": "on",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-05eb5950-dc07-452a-9246-2af4ff05a91d"
+            }
+          ],
+          "createdAt": "2026-06-05T15:12:53.000Z",
+          "updatedAt": "2026-06-05T15:12:53.000Z",
+          "uid": "35240-7d9cc310-c8bc-485b-b276-640ac01c31d5"
+        }
+      ],
+      "id": "cf578498-77f0-4575-8f0b-9f0e91b13dfa",
+      "createdAt": "2026-06-05T15:12:53.000Z",
+      "updatedAt": "2026-06-05T15:12:53.000Z",
+      "uid": "35240-cf578498-77f0-4575-8f0b-9f0e91b13dfa"
+    },
+    {
+      "name": "segmentation",
+      "item": [
+        {
+          "name": "sum",
+          "item": [
+            {
+              "name": "Mixpanel Query numeric property sum",
+              "id": "0fc633e8-52f6-4d2d-b87f-be18ca411a2c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/segmentation/sum?project_id=<integer>&event=<string>&from_date=<date>&to_date=<date>&on=<string>&where=<string>&unit=minute",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "segmentation",
+                    "sum"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) The event name to query",
+                      "key": "event",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Start date (YYYY-MM-DD)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date (YYYY-MM-DD)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) The numeric property to sum",
+                      "key": "on",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Expression to filter events",
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Time granularity for the results",
+                      "key": "unit",
+                      "value": "minute"
+                    }
+                  ]
+                },
+                "description": "Query the sum of a numeric event property over a time range."
+              },
+              "response": [
+                {
+                  "id": "e12fddd7-00cf-447e-bf48-563ea8cec734",
+                  "name": "Segmentation sum results",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/segmentation/sum?project_id=<integer>&event=<string>&from_date=<date>&to_date=<date>&on=<string>&where=<string>&unit=minute",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "segmentation",
+                        "sum"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "(Required) The event name to query",
+                          "key": "event",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date (YYYY-MM-DD)",
+                          "key": "from_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date (YYYY-MM-DD)",
+                          "key": "to_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) The numeric property to sum",
+                          "key": "on",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Expression to filter events",
+                          "key": "where",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Time granularity for the results",
+                          "key": "unit",
+                          "value": "minute"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"series\": [\n      \"<date>\",\n      \"<date>\"\n    ],\n    \"values\": {\n      \"velit068\": {\n        \"sint_a\": \"<number>\"\n      },\n      \"enim_6c1\": {\n        \"commodo1c\": \"<number>\",\n        \"eiusmod231\": \"<number>\",\n        \"eud22\": \"<number>\"\n      },\n      \"qui3bf\": {\n        \"autec1\": \"<number>\"\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-06-05T15:12:53.000Z",
+                  "updatedAt": "2026-06-05T15:12:53.000Z",
+                  "uid": "35240-e12fddd7-00cf-447e-bf48-563ea8cec734"
+                },
+                {
+                  "id": "77b9fc6c-7544-4b3a-8a39-b6eb8fd01b77",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/segmentation/sum?project_id=<integer>&event=<string>&from_date=<date>&to_date=<date>&on=<string>&where=<string>&unit=minute",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "segmentation",
+                        "sum"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "(Required) The event name to query",
+                          "key": "event",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date (YYYY-MM-DD)",
+                          "key": "from_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date (YYYY-MM-DD)",
+                          "key": "to_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) The numeric property to sum",
+                          "key": "on",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Expression to filter events",
+                          "key": "where",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Time granularity for the results",
+                          "key": "unit",
+                          "value": "minute"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:53.000Z",
+                  "updatedAt": "2026-06-05T15:12:53.000Z",
+                  "uid": "35240-77b9fc6c-7544-4b3a-8a39-b6eb8fd01b77"
+                },
+                {
+                  "id": "8b94e59d-5014-46da-852a-a803dece6a0d",
+                  "name": "Rate limit exceeded",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/segmentation/sum?project_id=<integer>&event=<string>&from_date=<date>&to_date=<date>&on=<string>&where=<string>&unit=minute",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "segmentation",
+                        "sum"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "(Required) The event name to query",
+                          "key": "event",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date (YYYY-MM-DD)",
+                          "key": "from_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date (YYYY-MM-DD)",
+                          "key": "to_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) The numeric property to sum",
+                          "key": "on",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Expression to filter events",
+                          "key": "where",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Time granularity for the results",
+                          "key": "unit",
+                          "value": "minute"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:53.000Z",
+                  "updatedAt": "2026-06-05T15:12:53.000Z",
+                  "uid": "35240-8b94e59d-5014-46da-852a-a803dece6a0d"
+                }
+              ],
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-0fc633e8-52f6-4d2d-b87f-be18ca411a2c"
+            }
+          ],
+          "id": "ca3a3fc9-00d7-44c4-b9af-f587f9ee56dd",
+          "createdAt": "2026-06-05T15:12:53.000Z",
+          "updatedAt": "2026-06-05T15:12:53.000Z",
+          "uid": "35240-ca3a3fc9-00d7-44c4-b9af-f587f9ee56dd"
+        },
+        {
+          "name": "average",
+          "item": [
+            {
+              "name": "Mixpanel Query numeric property average",
+              "id": "44526761-183a-49e7-8889-ec60ef4ebbb4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/segmentation/average?project_id=<integer>&event=<string>&from_date=<date>&to_date=<date>&on=<string>&unit=minute",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "segmentation",
+                    "average"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) The event name to query",
+                      "key": "event",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Start date (YYYY-MM-DD)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date (YYYY-MM-DD)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) The numeric property to average",
+                      "key": "on",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Time granularity for the results",
+                      "key": "unit",
+                      "value": "minute"
+                    }
+                  ]
+                },
+                "description": "Query the average of a numeric event property over a time range."
+              },
+              "response": [
+                {
+                  "id": "e106b8e7-397a-4820-9a11-973eff89d8b3",
+                  "name": "Segmentation average results",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/segmentation/average?project_id=<integer>&event=<string>&from_date=<date>&to_date=<date>&on=<string>&unit=minute",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "segmentation",
+                        "average"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "(Required) The event name to query",
+                          "key": "event",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date (YYYY-MM-DD)",
+                          "key": "from_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date (YYYY-MM-DD)",
+                          "key": "to_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) The numeric property to average",
+                          "key": "on",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Time granularity for the results",
+                          "key": "unit",
+                          "value": "minute"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"series\": [\n      \"<date>\",\n      \"<date>\"\n    ],\n    \"values\": {\n      \"velit068\": {\n        \"sint_a\": \"<number>\"\n      },\n      \"enim_6c1\": {\n        \"commodo1c\": \"<number>\",\n        \"eiusmod231\": \"<number>\",\n        \"eud22\": \"<number>\"\n      },\n      \"qui3bf\": {\n        \"autec1\": \"<number>\"\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-06-05T15:12:53.000Z",
+                  "updatedAt": "2026-06-05T15:12:53.000Z",
+                  "uid": "35240-e106b8e7-397a-4820-9a11-973eff89d8b3"
+                },
+                {
+                  "id": "e43795f7-0f1d-4819-9da5-ac4299bc2892",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/segmentation/average?project_id=<integer>&event=<string>&from_date=<date>&to_date=<date>&on=<string>&unit=minute",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "segmentation",
+                        "average"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "(Required) The event name to query",
+                          "key": "event",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date (YYYY-MM-DD)",
+                          "key": "from_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date (YYYY-MM-DD)",
+                          "key": "to_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) The numeric property to average",
+                          "key": "on",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Time granularity for the results",
+                          "key": "unit",
+                          "value": "minute"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:53.000Z",
+                  "updatedAt": "2026-06-05T15:12:53.000Z",
+                  "uid": "35240-e43795f7-0f1d-4819-9da5-ac4299bc2892"
+                },
+                {
+                  "id": "5fd8567c-ffab-474a-8b6d-ae94773b94a6",
+                  "name": "Rate limit exceeded",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/segmentation/average?project_id=<integer>&event=<string>&from_date=<date>&to_date=<date>&on=<string>&unit=minute",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "segmentation",
+                        "average"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "(Required) The event name to query",
+                          "key": "event",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date (YYYY-MM-DD)",
+                          "key": "from_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date (YYYY-MM-DD)",
+                          "key": "to_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) The numeric property to average",
+                          "key": "on",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Time granularity for the results",
+                          "key": "unit",
+                          "value": "minute"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:53.000Z",
+                  "updatedAt": "2026-06-05T15:12:53.000Z",
+                  "uid": "35240-5fd8567c-ffab-474a-8b6d-ae94773b94a6"
+                }
+              ],
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-44526761-183a-49e7-8889-ec60ef4ebbb4"
+            }
+          ],
+          "id": "13ef0e48-ea69-4a40-bc5d-d1ae5f0b033b",
+          "createdAt": "2026-06-05T15:12:53.000Z",
+          "updatedAt": "2026-06-05T15:12:53.000Z",
+          "uid": "35240-13ef0e48-ea69-4a40-bc5d-d1ae5f0b033b"
+        },
+        {
+          "name": "Mixpanel Query event segmentation",
+          "id": "856b9df9-0a30-4439-a8ab-e9d0162ed107",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/segmentation?project_id=<integer>&event=<string>&from_date=<date>&to_date=<date>&type=unique&on=<string>&where=<string>&unit=minute&limit=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "segmentation"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The Mixpanel project ID",
+                  "key": "project_id",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "(Required) The event name to query",
+                  "key": "event",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) Start date (YYYY-MM-DD)",
+                  "key": "from_date",
+                  "value": "<date>"
+                },
+                {
+                  "description": "(Required) End date (YYYY-MM-DD)",
+                  "key": "to_date",
+                  "value": "<date>"
+                },
+                {
+                  "description": "Aggregation type - general (total count), unique (unique users), or average (average per user)",
+                  "key": "type",
+                  "value": "unique"
+                },
+                {
+                  "description": "Property expression to segment results by",
+                  "key": "on",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Expression to filter events",
+                  "key": "where",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Time granularity for the results",
+                  "key": "unit",
+                  "value": "minute"
+                },
+                {
+                  "description": "Maximum number of segment values",
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Query event counts over a time range, optionally segmented by a property. Returns time series data."
+          },
+          "response": [
+            {
+              "id": "3149727f-7fdf-4ee3-a8fd-aa913c9733ae",
+              "name": "Segmentation query results",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/segmentation?project_id=<integer>&event=<string>&from_date=<date>&to_date=<date>&type=unique&on=<string>&where=<string>&unit=minute&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "segmentation"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) The event name to query",
+                      "key": "event",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Start date (YYYY-MM-DD)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date (YYYY-MM-DD)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Aggregation type - general (total count), unique (unique users), or average (average per user)",
+                      "key": "type",
+                      "value": "unique"
+                    },
+                    {
+                      "description": "Property expression to segment results by",
+                      "key": "on",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Expression to filter events",
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Time granularity for the results",
+                      "key": "unit",
+                      "value": "minute"
+                    },
+                    {
+                      "description": "Maximum number of segment values",
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"series\": [\n      \"<date>\",\n      \"<date>\"\n    ],\n    \"values\": {\n      \"velit068\": {\n        \"sint_a\": \"<number>\"\n      },\n      \"enim_6c1\": {\n        \"commodo1c\": \"<number>\",\n        \"eiusmod231\": \"<number>\",\n        \"eud22\": \"<number>\"\n      },\n      \"qui3bf\": {\n        \"autec1\": \"<number>\"\n      }\n    }\n  }\n}",
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-3149727f-7fdf-4ee3-a8fd-aa913c9733ae"
+            },
+            {
+              "id": "1c500fca-2d03-4be5-aa16-8a4ca1d41a6d",
+              "name": "Invalid query parameters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/segmentation?project_id=<integer>&event=<string>&from_date=<date>&to_date=<date>&type=unique&on=<string>&where=<string>&unit=minute&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "segmentation"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) The event name to query",
+                      "key": "event",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Start date (YYYY-MM-DD)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date (YYYY-MM-DD)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Aggregation type - general (total count), unique (unique users), or average (average per user)",
+                      "key": "type",
+                      "value": "unique"
+                    },
+                    {
+                      "description": "Property expression to segment results by",
+                      "key": "on",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Expression to filter events",
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Time granularity for the results",
+                      "key": "unit",
+                      "value": "minute"
+                    },
+                    {
+                      "description": "Maximum number of segment values",
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-1c500fca-2d03-4be5-aa16-8a4ca1d41a6d"
+            },
+            {
+              "id": "a8a987f4-b727-4e92-b9c5-97176867685d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/segmentation?project_id=<integer>&event=<string>&from_date=<date>&to_date=<date>&type=unique&on=<string>&where=<string>&unit=minute&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "segmentation"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) The event name to query",
+                      "key": "event",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Start date (YYYY-MM-DD)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date (YYYY-MM-DD)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Aggregation type - general (total count), unique (unique users), or average (average per user)",
+                      "key": "type",
+                      "value": "unique"
+                    },
+                    {
+                      "description": "Property expression to segment results by",
+                      "key": "on",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Expression to filter events",
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Time granularity for the results",
+                      "key": "unit",
+                      "value": "minute"
+                    },
+                    {
+                      "description": "Maximum number of segment values",
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-a8a987f4-b727-4e92-b9c5-97176867685d"
+            },
+            {
+              "id": "5994d082-6062-4e7a-9516-5c7528688dc5",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/segmentation?project_id=<integer>&event=<string>&from_date=<date>&to_date=<date>&type=unique&on=<string>&where=<string>&unit=minute&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "segmentation"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) The event name to query",
+                      "key": "event",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Start date (YYYY-MM-DD)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date (YYYY-MM-DD)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Aggregation type - general (total count), unique (unique users), or average (average per user)",
+                      "key": "type",
+                      "value": "unique"
+                    },
+                    {
+                      "description": "Property expression to segment results by",
+                      "key": "on",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Expression to filter events",
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Time granularity for the results",
+                      "key": "unit",
+                      "value": "minute"
+                    },
+                    {
+                      "description": "Maximum number of segment values",
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-5994d082-6062-4e7a-9516-5c7528688dc5"
+            }
+          ],
+          "createdAt": "2026-06-05T15:12:53.000Z",
+          "updatedAt": "2026-06-05T15:12:53.000Z",
+          "uid": "35240-856b9df9-0a30-4439-a8ab-e9d0162ed107"
+        }
+      ],
+      "id": "2cda8902-5173-4db6-8c84-e041bdb0c7fd",
+      "createdAt": "2026-06-05T15:12:53.000Z",
+      "updatedAt": "2026-06-05T15:12:53.000Z",
+      "uid": "35240-2cda8902-5173-4db6-8c84-e041bdb0c7fd"
+    },
+    {
+      "name": "cohorts",
+      "item": [
+        {
+          "name": "list",
+          "item": [
+            {
+              "name": "Mixpanel List cohorts",
+              "id": "9645404e-6203-4fd2-a26c-feb694db05e5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cohorts/list?project_id=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cohorts",
+                    "list"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Mixpanel project ID",
+                      "key": "project_id",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Retrieve a list of all cohorts defined in the project."
+              },
+              "response": [
+                {
+                  "id": "bb187810-3f6d-425a-82c8-789838536388",
+                  "name": "List of cohorts",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cohorts/list?project_id=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cohorts",
+                        "list"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"count\": \"<integer>\",\n    \"created\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"count\": \"<integer>\",\n    \"created\": \"<dateTime>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:12:53.000Z",
+                  "updatedAt": "2026-06-05T15:12:53.000Z",
+                  "uid": "35240-bb187810-3f6d-425a-82c8-789838536388"
+                },
+                {
+                  "id": "c3c3c2be-53c3-41db-9294-6a7bc7236a1e",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cohorts/list?project_id=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cohorts",
+                        "list"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The Mixpanel project ID",
+                          "key": "project_id",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:53.000Z",
+                  "updatedAt": "2026-06-05T15:12:53.000Z",
+                  "uid": "35240-c3c3c2be-53c3-41db-9294-6a7bc7236a1e"
+                }
+              ],
+              "createdAt": "2026-06-05T15:12:53.000Z",
+              "updatedAt": "2026-06-05T15:12:53.000Z",
+              "uid": "35240-9645404e-6203-4fd2-a26c-feb694db05e5"
+            }
+          ],
+          "id": "679f9a08-8005-46f9-8b8e-58d821cf69a1",
+          "createdAt": "2026-06-05T15:12:53.000Z",
+          "updatedAt": "2026-06-05T15:12:53.000Z",
+          "uid": "35240-679f9a08-8005-46f9-8b8e-58d821cf69a1"
+        }
+      ],
+      "id": "90cb0f34-3953-4e51-a537-6ec849e28fcb",
+      "createdAt": "2026-06-05T15:12:53.000Z",
+      "updatedAt": "2026-06-05T15:12:53.000Z",
+      "uid": "35240-90cb0f34-3953-4e51-a537-6ec849e28fcb"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://mixpanel.com/api/2.0"
+    }
+  ]
+}

@@ -1,0 +1,1130 @@
+{
+  "info": {
+    "_postman_id": "a841e8f7-bea2-4854-96c6-2551fdcda868",
+    "name": "Mixpanel Annotations API",
+    "description": "API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.\n\nContact Support:\n Name: Mixpanel Support\n Email: support@mixpanel.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:12:58.000Z",
+    "updatedAt": "2026-06-05T15:12:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a841e8f7-bea2-4854-96c6-2551fdcda868"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{projectId}",
+          "item": [
+            {
+              "name": "annotations",
+              "item": [
+                {
+                  "name": "{annotationId}",
+                  "item": [
+                    {
+                      "name": "Mixpanel Get annotation",
+                      "id": "63e85c6a-7fe2-422b-82ab-63a69e5c20e8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/annotations/:annotationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "annotations",
+                            ":annotationId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "457a5161-9288-4639-828e-66d653ae13d0",
+                              "key": "projectId",
+                              "value": "<integer>",
+                              "description": "(Required) The Mixpanel project ID"
+                            },
+                            {
+                              "id": "4bcfdd78-c520-4c68-b209-aea14f81b279",
+                              "key": "annotationId",
+                              "value": "<integer>",
+                              "description": "(Required) The annotation ID"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a specific annotation by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "35977427-56a1-4843-adb2-2c3cdd37e078",
+                          "name": "Annotation details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/annotations/:annotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "annotations",
+                                ":annotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "annotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<integer>\",\n  \"date\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"user\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:12:59.000Z",
+                          "updatedAt": "2026-06-05T15:12:59.000Z",
+                          "uid": "35240-35977427-56a1-4843-adb2-2c3cdd37e078"
+                        },
+                        {
+                          "id": "bf463049-afbf-4138-a692-b071947bda1c",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/annotations/:annotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "annotations",
+                                ":annotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "annotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:12:59.000Z",
+                          "updatedAt": "2026-06-05T15:12:59.000Z",
+                          "uid": "35240-bf463049-afbf-4138-a692-b071947bda1c"
+                        },
+                        {
+                          "id": "56f0d7f5-5a91-4a37-a082-effd805fb69b",
+                          "name": "Annotation not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/annotations/:annotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "annotations",
+                                ":annotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "annotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:12:59.000Z",
+                          "updatedAt": "2026-06-05T15:12:59.000Z",
+                          "uid": "35240-56f0d7f5-5a91-4a37-a082-effd805fb69b"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:12:59.000Z",
+                      "updatedAt": "2026-06-05T15:12:59.000Z",
+                      "uid": "35240-63e85c6a-7fe2-422b-82ab-63a69e5c20e8"
+                    },
+                    {
+                      "name": "Mixpanel Update annotation",
+                      "id": "d5d7776e-b8a0-490e-bda0-1e88abc57e01",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"date\": \"<dateTime>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/annotations/:annotationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "annotations",
+                            ":annotationId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2d9f47f8-dcee-48d4-95b6-5f758d7c7a85",
+                              "key": "projectId",
+                              "value": "<integer>",
+                              "description": "(Required) The Mixpanel project ID"
+                            },
+                            {
+                              "id": "bf275ca2-300a-44d8-8908-8072e2116e7a",
+                              "key": "annotationId",
+                              "value": "<integer>",
+                              "description": "(Required) The annotation ID"
+                            }
+                          ]
+                        },
+                        "description": "Update an existing annotation's date or description."
+                      },
+                      "response": [
+                        {
+                          "id": "a3fcfc50-3c47-489a-b022-4c97b4659723",
+                          "name": "Annotation updated",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"date\": \"<dateTime>\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/annotations/:annotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "annotations",
+                                ":annotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "annotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<integer>\",\n  \"date\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"user\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:12:59.000Z",
+                          "updatedAt": "2026-06-05T15:12:59.000Z",
+                          "uid": "35240-a3fcfc50-3c47-489a-b022-4c97b4659723"
+                        },
+                        {
+                          "id": "b3d3b8db-b2a6-46b3-bd9a-9b6ad5a67855",
+                          "name": "Invalid request",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"date\": \"<dateTime>\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/annotations/:annotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "annotations",
+                                ":annotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "annotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:12:59.000Z",
+                          "updatedAt": "2026-06-05T15:12:59.000Z",
+                          "uid": "35240-b3d3b8db-b2a6-46b3-bd9a-9b6ad5a67855"
+                        },
+                        {
+                          "id": "3aa4ec37-22fd-431e-b073-5740f338d118",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"date\": \"<dateTime>\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/annotations/:annotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "annotations",
+                                ":annotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "annotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:12:59.000Z",
+                          "updatedAt": "2026-06-05T15:12:59.000Z",
+                          "uid": "35240-3aa4ec37-22fd-431e-b073-5740f338d118"
+                        },
+                        {
+                          "id": "00b8647e-7396-4b45-b6d4-db70778fcfaf",
+                          "name": "Annotation not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"date\": \"<dateTime>\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/annotations/:annotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "annotations",
+                                ":annotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "annotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:12:59.000Z",
+                          "updatedAt": "2026-06-05T15:12:59.000Z",
+                          "uid": "35240-00b8647e-7396-4b45-b6d4-db70778fcfaf"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:12:59.000Z",
+                      "updatedAt": "2026-06-05T15:12:59.000Z",
+                      "uid": "35240-d5d7776e-b8a0-490e-bda0-1e88abc57e01"
+                    },
+                    {
+                      "name": "Mixpanel Delete annotation",
+                      "id": "b08c9e46-eb84-4768-aafb-2c6fc89b1205",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/annotations/:annotationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "annotations",
+                            ":annotationId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5d96b144-2f46-4172-94ad-2882d0524429",
+                              "key": "projectId",
+                              "value": "<integer>",
+                              "description": "(Required) The Mixpanel project ID"
+                            },
+                            {
+                              "id": "61c44600-5b07-47e3-92d0-a433a58a559b",
+                              "key": "annotationId",
+                              "value": "<integer>",
+                              "description": "(Required) The annotation ID"
+                            }
+                          ]
+                        },
+                        "description": "Delete an annotation by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "6bf9e49a-319e-403d-9636-9f9e1c3418a2",
+                          "name": "Annotation deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/annotations/:annotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "annotations",
+                                ":annotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "annotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:12:59.000Z",
+                          "updatedAt": "2026-06-05T15:12:59.000Z",
+                          "uid": "35240-6bf9e49a-319e-403d-9636-9f9e1c3418a2"
+                        },
+                        {
+                          "id": "99cb76cb-0989-48ef-a182-5c458033a7dd",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/annotations/:annotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "annotations",
+                                ":annotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "annotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:12:59.000Z",
+                          "updatedAt": "2026-06-05T15:12:59.000Z",
+                          "uid": "35240-99cb76cb-0989-48ef-a182-5c458033a7dd"
+                        },
+                        {
+                          "id": "7357daa8-7b63-4151-9ecb-edc6f16471ed",
+                          "name": "Annotation not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/annotations/:annotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "annotations",
+                                ":annotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "annotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:12:59.000Z",
+                          "updatedAt": "2026-06-05T15:12:59.000Z",
+                          "uid": "35240-7357daa8-7b63-4151-9ecb-edc6f16471ed"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:12:59.000Z",
+                      "updatedAt": "2026-06-05T15:12:59.000Z",
+                      "uid": "35240-b08c9e46-eb84-4768-aafb-2c6fc89b1205"
+                    }
+                  ],
+                  "id": "9960b04e-e421-46d3-81ab-87feec00ee7f",
+                  "createdAt": "2026-06-05T15:12:59.000Z",
+                  "updatedAt": "2026-06-05T15:12:59.000Z",
+                  "uid": "35240-9960b04e-e421-46d3-81ab-87feec00ee7f"
+                },
+                {
+                  "name": "Mixpanel List annotations",
+                  "id": "7d4cdb2b-f3ab-4f54-9e00-59ab8198d406",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/annotations?from_date=<date>&to_date=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "annotations"
+                      ],
+                      "query": [
+                        {
+                          "description": "Start date filter (YYYY-MM-DD)",
+                          "key": "from_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "End date filter (YYYY-MM-DD)",
+                          "key": "to_date",
+                          "value": "<date>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "8c6d387e-e264-4d7b-a092-861bbe44a32f",
+                          "key": "projectId",
+                          "value": "<integer>",
+                          "description": "(Required) The Mixpanel project ID"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all annotations for a project within an optional date range."
+                  },
+                  "response": [
+                    {
+                      "id": "4fc9739d-165f-4385-a762-a1b7f0c9a8cc",
+                      "name": "List of annotations",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/annotations?from_date=<date>&to_date=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "annotations"
+                          ],
+                          "query": [
+                            {
+                              "description": "Start date filter (YYYY-MM-DD)",
+                              "key": "from_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "End date filter (YYYY-MM-DD)",
+                              "key": "to_date",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"description\": \"<string>\",\n      \"user\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"description\": \"<string>\",\n      \"user\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"createdAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:12:59.000Z",
+                      "updatedAt": "2026-06-05T15:12:59.000Z",
+                      "uid": "35240-4fc9739d-165f-4385-a762-a1b7f0c9a8cc"
+                    },
+                    {
+                      "id": "46923539-dc20-419e-9711-624c0dcc22af",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/annotations?from_date=<date>&to_date=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "annotations"
+                          ],
+                          "query": [
+                            {
+                              "description": "Start date filter (YYYY-MM-DD)",
+                              "key": "from_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "End date filter (YYYY-MM-DD)",
+                              "key": "to_date",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:59.000Z",
+                      "updatedAt": "2026-06-05T15:12:59.000Z",
+                      "uid": "35240-46923539-dc20-419e-9711-624c0dcc22af"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:12:59.000Z",
+                  "updatedAt": "2026-06-05T15:12:59.000Z",
+                  "uid": "35240-7d4cdb2b-f3ab-4f54-9e00-59ab8198d406"
+                },
+                {
+                  "name": "Mixpanel Create annotation",
+                  "id": "c40fcdcd-a6de-4776-a9bf-6353dd77e393",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"date\": \"<dateTime>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/annotations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "annotations"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0546b1b1-2438-4ce1-886e-9d2101aade75",
+                          "key": "projectId",
+                          "value": "<integer>",
+                          "description": "(Required) The Mixpanel project ID"
+                        }
+                      ]
+                    },
+                    "description": "Create a new annotation to mark a specific point in time on Mixpanel charts."
+                  },
+                  "response": [
+                    {
+                      "id": "0c6a2ecc-d1b8-4b37-a206-89b8c65c847f",
+                      "name": "Annotation created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"date\": \"<dateTime>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/annotations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "annotations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"date\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"user\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T15:12:59.000Z",
+                      "updatedAt": "2026-06-05T15:12:59.000Z",
+                      "uid": "35240-0c6a2ecc-d1b8-4b37-a206-89b8c65c847f"
+                    },
+                    {
+                      "id": "68a9eac6-8d48-43d3-85ee-53ac4ce48128",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"date\": \"<dateTime>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/annotations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "annotations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:59.000Z",
+                      "updatedAt": "2026-06-05T15:12:59.000Z",
+                      "uid": "35240-68a9eac6-8d48-43d3-85ee-53ac4ce48128"
+                    },
+                    {
+                      "id": "37948e70-4a58-4ff6-891b-e4baa057d07a",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"date\": \"<dateTime>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/annotations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "annotations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:12:59.000Z",
+                      "updatedAt": "2026-06-05T15:12:59.000Z",
+                      "uid": "35240-37948e70-4a58-4ff6-891b-e4baa057d07a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:12:59.000Z",
+                  "updatedAt": "2026-06-05T15:12:59.000Z",
+                  "uid": "35240-c40fcdcd-a6de-4776-a9bf-6353dd77e393"
+                }
+              ],
+              "id": "a1e102ee-c861-4681-92f4-07eb7e0dae9c",
+              "createdAt": "2026-06-05T15:12:59.000Z",
+              "updatedAt": "2026-06-05T15:12:59.000Z",
+              "uid": "35240-a1e102ee-c861-4681-92f4-07eb7e0dae9c"
+            }
+          ],
+          "id": "297daf72-0151-47cb-8ccd-aa7f239ad092",
+          "createdAt": "2026-06-05T15:12:59.000Z",
+          "updatedAt": "2026-06-05T15:12:59.000Z",
+          "uid": "35240-297daf72-0151-47cb-8ccd-aa7f239ad092"
+        }
+      ],
+      "id": "1d9198b6-126f-40fc-b78d-be8eda408da9",
+      "createdAt": "2026-06-05T15:12:59.000Z",
+      "updatedAt": "2026-06-05T15:12:59.000Z",
+      "uid": "35240-1d9198b6-126f-40fc-b78d-be8eda408da9"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://mixpanel.com/api/app"
+    }
+  ]
+}

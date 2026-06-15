@@ -1,0 +1,812 @@
+{
+  "info": {
+    "_postman_id": "fbe12db4-954b-4776-bd8a-6dc26ba3566a",
+    "name": "Mixpanel Identity API",
+    "description": "API for managing user identity in Mixpanel, including creating identities, creating aliases, and merging identities to accurately resolve users across multiple devices.\n\nContact Support:\n Name: Mixpanel Support\n Email: support@mixpanel.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:12:54.000Z",
+    "updatedAt": "2026-06-05T15:12:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fbe12db4-954b-4776-bd8a-6dc26ba3566a"
+  },
+  "item": [
+    {
+      "name": "identity",
+      "item": [
+        {
+          "name": "create",
+          "item": [
+            {
+              "name": "Mixpanel Create identity",
+              "id": "a72f3fa2-b9ee-40ae-a6dc-e5a90f827aa4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$identified_id\": \"<string>\",\n  \"$anon_id\": \"<string>\",\n  \"$token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/identity/create",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "identity",
+                    "create"
+                  ]
+                },
+                "description": "Create an identity mapping between an anonymous (device) ID and an identified (user) ID. This links pre-login anonymous activity to a known user."
+              },
+              "response": [
+                {
+                  "id": "8c155fb5-26ab-479c-99cd-b38c471419d3",
+                  "name": "Identity created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"$identified_id\": \"<string>\",\n  \"$anon_id\": \"<string>\",\n  \"$token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/identity/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "identity",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": 1,\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:12:55.000Z",
+                  "updatedAt": "2026-06-05T15:12:55.000Z",
+                  "uid": "35240-8c155fb5-26ab-479c-99cd-b38c471419d3"
+                },
+                {
+                  "id": "7d4deb55-9c74-4039-9169-4c2b0048fb50",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"$identified_id\": \"<string>\",\n  \"$anon_id\": \"<string>\",\n  \"$token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/identity/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "identity",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:55.000Z",
+                  "updatedAt": "2026-06-05T15:12:55.000Z",
+                  "uid": "35240-7d4deb55-9c74-4039-9169-4c2b0048fb50"
+                },
+                {
+                  "id": "219e424c-8884-4a54-8f78-60ea0d9f3948",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"$identified_id\": \"<string>\",\n  \"$anon_id\": \"<string>\",\n  \"$token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/identity/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "identity",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:55.000Z",
+                  "updatedAt": "2026-06-05T15:12:55.000Z",
+                  "uid": "35240-219e424c-8884-4a54-8f78-60ea0d9f3948"
+                },
+                {
+                  "id": "c97b813c-cb89-420a-99cd-f472256eb526",
+                  "name": "Rate limit exceeded",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"$identified_id\": \"<string>\",\n  \"$anon_id\": \"<string>\",\n  \"$token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/identity/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "identity",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:55.000Z",
+                  "updatedAt": "2026-06-05T15:12:55.000Z",
+                  "uid": "35240-c97b813c-cb89-420a-99cd-f472256eb526"
+                }
+              ],
+              "createdAt": "2026-06-05T15:12:55.000Z",
+              "updatedAt": "2026-06-05T15:12:55.000Z",
+              "uid": "35240-a72f3fa2-b9ee-40ae-a6dc-e5a90f827aa4"
+            }
+          ],
+          "id": "7b5ee986-acc1-4a18-a987-c0d93fcb0ef4",
+          "createdAt": "2026-06-05T15:12:55.000Z",
+          "updatedAt": "2026-06-05T15:12:55.000Z",
+          "uid": "35240-7b5ee986-acc1-4a18-a987-c0d93fcb0ef4"
+        },
+        {
+          "name": "create-alias",
+          "item": [
+            {
+              "name": "Mixpanel Create alias",
+              "id": "3ffda254-32bc-4f98-9826-a3a32bc9bfdd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alias\": \"<string>\",\n  \"distinct_id\": \"<string>\",\n  \"$token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/identity/create-alias",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "identity",
+                    "create-alias"
+                  ]
+                },
+                "description": "Create an alias that maps one distinct_id to another. This is a legacy method for identity management. For new implementations, use the create identity endpoint with ID merge instead."
+              },
+              "response": [
+                {
+                  "id": "3060c845-263e-4a2b-ab8b-35372913c7ee",
+                  "name": "Alias created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"alias\": \"<string>\",\n  \"distinct_id\": \"<string>\",\n  \"$token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/identity/create-alias",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "identity",
+                        "create-alias"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": 1,\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:12:55.000Z",
+                  "updatedAt": "2026-06-05T15:12:55.000Z",
+                  "uid": "35240-3060c845-263e-4a2b-ab8b-35372913c7ee"
+                },
+                {
+                  "id": "156a3d89-5306-49bb-8fc1-25b96a3f8814",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"alias\": \"<string>\",\n  \"distinct_id\": \"<string>\",\n  \"$token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/identity/create-alias",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "identity",
+                        "create-alias"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:55.000Z",
+                  "updatedAt": "2026-06-05T15:12:55.000Z",
+                  "uid": "35240-156a3d89-5306-49bb-8fc1-25b96a3f8814"
+                },
+                {
+                  "id": "56c687be-0402-4b0a-ace7-fda901fd6fd4",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"alias\": \"<string>\",\n  \"distinct_id\": \"<string>\",\n  \"$token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/identity/create-alias",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "identity",
+                        "create-alias"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:55.000Z",
+                  "updatedAt": "2026-06-05T15:12:55.000Z",
+                  "uid": "35240-56c687be-0402-4b0a-ace7-fda901fd6fd4"
+                },
+                {
+                  "id": "b793e306-9d48-4759-a23d-0c21eea41a13",
+                  "name": "Rate limit exceeded",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"alias\": \"<string>\",\n  \"distinct_id\": \"<string>\",\n  \"$token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/identity/create-alias",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "identity",
+                        "create-alias"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:55.000Z",
+                  "updatedAt": "2026-06-05T15:12:55.000Z",
+                  "uid": "35240-b793e306-9d48-4759-a23d-0c21eea41a13"
+                }
+              ],
+              "createdAt": "2026-06-05T15:12:55.000Z",
+              "updatedAt": "2026-06-05T15:12:55.000Z",
+              "uid": "35240-3ffda254-32bc-4f98-9826-a3a32bc9bfdd"
+            }
+          ],
+          "id": "98e2dde3-119f-4178-a9e8-fb6b52095fd3",
+          "createdAt": "2026-06-05T15:12:55.000Z",
+          "updatedAt": "2026-06-05T15:12:55.000Z",
+          "uid": "35240-98e2dde3-119f-4178-a9e8-fb6b52095fd3"
+        },
+        {
+          "name": "merge",
+          "item": [
+            {
+              "name": "Mixpanel Merge identities",
+              "id": "3efbf77b-ec7e-4f64-a1ca-f0ee3099a488",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$distinct_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/identity/merge",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "identity",
+                    "merge"
+                  ]
+                },
+                "description": "Merge two distinct_id values into a single identity cluster. All events and profile data associated with both IDs will be combined. This operation is irreversible."
+              },
+              "response": [
+                {
+                  "id": "9725b284-dec5-4c33-8a4c-f8033f242177",
+                  "name": "Identities merged successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"$distinct_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/identity/merge",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "identity",
+                        "merge"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": 1,\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:12:55.000Z",
+                  "updatedAt": "2026-06-05T15:12:55.000Z",
+                  "uid": "35240-9725b284-dec5-4c33-8a4c-f8033f242177"
+                },
+                {
+                  "id": "b9499da8-54a1-4aec-b598-ad5ef946056f",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"$distinct_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/identity/merge",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "identity",
+                        "merge"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:55.000Z",
+                  "updatedAt": "2026-06-05T15:12:55.000Z",
+                  "uid": "35240-b9499da8-54a1-4aec-b598-ad5ef946056f"
+                },
+                {
+                  "id": "85e25ba4-4db4-4c67-9ede-49530a4967a2",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"$distinct_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/identity/merge",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "identity",
+                        "merge"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:55.000Z",
+                  "updatedAt": "2026-06-05T15:12:55.000Z",
+                  "uid": "35240-85e25ba4-4db4-4c67-9ede-49530a4967a2"
+                },
+                {
+                  "id": "87ff5273-0de6-4307-8c35-1d4836192a6e",
+                  "name": "Rate limit exceeded",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"$distinct_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/identity/merge",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "identity",
+                        "merge"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:12:55.000Z",
+                  "updatedAt": "2026-06-05T15:12:55.000Z",
+                  "uid": "35240-87ff5273-0de6-4307-8c35-1d4836192a6e"
+                }
+              ],
+              "createdAt": "2026-06-05T15:12:55.000Z",
+              "updatedAt": "2026-06-05T15:12:55.000Z",
+              "uid": "35240-3efbf77b-ec7e-4f64-a1ca-f0ee3099a488"
+            }
+          ],
+          "id": "6a564586-f1d1-4904-89e6-5e3b06237bb5",
+          "createdAt": "2026-06-05T15:12:55.000Z",
+          "updatedAt": "2026-06-05T15:12:55.000Z",
+          "uid": "35240-6a564586-f1d1-4904-89e6-5e3b06237bb5"
+        }
+      ],
+      "id": "5ccacdfd-83ee-4a64-85e0-9445fcc8c174",
+      "createdAt": "2026-06-05T15:12:55.000Z",
+      "updatedAt": "2026-06-05T15:12:55.000Z",
+      "uid": "35240-5ccacdfd-83ee-4a64-85e0-9445fcc8c174"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.mixpanel.com"
+    }
+  ]
+}

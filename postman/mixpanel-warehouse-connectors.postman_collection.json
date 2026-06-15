@@ -1,0 +1,1830 @@
+{
+  "info": {
+    "_postman_id": "9d3c0bea-a4c3-43b3-acbc-5cbd920a2368",
+    "name": "Mixpanel Warehouse Connectors API",
+    "description": "API for connecting a data warehouse to import events, users, groups, and lookup tables into Mixpanel, and for manually triggering specific warehouse import runs.\n\nContact Support:\n Name: Mixpanel Support\n Email: support@mixpanel.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:13:01.000Z",
+    "updatedAt": "2026-06-05T15:13:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9d3c0bea-a4c3-43b3-acbc-5cbd920a2368"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{projectId}",
+          "item": [
+            {
+              "name": "warehouse-sources",
+              "item": [
+                {
+                  "name": "{sourceId}",
+                  "item": [
+                    {
+                      "name": "tables",
+                      "item": [
+                        {
+                          "name": "Mixpanel List warehouse tables",
+                          "id": "8c83131d-0dfe-4345-90b9-0c06f5664ac4",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId/tables",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "warehouse-sources",
+                                ":sourceId",
+                                "tables"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "884e0894-981a-410e-be8d-42394b098d1c",
+                                  "key": "projectId",
+                                  "value": "<integer>",
+                                  "description": "(Required) The Mixpanel project ID"
+                                },
+                                {
+                                  "id": "d885a00e-7ecf-44cc-a6c6-c9c63560e9f5",
+                                  "key": "sourceId",
+                                  "value": "<string>",
+                                  "description": "(Required) The warehouse source connection ID"
+                                }
+                              ]
+                            },
+                            "description": "List all tables configured for import from a warehouse source."
+                          },
+                          "response": [
+                            {
+                              "id": "6f376bc8-ed6d-4e8a-bf17-49157b7ca999",
+                              "name": "List of configured tables",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId/tables",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "warehouse-sources",
+                                    ":sourceId",
+                                    "tables"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    },
+                                    {
+                                      "key": "sourceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"results\": [\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"user\",\n      \"rowCount\": \"<integer>\",\n      \"lastImportedAt\": \"<dateTime>\"\n    },\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"event\",\n      \"rowCount\": \"<integer>\",\n      \"lastImportedAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T15:13:01.000Z",
+                              "updatedAt": "2026-06-05T15:13:01.000Z",
+                              "uid": "35240-6f376bc8-ed6d-4e8a-bf17-49157b7ca999"
+                            },
+                            {
+                              "id": "d75f1145-396f-4431-859b-fa3c85eb5427",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId/tables",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "warehouse-sources",
+                                    ":sourceId",
+                                    "tables"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    },
+                                    {
+                                      "key": "sourceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:13:01.000Z",
+                              "updatedAt": "2026-06-05T15:13:01.000Z",
+                              "uid": "35240-d75f1145-396f-4431-859b-fa3c85eb5427"
+                            },
+                            {
+                              "id": "1567662e-898c-4754-896d-f505b9ca971a",
+                              "name": "Source not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId/tables",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "warehouse-sources",
+                                    ":sourceId",
+                                    "tables"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    },
+                                    {
+                                      "key": "sourceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:13:01.000Z",
+                              "updatedAt": "2026-06-05T15:13:01.000Z",
+                              "uid": "35240-1567662e-898c-4754-896d-f505b9ca971a"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:13:01.000Z",
+                          "updatedAt": "2026-06-05T15:13:01.000Z",
+                          "uid": "35240-8c83131d-0dfe-4345-90b9-0c06f5664ac4"
+                        }
+                      ],
+                      "id": "a2e14c3a-2070-493f-a76f-92f1cd04e0fd",
+                      "createdAt": "2026-06-05T15:13:01.000Z",
+                      "updatedAt": "2026-06-05T15:13:01.000Z",
+                      "uid": "35240-a2e14c3a-2070-493f-a76f-92f1cd04e0fd"
+                    },
+                    {
+                      "name": "runs",
+                      "item": [
+                        {
+                          "name": "Mixpanel List import runs",
+                          "id": "fd33402a-7757-4149-bb41-88744442fd83",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId/runs",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "warehouse-sources",
+                                ":sourceId",
+                                "runs"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a76ff66e-3e21-48e5-9cc4-eeb6b8354c2a",
+                                  "key": "projectId",
+                                  "value": "<integer>",
+                                  "description": "(Required) The Mixpanel project ID"
+                                },
+                                {
+                                  "id": "5dfbd463-7566-41c0-8d6d-135e36c23108",
+                                  "key": "sourceId",
+                                  "value": "<string>",
+                                  "description": "(Required) The warehouse source connection ID"
+                                }
+                              ]
+                            },
+                            "description": "Retrieve the import run history for a specific warehouse source."
+                          },
+                          "response": [
+                            {
+                              "id": "b6f37c83-1afb-4c8d-b4ba-a964d92b9beb",
+                              "name": "List of import runs",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId/runs",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "warehouse-sources",
+                                    ":sourceId",
+                                    "runs"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    },
+                                    {
+                                      "key": "sourceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"status\": \"completed\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"recordsImported\": \"<integer>\",\n      \"errors\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"status\": \"completed\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"recordsImported\": \"<integer>\",\n      \"errors\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T15:13:01.000Z",
+                              "updatedAt": "2026-06-05T15:13:01.000Z",
+                              "uid": "35240-b6f37c83-1afb-4c8d-b4ba-a964d92b9beb"
+                            },
+                            {
+                              "id": "b918c9a3-c070-4ce0-8b7d-aa9d111fed4b",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId/runs",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "warehouse-sources",
+                                    ":sourceId",
+                                    "runs"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    },
+                                    {
+                                      "key": "sourceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:13:01.000Z",
+                              "updatedAt": "2026-06-05T15:13:01.000Z",
+                              "uid": "35240-b918c9a3-c070-4ce0-8b7d-aa9d111fed4b"
+                            },
+                            {
+                              "id": "80b785d3-ad99-47f0-8efe-3b84f5feac42",
+                              "name": "Source not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId/runs",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "warehouse-sources",
+                                    ":sourceId",
+                                    "runs"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    },
+                                    {
+                                      "key": "sourceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:13:01.000Z",
+                              "updatedAt": "2026-06-05T15:13:01.000Z",
+                              "uid": "35240-80b785d3-ad99-47f0-8efe-3b84f5feac42"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:13:01.000Z",
+                          "updatedAt": "2026-06-05T15:13:01.000Z",
+                          "uid": "35240-fd33402a-7757-4149-bb41-88744442fd83"
+                        },
+                        {
+                          "name": "Mixpanel Trigger import run",
+                          "id": "fd7a3b6e-4652-4f6e-930f-05b6a5495a22",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId/runs",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "warehouse-sources",
+                                ":sourceId",
+                                "runs"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "6f4869cd-62d8-4ffc-af46-efed8cd06237",
+                                  "key": "projectId",
+                                  "value": "<integer>",
+                                  "description": "(Required) The Mixpanel project ID"
+                                },
+                                {
+                                  "id": "4441e3a6-7107-4f71-bb34-ae863856669f",
+                                  "key": "sourceId",
+                                  "value": "<string>",
+                                  "description": "(Required) The warehouse source connection ID"
+                                }
+                              ]
+                            },
+                            "description": "Manually trigger an import run for a warehouse source connection."
+                          },
+                          "response": [
+                            {
+                              "id": "d8870dad-985c-41d3-baa9-399626e676db",
+                              "name": "Import run triggered",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId/runs",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "warehouse-sources",
+                                    ":sourceId",
+                                    "runs"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    },
+                                    {
+                                      "key": "sourceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"running\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"recordsImported\": \"<integer>\",\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "createdAt": "2026-06-05T15:13:01.000Z",
+                              "updatedAt": "2026-06-05T15:13:01.000Z",
+                              "uid": "35240-d8870dad-985c-41d3-baa9-399626e676db"
+                            },
+                            {
+                              "id": "2a59c1eb-3118-4c19-940a-9d08b0583017",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId/runs",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "warehouse-sources",
+                                    ":sourceId",
+                                    "runs"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    },
+                                    {
+                                      "key": "sourceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:13:01.000Z",
+                              "updatedAt": "2026-06-05T15:13:01.000Z",
+                              "uid": "35240-2a59c1eb-3118-4c19-940a-9d08b0583017"
+                            },
+                            {
+                              "id": "4c98507f-cde2-44e0-8b32-6df5a6bd88d9",
+                              "name": "Source not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId/runs",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "warehouse-sources",
+                                    ":sourceId",
+                                    "runs"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    },
+                                    {
+                                      "key": "sourceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:13:01.000Z",
+                              "updatedAt": "2026-06-05T15:13:01.000Z",
+                              "uid": "35240-4c98507f-cde2-44e0-8b32-6df5a6bd88d9"
+                            },
+                            {
+                              "id": "452d5046-8037-49ed-a0af-07bef8b3fb44",
+                              "name": "Rate limit exceeded - too many runs triggered",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId/runs",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "warehouse-sources",
+                                    ":sourceId",
+                                    "runs"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    },
+                                    {
+                                      "key": "sourceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:13:01.000Z",
+                              "updatedAt": "2026-06-05T15:13:01.000Z",
+                              "uid": "35240-452d5046-8037-49ed-a0af-07bef8b3fb44"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:13:01.000Z",
+                          "updatedAt": "2026-06-05T15:13:01.000Z",
+                          "uid": "35240-fd7a3b6e-4652-4f6e-930f-05b6a5495a22"
+                        }
+                      ],
+                      "id": "2d0bf429-efaa-4f37-a715-89cef5e2f8aa",
+                      "createdAt": "2026-06-05T15:13:01.000Z",
+                      "updatedAt": "2026-06-05T15:13:01.000Z",
+                      "uid": "35240-2d0bf429-efaa-4f37-a715-89cef5e2f8aa"
+                    },
+                    {
+                      "name": "Mixpanel Get warehouse source",
+                      "id": "87364245-3d1f-46b1-80d3-27a94dccac6d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "warehouse-sources",
+                            ":sourceId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "193f97cc-c15c-491f-a2ba-36db5cf63279",
+                              "key": "projectId",
+                              "value": "<integer>",
+                              "description": "(Required) The Mixpanel project ID"
+                            },
+                            {
+                              "id": "7cf46b61-b199-40ab-b042-0c9fe112dbdc",
+                              "key": "sourceId",
+                              "value": "<string>",
+                              "description": "(Required) The warehouse source connection ID"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve details of a specific warehouse source connection."
+                      },
+                      "response": [
+                        {
+                          "id": "b7fa3887-ae61-4e0a-be9b-c27617803c2d",
+                          "name": "Warehouse source details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "warehouse-sources",
+                                ":sourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "sourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"databricks\",\n  \"status\": \"error\",\n  \"schedule\": \"weekly\",\n  \"createdAt\": \"<dateTime>\",\n  \"lastRunAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:13:01.000Z",
+                          "updatedAt": "2026-06-05T15:13:01.000Z",
+                          "uid": "35240-b7fa3887-ae61-4e0a-be9b-c27617803c2d"
+                        },
+                        {
+                          "id": "b423575d-e88a-4b0f-b94d-c4308fe7a6a5",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "warehouse-sources",
+                                ":sourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "sourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:13:01.000Z",
+                          "updatedAt": "2026-06-05T15:13:01.000Z",
+                          "uid": "35240-b423575d-e88a-4b0f-b94d-c4308fe7a6a5"
+                        },
+                        {
+                          "id": "1ecdf9b5-8b84-46dd-9581-f47479a8a1a3",
+                          "name": "Source not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "warehouse-sources",
+                                ":sourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "sourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:13:01.000Z",
+                          "updatedAt": "2026-06-05T15:13:01.000Z",
+                          "uid": "35240-1ecdf9b5-8b84-46dd-9581-f47479a8a1a3"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:13:01.000Z",
+                      "updatedAt": "2026-06-05T15:13:01.000Z",
+                      "uid": "35240-87364245-3d1f-46b1-80d3-27a94dccac6d"
+                    },
+                    {
+                      "name": "Mixpanel Update warehouse source",
+                      "id": "f71fcb7f-81ea-4d6b-8861-cb95415cf59c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"schedule\": \"hourly\",\n  \"tables\": [\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"user\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    },\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"user\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "warehouse-sources",
+                            ":sourceId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "59668147-85be-498b-bd2d-4253ad6d079c",
+                              "key": "projectId",
+                              "value": "<integer>",
+                              "description": "(Required) The Mixpanel project ID"
+                            },
+                            {
+                              "id": "b71f63bb-fd28-417a-a253-f18bcbd6e35e",
+                              "key": "sourceId",
+                              "value": "<string>",
+                              "description": "(Required) The warehouse source connection ID"
+                            }
+                          ]
+                        },
+                        "description": "Update the configuration of an existing warehouse source connection."
+                      },
+                      "response": [
+                        {
+                          "id": "aacbff4d-ae1a-4d4e-95b6-1c95a6bba745",
+                          "name": "Warehouse source updated",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"schedule\": \"hourly\",\n  \"tables\": [\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"user\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    },\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"user\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "warehouse-sources",
+                                ":sourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "sourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"databricks\",\n  \"status\": \"error\",\n  \"schedule\": \"weekly\",\n  \"createdAt\": \"<dateTime>\",\n  \"lastRunAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:13:01.000Z",
+                          "updatedAt": "2026-06-05T15:13:01.000Z",
+                          "uid": "35240-aacbff4d-ae1a-4d4e-95b6-1c95a6bba745"
+                        },
+                        {
+                          "id": "72742807-ffb3-47e0-9698-f3d301aee0bc",
+                          "name": "Invalid request",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"schedule\": \"hourly\",\n  \"tables\": [\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"user\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    },\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"user\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "warehouse-sources",
+                                ":sourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "sourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:13:01.000Z",
+                          "updatedAt": "2026-06-05T15:13:01.000Z",
+                          "uid": "35240-72742807-ffb3-47e0-9698-f3d301aee0bc"
+                        },
+                        {
+                          "id": "b8000549-93ce-4eb4-afea-6a4eda815a21",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"schedule\": \"hourly\",\n  \"tables\": [\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"user\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    },\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"user\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "warehouse-sources",
+                                ":sourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "sourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:13:01.000Z",
+                          "updatedAt": "2026-06-05T15:13:01.000Z",
+                          "uid": "35240-b8000549-93ce-4eb4-afea-6a4eda815a21"
+                        },
+                        {
+                          "id": "d064b173-4142-40e0-a7cd-b8bcec38b280",
+                          "name": "Source not found",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"schedule\": \"hourly\",\n  \"tables\": [\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"user\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    },\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"user\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "warehouse-sources",
+                                ":sourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "sourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:13:01.000Z",
+                          "updatedAt": "2026-06-05T15:13:01.000Z",
+                          "uid": "35240-d064b173-4142-40e0-a7cd-b8bcec38b280"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:13:01.000Z",
+                      "updatedAt": "2026-06-05T15:13:01.000Z",
+                      "uid": "35240-f71fcb7f-81ea-4d6b-8861-cb95415cf59c"
+                    },
+                    {
+                      "name": "Mixpanel Delete warehouse source",
+                      "id": "78cda67e-9de7-41f2-9c15-64bdd89c6a66",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "warehouse-sources",
+                            ":sourceId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "84946327-8ac9-4c58-a0de-60bb81161ff8",
+                              "key": "projectId",
+                              "value": "<integer>",
+                              "description": "(Required) The Mixpanel project ID"
+                            },
+                            {
+                              "id": "1ebfe6da-f3ea-4a1f-9bb6-98ba0ce95bf1",
+                              "key": "sourceId",
+                              "value": "<string>",
+                              "description": "(Required) The warehouse source connection ID"
+                            }
+                          ]
+                        },
+                        "description": "Delete a warehouse source connection and all its import configurations."
+                      },
+                      "response": [
+                        {
+                          "id": "eeeb9153-67b1-41b9-8404-3d97c1e2cf8c",
+                          "name": "Warehouse source deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "warehouse-sources",
+                                ":sourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "sourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:13:01.000Z",
+                          "updatedAt": "2026-06-05T15:13:01.000Z",
+                          "uid": "35240-eeeb9153-67b1-41b9-8404-3d97c1e2cf8c"
+                        },
+                        {
+                          "id": "d4f2eb99-8c9d-433d-9d8d-b807afed29b6",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "warehouse-sources",
+                                ":sourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "sourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:13:01.000Z",
+                          "updatedAt": "2026-06-05T15:13:01.000Z",
+                          "uid": "35240-d4f2eb99-8c9d-433d-9d8d-b807afed29b6"
+                        },
+                        {
+                          "id": "caf8376f-da09-4387-896b-7c391ac975df",
+                          "name": "Source not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources/:sourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "warehouse-sources",
+                                ":sourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "sourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:13:01.000Z",
+                          "updatedAt": "2026-06-05T15:13:01.000Z",
+                          "uid": "35240-caf8376f-da09-4387-896b-7c391ac975df"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:13:01.000Z",
+                      "updatedAt": "2026-06-05T15:13:01.000Z",
+                      "uid": "35240-78cda67e-9de7-41f2-9c15-64bdd89c6a66"
+                    }
+                  ],
+                  "id": "34e7a2a6-1f1c-4041-bcbb-0b751fc89988",
+                  "createdAt": "2026-06-05T15:13:01.000Z",
+                  "updatedAt": "2026-06-05T15:13:01.000Z",
+                  "uid": "35240-34e7a2a6-1f1c-4041-bcbb-0b751fc89988"
+                },
+                {
+                  "name": "Mixpanel List warehouse sources",
+                  "id": "7c1c4c43-601d-4083-8656-4f47e3c3815a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "warehouse-sources"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d28d2700-95f7-4ec4-a416-c3353faacdce",
+                          "key": "projectId",
+                          "value": "<integer>",
+                          "description": "(Required) The Mixpanel project ID"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all warehouse source connections configured for the project."
+                  },
+                  "response": [
+                    {
+                      "id": "d253f5ca-3cf5-4533-8835-e81b5d2d00ae",
+                      "name": "List of warehouse sources",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "warehouse-sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"bigquery\",\n      \"status\": \"paused\",\n      \"schedule\": \"daily\",\n      \"createdAt\": \"<dateTime>\",\n      \"lastRunAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"snowflake\",\n      \"status\": \"error\",\n      \"schedule\": \"daily\",\n      \"createdAt\": \"<dateTime>\",\n      \"lastRunAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:13:01.000Z",
+                      "updatedAt": "2026-06-05T15:13:01.000Z",
+                      "uid": "35240-d253f5ca-3cf5-4533-8835-e81b5d2d00ae"
+                    },
+                    {
+                      "id": "69eb132f-c3ec-49ec-973e-6225e659109a",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "warehouse-sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:13:01.000Z",
+                      "updatedAt": "2026-06-05T15:13:01.000Z",
+                      "uid": "35240-69eb132f-c3ec-49ec-973e-6225e659109a"
+                    },
+                    {
+                      "id": "602f8272-a178-41da-89f0-fba5aaae6ad1",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "warehouse-sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:13:01.000Z",
+                      "updatedAt": "2026-06-05T15:13:01.000Z",
+                      "uid": "35240-602f8272-a178-41da-89f0-fba5aaae6ad1"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:01.000Z",
+                  "updatedAt": "2026-06-05T15:13:01.000Z",
+                  "uid": "35240-7c1c4c43-601d-4083-8656-4f47e3c3815a"
+                },
+                {
+                  "name": "Mixpanel Create warehouse source",
+                  "id": "8ce51771-a104-4434-a7ef-e2875150108a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"snowflake\",\n  \"connectionDetails\": {\n    \"reprehenderitad\": \"qui e\",\n    \"fugiat__\": 17756398\n  },\n  \"schedule\": \"hourly\",\n  \"tables\": [\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"group\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    },\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"lookup_table\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "warehouse-sources"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5b745de0-ae56-49b9-a5bf-e7a6fa069866",
+                          "key": "projectId",
+                          "value": "<integer>",
+                          "description": "(Required) The Mixpanel project ID"
+                        }
+                      ]
+                    },
+                    "description": "Create a new warehouse source connection for importing data from a data warehouse into Mixpanel."
+                  },
+                  "response": [
+                    {
+                      "id": "35a2ed02-32da-4445-81e3-f6e7cf681753",
+                      "name": "Warehouse source created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"snowflake\",\n  \"connectionDetails\": {\n    \"reprehenderitad\": \"qui e\",\n    \"fugiat__\": 17756398\n  },\n  \"schedule\": \"hourly\",\n  \"tables\": [\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"group\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    },\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"lookup_table\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "warehouse-sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"databricks\",\n  \"status\": \"error\",\n  \"schedule\": \"weekly\",\n  \"createdAt\": \"<dateTime>\",\n  \"lastRunAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T15:13:01.000Z",
+                      "updatedAt": "2026-06-05T15:13:01.000Z",
+                      "uid": "35240-35a2ed02-32da-4445-81e3-f6e7cf681753"
+                    },
+                    {
+                      "id": "490ebe33-e2da-4b7f-a9f6-99c1d04c2c24",
+                      "name": "Invalid configuration",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"snowflake\",\n  \"connectionDetails\": {\n    \"reprehenderitad\": \"qui e\",\n    \"fugiat__\": 17756398\n  },\n  \"schedule\": \"hourly\",\n  \"tables\": [\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"group\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    },\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"lookup_table\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "warehouse-sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:13:01.000Z",
+                      "updatedAt": "2026-06-05T15:13:01.000Z",
+                      "uid": "35240-490ebe33-e2da-4b7f-a9f6-99c1d04c2c24"
+                    },
+                    {
+                      "id": "56c7ca8e-1bb9-4fb7-8d6f-b884a3f3fc9a",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"snowflake\",\n  \"connectionDetails\": {\n    \"reprehenderitad\": \"qui e\",\n    \"fugiat__\": 17756398\n  },\n  \"schedule\": \"hourly\",\n  \"tables\": [\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"group\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    },\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"lookup_table\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "warehouse-sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:13:01.000Z",
+                      "updatedAt": "2026-06-05T15:13:01.000Z",
+                      "uid": "35240-56c7ca8e-1bb9-4fb7-8d6f-b884a3f3fc9a"
+                    },
+                    {
+                      "id": "c08b3af8-8a0c-4f60-9cb1-c20623734d64",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"snowflake\",\n  \"connectionDetails\": {\n    \"reprehenderitad\": \"qui e\",\n    \"fugiat__\": 17756398\n  },\n  \"schedule\": \"hourly\",\n  \"tables\": [\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"group\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    },\n    {\n      \"tableName\": \"<string>\",\n      \"importType\": \"lookup_table\",\n      \"eventNameColumn\": \"<string>\",\n      \"distinctIdColumn\": \"<string>\",\n      \"timeColumn\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/warehouse-sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "warehouse-sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:13:01.000Z",
+                      "updatedAt": "2026-06-05T15:13:01.000Z",
+                      "uid": "35240-c08b3af8-8a0c-4f60-9cb1-c20623734d64"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:01.000Z",
+                  "updatedAt": "2026-06-05T15:13:01.000Z",
+                  "uid": "35240-8ce51771-a104-4434-a7ef-e2875150108a"
+                }
+              ],
+              "id": "fda546bc-b66d-4e1a-868a-0b0a71a02f03",
+              "createdAt": "2026-06-05T15:13:01.000Z",
+              "updatedAt": "2026-06-05T15:13:01.000Z",
+              "uid": "35240-fda546bc-b66d-4e1a-868a-0b0a71a02f03"
+            }
+          ],
+          "id": "dd7e9170-c267-4916-b76a-56a5aa6006ca",
+          "createdAt": "2026-06-05T15:13:01.000Z",
+          "updatedAt": "2026-06-05T15:13:01.000Z",
+          "uid": "35240-dd7e9170-c267-4916-b76a-56a5aa6006ca"
+        }
+      ],
+      "id": "4f6d73f1-5d74-4311-b34f-72d767323b2e",
+      "createdAt": "2026-06-05T15:13:01.000Z",
+      "updatedAt": "2026-06-05T15:13:01.000Z",
+      "uid": "35240-4f6d73f1-5d74-4311-b34f-72d767323b2e"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://mixpanel.com/api/app"
+    }
+  ]
+}

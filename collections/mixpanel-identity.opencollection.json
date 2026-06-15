@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Identity API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Create identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mixpanel.com/identity/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an identity mapping between an anonymous (device) ID and an identified (user) ID. This links pre-login anonymous activity to a known user."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Create alias",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mixpanel.com/identity/create-alias",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an alias that maps one distinct_id to another. This is a legacy method for identity management. For new implementations, use the create identity endpoint with ID merge instead."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Merge identities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mixpanel.com/identity/merge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Merge two distinct_id values into a single identity cluster. All events and profile data associated with both IDs will be combined. This operation is irreversible."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
