@@ -257,62 +257,48 @@ apis:
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/mixpanel/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/mixpanel-cohort-driven-segmentation-workflow.yml
-    name: Mixpanel Cohort-Driven Segmentation
-    summary: List project cohorts then segment an event filtered to a chosen cohort.
-  - url: arazzo/mixpanel-funnel-analysis-workflow.yml
-    name: Mixpanel Funnel Analysis and Annotate
-    summary: Find a saved funnel, query its conversion data, and annotate the chart.
-  - url: arazzo/mixpanel-gdpr-deletion-flow-workflow.yml
-    name: Mixpanel GDPR Data Deletion Flow
-    summary: Submit a GDPR/CCPA deletion request and poll its task status, branching
-      on completion.
-  - url: arazzo/mixpanel-gdpr-retrieval-flow-workflow.yml
-    name: Mixpanel GDPR Data Retrieval Flow
-    summary: Submit a GDPR/CCPA retrieval request and poll for the download URL, branching
-      on completion.
-  - url: arazzo/mixpanel-group-profile-and-insights-workflow.yml
-    name: Mixpanel Update Group Profile and Query Insights
-    summary: Set properties on a group profile and then read insights for the project.
-  - url: arazzo/mixpanel-identity-resolve-and-track-workflow.yml
-    name: Mixpanel Resolve Identity and Track
-    summary: Link an anonymous ID to a known user, track an event, then segment that
-      event.
-  - url: arazzo/mixpanel-import-and-export-workflow.yml
-    name: Mixpanel Import Events and Export Raw
-    summary: Bulk-import historical events into Mixpanel and then export the raw events
-      back out.
-  - url: arazzo/mixpanel-lookup-table-enrichment-workflow.yml
-    name: Mixpanel Refresh Lookup Table and Track Enriched Event
-    summary: Refresh a lookup table's CSV contents then track an event that references
-      the join key.
-  - url: arazzo/mixpanel-numeric-metric-monitor-workflow.yml
-    name: Mixpanel Numeric Metric Monitor and Annotate
-    summary: Compute the sum and average of a numeric event property, then annotate
-      the period.
-  - url: arazzo/mixpanel-profile-and-engage-query-workflow.yml
-    name: Mixpanel Update Profile and Query Engagement
-    summary: Set a user's People profile and then query an engagement event for that
-      activity.
-  - url: arazzo/mixpanel-retention-with-annotation-workflow.yml
-    name: Mixpanel Annotate Release and Measure Retention
-    summary: Mark a release on the timeline and then measure retention from that born
-      event.
-  - url: arazzo/mixpanel-schema-governance-workflow.yml
-    name: Mixpanel Schema Governance and Verify
-    summary: List event schemas, create or update a schema entry, then segment the
-      governed event.
-  - url: arazzo/mixpanel-track-and-segment-workflow.yml
-    name: Mixpanel Track Event and Segment
-    summary: Send a live event to Mixpanel and then segment that event over a date
-      range.
-  - url: arazzo/mixpanel-warehouse-import-run-workflow.yml
-    name: Mixpanel Provision Warehouse Source and Trigger Import
-    summary: Create a warehouse source connection, trigger an import run, and read
-      the run history.
+- type: Arazzo
+  url: arazzo/mixpanel-cohort-driven-segmentation-workflow.yml
+  name: Mixpanel Cohort-Driven Segmentation
+- type: Arazzo
+  url: arazzo/mixpanel-funnel-analysis-workflow.yml
+  name: Mixpanel Funnel Analysis and Annotate
+- type: Arazzo
+  url: arazzo/mixpanel-gdpr-deletion-flow-workflow.yml
+  name: Mixpanel GDPR Data Deletion Flow
+- type: Arazzo
+  url: arazzo/mixpanel-gdpr-retrieval-flow-workflow.yml
+  name: Mixpanel GDPR Data Retrieval Flow
+- type: Arazzo
+  url: arazzo/mixpanel-group-profile-and-insights-workflow.yml
+  name: Mixpanel Update Group Profile and Query Insights
+- type: Arazzo
+  url: arazzo/mixpanel-identity-resolve-and-track-workflow.yml
+  name: Mixpanel Resolve Identity and Track
+- type: Arazzo
+  url: arazzo/mixpanel-import-and-export-workflow.yml
+  name: Mixpanel Import Events and Export Raw
+- type: Arazzo
+  url: arazzo/mixpanel-lookup-table-enrichment-workflow.yml
+  name: Mixpanel Refresh Lookup Table and Track Enriched Event
+- type: Arazzo
+  url: arazzo/mixpanel-numeric-metric-monitor-workflow.yml
+  name: Mixpanel Numeric Metric Monitor and Annotate
+- type: Arazzo
+  url: arazzo/mixpanel-profile-and-engage-query-workflow.yml
+  name: Mixpanel Update Profile and Query Engagement
+- type: Arazzo
+  url: arazzo/mixpanel-retention-with-annotation-workflow.yml
+  name: Mixpanel Annotate Release and Measure Retention
+- type: Arazzo
+  url: arazzo/mixpanel-schema-governance-workflow.yml
+  name: Mixpanel Schema Governance and Verify
+- type: Arazzo
+  url: arazzo/mixpanel-track-and-segment-workflow.yml
+  name: Mixpanel Track Event and Segment
+- type: Arazzo
+  url: arazzo/mixpanel-warehouse-import-run-workflow.yml
+  name: Mixpanel Provision Warehouse Source and Trigger Import
 - type: LinkedIn
   url: https://www.linkedin.com/company/mixpanel-inc-
 - type: Portal
@@ -337,7 +323,7 @@ common:
   url: https://mixpanel.com/legal/security-overview/
 - type: Login
   url: https://mixpanel.com/login/
-- type: SignUp
+- type: Signup
   url: https://mixpanel.com/register/
 - type: TermsOfService
   url: https://mixpanel.com/legal/terms-of-use
@@ -383,8 +369,8 @@ common:
   type: MCPServer
 - name: Agent Skills
   url: https://github.com/mixpanel/ai-plugins
-  type: AgentSkill
-- type: LLMsTxt
+  type: AgentSkills
+- type: LlmsText
   url: https://developer.mixpanel.com/llms.txt
 integrations:
 - name: Become a Partner
