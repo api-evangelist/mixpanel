@@ -1,0 +1,40 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/mixpanel-annotations-openapi.yml, openapi/mixpanel-data-pipelines-openapi.yml,
+  openapi/mixpanel-event-export-openapi.yml, openapi/mixpanel-gdpr-ccpa-openapi.yml, openapi/mixpanel-identity-openapi.yml,
+  openapi/mixpanel-ingestion-openapi.yml, openapi/mixpanel-lexicon-schemas-openapi.yml, openapi/mixpanel-query-openapi.yml,
+  openapi/mixpanel-service-accounts-openapi.yml, openapi/mixpanel-warehouse-connectors-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - query
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: Service account credentials for API authentication.
+  sources:
+  - openapi/mixpanel-annotations-openapi.yml
+  - openapi/mixpanel-data-pipelines-openapi.yml
+  - openapi/mixpanel-event-export-openapi.yml
+  - openapi/mixpanel-identity-openapi.yml
+  - openapi/mixpanel-ingestion-openapi.yml
+  - openapi/mixpanel-lexicon-schemas-openapi.yml
+  - openapi/mixpanel-query-openapi.yml
+  - openapi/mixpanel-service-accounts-openapi.yml
+  - openapi/mixpanel-warehouse-connectors-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: OAuth 2.0 bearer token for GDPR API authentication.
+  sources:
+  - openapi/mixpanel-gdpr-ccpa-openapi.yml
+- name: projectToken
+  type: apiKey
+  in: query
+  parameter: token
+  description: Mixpanel project token for client-side tracking
+  sources:
+  - openapi/mixpanel-ingestion-openapi.yml

@@ -255,6 +255,12 @@ apis:
     email: support@mixpanel.com
     url: https://mixpanel.com/get-support
 common:
+- type: VulnerabilityDisclosure
+  url: security/mixpanel-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/mixpanel-domain-security.yml
+- type: Authentication
+  url: authentication/mixpanel-authentication.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/mixpanel/overview
 - type: Arazzo
