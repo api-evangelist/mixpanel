@@ -2,11 +2,13 @@
   "repo": "mixpanel",
   "feeds": [
     {
-      "source": "https://mixpanel.com/blog",
+      "source": "https://mixpanel.com/pricing",
+      "feed_url": "https://mixpanel.com/pricing",
+      "title": "",
       "saved": 0,
-      "error": "blog listing returned no usable content (empty body / 404 on pagination)"
+      "method": "none"
     }
   ],
-  "fetched": "2026-06-27T12:54:28Z",
+  "fetched": "2026-07-11T11:50:51Z",
   "post_count": 0
 }
