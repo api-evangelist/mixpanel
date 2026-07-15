@@ -255,6 +255,8 @@ apis:
     email: support@mixpanel.com
     url: https://mixpanel.com/get-support
 common:
+- type: AgenticAccess
+  url: agentic-access/mixpanel-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/mixpanel-vulnerability-disclosure.yml
 - type: DomainSecurity
