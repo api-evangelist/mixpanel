@@ -1,0 +1,261 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Annotations Segmentation API
+  description: API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
+  version: '1.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+servers:
+- url: https://mixpanel.com/api/app
+  description: Mixpanel US Data Residency
+- url: https://eu.mixpanel.com/api/app
+  description: Mixpanel EU Data Residency
+security:
+- basicAuth: []
+tags:
+- name: Segmentation
+  description: Query event segmentation data over time
+paths:
+  /segmentation:
+    get:
+      operationId: querySegmentation
+      summary: Mixpanel Query event segmentation
+      description: Query event counts over a time range, optionally segmented by a property. Returns time series data.
+      tags:
+      - Segmentation
+      parameters:
+      - name: project_id
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: The Mixpanel project ID
+      - name: event
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The event name to query
+      - name: from_date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        description: Start date (YYYY-MM-DD)
+      - name: to_date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        description: End date (YYYY-MM-DD)
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - general
+          - unique
+          - average
+        description: Aggregation type - general (total count), unique (unique users), or average (average per user)
+      - name: 'on'
+        in: query
+        schema:
+          type: string
+        description: Property expression to segment results by
+      - name: where
+        in: query
+        schema:
+          type: string
+        description: Expression to filter events
+      - name: unit
+        in: query
+        schema:
+          type: string
+          enum:
+          - minute
+          - hour
+          - day
+          - week
+          - month
+        description: Time granularity for the results
+      - name: limit
+        in: query
+        schema:
+          type: integer
+        description: Maximum number of segment values
+      responses:
+        '200':
+          description: Segmentation query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentationResponse'
+        '400':
+          description: Invalid query parameters
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+  /segmentation/sum:
+    get:
+      operationId: querySegmentationSum
+      summary: Mixpanel Query numeric property sum
+      description: Query the sum of a numeric event property over a time range.
+      tags:
+      - Segmentation
+      parameters:
+      - name: project_id
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: The Mixpanel project ID
+      - name: event
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The event name to query
+      - name: from_date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        description: Start date (YYYY-MM-DD)
+      - name: to_date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        description: End date (YYYY-MM-DD)
+      - name: 'on'
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The numeric property to sum
+      - name: where
+        in: query
+        schema:
+          type: string
+        description: Expression to filter events
+      - name: unit
+        in: query
+        schema:
+          type: string
+          enum:
+          - minute
+          - hour
+          - day
+          - week
+          - month
+        description: Time granularity for the results
+      responses:
+        '200':
+          description: Segmentation sum results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentationResponse'
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+  /segmentation/average:
+    get:
+      operationId: querySegmentationAverage
+      summary: Mixpanel Query numeric property average
+      description: Query the average of a numeric event property over a time range.
+      tags:
+      - Segmentation
+      parameters:
+      - name: project_id
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: The Mixpanel project ID
+      - name: event
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The event name to query
+      - name: from_date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        description: Start date (YYYY-MM-DD)
+      - name: to_date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        description: End date (YYYY-MM-DD)
+      - name: 'on'
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The numeric property to average
+      - name: unit
+        in: query
+        schema:
+          type: string
+          enum:
+          - minute
+          - hour
+          - day
+          - week
+          - month
+        description: Time granularity for the results
+      responses:
+        '200':
+          description: Segmentation average results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentationResponse'
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+components:
+  schemas:
+    SegmentationResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            series:
+              type: array
+              items:
+                type: string
+                format: date
+              description: Dates in the time series
+            values:
+              type: object
+              additionalProperties:
+                type: object
+                additionalProperties:
+                  type: number
+              description: Values keyed by segment name and date
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Service account credentials for API authentication.
+externalDocs:
+  description: Mixpanel Annotations API Documentation
+  url: https://developer.mixpanel.com/reference/create-annotation

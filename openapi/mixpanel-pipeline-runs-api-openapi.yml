@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Annotations Pipeline Runs API
+  description: API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
+  version: '1.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+servers:
+- url: https://mixpanel.com/api/app
+  description: Mixpanel US Data Residency
+- url: https://eu.mixpanel.com/api/app
+  description: Mixpanel EU Data Residency
+security:
+- basicAuth: []
+tags:
+- name: Pipeline Runs
+  description: Monitor and manage pipeline execution runs
+paths:
+  /nessie/pipeline/runs:
+    get:
+      operationId: listPipelineRuns
+      summary: Mixpanel List pipeline runs
+      description: Retrieve the execution history for a specific pipeline.
+      tags:
+      - Pipeline Runs
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Pipeline ID
+      responses:
+        '200':
+          description: List of pipeline runs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PipelineRun'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Pipeline not found
+components:
+  parameters:
+    projectId:
+      name: project_id
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel project ID
+  schemas:
+    PipelineRun:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Run identifier
+        pipelineId:
+          type: string
+          description: Parent pipeline ID
+        status:
+          type: string
+          enum:
+          - running
+          - completed
+          - failed
+          description: Run status
+        startTime:
+          type: string
+          format: date-time
+          description: When the run started
+        endTime:
+          type: string
+          format: date-time
+          description: When the run completed
+        recordsExported:
+          type: integer
+          description: Number of records exported in this run
+        error:
+          type: string
+          description: Error message if the run failed
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Service account credentials for API authentication.
+externalDocs:
+  description: Mixpanel Annotations API Documentation
+  url: https://developer.mixpanel.com/reference/create-annotation

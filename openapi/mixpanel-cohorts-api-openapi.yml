@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Annotations Cohorts API
+  description: API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
+  version: '1.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+servers:
+- url: https://mixpanel.com/api/app
+  description: Mixpanel US Data Residency
+- url: https://eu.mixpanel.com/api/app
+  description: Mixpanel EU Data Residency
+security:
+- basicAuth: []
+tags:
+- name: Cohorts
+  description: Manage and query user cohorts
+paths:
+  /cohorts/list:
+    get:
+      operationId: listCohorts
+      summary: Mixpanel List cohorts
+      description: Retrieve a list of all cohorts defined in the project.
+      tags:
+      - Cohorts
+      parameters:
+      - name: project_id
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: The Mixpanel project ID
+      responses:
+        '200':
+          description: List of cohorts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cohort'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Cohort:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique cohort identifier
+        name:
+          type: string
+          description: Cohort name
+        description:
+          type: string
+          description: Cohort description
+        count:
+          type: integer
+          description: Number of users in the cohort
+        created:
+          type: string
+          format: date-time
+          description: When the cohort was created
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Service account credentials for API authentication.
+externalDocs:
+  description: Mixpanel Annotations API Documentation
+  url: https://developer.mixpanel.com/reference/create-annotation

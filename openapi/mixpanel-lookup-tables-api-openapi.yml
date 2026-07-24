@@ -1,0 +1,135 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Annotations Lookup Tables API
+  description: API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
+  version: '1.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+servers:
+- url: https://mixpanel.com/api/app
+  description: Mixpanel US Data Residency
+- url: https://eu.mixpanel.com/api/app
+  description: Mixpanel EU Data Residency
+security:
+- basicAuth: []
+tags:
+- name: Lookup Tables
+  description: Manage lookup tables for data enrichment
+paths:
+  /lookup-tables:
+    get:
+      operationId: listLookupTables
+      summary: Mixpanel List lookup tables
+      description: Retrieve all lookup tables defined for the project.
+      tags:
+      - Lookup Tables
+      responses:
+        '200':
+          description: List of lookup tables
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LookupTable'
+        '401':
+          description: Unauthorized
+      security:
+      - basicAuth: []
+  /lookup-tables/{lookupTableId}:
+    put:
+      operationId: replaceLookupTable
+      summary: Mixpanel Replace lookup table
+      description: Replace the contents of a lookup table with new CSV data. The first column is the join key.
+      tags:
+      - Lookup Tables
+      parameters:
+      - name: lookupTableId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The ID of the lookup table to replace
+      requestBody:
+        required: true
+        content:
+          text/csv:
+            schema:
+              type: string
+              description: CSV data with headers in the first row
+      responses:
+        '200':
+          description: Lookup table replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LookupTable'
+        '400':
+          description: Invalid CSV data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Lookup table not found
+      security:
+      - basicAuth: []
+    delete:
+      operationId: deleteLookupTable
+      summary: Mixpanel Delete lookup table
+      description: Delete a lookup table by ID.
+      tags:
+      - Lookup Tables
+      parameters:
+      - name: lookupTableId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The ID of the lookup table to delete
+      responses:
+        '200':
+          description: Lookup table deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Lookup table not found
+      security:
+      - basicAuth: []
+components:
+  schemas:
+    LookupTable:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the lookup table
+        name:
+          type: string
+          description: Name of the lookup table
+        rowCount:
+          type: integer
+          description: Number of rows in the lookup table
+        columnCount:
+          type: integer
+          description: Number of columns in the lookup table
+        createdAt:
+          type: string
+          format: date-time
+          description: When the lookup table was created
+        lastModified:
+          type: string
+          format: date-time
+          description: When the lookup table was last updated
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Service account credentials for API authentication.
+externalDocs:
+  description: Mixpanel Annotations API Documentation
+  url: https://developer.mixpanel.com/reference/create-annotation

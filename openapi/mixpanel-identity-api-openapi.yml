@@ -1,40 +1,31 @@
 openapi: 3.1.0
 info:
-  title: Mixpanel Identity API
-  description: >-
-    API for managing user identity in Mixpanel, including creating
-    identities, creating aliases, and merging identities to accurately
-    resolve users across multiple devices.
-  version: '2.0'
+  title: Mixpanel Annotations Identity API
+  description: API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
+  version: '1.0'
   contact:
     name: Mixpanel Support
     email: support@mixpanel.com
     url: https://mixpanel.com/get-support
   termsOfService: https://mixpanel.com/legal/terms-of-use
-externalDocs:
-  description: Mixpanel Identity API Documentation
-  url: https://developer.mixpanel.com/reference/create-identity
 servers:
-  - url: https://api.mixpanel.com
-    description: Mixpanel US Data Residency
-  - url: https://api-eu.mixpanel.com
-    description: Mixpanel EU Data Residency
-tags:
-  - name: Identity
-    description: Manage user identity resolution and merging
+- url: https://mixpanel.com/api/app
+  description: Mixpanel US Data Residency
+- url: https://eu.mixpanel.com/api/app
+  description: Mixpanel EU Data Residency
 security:
-  - basicAuth: []
+- basicAuth: []
+tags:
+- name: Identity
+  description: Manage user identity resolution and merging
 paths:
   /identity/create:
     post:
       operationId: createIdentity
       summary: Mixpanel Create identity
-      description: >-
-        Create an identity mapping between an anonymous (device) ID
-        and an identified (user) ID. This links pre-login anonymous
-        activity to a known user.
+      description: Create an identity mapping between an anonymous (device) ID and an identified (user) ID. This links pre-login anonymous activity to a known user.
       tags:
-        - Identity
+      - Identity
       requestBody:
         required: true
         content:
@@ -42,9 +33,9 @@ paths:
             schema:
               type: object
               required:
-                - $identified_id
-                - $anon_id
-                - $token
+              - $identified_id
+              - $anon_id
+              - $token
               properties:
                 $identified_id:
                   type: string
@@ -72,12 +63,9 @@ paths:
     post:
       operationId: createAlias
       summary: Mixpanel Create alias
-      description: >-
-        Create an alias that maps one distinct_id to another. This is
-        a legacy method for identity management. For new implementations,
-        use the create identity endpoint with ID merge instead.
+      description: Create an alias that maps one distinct_id to another. This is a legacy method for identity management. For new implementations, use the create identity endpoint with ID merge instead.
       tags:
-        - Identity
+      - Identity
       deprecated: true
       requestBody:
         required: true
@@ -86,9 +74,9 @@ paths:
             schema:
               type: object
               required:
-                - alias
-                - distinct_id
-                - $token
+              - alias
+              - distinct_id
+              - $token
               properties:
                 alias:
                   type: string
@@ -116,12 +104,9 @@ paths:
     post:
       operationId: mergeIdentities
       summary: Mixpanel Merge identities
-      description: >-
-        Merge two distinct_id values into a single identity cluster.
-        All events and profile data associated with both IDs will be
-        combined. This operation is irreversible.
+      description: Merge two distinct_id values into a single identity cluster. All events and profile data associated with both IDs will be combined. This operation is irreversible.
       tags:
-        - Identity
+      - Identity
       requestBody:
         required: true
         content:
@@ -129,8 +114,8 @@ paths:
             schema:
               type: object
               required:
-                - $distinct_ids
-                - $token
+              - $distinct_ids
+              - $token
               properties:
                 $distinct_ids:
                   type: array
@@ -156,20 +141,24 @@ paths:
         '429':
           description: Rate limit exceeded
 components:
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
-      description: >-
-        Service account credentials for API authentication.
   schemas:
     IdentityResponse:
       type: object
       properties:
         status:
           type: integer
-          enum: [0, 1]
+          enum:
+          - 0
+          - 1
           description: 1 for success, 0 for failure
         error:
           type: string
           description: Error message if status is 0
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Service account credentials for API authentication.
+externalDocs:
+  description: Mixpanel Annotations API Documentation
+  url: https://developer.mixpanel.com/reference/create-annotation

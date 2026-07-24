@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Annotations Project Memberships API
+  description: API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
+  version: '1.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+servers:
+- url: https://mixpanel.com/api/app
+  description: Mixpanel US Data Residency
+- url: https://eu.mixpanel.com/api/app
+  description: Mixpanel EU Data Residency
+security:
+- basicAuth: []
+tags:
+- name: Project Memberships
+  description: Manage service account project access
+paths:
+  /organizations/{organizationId}/service-accounts/{serviceAccountId}/projects:
+    get:
+      operationId: listServiceAccountProjects
+      summary: Mixpanel List service account projects
+      description: Retrieve the projects that a service account has access to.
+      tags:
+      - Project Memberships
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      - $ref: '#/components/parameters/serviceAccountId'
+      responses:
+        '200':
+          description: List of project memberships
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProjectMembership'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Service account not found
+    post:
+      operationId: addServiceAccountToProject
+      summary: Mixpanel Add service account to project
+      description: Grant a service account access to a project with a specified role.
+      tags:
+      - Project Memberships
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      - $ref: '#/components/parameters/serviceAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - projectId
+              - role
+              properties:
+                projectId:
+                  type: integer
+                  description: The project ID to grant access to
+                role:
+                  type: string
+                  enum:
+                  - admin
+                  - analyst
+                  - consumer
+                  description: The role to assign
+      responses:
+        '200':
+          description: Project membership added
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /organizations/{organizationId}/service-accounts/{serviceAccountId}/projects/{projectId}:
+    delete:
+      operationId: removeServiceAccountFromProject
+      summary: Mixpanel Remove service account from project
+      description: Remove a service account's access to a specific project.
+      tags:
+      - Project Memberships
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      - $ref: '#/components/parameters/serviceAccountId'
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The project ID to remove access from
+      responses:
+        '200':
+          description: Project membership removed
+        '401':
+          description: Unauthorized
+        '404':
+          description: Membership not found
+components:
+  parameters:
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel organization ID
+    serviceAccountId:
+      name: serviceAccountId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The service account ID
+  schemas:
+    ProjectMembership:
+      type: object
+      properties:
+        projectId:
+          type: integer
+          description: The project ID
+        projectName:
+          type: string
+          description: The project name
+        role:
+          type: string
+          enum:
+          - admin
+          - analyst
+          - consumer
+          description: Role assigned to the service account
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Service account credentials for API authentication.
+externalDocs:
+  description: Mixpanel Annotations API Documentation
+  url: https://developer.mixpanel.com/reference/create-annotation

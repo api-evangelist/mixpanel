@@ -1,0 +1,282 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Annotations Connectors API
+  description: API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
+  version: '1.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+servers:
+- url: https://mixpanel.com/api/app
+  description: Mixpanel US Data Residency
+- url: https://eu.mixpanel.com/api/app
+  description: Mixpanel EU Data Residency
+security:
+- basicAuth: []
+tags:
+- name: Connectors
+  description: Manage warehouse data connections
+paths:
+  /projects/{projectId}/warehouse-sources:
+    get:
+      operationId: listWarehouseSources
+      summary: Mixpanel List warehouse sources
+      description: Retrieve all warehouse source connections configured for the project.
+      tags:
+      - Connectors
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: List of warehouse sources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WarehouseSource'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    post:
+      operationId: createWarehouseSource
+      summary: Mixpanel Create warehouse source
+      description: Create a new warehouse source connection for importing data from a data warehouse into Mixpanel.
+      tags:
+      - Connectors
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWarehouseSourceRequest'
+      responses:
+        '200':
+          description: Warehouse source created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarehouseSource'
+        '400':
+          description: Invalid configuration
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /projects/{projectId}/warehouse-sources/{sourceId}:
+    get:
+      operationId: getWarehouseSource
+      summary: Mixpanel Get warehouse source
+      description: Retrieve details of a specific warehouse source connection.
+      tags:
+      - Connectors
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/sourceId'
+      responses:
+        '200':
+          description: Warehouse source details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarehouseSource'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Source not found
+    patch:
+      operationId: updateWarehouseSource
+      summary: Mixpanel Update warehouse source
+      description: Update the configuration of an existing warehouse source connection.
+      tags:
+      - Connectors
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/sourceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWarehouseSourceRequest'
+      responses:
+        '200':
+          description: Warehouse source updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarehouseSource'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Source not found
+    delete:
+      operationId: deleteWarehouseSource
+      summary: Mixpanel Delete warehouse source
+      description: Delete a warehouse source connection and all its import configurations.
+      tags:
+      - Connectors
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/sourceId'
+      responses:
+        '200':
+          description: Warehouse source deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Source not found
+components:
+  schemas:
+    TableConfig:
+      type: object
+      required:
+      - tableName
+      - importType
+      properties:
+        tableName:
+          type: string
+          description: Full table name (schema.table)
+        importType:
+          type: string
+          enum:
+          - event
+          - user
+          - group
+          - lookup_table
+          description: How to import this table's data
+        eventNameColumn:
+          type: string
+          description: Column to use as event name (event type only)
+        distinctIdColumn:
+          type: string
+          description: Column to use as distinct_id
+        timeColumn:
+          type: string
+          description: Column to use as event timestamp
+    UpdateWarehouseSourceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated source name
+        schedule:
+          type: string
+          enum:
+          - hourly
+          - daily
+          - weekly
+          description: Updated import schedule
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableConfig'
+          description: Updated table configurations
+    WarehouseSource:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique source identifier
+        name:
+          type: string
+          description: Source connection name
+        type:
+          type: string
+          enum:
+          - bigquery
+          - snowflake
+          - redshift
+          - databricks
+          - postgresql
+          description: Warehouse type
+        status:
+          type: string
+          enum:
+          - active
+          - paused
+          - error
+          description: Connection status
+        schedule:
+          type: string
+          enum:
+          - hourly
+          - daily
+          - weekly
+          description: Import schedule
+        createdAt:
+          type: string
+          format: date-time
+          description: When the source was created
+        lastRunAt:
+          type: string
+          format: date-time
+          description: When the last import ran
+    CreateWarehouseSourceRequest:
+      type: object
+      required:
+      - name
+      - type
+      - connectionDetails
+      properties:
+        name:
+          type: string
+          description: Source connection name
+        type:
+          type: string
+          enum:
+          - bigquery
+          - snowflake
+          - redshift
+          - databricks
+          - postgresql
+          description: Warehouse type
+        schedule:
+          type: string
+          enum:
+          - hourly
+          - daily
+          - weekly
+          description: Import schedule
+        connectionDetails:
+          type: object
+          additionalProperties: true
+          description: Warehouse-specific connection details (credentials, host, etc.)
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableConfig'
+          description: Tables to import
+  parameters:
+    sourceId:
+      name: sourceId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The warehouse source connection ID
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel project ID
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Service account credentials for API authentication.
+externalDocs:
+  description: Mixpanel Annotations API Documentation
+  url: https://developer.mixpanel.com/reference/create-annotation

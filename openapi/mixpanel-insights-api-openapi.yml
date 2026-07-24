@@ -1,0 +1,81 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Annotations Insights API
+  description: API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
+  version: '1.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+servers:
+- url: https://mixpanel.com/api/app
+  description: Mixpanel US Data Residency
+- url: https://eu.mixpanel.com/api/app
+  description: Mixpanel EU Data Residency
+security:
+- basicAuth: []
+tags:
+- name: Insights
+  description: Query event data with aggregation and breakdowns
+paths:
+  /insights:
+    get:
+      operationId: queryInsights
+      summary: Mixpanel Query insights
+      description: Query event data with flexible aggregation, filtering, and breakdown capabilities. Returns data suitable for charts and reports.
+      tags:
+      - Insights
+      parameters:
+      - name: project_id
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: The Mixpanel project ID
+      - name: bookmark_id
+        in: query
+        schema:
+          type: integer
+        description: ID of a saved report to query
+      responses:
+        '200':
+          description: Insights query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsightsResponse'
+        '400':
+          description: Invalid query parameters
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+components:
+  schemas:
+    InsightsResponse:
+      type: object
+      properties:
+        series:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties: true
+          description: Time series data keyed by metric name
+        date_range:
+          type: object
+          properties:
+            from_date:
+              type: string
+              format: date
+            to_date:
+              type: string
+              format: date
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Service account credentials for API authentication.
+externalDocs:
+  description: Mixpanel Annotations API Documentation
+  url: https://developer.mixpanel.com/reference/create-annotation

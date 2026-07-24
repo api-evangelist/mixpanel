@@ -1,0 +1,226 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Annotations Events API
+  description: API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
+  version: '1.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+servers:
+- url: https://mixpanel.com/api/app
+  description: Mixpanel US Data Residency
+- url: https://eu.mixpanel.com/api/app
+  description: Mixpanel EU Data Residency
+security:
+- basicAuth: []
+tags:
+- name: Events
+  description: Track and import event data
+paths:
+  /track:
+    post:
+      operationId: trackEvent
+      summary: Mixpanel Track event
+      description: Send a single event or batch of events to Mixpanel in real time. Events sent via /track are processed immediately.
+      tags:
+      - Events
+      parameters:
+      - $ref: '#/components/parameters/verbose'
+      - $ref: '#/components/parameters/ip'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - data
+              properties:
+                data:
+                  oneOf:
+                  - $ref: '#/components/schemas/Event'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/Event'
+                    maxItems: 2000
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+                  description: Base64-encoded JSON event data
+      responses:
+        '200':
+          description: Events accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized - invalid token
+        '429':
+          description: Rate limit exceeded
+      security:
+      - projectToken: []
+  /import:
+    post:
+      operationId: importEvents
+      summary: Mixpanel Import events
+      description: Import events into Mixpanel. Designed for high-throughput historical data import. Supports up to 2000 events per batch. Events can have timestamps in the past.
+      tags:
+      - Events
+      parameters:
+      - name: strict
+        in: query
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+        description: When set to 1, validates all properties and rejects the entire batch if any event is invalid
+      - name: project_id
+        in: query
+        schema:
+          type: string
+        description: The project ID to import events into
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Event'
+              maxItems: 2000
+          application/x-ndjson:
+            schema:
+              type: string
+              description: Newline-delimited JSON events
+      responses:
+        '200':
+          description: Events imported successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+        '400':
+          description: Invalid event data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+      security:
+      - basicAuth: []
+components:
+  schemas:
+    ImportResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        num_records_imported:
+          type: integer
+          description: Number of records successfully imported
+        status:
+          type: string
+          description: Status message
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        error:
+          type: string
+          description: Error message
+        status:
+          type: string
+          description: Status indicator
+        num_records_imported:
+          type: integer
+          description: Number of records imported before failure
+        failed_records:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+                description: Index of the failed record
+              message:
+                type: string
+                description: Error message for this record
+    Event:
+      type: object
+      required:
+      - event
+      - properties
+      properties:
+        event:
+          type: string
+          description: The event name
+        properties:
+          type: object
+          properties:
+            distinct_id:
+              type: string
+              description: Unique identifier for the user who performed the event
+            time:
+              type: integer
+              description: Unix timestamp in seconds when the event occurred
+            $insert_id:
+              type: string
+              description: Unique identifier for the event for deduplication
+            token:
+              type: string
+              description: Mixpanel project token
+          additionalProperties: true
+    TrackResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          enum:
+          - 0
+          - 1
+          description: 1 for success, 0 for failure
+        error:
+          type: string
+          description: Error message if status is 0
+  parameters:
+    ip:
+      name: ip
+      in: query
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+      description: When set to 1, use the IP address for geolocation
+    verbose:
+      name: verbose
+      in: query
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+      description: When set to 1, returns a JSON response with status and error details
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Service account credentials for API authentication.
+externalDocs:
+  description: Mixpanel Annotations API Documentation
+  url: https://developer.mixpanel.com/reference/create-annotation

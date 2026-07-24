@@ -1,52 +1,45 @@
 openapi: 3.1.0
 info:
   title: Mixpanel Annotations API
-  description: >-
-    API for creating, retrieving, updating, and deleting annotations
-    that label specific points in time on Mixpanel charts with descriptions,
-    useful for marking product launches, campaigns, or data anomalies.
+  description: API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
   version: '1.0'
   contact:
     name: Mixpanel Support
     email: support@mixpanel.com
     url: https://mixpanel.com/get-support
   termsOfService: https://mixpanel.com/legal/terms-of-use
-externalDocs:
-  description: Mixpanel Annotations API Documentation
-  url: https://developer.mixpanel.com/reference/create-annotation
 servers:
-  - url: https://mixpanel.com/api/app
-    description: Mixpanel US Data Residency
-  - url: https://eu.mixpanel.com/api/app
-    description: Mixpanel EU Data Residency
-tags:
-  - name: Annotations
-    description: Manage chart annotations for time-based markers
+- url: https://mixpanel.com/api/app
+  description: Mixpanel US Data Residency
+- url: https://eu.mixpanel.com/api/app
+  description: Mixpanel EU Data Residency
 security:
-  - basicAuth: []
+- basicAuth: []
+tags:
+- name: Annotations
+  description: Manage chart annotations for time-based markers
 paths:
   /projects/{projectId}/annotations:
     get:
       operationId: listAnnotations
       summary: Mixpanel List annotations
-      description: >-
-        Retrieve all annotations for a project within an optional date range.
+      description: Retrieve all annotations for a project within an optional date range.
       tags:
-        - Annotations
+      - Annotations
       parameters:
-        - $ref: '#/components/parameters/projectId'
-        - name: from_date
-          in: query
-          schema:
-            type: string
-            format: date
-          description: Start date filter (YYYY-MM-DD)
-        - name: to_date
-          in: query
-          schema:
-            type: string
-            format: date
-          description: End date filter (YYYY-MM-DD)
+      - $ref: '#/components/parameters/projectId'
+      - name: from_date
+        in: query
+        schema:
+          type: string
+          format: date
+        description: Start date filter (YYYY-MM-DD)
+      - name: to_date
+        in: query
+        schema:
+          type: string
+          format: date
+        description: End date filter (YYYY-MM-DD)
       responses:
         '200':
           description: List of annotations
@@ -64,13 +57,11 @@ paths:
     post:
       operationId: createAnnotation
       summary: Mixpanel Create annotation
-      description: >-
-        Create a new annotation to mark a specific point in time on
-        Mixpanel charts.
+      description: Create a new annotation to mark a specific point in time on Mixpanel charts.
       tags:
-        - Annotations
+      - Annotations
       parameters:
-        - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/projectId'
       requestBody:
         required: true
         content:
@@ -92,13 +83,12 @@ paths:
     get:
       operationId: getAnnotation
       summary: Mixpanel Get annotation
-      description: >-
-        Retrieve a specific annotation by ID.
+      description: Retrieve a specific annotation by ID.
       tags:
-        - Annotations
+      - Annotations
       parameters:
-        - $ref: '#/components/parameters/projectId'
-        - $ref: '#/components/parameters/annotationId'
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/annotationId'
       responses:
         '200':
           description: Annotation details
@@ -113,13 +103,12 @@ paths:
     put:
       operationId: updateAnnotation
       summary: Mixpanel Update annotation
-      description: >-
-        Update an existing annotation's date or description.
+      description: Update an existing annotation's date or description.
       tags:
-        - Annotations
+      - Annotations
       parameters:
-        - $ref: '#/components/parameters/projectId'
-        - $ref: '#/components/parameters/annotationId'
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/annotationId'
       requestBody:
         required: true
         content:
@@ -142,13 +131,12 @@ paths:
     delete:
       operationId: deleteAnnotation
       summary: Mixpanel Delete annotation
-      description: >-
-        Delete an annotation by ID.
+      description: Delete an annotation by ID.
       tags:
-        - Annotations
+      - Annotations
       parameters:
-        - $ref: '#/components/parameters/projectId'
-        - $ref: '#/components/parameters/annotationId'
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/annotationId'
       responses:
         '200':
           description: Annotation deleted
@@ -157,12 +145,6 @@ paths:
         '404':
           description: Annotation not found
 components:
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
-      description: >-
-        Service account credentials for API authentication.
   parameters:
     projectId:
       name: projectId
@@ -179,6 +161,19 @@ components:
         type: integer
       description: The annotation ID
   schemas:
+    CreateAnnotationRequest:
+      type: object
+      required:
+      - date
+      - description
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: The date and time to annotate (YYYY-MM-DDThh:mm:ss)
+        description:
+          type: string
+          description: Description text for the annotation
     Annotation:
       type: object
       properties:
@@ -205,16 +200,11 @@ components:
           type: string
           format: date-time
           description: When the annotation was created
-    CreateAnnotationRequest:
-      type: object
-      required:
-        - date
-        - description
-      properties:
-        date:
-          type: string
-          format: date-time
-          description: The date and time to annotate (YYYY-MM-DDThh:mm:ss)
-        description:
-          type: string
-          description: Description text for the annotation
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Service account credentials for API authentication.
+externalDocs:
+  description: Mixpanel Annotations API Documentation
+  url: https://developer.mixpanel.com/reference/create-annotation

@@ -1,0 +1,137 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Annotations User Profiles API
+  description: API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
+  version: '1.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+servers:
+- url: https://mixpanel.com/api/app
+  description: Mixpanel US Data Residency
+- url: https://eu.mixpanel.com/api/app
+  description: Mixpanel EU Data Residency
+security:
+- basicAuth: []
+tags:
+- name: User Profiles
+  description: Manage user profile properties
+paths:
+  /engage:
+    post:
+      operationId: updateUserProfile
+      summary: Mixpanel Update user profile
+      description: Create or update user profile properties in Mixpanel People. Supports set, set_once, add, append, remove, union, unset, and delete operations.
+      tags:
+      - User Profiles
+      parameters:
+      - $ref: '#/components/parameters/verbose'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/ProfileUpdate'
+              - type: array
+                items:
+                  $ref: '#/components/schemas/ProfileUpdate'
+                maxItems: 2000
+      responses:
+        '200':
+          description: Profile updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+      security:
+      - projectToken: []
+components:
+  schemas:
+    ProfileUpdate:
+      type: object
+      required:
+      - $token
+      - $distinct_id
+      properties:
+        $token:
+          type: string
+          description: Mixpanel project token
+        $distinct_id:
+          type: string
+          description: Unique identifier for the user profile
+        $ip:
+          type: string
+          description: IP address for geolocation
+        $set:
+          type: object
+          additionalProperties: true
+          description: Properties to set (overwrites existing values)
+        $set_once:
+          type: object
+          additionalProperties: true
+          description: Properties to set only if they do not already exist
+        $add:
+          type: object
+          additionalProperties:
+            type: number
+          description: Numeric properties to increment
+        $append:
+          type: object
+          additionalProperties: true
+          description: Values to append to list properties
+        $remove:
+          type: object
+          additionalProperties: true
+          description: Values to remove from list properties
+        $union:
+          type: object
+          additionalProperties:
+            type: array
+          description: Values to merge into list properties without duplicates
+        $unset:
+          type: array
+          items:
+            type: string
+          description: Property names to remove from the profile
+        $delete:
+          type: string
+          description: Set to empty string to delete the profile entirely
+    TrackResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          enum:
+          - 0
+          - 1
+          description: 1 for success, 0 for failure
+        error:
+          type: string
+          description: Error message if status is 0
+  parameters:
+    verbose:
+      name: verbose
+      in: query
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+      description: When set to 1, returns a JSON response with status and error details
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Service account credentials for API authentication.
+externalDocs:
+  description: Mixpanel Annotations API Documentation
+  url: https://developer.mixpanel.com/reference/create-annotation

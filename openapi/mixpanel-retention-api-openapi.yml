@@ -1,0 +1,137 @@
+openapi: 3.1.0
+info:
+  title: Mixpanel Annotations Retention API
+  description: API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
+  version: '1.0'
+  contact:
+    name: Mixpanel Support
+    email: support@mixpanel.com
+    url: https://mixpanel.com/get-support
+  termsOfService: https://mixpanel.com/legal/terms-of-use
+servers:
+- url: https://mixpanel.com/api/app
+  description: Mixpanel US Data Residency
+- url: https://eu.mixpanel.com/api/app
+  description: Mixpanel EU Data Residency
+security:
+- basicAuth: []
+tags:
+- name: Retention
+  description: Query retention analysis data
+paths:
+  /retention:
+    get:
+      operationId: queryRetention
+      summary: Mixpanel Query retention data
+      description: Query retention analysis data showing how many users return after performing an initial event.
+      tags:
+      - Retention
+      parameters:
+      - name: project_id
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: The Mixpanel project ID
+      - name: from_date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        description: Start date (YYYY-MM-DD)
+      - name: to_date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        description: End date (YYYY-MM-DD)
+      - name: born_event
+        in: query
+        schema:
+          type: string
+        description: The initial event that defines the cohort
+      - name: retention_type
+        in: query
+        schema:
+          type: string
+          enum:
+          - birth
+          - compounded
+        description: Type of retention analysis
+      - name: born_where
+        in: query
+        schema:
+          type: string
+        description: Filter expression for the initial event
+      - name: event
+        in: query
+        schema:
+          type: string
+        description: The return event to measure
+      - name: where
+        in: query
+        schema:
+          type: string
+        description: Filter expression for the return event
+      - name: interval
+        in: query
+        schema:
+          type: integer
+        description: Number of days per retention period
+      - name: interval_count
+        in: query
+        schema:
+          type: integer
+        description: Number of retention periods to return
+      - name: unit
+        in: query
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+        description: Time unit for retention periods
+      - name: true
+        in: query
+        schema:
+          type: string
+        description: Property to segment results by
+      responses:
+        '200':
+          description: Retention query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetentionResponse'
+        '400':
+          description: Invalid query parameters
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+components:
+  schemas:
+    RetentionResponse:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          counts:
+            type: array
+            items:
+              type: integer
+            description: Retention counts for each period
+          first:
+            type: integer
+            description: Number of users in the initial cohort
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Service account credentials for API authentication.
+externalDocs:
+  description: Mixpanel Annotations API Documentation
+  url: https://developer.mixpanel.com/reference/create-annotation
