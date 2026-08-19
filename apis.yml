@@ -21,7 +21,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/mixpanel.p
 url: https://mixpanel.com
 created: '2024'
 modified: '2026-05-30'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - name: Mixpanel Webhooks
   description: >-
