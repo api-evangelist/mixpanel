@@ -1,0 +1,311 @@
+{
+  "item": [
+    {
+      "id": "d770d61c-e3a8-4112-a2e5-11d1395cca86",
+      "name": "User Profiles",
+      "description": {
+        "content": "Manage user profile properties",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "10a0ad27-f181-48ab-8373-3e5eb35a6241",
+          "name": "Mixpanel Update user profile",
+          "request": {
+            "name": "Mixpanel Update user profile",
+            "description": {
+              "content": "Create or update user profile properties in Mixpanel People. Supports set, set_once, add, append, remove, union, unset, and delete operations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "engage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "verbose",
+                  "value": "<integer>",
+                  "description": "When set to 1, returns a JSON response with status and error details"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"$token\": \"<string>\",\n  \"$distinct_id\": \"<string>\",\n  \"$ip\": \"<string>\",\n  \"$set\": {\n    \"key_0\": 9326.123154958254\n  },\n  \"$set_once\": {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  },\n  \"$add\": {\n    \"key_0\": \"<number>\",\n    \"key_1\": \"<number>\"\n  },\n  \"$append\": {\n    \"key_0\": true\n  },\n  \"$remove\": {\n    \"key_0\": \"string\"\n  },\n  \"$union\": {\n    \"key_0\": \"<array>\",\n    \"key_1\": \"<array>\"\n  },\n  \"$unset\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$delete\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7c30d3a1-71a9-40a6-aa4b-c31ca0b13333",
+              "name": "Profile updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "verbose",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"string\",\n  \"$distinct_id\": \"string\",\n  \"$ip\": \"string\",\n  \"$set\": {\n    \"key_0\": 868.2793701330793\n  },\n  \"$set_once\": {\n    \"key_0\": 4394.964753757239\n  },\n  \"$add\": {\n    \"key_0\": 7571.855339290345\n  },\n  \"$append\": {\n    \"key_0\": 4510.334393067643,\n    \"key_1\": true\n  },\n  \"$remove\": {\n    \"key_0\": 4927\n  },\n  \"$union\": {},\n  \"$unset\": [\n    \"string\",\n    \"string\"\n  ],\n  \"$delete\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f523180-29a6-424f-8010-a6532d051854",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "verbose",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"string\",\n  \"$distinct_id\": \"string\",\n  \"$ip\": \"string\",\n  \"$set\": {\n    \"key_0\": 868.2793701330793\n  },\n  \"$set_once\": {\n    \"key_0\": 4394.964753757239\n  },\n  \"$add\": {\n    \"key_0\": 7571.855339290345\n  },\n  \"$append\": {\n    \"key_0\": 4510.334393067643,\n    \"key_1\": true\n  },\n  \"$remove\": {\n    \"key_0\": 4927\n  },\n  \"$union\": {},\n  \"$unset\": [\n    \"string\",\n    \"string\"\n  ],\n  \"$delete\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e04135c-702a-4893-928a-d2891e76c397",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "verbose",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"string\",\n  \"$distinct_id\": \"string\",\n  \"$ip\": \"string\",\n  \"$set\": {\n    \"key_0\": 868.2793701330793\n  },\n  \"$set_once\": {\n    \"key_0\": 4394.964753757239\n  },\n  \"$add\": {\n    \"key_0\": 7571.855339290345\n  },\n  \"$append\": {\n    \"key_0\": 4510.334393067643,\n    \"key_1\": true\n  },\n  \"$remove\": {\n    \"key_0\": 4927\n  },\n  \"$union\": {},\n  \"$unset\": [\n    \"string\",\n    \"string\"\n  ],\n  \"$delete\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fdcfe0cb-cda4-4877-9432-4f4edf6b508b",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "verbose",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"string\",\n  \"$distinct_id\": \"string\",\n  \"$ip\": \"string\",\n  \"$set\": {\n    \"key_0\": 868.2793701330793\n  },\n  \"$set_once\": {\n    \"key_0\": 4394.964753757239\n  },\n  \"$add\": {\n    \"key_0\": 7571.855339290345\n  },\n  \"$append\": {\n    \"key_0\": 4510.334393067643,\n    \"key_1\": true\n  },\n  \"$remove\": {\n    \"key_0\": 4927\n  },\n  \"$union\": {},\n  \"$unset\": [\n    \"string\",\n    \"string\"\n  ],\n  \"$delete\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mixpanel.com/api/app",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bf1953a8-367f-4d9d-a816-269fb75dff7e",
+    "name": "Mixpanel Annotations User Profiles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.\n\nContact Support:\n Name: Mixpanel Support\n Email: support@mixpanel.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Annotations Funnels API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Funnels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Query funnel data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/app/funnels",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "funnel_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the funnel to query"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)"
+              },
+              {
+                "name": "length",
+                "value": "",
+                "type": "query",
+                "description": "Number of units in the conversion window"
+              },
+              {
+                "name": "length_unit",
+                "value": "",
+                "type": "query",
+                "description": "Unit of time for the conversion window"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Number of days per data point"
+              },
+              {
+                "name": true,
+                "value": "",
+                "type": "query",
+                "description": "Property expression to segment results"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Expression to filter events"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of segment values to return"
+              }
+            ]
+          },
+          "docs": "Query funnel conversion data for a defined sequence of events. Returns conversion rates and counts at each step."
+        },
+        {
+          "info": {
+            "name": "Mixpanel List funnels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/app/funnels/list",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The Mixpanel project ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all saved funnels in the project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1011 @@
+{
+  "item": [
+    {
+      "id": "2bf4b310-20ba-4d9d-88fa-8e1c804658a6",
+      "name": "Schemas",
+      "description": {
+        "content": "Manage Lexicon schema definitions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7c5386a4-a859-49c8-a140-b1588d5849f0",
+          "name": "Mixpanel List schemas",
+          "request": {
+            "name": "Mixpanel List schemas",
+            "description": {
+              "content": "Retrieve all schema definitions for the project including event schemas, profile property schemas, and group schemas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId",
+                "schemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "entityType",
+                  "value": "<string>",
+                  "description": "Filter schemas by entity type"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "projectId",
+                  "description": "(Required) The Mixpanel project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58f6a1cc-ebe0-4c4e-8d13-8027dad26c0f",
+              "name": "List of schemas",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entityType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The Mixpanel project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"entityType\": \"lookup_table\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": false,\n      \"isDropped\": true,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"list\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": false\n        },\n        \"key_1\": {\n          \"type\": \"string\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": true\n        },\n        \"key_2\": {\n          \"type\": \"boolean\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": false\n        },\n        \"key_3\": {\n          \"type\": \"boolean\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": true\n        }\n      }\n    },\n    {\n      \"entityType\": \"group\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": false,\n      \"isDropped\": true,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"number\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": true\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16929307-56aa-4945-b9b4-829cd599ddcf",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entityType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The Mixpanel project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "52f33923-157c-4747-b50b-3ffd9268db6d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entityType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The Mixpanel project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9267507-9cb7-48de-9b1d-8b72e219b9d5",
+          "name": "Mixpanel Replace schemas",
+          "request": {
+            "name": "Mixpanel Replace schemas",
+            "description": {
+              "content": "Replace all schema definitions for the specified entity type. This completely replaces existing schemas with the provided ones.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId",
+                "schemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "projectId",
+                  "description": "(Required) The Mixpanel project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    },\n    {\n      \"entityType\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"key_1\": {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"key_2\": {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    }\n  ],\n  \"truncate\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1bd4285b-fb52-41fa-b728-2cce4e8cd355",
+              "name": "Schemas replaced successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The Mixpanel project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"group\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": false,\n      \"isDropped\": true,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"datetime\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": true\n        },\n        \"key_1\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": false\n        }\n      }\n    },\n    {\n      \"entityType\": \"event\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": true,\n      \"isDropped\": false,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"list\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": true\n        },\n        \"key_1\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": true\n        }\n      }\n    }\n  ],\n  \"truncate\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1258a780-14a6-443d-8f94-90960aca209c",
+              "name": "Invalid schema definitions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The Mixpanel project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"group\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": false,\n      \"isDropped\": true,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"datetime\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": true\n        },\n        \"key_1\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": false\n        }\n      }\n    },\n    {\n      \"entityType\": \"event\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": true,\n      \"isDropped\": false,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"list\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": true\n        },\n        \"key_1\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": true\n        }\n      }\n    }\n  ],\n  \"truncate\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b920c613-827f-485b-b792-feaef9dffe9e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The Mixpanel project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"group\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": false,\n      \"isDropped\": true,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"datetime\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": true\n        },\n        \"key_1\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": false\n        }\n      }\n    },\n    {\n      \"entityType\": \"event\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": true,\n      \"isDropped\": false,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"list\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": true\n        },\n        \"key_1\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": true\n        }\n      }\n    }\n  ],\n  \"truncate\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "32869980-b81c-497a-8cd0-359b8f94ac6e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The Mixpanel project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"group\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": false,\n      \"isDropped\": true,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"datetime\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": true\n        },\n        \"key_1\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": false\n        }\n      }\n    },\n    {\n      \"entityType\": \"event\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": true,\n      \"isDropped\": false,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"list\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": true\n        },\n        \"key_1\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": true\n        }\n      }\n    }\n  ],\n  \"truncate\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98998186-57e0-4a60-8455-56026092dccf",
+          "name": "Mixpanel Create schemas",
+          "request": {
+            "name": "Mixpanel Create schemas",
+            "description": {
+              "content": "Create new schema definitions or update existing ones without removing schemas not included in the request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId",
+                "schemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "projectId",
+                  "description": "(Required) The Mixpanel project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        },\n        \"key_1\": {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    },\n    {\n      \"entityType\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isHidden\": \"<boolean>\",\n      \"isDropped\": \"<boolean>\",\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"isHidden\": \"<boolean>\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ae34f300-ffe6-4794-ac42-811d1e8ba263",
+              "name": "Schemas created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The Mixpanel project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"event\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": true,\n      \"isDropped\": true,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"datetime\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": false\n        },\n        \"key_1\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": false\n        },\n        \"key_2\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": false\n        }\n      }\n    },\n    {\n      \"entityType\": \"event\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": false,\n      \"isDropped\": false,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"datetime\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": true\n        },\n        \"key_1\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": true\n        },\n        \"key_2\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": false\n        },\n        \"key_3\": {\n          \"type\": \"list\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": false\n        },\n        \"key_4\": {\n          \"type\": \"number\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": true\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5edf65b-1748-4b16-9320-db19d342cd15",
+              "name": "Invalid schema definitions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The Mixpanel project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"event\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": true,\n      \"isDropped\": true,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"datetime\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": false\n        },\n        \"key_1\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": false\n        },\n        \"key_2\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": false\n        }\n      }\n    },\n    {\n      \"entityType\": \"event\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": false,\n      \"isDropped\": false,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"datetime\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": true\n        },\n        \"key_1\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": true\n        },\n        \"key_2\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": false\n        },\n        \"key_3\": {\n          \"type\": \"list\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": false\n        },\n        \"key_4\": {\n          \"type\": \"number\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": true\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "23dcdc7b-c81c-4669-91cd-9707921eb179",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The Mixpanel project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"event\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": true,\n      \"isDropped\": true,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"datetime\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": false\n        },\n        \"key_1\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": false\n        },\n        \"key_2\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": false\n        }\n      }\n    },\n    {\n      \"entityType\": \"event\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isHidden\": false,\n      \"isDropped\": false,\n      \"properties\": {\n        \"key_0\": {\n          \"type\": \"datetime\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": true\n        },\n        \"key_1\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": true\n        },\n        \"key_2\": {\n          \"type\": \"object\",\n          \"description\": \"string\",\n          \"required\": true,\n          \"isHidden\": false\n        },\n        \"key_3\": {\n          \"type\": \"list\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": false\n        },\n        \"key_4\": {\n          \"type\": \"number\",\n          \"description\": \"string\",\n          \"required\": false,\n          \"isHidden\": true\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6525b181-f3fe-42ff-8f6f-7a61cfbf7fab",
+          "name": "Mixpanel Delete schemas",
+          "request": {
+            "name": "Mixpanel Delete schemas",
+            "description": {
+              "content": "Delete specific schema definitions from the project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId",
+                "schemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "projectId",
+                  "description": "(Required) The Mixpanel project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"entityType\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aa5fba54-b904-48f3-89a4-fb13cb5158b3",
+              "name": "Schemas deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The Mixpanel project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"entityType\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "63375b4f-73f6-4998-8fd3-3e266fcd06c2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The Mixpanel project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"entityType\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "627f0839-c30d-44c5-a966-62753e05de96",
+              "name": "Schema not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) The Mixpanel project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"entityType\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"entityType\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mixpanel.com/api/app",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c185f7fd-1cc2-4d96-b7e9-92c55b329617",
+    "name": "Mixpanel Annotations Schemas API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.\n\nContact Support:\n Name: Mixpanel Support\n Email: support@mixpanel.com",
+      "type": "text/plain"
+    }
+  }
+}

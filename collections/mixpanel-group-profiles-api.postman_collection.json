@@ -1,0 +1,311 @@
+{
+  "item": [
+    {
+      "id": "96eb07d8-7d8c-44f0-b0f7-f7866c65fdb0",
+      "name": "Group Profiles",
+      "description": {
+        "content": "Manage group analytics profiles",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1229715-ba00-4c0f-a5ec-7946638d4036",
+          "name": "Mixpanel Update group profile",
+          "request": {
+            "name": "Mixpanel Update group profile",
+            "description": {
+              "content": "Create or update group profile properties. Groups allow you to associate events with entities like companies, accounts, or any custom group type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "verbose",
+                  "value": "<integer>",
+                  "description": "When set to 1, returns a JSON response with status and error details"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"$token\": \"<string>\",\n  \"$group_key\": \"<string>\",\n  \"$group_id\": \"<string>\",\n  \"$set\": {\n    \"key_0\": 4648.604416112262,\n    \"key_1\": \"string\"\n  },\n  \"$set_once\": {\n    \"key_0\": true,\n    \"key_1\": false\n  },\n  \"$unset\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"$delete\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8a2b7285-fdd6-4d3f-b571-939113461d3b",
+              "name": "Group profile updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "verbose",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"string\",\n  \"$group_key\": \"string\",\n  \"$group_id\": \"string\",\n  \"$set\": {\n    \"key_0\": false\n  },\n  \"$set_once\": {\n    \"key_0\": true,\n    \"key_1\": 2859\n  },\n  \"$unset\": [\n    \"string\",\n    \"string\"\n  ],\n  \"$delete\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "197e4a7b-e9fe-414e-a882-52009aa2000b",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "verbose",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"string\",\n  \"$group_key\": \"string\",\n  \"$group_id\": \"string\",\n  \"$set\": {\n    \"key_0\": false\n  },\n  \"$set_once\": {\n    \"key_0\": true,\n    \"key_1\": 2859\n  },\n  \"$unset\": [\n    \"string\",\n    \"string\"\n  ],\n  \"$delete\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c88055b5-d724-42da-97d1-39bd43af7ab0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "verbose",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"string\",\n  \"$group_key\": \"string\",\n  \"$group_id\": \"string\",\n  \"$set\": {\n    \"key_0\": false\n  },\n  \"$set_once\": {\n    \"key_0\": true,\n    \"key_1\": 2859\n  },\n  \"$unset\": [\n    \"string\",\n    \"string\"\n  ],\n  \"$delete\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "49a36e65-44d6-4ae5-a34c-de884b8d7d9b",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "verbose",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$token\": \"string\",\n  \"$group_key\": \"string\",\n  \"$group_id\": \"string\",\n  \"$set\": {\n    \"key_0\": false\n  },\n  \"$set_once\": {\n    \"key_0\": true,\n    \"key_1\": 2859\n  },\n  \"$unset\": [\n    \"string\",\n    \"string\"\n  ],\n  \"$delete\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mixpanel.com/api/app",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e69a77af-1772-48fb-971d-4e354fe285ed",
+    "name": "Mixpanel Annotations Group Profiles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.\n\nContact Support:\n Name: Mixpanel Support\n Email: support@mixpanel.com",
+      "type": "text/plain"
+    }
+  }
+}

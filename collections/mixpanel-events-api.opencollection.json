@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Annotations Events API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Track event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mixpanel.com/api/app/track",
+            "params": [
+              {
+                "name": "verbose",
+                "value": "",
+                "type": "query",
+                "description": "When set to 1, returns a JSON response with status and error details"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "query",
+                "description": "When set to 1, use the IP address for geolocation"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a single event or batch of events to Mixpanel in real time. Events sent via /track are processed immediately."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Import events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mixpanel.com/api/app/import",
+            "params": [
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When set to 1, validates all properties and rejects the entire batch if any event is invalid"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The project ID to import events into"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Import events into Mixpanel. Designed for high-throughput historical data import. Supports up to 2000 events per batch. Events can have timestamps in the past."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

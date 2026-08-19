@@ -1,0 +1,196 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Annotations Segmentation API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Segmentation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Query event segmentation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/app/segmentation",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "query",
+                "description": "The event name to query"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Aggregation type - general (total count), unique (unique users), or average (average per user)"
+              },
+              {
+                "name": "on",
+                "value": "",
+                "type": "query",
+                "description": "Property expression to segment results by"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Expression to filter events"
+              },
+              {
+                "name": "unit",
+                "value": "",
+                "type": "query",
+                "description": "Time granularity for the results"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of segment values"
+              }
+            ]
+          },
+          "docs": "Query event counts over a time range, optionally segmented by a property. Returns time series data."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Query numeric property sum",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/app/segmentation/sum",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "query",
+                "description": "The event name to query"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)"
+              },
+              {
+                "name": "on",
+                "value": "",
+                "type": "query",
+                "description": "The numeric property to sum"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Expression to filter events"
+              },
+              {
+                "name": "unit",
+                "value": "",
+                "type": "query",
+                "description": "Time granularity for the results"
+              }
+            ]
+          },
+          "docs": "Query the sum of a numeric event property over a time range."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Query numeric property average",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/app/segmentation/average",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "query",
+                "description": "The event name to query"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)"
+              },
+              {
+                "name": "on",
+                "value": "",
+                "type": "query",
+                "description": "The numeric property to average"
+              },
+              {
+                "name": "unit",
+                "value": "",
+                "type": "query",
+                "description": "Time granularity for the results"
+              }
+            ]
+          },
+          "docs": "Query the average of a numeric event property over a time range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

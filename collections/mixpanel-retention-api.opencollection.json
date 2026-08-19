@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Annotations Retention API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retention",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Query retention data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/app/retention",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)"
+              },
+              {
+                "name": "born_event",
+                "value": "",
+                "type": "query",
+                "description": "The initial event that defines the cohort"
+              },
+              {
+                "name": "retention_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of retention analysis"
+              },
+              {
+                "name": "born_where",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression for the initial event"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "query",
+                "description": "The return event to measure"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression for the return event"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Number of days per retention period"
+              },
+              {
+                "name": "interval_count",
+                "value": "",
+                "type": "query",
+                "description": "Number of retention periods to return"
+              },
+              {
+                "name": "unit",
+                "value": "",
+                "type": "query",
+                "description": "Time unit for retention periods"
+              },
+              {
+                "name": true,
+                "value": "",
+                "type": "query",
+                "description": "Property to segment results by"
+              }
+            ]
+          },
+          "docs": "Query retention analysis data showing how many users return after performing an initial event."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

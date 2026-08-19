@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Annotations Project Memberships API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Project Memberships",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel List service account projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/app/organizations/:organizationId/service-accounts/:serviceAccountId/projects",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Mixpanel organization ID"
+              },
+              {
+                "name": "serviceAccountId",
+                "value": "",
+                "type": "path",
+                "description": "The service account ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the projects that a service account has access to."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Add service account to project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mixpanel.com/api/app/organizations/:organizationId/service-accounts/:serviceAccountId/projects",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Mixpanel organization ID"
+              },
+              {
+                "name": "serviceAccountId",
+                "value": "",
+                "type": "path",
+                "description": "The service account ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant a service account access to a project with a specified role."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Remove service account from project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://mixpanel.com/api/app/organizations/:organizationId/service-accounts/:serviceAccountId/projects/:projectId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Mixpanel organization ID"
+              },
+              {
+                "name": "serviceAccountId",
+                "value": "",
+                "type": "path",
+                "description": "The service account ID"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The project ID to remove access from"
+              }
+            ]
+          },
+          "docs": "Remove a service account's access to a specific project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

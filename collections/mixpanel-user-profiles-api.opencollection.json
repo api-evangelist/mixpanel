@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Annotations User Profiles API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Update user profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mixpanel.com/api/app/engage",
+            "params": [
+              {
+                "name": "verbose",
+                "value": "",
+                "type": "query",
+                "description": "When set to 1, returns a JSON response with status and error details"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update user profile properties in Mixpanel People. Supports set, set_once, add, append, remove, union, unset, and delete operations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Annotations Lookup Tables API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lookup Tables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel List lookup tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/app/lookup-tables",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieve all lookup tables defined for the project."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Replace lookup table",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://mixpanel.com/api/app/lookup-tables/:lookupTableId",
+            "params": [
+              {
+                "name": "lookupTableId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the lookup table to replace"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Replace the contents of a lookup table with new CSV data. The first column is the join key."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Delete lookup table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://mixpanel.com/api/app/lookup-tables/:lookupTableId",
+            "params": [
+              {
+                "name": "lookupTableId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the lookup table to delete"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Delete a lookup table by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Annotations Group Profiles API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Group Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Update group profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mixpanel.com/api/app/groups",
+            "params": [
+              {
+                "name": "verbose",
+                "value": "",
+                "type": "query",
+                "description": "When set to 1, returns a JSON response with status and error details"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update group profile properties. Groups allow you to associate events with entities like companies, accounts, or any custom group type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

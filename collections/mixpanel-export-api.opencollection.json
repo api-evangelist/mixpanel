@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Annotations Export API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Export",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Export raw events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/app/export",
+            "params": [
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date for export (YYYY-MM-DD)"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "End date for export (YYYY-MM-DD)"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "query",
+                "description": "Filter to specific event names (JSON-encoded array)"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Expression to filter events (e.g., 'properties[\"$os\"] == \"iPhone OS\"')"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The Mixpanel project ID"
+              }
+            ]
+          },
+          "docs": "Download raw event data for a date range. Returns newline-delimited JSON (NDJSON) where each line is a JSON object representing one event. The response can be very large for projects with high event volumes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

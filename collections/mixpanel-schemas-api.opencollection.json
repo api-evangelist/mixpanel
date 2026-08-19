@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Annotations Schemas API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Schemas",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel List schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/app/projects/:projectId/schemas",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "query",
+                "description": "Filter schemas by entity type"
+              }
+            ]
+          },
+          "docs": "Retrieve all schema definitions for the project including event schemas, profile property schemas, and group schemas."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Create schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mixpanel.com/api/app/projects/:projectId/schemas",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The Mixpanel project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new schema definitions or update existing ones without removing schemas not included in the request."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Replace schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://mixpanel.com/api/app/projects/:projectId/schemas",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The Mixpanel project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace all schema definitions for the specified entity type. This completely replaces existing schemas with the provided ones."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Delete schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://mixpanel.com/api/app/projects/:projectId/schemas",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The Mixpanel project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete specific schema definitions from the project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

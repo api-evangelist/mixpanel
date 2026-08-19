@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Annotations Imports API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Imports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel List warehouse tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/app/projects/:projectId/warehouse-sources/:sourceId/tables",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "path",
+                "description": "The warehouse source connection ID"
+              }
+            ]
+          },
+          "docs": "List all tables configured for import from a warehouse source."
+        },
+        {
+          "info": {
+            "name": "Mixpanel List import runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/app/projects/:projectId/warehouse-sources/:sourceId/runs",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "path",
+                "description": "The warehouse source connection ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the import run history for a specific warehouse source."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Trigger import run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mixpanel.com/api/app/projects/:projectId/warehouse-sources/:sourceId/runs",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "path",
+                "description": "The warehouse source connection ID"
+              }
+            ]
+          },
+          "docs": "Manually trigger an import run for a warehouse source connection."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

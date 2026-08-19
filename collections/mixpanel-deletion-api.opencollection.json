@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Annotations Deletion API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deletion",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel Create data deletion request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mixpanel.com/api/app/data-deletions/v3.0",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "Mixpanel project token"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a GDPR or CCPA data deletion request for a specific user. Once completed, all event data and profile data for the user will be permanently deleted."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Check deletion status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/app/data-deletions/v3.0/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The task ID returned when the request was created"
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "Mixpanel project token"
+              }
+            ]
+          },
+          "docs": "Check the status of a previously submitted data deletion request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,469 @@
+# Mixpanel
+
+## Docs
+
+- [What is Mixpanel?](https://docs.mixpanel.com/docs/what-is-mixpanel.md)
+- [What to Track](https://docs.mixpanel.com/docs/what-to-track.md)
+- [Quickstart](https://docs.mixpanel.com/docs/quickstart.md)
+- [Install Mixpanel](https://docs.mixpanel.com/docs/quickstart/install-mixpanel.md)
+- [Identify Users](https://docs.mixpanel.com/docs/quickstart/identify-users.md)
+- [Capture Events](https://docs.mixpanel.com/docs/quickstart/capture-events.md)
+- [Autocapture](https://docs.mixpanel.com/docs/quickstart/capture-events/autocapture.md)
+- [Track Events](https://docs.mixpanel.com/docs/quickstart/capture-events/track-events.md)
+- [Install with AI](https://docs.mixpanel.com/docs/quickstart/install-with-ai.md)
+- [Tracking Methods](https://docs.mixpanel.com/docs/tracking-methods.md)
+- [Choosing the Right Method](https://docs.mixpanel.com/docs/tracking-methods/choosing-the-right-method.md)
+- [SDKs](https://docs.mixpanel.com/docs/tracking-methods/sdks.md): Send data from your application into Mixpanel
+- [Mixpanel SDKs: Javascript](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript.md)
+- [Implement Session Replay (Web)](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript/javascript-replay.md)
+- [Implement Feature Flags (Web)](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript/javascript-flags.md)
+- [OpenFeature Provider (Web)](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript/javascript-openfeature.md)
+- [Mixpanel SDKs: React Native](https://docs.mixpanel.com/docs/tracking-methods/sdks/react-native.md)
+- [Implement Feature Flags (React Native)](https://docs.mixpanel.com/docs/tracking-methods/sdks/react-native/react-native-flags.md)
+- [Implement Session Replay (React Native)](https://docs.mixpanel.com/docs/tracking-methods/sdks/react-native/react-native-replay.md)
+- [Mixpanel SDKs: Android](https://docs.mixpanel.com/docs/tracking-methods/sdks/android.md)
+- [Implement Session Replay (Android)](https://docs.mixpanel.com/docs/tracking-methods/sdks/android/android-replay.md)
+- [Implement Feature Flags (Android)](https://docs.mixpanel.com/docs/tracking-methods/sdks/android/android-flags.md)
+- [OpenFeature Provider (Android)](https://docs.mixpanel.com/docs/tracking-methods/sdks/android/android-openfeature.md)
+- [Mixpanel SDKs: iOS (Objective-C) - Deprecated](https://docs.mixpanel.com/docs/tracking-methods/sdks/ios.md)
+- [Mixpanel SDKs: iOS (Swift)](https://docs.mixpanel.com/docs/tracking-methods/sdks/swift.md)
+- [Implement Session Replay (iOS)](https://docs.mixpanel.com/docs/tracking-methods/sdks/swift/swift-replay.md)
+- [Implement Feature Flags (Swift)](https://docs.mixpanel.com/docs/tracking-methods/sdks/swift/swift-flags.md)
+- [OpenFeature Provider (Swift)](https://docs.mixpanel.com/docs/tracking-methods/sdks/swift/swift-openfeature.md)
+- [Mixpanel SDKs: Flutter](https://docs.mixpanel.com/docs/tracking-methods/sdks/flutter.md)
+- [Implement Session Replay (Flutter)](https://docs.mixpanel.com/docs/tracking-methods/sdks/flutter/flutter-replay.md)
+- [Implement Feature Flags (Flutter)](https://docs.mixpanel.com/docs/tracking-methods/sdks/flutter/flutter-flags.md)
+- [Mixpanel SDKs: Unity](https://docs.mixpanel.com/docs/tracking-methods/sdks/unity.md)
+- [Mixpanel SDKs: Python](https://docs.mixpanel.com/docs/tracking-methods/sdks/python.md)
+- [Implement Feature Flags (Python)](https://docs.mixpanel.com/docs/tracking-methods/sdks/python/python-flags.md)
+- [OpenFeature Provider (Python)](https://docs.mixpanel.com/docs/tracking-methods/sdks/python/python-openfeature.md)
+- [Mixpanel SDKs: Node.js](https://docs.mixpanel.com/docs/tracking-methods/sdks/nodejs.md)
+- [Implement Feature Flags (Node.js)](https://docs.mixpanel.com/docs/tracking-methods/sdks/nodejs/nodejs-flags.md)
+- [OpenFeature Provider (Node.js)](https://docs.mixpanel.com/docs/tracking-methods/sdks/nodejs/nodejs-openfeature.md)
+- [Mixpanel SDKs: Ruby](https://docs.mixpanel.com/docs/tracking-methods/sdks/ruby.md)
+- [Implement Feature Flags (Ruby)](https://docs.mixpanel.com/docs/tracking-methods/sdks/ruby/ruby-flags.md)
+- [OpenFeature Provider (Ruby)](https://docs.mixpanel.com/docs/tracking-methods/sdks/ruby/ruby-openfeature.md)
+- [Mixpanel SDKs: PHP](https://docs.mixpanel.com/docs/tracking-methods/sdks/php.md)
+- [Mixpanel SDKs: Go](https://docs.mixpanel.com/docs/tracking-methods/sdks/go.md)
+- [Implement Feature Flags (Go)](https://docs.mixpanel.com/docs/tracking-methods/sdks/go/go-flags.md)
+- [OpenFeature Provider (Go)](https://docs.mixpanel.com/docs/tracking-methods/sdks/go/go-openfeature.md)
+- [Mixpanel SDKs: Java](https://docs.mixpanel.com/docs/tracking-methods/sdks/java/index.md)
+- [Implement Feature Flags (Java)](https://docs.mixpanel.com/docs/tracking-methods/sdks/java/java-flags.md)
+- [OpenFeature Provider (Java)](https://docs.mixpanel.com/docs/tracking-methods/sdks/java/java-openfeature.md)
+- [Mixpanel-utils](https://docs.mixpanel.com/links/mixpanel-utils.md)
+- [Autocapture](https://docs.mixpanel.com/docs/tracking-methods/autocapture.md)
+- [Warehouse Connectors](https://docs.mixpanel.com/docs/tracking-methods/warehouse-connectors.md): Sync data from your data warehouse into Mixpanel
+- [Tracking Integrations](https://docs.mixpanel.com/docs/tracking-methods/integrations.md): Ingest data from a third-party tool into Mixpanel
+- [Ad Spend](https://docs.mixpanel.com/docs/tracking-methods/integrations/ad-spend.md)
+- [Amazon S3](https://docs.mixpanel.com/docs/tracking-methods/integrations/amazon-s3.md)
+- [Kafka](https://docs.mixpanel.com/docs/tracking-methods/integrations/aws-kafka.md)
+- [CMS & E-Commerce](https://docs.mixpanel.com/docs/tracking-methods/integrations/cms-ecommerce.md)
+- [Customer.io](https://docs.mixpanel.com/links/customerio.md)
+- [Freshpaint](https://docs.mixpanel.com/docs/tracking-methods/integrations/freshpaint.md)
+- [Google Cloud Storage](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-cloud-storage.md)
+- [Google Pubsub](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-pubsub.md)
+- [Google Sheets](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-sheets.md)
+- [Google Tag Manager](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-tag-manager.md)
+- [Langfuse](https://docs.mixpanel.com/docs/tracking-methods/integrations/langfuse.md)
+- [LaunchDarkly](https://docs.mixpanel.com/docs/tracking-methods/integrations/launchdarkly.md)
+- [mParticle](https://docs.mixpanel.com/docs/tracking-methods/integrations/mparticle.md)
+- [Next.js](https://docs.mixpanel.com/docs/tracking-methods/integrations/nextjs.md)
+- [Mobile Attribution](https://docs.mixpanel.com/docs/tracking-methods/integrations/mobile-attribution-tracking.md)
+- [Rudderstack](https://docs.mixpanel.com/docs/tracking-methods/integrations/rudderstack.md)
+- [Segment](https://docs.mixpanel.com/docs/tracking-methods/integrations/segment.md)
+- [Shopify](https://docs.mixpanel.com/docs/tracking-methods/integrations/shopify.md)
+- [Snowplow](https://docs.mixpanel.com/docs/tracking-methods/integrations/snowplow.md)
+- [Stripe](https://docs.mixpanel.com/docs/tracking-methods/integrations/stripe.md)
+- [Tealium](https://docs.mixpanel.com/docs/tracking-methods/integrations/tealium.md)
+- [Vendo](https://docs.mixpanel.com/docs/tracking-methods/integrations/vendo.md)
+- [Identity Management Overview](https://docs.mixpanel.com/docs/tracking-methods/id-management.md)
+- [Identifying Users (Simplified)](https://docs.mixpanel.com/docs/tracking-methods/id-management/identifying-users-simplified.md)
+- [Migrating to Simplified ID Merge](https://docs.mixpanel.com/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system.md)
+- [Mixpanel Data Inspector](https://docs.mixpanel.com/docs/tracking-methods/data-inspector.md)
+- [Data Structure](https://docs.mixpanel.com/docs/data-structure.md)
+- [Data Model](https://docs.mixpanel.com/docs/data-structure/concepts.md): How Mixpanel data is organized
+- [Events](https://docs.mixpanel.com/docs/data-structure/events-and-properties.md): Capture behaviors and actions
+- [User Profile](https://docs.mixpanel.com/docs/data-structure/user-profiles.md): Demographic attributes for your users
+- [Group Analytics](https://docs.mixpanel.com/docs/data-structure/group-analytics.md): Group users together as an aggregated unit of measurement
+- [Group Analytics Implementation Guide](https://docs.mixpanel.com/docs/data-structure/group-analytics/group-analytics-implementation.md)
+- [Group Analytics FAQ](https://docs.mixpanel.com/docs/data-structure/group-analytics/group-analytics-faq.md)
+- [Lookup Tables](https://docs.mixpanel.com/docs/data-structure/lookup-tables.md): Enrich ingested data using a CSV
+- [Property Reference](https://docs.mixpanel.com/docs/data-structure/property-reference.md)
+- [Types of Properties in Mixpanel](https://docs.mixpanel.com/docs/data-structure/property-reference/properties.md)
+- [Supported Properties Data Type](https://docs.mixpanel.com/docs/data-structure/property-reference/data-type.md)
+- [Default Properties](https://docs.mixpanel.com/docs/data-structure/property-reference/default-properties.md): Automatically collected properties
+- [Reserved Properties](https://docs.mixpanel.com/docs/data-structure/property-reference/reserved-properties.md): Properties used for system features
+- [Migrating to Mixpanel](https://docs.mixpanel.com/docs/migration.md)
+- [Migrating from Adobe Analytics](https://docs.mixpanel.com/docs/migration/adobe-analytics.md)
+- [Migrating from Amplitude](https://docs.mixpanel.com/docs/migration/amplitude.md)
+- [Migrating from Google Analytics](https://docs.mixpanel.com/docs/migration/google-analytics.md)
+- [Tracking Best Practices](https://docs.mixpanel.com/docs/tracking-best-practices.md)
+- [Block Unwanted Traffic](https://docs.mixpanel.com/docs/tracking-best-practices/bot-traffic.md)
+- [Debugging](https://docs.mixpanel.com/docs/tracking-best-practices/debugging.md): Validate your data and troubleshoot your implementation
+- [Developer Environments](https://docs.mixpanel.com/docs/tracking-best-practices/developer-environments.md)
+- [Geolocation](https://docs.mixpanel.com/docs/tracking-best-practices/geolocation.md): IP address and location properties
+- [Hot Shard Limits](https://docs.mixpanel.com/docs/tracking-best-practices/hot-shard-limits.md)
+- [Server-Side Best Practices](https://docs.mixpanel.com/docs/tracking-best-practices/server-side-best-practices.md)
+- [Create A Tracking Plan](https://docs.mixpanel.com/docs/tracking-best-practices/tracking-plan.md)
+- [Traffic Attribution](https://docs.mixpanel.com/docs/tracking-best-practices/traffic-attribution.md): Analyze your marketing channels
+- [Warehouse Best Practices](https://docs.mixpanel.com/docs/tracking-best-practices/warehouse-best-practices.md)
+- [Reports Overview](https://docs.mixpanel.com/docs/reports.md)
+- [Insights](https://docs.mixpanel.com/docs/reports/insights.md): Visualize trends and compositions within your data
+- [Funnels](https://docs.mixpanel.com/docs/reports/funnels.md): Measure conversions through a series of events
+- [Funnels](https://docs.mixpanel.com/docs/reports/funnels/funnels-overview.md): Measure conversions through a series of events
+- [Funnels Quickstart](https://docs.mixpanel.com/docs/reports/funnels/funnels-quickstart.md)
+- [Funnels Advanced Concepts](https://docs.mixpanel.com/docs/reports/funnels/funnels-advanced.md)
+- [Funnels FAQ](https://docs.mixpanel.com/docs/reports/funnels/funnels-faq.md)
+- [Retention](https://docs.mixpanel.com/docs/reports/retention.md): Measure engagement over time
+- [Flows](https://docs.mixpanel.com/docs/reports/flows.md): See frequent paths taken by users to or from any event
+- [Other Apps](https://docs.mixpanel.com/docs/reports/apps.md)
+- [Impact](https://docs.mixpanel.com/docs/reports/apps/impact.md): Measure the effect of a launch on your KPIs
+- [Signal](https://docs.mixpanel.com/docs/reports/apps/signal.md): Quantify correlation between two events
+- [JQL](https://docs.mixpanel.com/docs/reports/apps/jql.md): Create custom queries using Javascript code
+- [Boards](https://docs.mixpanel.com/docs/boards.md): Collect your reports into a single view
+- [Sharing ](https://docs.mixpanel.com/docs/boards/sharing-and-permission.md)
+- [Templates](https://docs.mixpanel.com/docs/boards/templates.md): Generate a board using customizable templates
+- [Boards on Boards](https://docs.mixpanel.com/docs/boards/boards-on-boards.md): Organize your analyses with nested Boards.
+- [Public Boards](https://docs.mixpanel.com/docs/boards/public-boards.md): Share analyses with stakeholders outside your company
+- [Move Boards](https://docs.mixpanel.com/docs/boards/move-boards.md): Reuse Boards across different projects
+- [Feature Flags](https://docs.mixpanel.com/docs/featureflags.md): Rollout with precision control
+- [Runtime Events](https://docs.mixpanel.com/docs/featureflags/runtime-events.md): Target Users Based on Behavior
+- [Experiments](https://docs.mixpanel.com/docs/experiments.md): Measure the impact of a/b testing
+- [Metric Tree](https://docs.mixpanel.com/docs/metric_tree.md)
+- [Users](https://docs.mixpanel.com/docs/users.md): Explore your user base in Mixpanel
+- [Cohorts](https://docs.mixpanel.com/docs/users/cohorts.md): Group users by demographic and behavior
+- [Session Replay](https://docs.mixpanel.com/docs/session-replay.md): Watch playbacks of user digital experiences
+- [Session Replay Privacy Controls](https://docs.mixpanel.com/docs/session-replay/session-replay-privacy-controls.md)
+- [Heatmaps for Web](https://docs.mixpanel.com/docs/session-replay/heatmaps.md)
+- [Features](https://docs.mixpanel.com/docs/features.md)
+- [Alerts](https://docs.mixpanel.com/docs/features/alerts.md): Get notified about anomalies in your data
+- [Annotations](https://docs.mixpanel.com/docs/features/annotations.md)
+- [Embeds](https://docs.mixpanel.com/docs/features/embeds.md): View Mixpanel reports in 3rd-party tools
+- [Chart Customization](https://docs.mixpanel.com/docs/features/chart-customization.md): Configure your report axis and color
+- [Comments](https://docs.mixpanel.com/docs/features/comments.md)
+- [Custom Buckets](https://docs.mixpanel.com/docs/features/custom-buckets.md)
+- [Custom Events](https://docs.mixpanel.com/docs/features/custom-events.md): Combine multiple events for analyses
+- [Custom Properties](https://docs.mixpanel.com/docs/features/custom-properties.md): Calculate new properties on the fly
+- [Computed Properties](https://docs.mixpanel.com/docs/features/computed-properties.md)
+- [Building Revenue Metrics](https://docs.mixpanel.com/docs/features/revenue-analytics.md)
+- [Saved Metrics and Behaviors](https://docs.mixpanel.com/docs/features/saved-metrics-and-behaviors.md)
+- [Sessions](https://docs.mixpanel.com/docs/features/sessions.md): Compute sessions based on existing event data
+- [Slack Integration](https://docs.mixpanel.com/docs/features/slack-integration.md)
+- [Mixpanel Agent](https://docs.mixpanel.com/docs/mixpanel-agent.md)
+- [Mixpanel Agent in Slack](https://docs.mixpanel.com/docs/slack-bot.md)
+- [Agentic Automations](https://docs.mixpanel.com/docs/agentic-automations.md)
+- [Root Cause Analysis](https://docs.mixpanel.com/docs/root-cause-analysis.md): AI-generated explanations for why your metrics changed
+- [Mixpanel MCP Server](https://docs.mixpanel.com/docs/mcp.md)
+- [Mixpanel Headless](https://docs.mixpanel.com/docs/mixpanel-headless.md)
+- [Business Context](https://docs.mixpanel.com/docs/business-context.md): Help your AI assistant understand your business
+- [Mixpanel Administrative System](https://docs.mixpanel.com/docs/orgs-and-projects.md)
+- [Organizations](https://docs.mixpanel.com/docs/orgs-and-projects/organizations.md)
+- [Managing Projects](https://docs.mixpanel.com/docs/orgs-and-projects/managing-projects.md)
+- [Roles & Permissions](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions.md)
+- [Data Governance](https://docs.mixpanel.com/docs/data-governance.md)
+- [Lexicon](https://docs.mixpanel.com/docs/data-governance/lexicon.md): Describe your events and data using a dictionary
+- [Data Views & Classification](https://docs.mixpanel.com/docs/data-governance/data-views-and-classification.md): Filter team access to your data within a project
+- [Data Standards](https://docs.mixpanel.com/docs/data-governance/data-standards.md): Keep Your Data Clean and Consistent
+- [Event Approval](https://docs.mixpanel.com/docs/data-governance/event-approval.md): Review unexpected events before they are visible
+- [Data Volume Monitoring](https://docs.mixpanel.com/docs/data-governance/data-volume-monitoring.md): Get notified about drastic changes in event volume
+- [Warehouse Sync Monitoring (Beta)](https://docs.mixpanel.com/docs/data-governance/warehouse-sync-monitoring.md)
+- [Data Clean-Up](https://docs.mixpanel.com/docs/data-governance/data-clean-up.md)
+- [AI-Powered Data Governance](https://docs.mixpanel.com/docs/data-governance/ai-powered-data-governance.md)
+- [Access Security](https://docs.mixpanel.com/docs/access-security.md)
+- [Login Methods](https://docs.mixpanel.com/docs/access-security/login-methods.md)
+- [Two-Factor Authentication](https://docs.mixpanel.com/docs/access-security/two-factor-authentication.md)
+- [Single Sign-On](https://docs.mixpanel.com/docs/access-security/single-sign-on.md): Use SSO to access Mixpanel
+- [Setup Azure SSO](https://docs.mixpanel.com/docs/access-security/single-sign-on/azure.md)
+- [Setup JumpCloud SSO](https://docs.mixpanel.com/docs/access-security/single-sign-on/jumpcloud.md)
+- [Setup Okta SSO](https://docs.mixpanel.com/docs/access-security/single-sign-on/okta.md)
+- [Shared SSO](https://docs.mixpanel.com/docs/access-security/single-sign-on/shared-sso.md): Use the same SSO setting for multiple Mixpanel organizations
+- [Setup Google Workspace SSO](https://docs.mixpanel.com/docs/access-security/single-sign-on/google.md)
+- [Audit Log](https://docs.mixpanel.com/docs/access-security/audit-log.md)
+- [Audit Log Reference](https://docs.mixpanel.com/docs/access-security/audit-log-reference.md)
+- [Privacy Overview](https://docs.mixpanel.com/docs/privacy.md)
+- [Protecting User Data](https://docs.mixpanel.com/docs/privacy/protecting-user-data.md): Opting users out of tracking and anonymizing data
+- [Legal Hub](https://docs.mixpanel.com/links/legal-hub.md)
+- [GDPR Compliance](https://docs.mixpanel.com/docs/privacy/gdpr-compliance.md)
+- [EU Residency](https://docs.mixpanel.com/docs/privacy/eu-residency.md)
+- [India Data Residency](https://docs.mixpanel.com/docs/privacy/in-residency.md)
+- [End User Data Management](https://docs.mixpanel.com/docs/privacy/end-user-data-management.md): Making GDPR and CCPA requests
+- [Pricing](https://docs.mixpanel.com/docs/pricing.md): How Mixpanel pricing works
+- [MTU billing](https://docs.mixpanel.com/docs/pricing/legacy-mtu-billing.md)
+- [Startup Program](https://docs.mixpanel.com/docs/pricing/startup-program.md): Use Mixpanel for free for the first year
+- [Export Methods](https://docs.mixpanel.com/docs/export-methods.md): Export raw data and reports from Mixpanel
+- [Data Pipelines Overview](https://docs.mixpanel.com/docs/data-pipelines.md)
+- [JSON Pipelines](https://docs.mixpanel.com/docs/data-pipelines/json-pipelines.md)
+- [Common SQL Queries](https://docs.mixpanel.com/docs/data-pipelines/common-sql-queries.md)
+- [Data Pipeline Integrations](https://docs.mixpanel.com/docs/data-pipelines/integrations.md): Export your Mixpanel data to a data warehouse
+- [AWS S3](https://docs.mixpanel.com/docs/data-pipelines/integrations/aws-s3.md)
+- [Azure Blob Storage](https://docs.mixpanel.com/docs/data-pipelines/integrations/azure-blob-storage.md)
+- [BigQuery](https://docs.mixpanel.com/docs/data-pipelines/integrations/bigquery.md)
+- [Databricks](https://docs.mixpanel.com/docs/data-pipelines/integrations/databricks.md)
+- [Google Cloud Storage](https://docs.mixpanel.com/docs/data-pipelines/integrations/gcp-gcs.md)
+- [AWS Redshift Spectrum](https://docs.mixpanel.com/docs/data-pipelines/integrations/redshift-spectrum.md)
+- [Snowflake](https://docs.mixpanel.com/docs/data-pipelines/integrations/snowflake.md)
+- [Data Pipelines](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines.md)
+- [Schematized Export Pipeline](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/schematized-export-pipeline.md)
+- [Data Pipeline Integrations](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/integrations.md)
+- [Raw AWS Pipeline](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/integrations/raw-aws-pipeline.md)
+- [Raw Azure Pipeline](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/integrations/raw-azure-pipeline.md)
+- [Raw GCS Pipeline](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/integrations/raw-gcs-pipeline.md)
+- [Schematized BigQuery Pipeline](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/integrations/schematized-bigquery-pipeline.md)
+- [Schematized AWS Pipeline](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/integrations/schematized-aws-pipeline.md)
+- [Schematized Azure Pipeline](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/integrations/schematized-azure-pipeline.md)
+- [Schematized GCS Pipeline](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/integrations/schematized-gcs-pipeline.md)
+- [Schematized Snowflake Pipeline](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/integrations/schematized-snowflake-pipeline.md)
+- [Cohort Sync](https://docs.mixpanel.com/docs/cohort-sync.md)
+- [Syncing cohorts to a custom webhook](https://docs.mixpanel.com/docs/cohort-sync/webhooks.md)
+- [Partners: Build a Cohort Sync Integration with Mixpanel](https://docs.mixpanel.com/docs/cohort-sync/build-an-integration.md)
+- [Destinations](https://docs.mixpanel.com/docs/cohort-sync/integrations.md): Export your cohorts to a third-party tool
+- [AB Tasty](https://docs.mixpanel.com/docs/cohort-sync/integrations/abtasty.md)
+- [Airship](https://docs.mixpanel.com/docs/cohort-sync/integrations/airship.md)
+- [Appcues](https://docs.mixpanel.com/docs/cohort-sync/integrations/appcues.md)
+- [Apptimize](https://docs.mixpanel.com/docs/cohort-sync/integrations/apptimize.md)
+- [Braze](https://docs.mixpanel.com/docs/cohort-sync/integrations/braze.md)
+- [Chameleon](https://docs.mixpanel.com/docs/cohort-sync/integrations/chameleon.md)
+- [CleverTap](https://docs.mixpanel.com/docs/cohort-sync/integrations/clevertap.md)
+- [Facebook Ads](https://docs.mixpanel.com/docs/cohort-sync/integrations/facebook-ads.md)
+- [Google Ads](https://docs.mixpanel.com/docs/cohort-sync/integrations/google-ads.md)
+- [Insider](https://docs.mixpanel.com/docs/cohort-sync/integrations/insider.md)
+- [Intercom](https://docs.mixpanel.com/links/intercom.md)
+- [Iterable](https://docs.mixpanel.com/docs/cohort-sync/integrations/iterable.md)
+- [Kameleoon](https://docs.mixpanel.com/docs/cohort-sync/integrations/kameleoon.md)
+- [Leanplum](https://docs.mixpanel.com/docs/cohort-sync/integrations/leanplum.md)
+- [Mailchimp](https://docs.mixpanel.com/docs/cohort-sync/integrations/mailchimp.md)
+- [Marketo](https://docs.mixpanel.com/docs/cohort-sync/integrations/marketo.md)
+- [Moengage](https://docs.mixpanel.com/docs/cohort-sync/integrations/moengage.md)
+- [mParticle](https://docs.mixpanel.com/docs/cohort-sync/integrations/mparticle.md)
+- [OneSignal](https://docs.mixpanel.com/docs/cohort-sync/integrations/onesignal.md)
+- [Salesforce Marketing Cloud](https://docs.mixpanel.com/docs/cohort-sync/integrations/salesforce-marketing-cloud.md)
+- [Segment](https://docs.mixpanel.com/docs/cohort-sync/integrations/segment.md)
+- [Taplytics](https://docs.mixpanel.com/docs/cohort-sync/integrations/taplytics.md)
+- [VWO](https://docs.mixpanel.com/docs/cohort-sync/integrations/vwo.md)
+- [Webengage](https://docs.mixpanel.com/docs/cohort-sync/integrations/webengage.md)
+- [Xtremepush](https://docs.mixpanel.com/docs/cohort-sync/integrations/xtremepush.md)
+- [Community](https://docs.mixpanel.com/docs/community.md)
+- [Join Slack](https://docs.mixpanel.com/links/slack.md)
+- [Guidelines](https://docs.mixpanel.com/docs/community/guidelines.md)
+- [Get Help](https://docs.mixpanel.com/links/get-help.md)
+- [Response Times](https://docs.mixpanel.com/docs/response-times.md)
+- [Hire an Expert](https://docs.mixpanel.com/links/hire-an-expert.md)
+- [Mixpanel Introduction](https://docs.mixpanel.com/guides/mixpanel-introduction.md)
+- [Self-Guided Tours](https://docs.mixpanel.com/guides/self-guided-tours.md)
+- [What's New?](https://docs.mixpanel.com/links/whats-new.md)
+- [Guides by Use Case](https://docs.mixpanel.com/guides/guides-by-use-case.md)
+- [Drive Product Innovation with Mixpanel Experiments](https://docs.mixpanel.com/guides/guides-by-use-case/engage-your-users/drive-product-innovation.md)
+- [How to Safely Ship New Features with Flags](https://docs.mixpanel.com/guides/guides-by-use-case/engage-your-users/ship-features.md)
+- [Understand and Grow Revenue with Mixpanel](https://docs.mixpanel.com/guides/guides-by-use-case/grow-your-usership/grow-revenue.md)
+- [Use Mixpanel Agent to Go From Question to Decision, Faster](https://docs.mixpanel.com/guides/guides-by-use-case/empower-your-team/mixpanel-agent.md)
+- [3 Ways Top Teams Put Mixpanel Agent to Work](https://docs.mixpanel.com/guides/guides-by-use-case/empower-your-team/mixpanel-agent/use-cases.md)
+- [Use Mixpanel MCP to Go From "What Happened?" to "What Should We Do?"](https://docs.mixpanel.com/guides/guides-by-use-case/empower-your-team/mcp.md)
+- [MCP by Industry](https://docs.mixpanel.com/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry.md)
+- [MCP for AI Products](https://docs.mixpanel.com/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/ai.md): Use Cases and Sample Prompts
+- [MCP for B2B SaaS](https://docs.mixpanel.com/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/b2bsaas.md): Use Cases and Sample Prompts
+- [MCP for Ecommerce](https://docs.mixpanel.com/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/ecommerce.md): Use Cases and Sample Prompts
+- [MCP for Finance](https://docs.mixpanel.com/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/finance.md): Use Cases and Sample Prompts
+- [MCP for Healthcare](https://docs.mixpanel.com/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/healthcare.md): Use Cases and Sample Prompts
+- [MCP for Media & Entertainment](https://docs.mixpanel.com/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/media.md): Use Cases and Sample Prompts
+- [MCP Integration Pairings](https://docs.mixpanel.com/guides/guides-by-use-case/empower-your-team/mcp/integrations.md)
+- [Mixpanel Headless](https://docs.mixpanel.com/guides/guides-by-use-case/empower-your-team/headless.md): Programmatic access to your analytics
+- [Operationalizing Metric Trees to Close the Strategy-Execution Gap](https://docs.mixpanel.com/guides/guides-by-use-case/empower-your-team/close-strategy-execution-gap.md)
+- [Turn Clicks into Clarity: Best Practices for Heatmaps & Session Replay](https://docs.mixpanel.com/guides/guides-by-use-case/empower-your-team/see-replays.md)
+- [How To Build a Tracking Strategy](https://docs.mixpanel.com/guides/guides-by-workflow/build-tracking-strategy.md)
+- [Embed Analytics into Your Product Development Cycle](https://docs.mixpanel.com/guides/guides-by-workflow/embed-data.md)
+- [Ensuring Data Quality in Mixpanel](https://docs.mixpanel.com/guides/guides-by-workflow/ensure-data-quality.md)
+- [Mixpanel Guide to Data Privacy & PII Best Practices](https://docs.mixpanel.com/guides/guides-by-workflow/data-privacy.md)
+- [Write business context that grounds AI answers](https://docs.mixpanel.com/guides/guides-by-workflow/write-business-context.md)
+- [Eliminate Data Drift Between Your Warehouse and Mixpanel Using Mirror](https://docs.mixpanel.com/guides/guides-by-workflow/sync-with-mirror.md)
+- [Mixpanel and the Continuous Innovation Loop](https://docs.mixpanel.com/guides/guides-by-topic/continuous-innovation.md)
+- [Set up Mixpanel AI for accurate answers](https://docs.mixpanel.com/guides/guides-by-topic/trust-ai-answers.md)
+- [Govern Your Mixpanel Data for Long-Term Success](https://docs.mixpanel.com/guides/guides-by-topic/govern-data.md)
+- [Features](https://docs.mixpanel.com/guides/guides-by-topic/features.md)
+- [Core Reports](https://docs.mixpanel.com/guides/guides-by-topic/core-reports.md)
+- [Benchmarks & Analytics Maturity](https://docs.mixpanel.com/guides/benchmarks.md)
+- [Board Templates](https://docs.mixpanel.com/guides/board-templates.md)
+- [Strategic Playbooks](https://docs.mixpanel.com/guides/strategic-playbooks.md)
+- [The Guide to Product Analytics](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/intro.md)
+- [Measure Value](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/measure-value.md): The Foundation of Product Analytics
+- [Get to Know Your Users](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/get-to-know-your-users.md)
+- [Analyze User Engagement](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/analyze-user-engagement.md): Understand product usage intervals, identify power/core/casual users, and track user lifecycle patterns for better engagement insights.
+- [Retain Your Users](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/retain-your-users.md)
+- [Grow and Scale](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/grow-and-scale.md)
+- [Conclusion](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/conclusion.md)
+- [Advance Your Product Analytics Strategy](https://docs.mixpanel.com/guides/strategic-playbooks/product-analytics-strategy/get-started.md)
+- [Non-Existent](https://docs.mixpanel.com/guides/strategic-playbooks/product-analytics-strategy/non-existent.md)
+- [Novice](https://docs.mixpanel.com/guides/strategic-playbooks/product-analytics-strategy/novice.md)
+- [Intermediate](https://docs.mixpanel.com/guides/strategic-playbooks/product-analytics-strategy/intermediate.md)
+- [Advanced](https://docs.mixpanel.com/guides/strategic-playbooks/product-analytics-strategy/advanced.md)
+- [Expert](https://docs.mixpanel.com/guides/strategic-playbooks/product-analytics-strategy/expert.md)
+- [Getting started with product analytics](https://docs.mixpanel.com/guides/strategic-playbooks/product-analytics-strategy/finale.md)
+- [Onboarding Playbook](https://docs.mixpanel.com/guides/strategic-playbooks/onboarding-playbook.md)
+- [Project Migration Playbook](https://docs.mixpanel.com/guides/strategic-playbooks/project-migration.md)
+- [Migrating Your Feature Flags and Experiments to Mixpanel  ](https://docs.mixpanel.com/guides/strategic-playbooks/feature-flag-migration-playbook.md)
+- [Mixpanel Glossary](https://docs.mixpanel.com/guides/glossary.md)
+- [Changelogs](https://docs.mixpanel.com/changelogs.md)
+- [Frequently Asked Questions](https://docs.mixpanel.com/troubleshooting/faqs.md)
+- [Overview](https://docs.mixpanel.com/reference/overview.md)
+- [Authentication Methods](https://docs.mixpanel.com/reference/authentication.md)
+- [Service Accounts](https://docs.mixpanel.com/reference/service-accounts.md)
+- [Project Token](https://docs.mixpanel.com/reference/project-token.md)
+- [Project Secret [Deprecated]](https://docs.mixpanel.com/reference/project-secret.md)
+- [Request Signature [Deprecated]](https://docs.mixpanel.com/reference/request-signature.md)
+- [Segmentation Expressions](https://docs.mixpanel.com/reference/segmentation-expressions.md)
+- [Rate Limits](https://docs.mixpanel.com/reference/rate-limits.md)
+- [Import Events](https://docs.mixpanel.com/reference/import-events.md)
+- [Track Events](https://docs.mixpanel.com/reference/track-event.md)
+- [Event Deduplication](https://docs.mixpanel.com/reference/event-deduplication.md)
+- [Overview](https://docs.mixpanel.com/reference/ingestion-api.md)
+- [Authentication](https://docs.mixpanel.com/reference/ingestion-api-authentication.md)
+- [Update Group Profile Property](https://docs.mixpanel.com/reference/group-set-property.md): Updates or adds properties to a group profile. The profile is created if it does not exist.
+- [Set Group Profile Property Once](https://docs.mixpanel.com/reference/group-set-property-once.md): Adds properties to a group only if the property is not already set. The profile is created if it does not exist.
+- [Delete Group Profile Property](https://docs.mixpanel.com/reference/group-delete-property.md): Unsets specific properties on the group profile.
+- [Remove from Group Profile List Property](https://docs.mixpanel.com/reference/group-remove-from-list-property.md): Removes a specific value in a list property.
+- [Union to Group Profile List Property](https://docs.mixpanel.com/reference/group-union.md): Adds the specified values to a list property on a group profile and ensures that those values only appear once. The profile is created if it does not exist.
+- [Batch Update Group Profiles](https://docs.mixpanel.com/reference/group-batch-update.md): Send a batch of group profile updates. Instead of sending a single JSON object as the data query parameter, send a JSON list of objects as the data parameter of an application/x-www-form-urlencoded POST or GET request body.
+- [Delete Group](https://docs.mixpanel.com/reference/delete-group.md): Deletes a group profile from Mixpanel.
+- [Limits](https://docs.mixpanel.com/reference/limits-1.md)
+- [Lookup Tables](https://docs.mixpanel.com/reference/lookup-tables.md)
+- [List Lookup Tables](https://docs.mixpanel.com/reference/list-lookup-tables.md): Get a list of Lookup Tables defined in the project.
+- [Replace a Lookup Table](https://docs.mixpanel.com/reference/replace-lookup-table.md)
+- [Set User Profile Property](https://docs.mixpanel.com/reference/profile-set.md): Takes a JSON object containing names and values of profile properties. If the profile does not exist, it creates it with these properties. If it does exist, it sets the properties to these values, overwriting existing values.
+- [Set User Profile Property Once](https://docs.mixpanel.com/reference/profile-set-property-once.md): Works just like "$set", except it will not overwrite existing property values. This is useful for properties like "First login date".
+- [Increment Numerical Property](https://docs.mixpanel.com/reference/profile-numerical-add.md): Takes a JSON object containing keys and numerical values. \$add will increment the value of a user profile property. When processed, the property values are added to the existing values of the properties on the profile. If the property is not present on the profile, the value will be added to 0. It…
+- [Union to User Profile List Property](https://docs.mixpanel.com/reference/user-profile-union.md): Adds the specified values to a list property on a user profile and ensures that those values only appear once. The profile is created if it does not exist.
+- [Append to List Property](https://docs.mixpanel.com/reference/profile-append-to-list-property.md): Takes a JSON object containing keys and values, and appends each to a list associated with the corresponding property name. Appending to a property that doesn't exist will result in assigning a list with one element to that property.
+- [Remove from User Profile List Property](https://docs.mixpanel.com/reference/profile-remove-from-list-property.md): Takes a JSON object containing keys and values. The value in the request is removed from the existing list on the user profile. If it does not exist, no updates are made.
+- [Delete User Profile Property](https://docs.mixpanel.com/reference/profile-delete-property.md): Takes a JSON list of string property names, and permanently removes the properties and their values from a profile.
+- [Update Multiple Profiles](https://docs.mixpanel.com/reference/profile-batch-update.md): Send a batch of profile updates. Instead of sending a single JSON object as the data query parameter, send a JSON list of objects as the data parameter of an application/json POST or GET request body.
+- [Delete User Profile](https://docs.mixpanel.com/reference/delete-profile.md): Permanently delete the profile from Mixpanel, along with all of its properties. The \$delete object value is ignored - the profile is determined by the \$distinct_id from the request itself.
+- [Limits](https://docs.mixpanel.com/reference/user-profile-limits.md)
+- [Create Identity](https://docs.mixpanel.com/reference/create-identity.md)
+- [Create Alias](https://docs.mixpanel.com/reference/identity-create-alias.md)
+- [Merge Identities](https://docs.mixpanel.com/reference/identity-merge.md)
+- [Overview](https://docs.mixpanel.com/reference/query-api.md)
+- [List Saved Cohorts](https://docs.mixpanel.com/reference/cohorts-list.md): The list endpoint returns all of the cohorts in a given project. The JSON formatted return contains the cohort name, id, count, description, creation date, and visibility for every cohort in the project.
+- [Query Profiles](https://docs.mixpanel.com/reference/engage-query.md)
+- [Authentication](https://docs.mixpanel.com/reference/query-api-authentication.md)
+- [Query Saved Report](https://docs.mixpanel.com/reference/funnels-query.md): Get data for a funnel. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
+- [List Saved Funnels](https://docs.mixpanel.com/reference/funnels-list-saved.md): Get the names and funnel_ids of your funnels.
+- [Query Saved Report](https://docs.mixpanel.com/reference/insights-query.md): Get data from your Insights reports. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
+- [Custom JQL Query](https://docs.mixpanel.com/reference/query-jql.md)
+- [Additional Information](https://docs.mixpanel.com/links/jql.md)
+- [Query Retention Report](https://docs.mixpanel.com/reference/retention-query.md)
+- [Query Frequency Report](https://docs.mixpanel.com/reference/retention-frequency-query.md)
+- [Query Segmentation Report](https://docs.mixpanel.com/reference/segmentation-query.md): Get data for an event, segmented and filtered by properties. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
+- [Numerically Bucket](https://docs.mixpanel.com/reference/segmentation-numeric-query.md): Get data for an event, segmented and filtered by properties, with values placed into numeric buckets. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
+- [Numerically Sum](https://docs.mixpanel.com/reference/segmentation-sum-query.md): Sums an expression for events per unit time. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
+- [Numerically Average](https://docs.mixpanel.com/reference/segmentation-query-average.md): Averages an expression for events per unit time. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
+- [Profile Event Activity](https://docs.mixpanel.com/reference/activity-stream-query.md): > ❗️stream/query is currently in maintenance mode.
+- [Aggregate Event Counts](https://docs.mixpanel.com/reference/list-recent-events.md): Get unique, total, or average data for a set of events over N days, weeks, or months. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
+- [Today's Top Events](https://docs.mixpanel.com/reference/query-top-events.md): Get the top events for today, with their counts and the normalized percent change from yesterday. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
+- [Top Events](https://docs.mixpanel.com/reference/query-months-top-event-names.md): Get a list of the most common events over the last 31 days. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
+- [Aggregrated Event Property Values](https://docs.mixpanel.com/reference/query-event-properties.md): Get unique, total, or average data for of a single event and property over days, weeks, or months. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
+- [Top Event Properties](https://docs.mixpanel.com/reference/query-events-top-properties.md): Get the top property names for an event. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
+- [Top Event Property Values](https://docs.mixpanel.com/reference/query-events-top-property-values.md): Get the top values for a property. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
+- [Download Data](https://docs.mixpanel.com/reference/raw-event-export.md): Every data point sent to Mixpanel is stored as JSON in our data store. The raw export API allows you to download your event data as it is received and stored within Mixpanel, complete with all event properties (including distinct_id) and the exact timestamp the event was fired. The raw export API ha…
+- [Overview](https://docs.mixpanel.com/reference/raw-data-export-api.md)
+- [Authentication](https://docs.mixpanel.com/reference/raw-data-export-api-authentication.md)
+- [Overview](https://docs.mixpanel.com/reference/lexicon-schemas-api.md)
+- [Authentication](https://docs.mixpanel.com/reference/lexicon-schemas-api-authentication.md)
+- [Create/Replace Multiple](https://docs.mixpanel.com/reference/upload-schemas-for-project.md)
+- [Create/Replace One](https://docs.mixpanel.com/reference/upload-schema-by-entity-and-name.md)
+- [Delete all Schemas](https://docs.mixpanel.com/reference/delete-all-schemas-in-project.md): Delete all schemas in a project
+- [Delete for Entity](https://docs.mixpanel.com/reference/delete-schemas-for-entity.md): Delete all schemas of a specific entity type
+- [Delete for Entity and Name](https://docs.mixpanel.com/reference/delete-schema-by-entity-and-name.md): Delete schema for an entity type and entity name
+- [List Schemas](https://docs.mixpanel.com/reference/list-all-schemas-for-project.md): List all schemas in a project
+- [List for Entity](https://docs.mixpanel.com/reference/list-schemas-for-entity.md): Get all schemas for a specific entity type
+- [List for Entity and Name](https://docs.mixpanel.com/reference/list-schemas-by-entity-and-name.md): Get the schema for a specific entity type and entity name
+- [Limits](https://docs.mixpanel.com/reference/limits.md)
+- [Overview](https://docs.mixpanel.com/reference/overview-2.md)
+- [Authentication](https://docs.mixpanel.com/reference/authentication-2.md)
+- [Create Pipeline](https://docs.mixpanel.com/reference/create-warehouse-pipeline.md)
+- [Delete Pipeline](https://docs.mixpanel.com/reference/cancel-warehouse-pipeline.md): For a given pipeline name, this request deletes the pipeline and stops any future jobs to be scheduled for the pipeline.  Deleting the pipeline will result in the loss of all its historical data. If you wish to retain the history, it is recommended to pause the pipeline instead.
+- [Edit Pipeline](https://docs.mixpanel.com/reference/edit-warehouse-pipeline.md): This request edit the params for an export pipeline.
+- [Pause Pipeline](https://docs.mixpanel.com/reference/pause-warehouse-pipeline.md): For a given pipeline name, this request pauses the pipeline which stops the ongoing jobs and prevents any future jobs to be scheduled for the pipeline
+- [Resume Pipeline](https://docs.mixpanel.com/reference/resume-warehouse-pipeline.md): For a given pipeline name, this request resumes the pipeline if it's paused
+- [List Pipelines](https://docs.mixpanel.com/reference/list-warehouse-pipeline-jobs.md): This API endpoint returns the list of all the pipelines scheduled for a project.
+- [Get Pipeline](https://docs.mixpanel.com/reference/get-warehouse-pipeline-status.md)
+- [List Pipeline Logs](https://docs.mixpanel.com/reference/list-warehouse-pipeline-sync-dates.md): This endpoint returns the timestamps of all syncs grouped by date.
+- [Overview](https://docs.mixpanel.com/reference/service-accounts-api.md)
+- [Authentication](https://docs.mixpanel.com/reference/service-accounts-api-authentication.md)
+- [Create Service Account](https://docs.mixpanel.com/reference/create-service-account.md): Create a new service account for your organization and optionally add it to one or more projects in your organization
+- [Delete Service Account](https://docs.mixpanel.com/reference/delete-service-account.md): Removes the service account from all associated projects and deletes it from the organization
+- [List Service Accounts For Project](https://docs.mixpanel.com/reference/list-project-service-accounts.md): Retrieve a list of service accounts that are members of the specified project
+- [Add Service Accounts To Projects](https://docs.mixpanel.com/reference/add-service-accounts-to-projects.md): Adds a list of service account ids to a list of project ids with the specified role
+- [Remove Service Accounts From Projects](https://docs.mixpanel.com/reference/remove-service-accounts-from-projects.md): Removes a list of service account ids from a list of project ids
+- [List Service Accounts](https://docs.mixpanel.com/reference/list-service-accounts.md): Return a list of all service accounts for your organization
+- [Get Service Account](https://docs.mixpanel.com/reference/get-service-account.md): Return service account details by id
+- [Overview](https://docs.mixpanel.com/reference/overview-1.md)
+- [Delete Annotation](https://docs.mixpanel.com/reference/delete-annotation-1.md): Delete an Annotation. Requires a role of at least Analyst.
+- [List Annotations](https://docs.mixpanel.com/reference/list-all-annotations-for-project.md): List all annotations in a project.
+- [Get Annotation](https://docs.mixpanel.com/reference/get-annotation-1.md): Get an Annotation
+- [Create Annotations](https://docs.mixpanel.com/reference/create-annotation.md): Create an Annotation. Requires a role of at least Analyst.
+- [Patch Annotation](https://docs.mixpanel.com/reference/patch-annotation-1.md): Patch an Annotation. Requires a role of at least Analyst.
+- [Get Annotation Tags](https://docs.mixpanel.com/reference/get-annotation-tags-1.md): Get all tags that have been added to at least one annotation. Requires a role of at least Analyst
+- [Create Annotation Tag](https://docs.mixpanel.com/reference/create-annotation-tag-1.md): Creates a new tag using the provided name. Requires a role of at least Analyst
+- [Overview](https://docs.mixpanel.com/reference/gdpr-api.md)
+- [Create a Retrieval](https://docs.mixpanel.com/reference/create-retrieval-1.md): Creates a data retrieval job.
+- [Check Status of Retrieval](https://docs.mixpanel.com/reference/get-retrieval.md): Checks the status of a data retrieval job
+- [Create a Deletion](https://docs.mixpanel.com/reference/create-deletion.md): Creates a task that specifies a list of users in a project to delete
+- [Check Status of Deletion](https://docs.mixpanel.com/reference/get-deletion.md): Checks the status of an existing deletion task
+- [Cancel a Deletion](https://docs.mixpanel.com/reference/delete-deletion.md): Cancel a deletion task that is still in progress
+- [Overview](https://docs.mixpanel.com/reference/warehouse-connectors-api.md)
+- [Authentication](https://docs.mixpanel.com/reference/warehouse-connectors-api-authentication.md)
+- [Run an import](https://docs.mixpanel.com/reference/run-an-import-1.md): Triggers an immediate sync for a given warehouse import.
+- [List Warehouse Imports](https://docs.mixpanel.com/reference/list-warehouse-imports.md): Returns a list of all warehouse imports configured for the project. Each import includes metadata about the import configuration, sync status, and job scheduling information.
+- [Get Warehouse Import](https://docs.mixpanel.com/reference/get-warehouse-import.md): Retrieves detailed information about a specific warehouse import by ID. Returns the full configuration of the import including table parameters, column mappings, and sync settings.
+- [Update Warehouse Import](https://docs.mixpanel.com/reference/update-warehouse-import.md): Update an existing warehouse import's settings.
+- [Delete Warehouse Import](https://docs.mixpanel.com/reference/delete-warehouse-import.md): Deletes a warehouse import and optionally deletes the imported data.
+- [Create Event Stream Import](https://docs.mixpanel.com/reference/create-event-stream-import.md): Create a new warehouse import for event data.
+- [Create People Import](https://docs.mixpanel.com/reference/create-people-import.md): Create a new warehouse import for user profile data.
+- [Create Groups Import](https://docs.mixpanel.com/reference/create-groups-import.md): Create a new warehouse import for group profile data. Groups imports sync group properties from your warehouse to Mixpanel group profiles.
+- [Create Lookup Table Import](https://docs.mixpanel.com/reference/create-lookup-table-import.md): Create a new warehouse import for lookup table data.
+- [Get Import History](https://docs.mixpanel.com/reference/get-import-history.md): Returns the execution history for a warehouse import. Returns 30 most recent events.
+- [Run an Import](https://docs.mixpanel.com/reference/run-an-import.md)
+- [Overview](https://docs.mixpanel.com/reference/feature-flags-api.md)
+- [Get Flag Definitions](https://docs.mixpanel.com/reference/get-flag-definitions.md): Retrieve all enabled feature flag definitions for the authenticated project. Returns complete flag metadata including rulesets, variants, and rollout configurations.
+- [Get Variant Assignments](https://docs.mixpanel.com/reference/get-variant-assignments.md): Evaluate all enabled feature flags for a user with the provided context. Returns selected variants for flags the user is eligible for.
+- [Overview](https://docs.mixpanel.com/reference/feature-flags-management-api.md)
+- [List Feature Flags](https://docs.mixpanel.com/reference/list-feature-flags-1.md)
+- [Create Feature Flag](https://docs.mixpanel.com/reference/create-feature-flag-1.md)
+- [Get Feature Flag](https://docs.mixpanel.com/reference/get-feature-flag-1.md)
+- [Delete Feature Flag](https://docs.mixpanel.com/reference/delete-feature-flag-1.md)
+- [Update Feature Flag](https://docs.mixpanel.com/reference/update-feature-flag-1.md)
+- [List Experiments](https://docs.mixpanel.com/reference/list-experiments.md)
+- [Create Experiment](https://docs.mixpanel.com/reference/create-experiment.md)
+- [Get Experiment](https://docs.mixpanel.com/reference/get-experiment.md)
+- [Update Experiment](https://docs.mixpanel.com/reference/update-experiment.md)
+- [Delete Experiment](https://docs.mixpanel.com/reference/delete-experiment.md)
+- [Archive Experiment](https://docs.mixpanel.com/reference/archive-experiment.md)
+- [Unarchive Experiment](https://docs.mixpanel.com/reference/unarchive-experiment.md)
+- [Decide Experiment](https://docs.mixpanel.com/reference/decide-experiment.md)
+- [Force Conclude Experiment](https://docs.mixpanel.com/reference/force-conclude-experiment.md)
+- [Launch Experiment](https://docs.mixpanel.com/reference/launch-experiment.md)
+
+## OpenAPI Specs
+
+- [platform.openapi](https://docs.mixpanel.com/openapi/platform.openapi.json)
+- [export.openapi](https://docs.mixpanel.com/openapi/export.openapi.yaml)
+- [feature-flags.openapi](https://docs.mixpanel.com/openapi/feature-flags.openapi.yaml)
+- [query.openapi](https://docs.mixpanel.com/openapi/query.openapi.yaml)
+- [warehouse-connectors.openapi](https://docs.mixpanel.com/openapi/warehouse-connectors.openapi.yaml)
+- [service-accounts.openapi](https://docs.mixpanel.com/openapi/service-accounts.openapi.yaml)
+- [lexicon-schemas.openapi](https://docs.mixpanel.com/openapi/lexicon-schemas.openapi.yaml)
+- [ingestion.openapi](https://docs.mixpanel.com/openapi/ingestion.openapi.yaml)
+- [identity.openapi](https://docs.mixpanel.com/openapi/identity.openapi.yaml)
+- [gdpr.openapi](https://docs.mixpanel.com/openapi/gdpr.openapi.yaml)
+- [feature-flags-management.openapi](https://docs.mixpanel.com/openapi/feature-flags-management.openapi.yaml)
+- [experiments.openapi](https://docs.mixpanel.com/openapi/experiments.openapi.yaml)
+- [data-pipelines.openapi](https://docs.mixpanel.com/openapi/data-pipelines.openapi.yaml)
+- [annotations.openapi](https://docs.mixpanel.com/openapi/annotations.openapi.yaml)
+- [query](https://docs.mixpanel.com/openapi/query.yaml)
+- [ingestion](https://docs.mixpanel.com/openapi/ingestion.yaml)
+- [identity](https://docs.mixpanel.com/openapi/identity.yaml)
+
+## Optional
+
+- [About Us](https://mixpanel.com/about)
+- [Community](https://community.mixpanel.com/)
+- [Blog](https://mixpanel.com/blog)

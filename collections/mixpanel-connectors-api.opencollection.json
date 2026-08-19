@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mixpanel Annotations Connectors API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Connectors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mixpanel List warehouse sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/app/projects/:projectId/warehouse-sources",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The Mixpanel project ID"
+              }
+            ]
+          },
+          "docs": "Retrieve all warehouse source connections configured for the project."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Create warehouse source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mixpanel.com/api/app/projects/:projectId/warehouse-sources",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The Mixpanel project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new warehouse source connection for importing data from a data warehouse into Mixpanel."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Get warehouse source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mixpanel.com/api/app/projects/:projectId/warehouse-sources/:sourceId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "path",
+                "description": "The warehouse source connection ID"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific warehouse source connection."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Update warehouse source",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://mixpanel.com/api/app/projects/:projectId/warehouse-sources/:sourceId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "path",
+                "description": "The warehouse source connection ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the configuration of an existing warehouse source connection."
+        },
+        {
+          "info": {
+            "name": "Mixpanel Delete warehouse source",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://mixpanel.com/api/app/projects/:projectId/warehouse-sources/:sourceId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The Mixpanel project ID"
+              },
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "path",
+                "description": "The warehouse source connection ID"
+              }
+            ]
+          },
+          "docs": "Delete a warehouse source connection and all its import configurations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
