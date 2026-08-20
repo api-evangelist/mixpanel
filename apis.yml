@@ -34,6 +34,11 @@ apis:
   tags:
   - Alerts
   - Cohort Sync
+  - Notification
+  - Webhook
+  tags_raw:
+  - Alerts
+  - Cohort Sync
   - Notifications
   - Webhooks
   properties:
@@ -183,6 +188,8 @@ apis:
   humanURL: https://developer.mixpanel.com/reference/ingestion-api
   baseURL: https://api.mixpanel.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
