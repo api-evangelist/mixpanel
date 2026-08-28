@@ -13,10 +13,10 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: annotationsApi
-  url: ../openapi/mixpanel-annotations-openapi.yml
+  url: ../openapi/mixpanel-annotations-api-openapi.yml
   type: openapi
-- name: queryApi
-  url: ../openapi/mixpanel-query-openapi.yml
+- name: retentionApi
+  url: ../openapi/mixpanel-retention-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: retention-with-annotation

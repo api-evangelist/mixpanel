@@ -11,8 +11,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: ingestionApi
-  url: ../openapi/mixpanel-ingestion-openapi.yml
+- name: eventsApi
+  url: ../openapi/mixpanel-events-api-openapi.yml
+  type: openapi
+- name: lookupTablesApi
+  url: ../openapi/mixpanel-lookup-tables-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: lookup-table-enrichment

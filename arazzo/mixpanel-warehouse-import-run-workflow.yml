@@ -10,8 +10,11 @@ info:
     be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: warehouseConnectorsApi
-  url: ../openapi/mixpanel-warehouse-connectors-openapi.yml
+- name: connectorsApi
+  url: ../openapi/mixpanel-connectors-api-openapi.yml
+  type: openapi
+- name: importsApi
+  url: ../openapi/mixpanel-imports-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: warehouse-import-run

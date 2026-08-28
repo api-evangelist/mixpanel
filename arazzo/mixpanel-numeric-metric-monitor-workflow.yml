@@ -10,11 +10,11 @@ info:
     and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: queryApi
-  url: ../openapi/mixpanel-query-openapi.yml
-  type: openapi
 - name: annotationsApi
-  url: ../openapi/mixpanel-annotations-openapi.yml
+  url: ../openapi/mixpanel-annotations-api-openapi.yml
+  type: openapi
+- name: segmentationApi
+  url: ../openapi/mixpanel-segmentation-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: numeric-metric-monitor

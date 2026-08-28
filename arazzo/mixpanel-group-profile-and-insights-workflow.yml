@@ -11,11 +11,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: ingestionApi
-  url: ../openapi/mixpanel-ingestion-openapi.yml
+- name: groupProfilesApi
+  url: ../openapi/mixpanel-group-profiles-api-openapi.yml
   type: openapi
-- name: queryApi
-  url: ../openapi/mixpanel-query-openapi.yml
+- name: insightsApi
+  url: ../openapi/mixpanel-insights-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: group-profile-and-insights

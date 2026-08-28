@@ -11,14 +11,14 @@ info:
     executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
+- name: eventsApi
+  url: ../openapi/mixpanel-events-api-openapi.yml
+  type: openapi
 - name: identityApi
-  url: ../openapi/mixpanel-identity-openapi.yml
+  url: ../openapi/mixpanel-identity-api-openapi.yml
   type: openapi
-- name: ingestionApi
-  url: ../openapi/mixpanel-ingestion-openapi.yml
-  type: openapi
-- name: queryApi
-  url: ../openapi/mixpanel-query-openapi.yml
+- name: segmentationApi
+  url: ../openapi/mixpanel-segmentation-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: identity-resolve-and-track

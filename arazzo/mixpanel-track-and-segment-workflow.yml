@@ -12,11 +12,11 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: ingestionApi
-  url: ../openapi/mixpanel-ingestion-openapi.yml
+- name: eventsApi
+  url: ../openapi/mixpanel-events-api-openapi.yml
   type: openapi
-- name: queryApi
-  url: ../openapi/mixpanel-query-openapi.yml
+- name: segmentationApi
+  url: ../openapi/mixpanel-segmentation-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: track-and-segment

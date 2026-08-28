@@ -11,8 +11,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: queryApi
-  url: ../openapi/mixpanel-query-openapi.yml
+- name: cohortsApi
+  url: ../openapi/mixpanel-cohorts-api-openapi.yml
+  type: openapi
+- name: segmentationApi
+  url: ../openapi/mixpanel-segmentation-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: cohort-driven-segmentation
