@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Mixpanel Annotations API
   description: API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
@@ -146,13 +146,6 @@ paths:
           description: Annotation not found
 components:
   parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The Mixpanel project ID
     annotationId:
       name: annotationId
       in: path
@@ -160,20 +153,14 @@ components:
       schema:
         type: integer
       description: The annotation ID
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel project ID
   schemas:
-    CreateAnnotationRequest:
-      type: object
-      required:
-      - date
-      - description
-      properties:
-        date:
-          type: string
-          format: date-time
-          description: The date and time to annotate (YYYY-MM-DDThh:mm:ss)
-        description:
-          type: string
-          description: Description text for the annotation
     Annotation:
       type: object
       properties:
@@ -200,6 +187,19 @@ components:
           type: string
           format: date-time
           description: When the annotation was created
+    CreateAnnotationRequest:
+      type: object
+      required:
+      - date
+      - description
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: The date and time to annotate (YYYY-MM-DDThh:mm:ss)
+        description:
+          type: string
+          description: Description text for the annotation
   securitySchemes:
     basicAuth:
       type: http

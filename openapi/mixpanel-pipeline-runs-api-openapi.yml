@@ -1,17 +1,17 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Mixpanel Annotations Pipeline Runs API
-  description: API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
-  version: '1.0'
+  title: Mixpanel Data Pipelines Pipeline Runs API
+  description: API for creating, managing, and monitoring data export pipelines in Mixpanel, including creating, editing, pausing, resuming, and deleting pipelines that export data to cloud storage and data warehouses.
+  version: '2.0'
   contact:
     name: Mixpanel Support
     email: support@mixpanel.com
     url: https://mixpanel.com/get-support
   termsOfService: https://mixpanel.com/legal/terms-of-use
 servers:
-- url: https://mixpanel.com/api/app
+- url: https://data.mixpanel.com/api/2.0
   description: Mixpanel US Data Residency
-- url: https://eu.mixpanel.com/api/app
+- url: https://data-eu.mixpanel.com/api/2.0
   description: Mixpanel EU Data Residency
 security:
 - basicAuth: []
@@ -96,5 +96,5 @@ components:
       scheme: basic
       description: Service account credentials for API authentication.
 externalDocs:
-  description: Mixpanel Annotations API Documentation
-  url: https://developer.mixpanel.com/reference/create-annotation
+  description: Mixpanel Data Pipelines API Documentation
+  url: https://developer.mixpanel.com/reference/overview-2
