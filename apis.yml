@@ -742,6 +742,8 @@ apis:
   - type: Documentation
     url: https://developer.mixpanel.com/reference/warehouse-connectors-api
 common:
+- type: Website
+  url: https://www.mixpanel.com/
 - type: AgenticAccess
   url: agentic-access/mixpanel-agentic-access.yml
 - type: VulnerabilityDisclosure
