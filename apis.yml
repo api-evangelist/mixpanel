@@ -73,6 +73,8 @@ apis:
   humanURL: https://developer.mixpanel.com/reference/ingestion-api
   baseURL: https://api.mixpanel.com
   tags:
+  - Annotation
+  tags_raw:
   - Annotations
   properties:
   - type: OpenAPI
@@ -363,6 +365,8 @@ apis:
   humanURL: https://developer.mixpanel.com/reference/ingestion-api
   baseURL: https://api.mixpanel.com
   tags:
+  - Import
+  tags_raw:
   - Imports
   properties:
   - type: OpenAPI
@@ -619,6 +623,8 @@ apis:
   humanURL: https://developer.mixpanel.com/reference/ingestion-api
   baseURL: https://api.mixpanel.com
   tags:
+  - Schema
+  tags_raw:
   - Schemas
   properties:
   - type: OpenAPI
