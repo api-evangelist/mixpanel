@@ -94,21 +94,6 @@ paths:
         '429':
           description: Rate limit exceeded - too many runs triggered
 components:
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The Mixpanel project ID
-    sourceId:
-      name: sourceId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The warehouse source connection ID
   schemas:
     WarehouseRun:
       type: object
@@ -160,6 +145,21 @@ components:
           type: string
           format: date-time
           description: When this table was last imported
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel project ID
+    sourceId:
+      name: sourceId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The warehouse source connection ID
   securitySchemes:
     basicAuth:
       type: http

@@ -145,21 +145,6 @@ paths:
         '404':
           description: Annotation not found
 components:
-  parameters:
-    annotationId:
-      name: annotationId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The annotation ID
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The Mixpanel project ID
   schemas:
     Annotation:
       type: object
@@ -200,6 +185,21 @@ components:
         description:
           type: string
           description: Description text for the annotation
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel project ID
+    annotationId:
+      name: annotationId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The annotation ID
   securitySchemes:
     basicAuth:
       type: http

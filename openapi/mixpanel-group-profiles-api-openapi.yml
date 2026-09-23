@@ -56,6 +56,18 @@ paths:
       - projectToken: []
 components:
   schemas:
+    TrackResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          enum:
+          - 0
+          - 1
+          description: 1 for success, 0 for failure
+        error:
+          type: string
+          description: Error message if status is 0
     GroupUpdate:
       type: object
       required:
@@ -88,18 +100,6 @@ components:
         $delete:
           type: string
           description: Set to empty string to delete the group profile
-    TrackResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          enum:
-          - 0
-          - 1
-          description: 1 for success, 0 for failure
-        error:
-          type: string
-          description: Error message if status is 0
   parameters:
     verbose:
       name: verbose

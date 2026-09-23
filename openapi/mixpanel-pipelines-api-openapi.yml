@@ -187,101 +187,7 @@ paths:
         '404':
           description: Pipeline not found
 components:
-  parameters:
-    projectId:
-      name: project_id
-      in: query
-      required: true
-      schema:
-        type: integer
-      description: The Mixpanel project ID
   schemas:
-    SnowflakeConfig:
-      type: object
-      properties:
-        account:
-          type: string
-          description: Snowflake account identifier
-        warehouse:
-          type: string
-          description: Snowflake warehouse name
-        database:
-          type: string
-          description: Snowflake database name
-        schema:
-          type: string
-          description: Snowflake schema name
-        username:
-          type: string
-          description: Snowflake username
-        password:
-          type: string
-          description: Snowflake password
-    BigQueryConfig:
-      type: object
-      properties:
-        projectId:
-          type: string
-          description: Google Cloud project ID
-        dataset:
-          type: string
-          description: BigQuery dataset name
-        serviceAccountKey:
-          type: string
-          description: Base64-encoded service account JSON key
-    CreatePipelineRequest:
-      type: object
-      required:
-      - name
-      - type
-      - fromDate
-      - dataTypes
-      properties:
-        name:
-          type: string
-          description: Pipeline name
-        type:
-          type: string
-          enum:
-          - bigquery
-          - snowflake
-          - s3
-          - gcs
-          - azure-blob
-          description: Destination type
-        fromDate:
-          type: string
-          format: date
-          description: Start date for data export
-        dataTypes:
-          type: array
-          items:
-            type: string
-            enum:
-            - event
-            - people
-            - group
-          description: Types of data to export
-        schemaType:
-          type: string
-          enum:
-          - monoschema
-          - multischema
-          description: Schema type for the export
-        frequency:
-          type: string
-          enum:
-          - hourly
-          - daily
-          description: Export frequency
-        bigqueryConfig:
-          $ref: '#/components/schemas/BigQueryConfig'
-        snowflakeConfig:
-          $ref: '#/components/schemas/SnowflakeConfig'
-        s3Config:
-          $ref: '#/components/schemas/S3Config'
-        gcsConfig:
-          $ref: '#/components/schemas/GCSConfig'
     Pipeline:
       type: object
       properties:
@@ -340,6 +246,86 @@ components:
           - hourly
           - daily
           description: How often the pipeline runs
+    S3Config:
+      type: object
+      properties:
+        bucket:
+          type: string
+          description: S3 bucket name
+        prefix:
+          type: string
+          description: S3 key prefix for exported files
+        region:
+          type: string
+          description: AWS region
+        roleArn:
+          type: string
+          description: AWS IAM role ARN for cross-account access
+    GCSConfig:
+      type: object
+      properties:
+        bucket:
+          type: string
+          description: GCS bucket name
+        prefix:
+          type: string
+          description: GCS path prefix
+        serviceAccountKey:
+          type: string
+          description: Base64-encoded service account JSON key
+    CreatePipelineRequest:
+      type: object
+      required:
+      - name
+      - type
+      - fromDate
+      - dataTypes
+      properties:
+        name:
+          type: string
+          description: Pipeline name
+        type:
+          type: string
+          enum:
+          - bigquery
+          - snowflake
+          - s3
+          - gcs
+          - azure-blob
+          description: Destination type
+        fromDate:
+          type: string
+          format: date
+          description: Start date for data export
+        dataTypes:
+          type: array
+          items:
+            type: string
+            enum:
+            - event
+            - people
+            - group
+          description: Types of data to export
+        schemaType:
+          type: string
+          enum:
+          - monoschema
+          - multischema
+          description: Schema type for the export
+        frequency:
+          type: string
+          enum:
+          - hourly
+          - daily
+          description: Export frequency
+        bigqueryConfig:
+          $ref: '#/components/schemas/BigQueryConfig'
+        snowflakeConfig:
+          $ref: '#/components/schemas/SnowflakeConfig'
+        s3Config:
+          $ref: '#/components/schemas/S3Config'
+        gcsConfig:
+          $ref: '#/components/schemas/GCSConfig'
     UpdatePipelineRequest:
       type: object
       required:
@@ -362,33 +348,47 @@ components:
           - hourly
           - daily
           description: Updated export frequency
-    GCSConfig:
+    SnowflakeConfig:
       type: object
       properties:
-        bucket:
+        account:
           type: string
-          description: GCS bucket name
-        prefix:
+          description: Snowflake account identifier
+        warehouse:
           type: string
-          description: GCS path prefix
+          description: Snowflake warehouse name
+        database:
+          type: string
+          description: Snowflake database name
+        schema:
+          type: string
+          description: Snowflake schema name
+        username:
+          type: string
+          description: Snowflake username
+        password:
+          type: string
+          description: Snowflake password
+    BigQueryConfig:
+      type: object
+      properties:
+        projectId:
+          type: string
+          description: Google Cloud project ID
+        dataset:
+          type: string
+          description: BigQuery dataset name
         serviceAccountKey:
           type: string
           description: Base64-encoded service account JSON key
-    S3Config:
-      type: object
-      properties:
-        bucket:
-          type: string
-          description: S3 bucket name
-        prefix:
-          type: string
-          description: S3 key prefix for exported files
-        region:
-          type: string
-          description: AWS region
-        roleArn:
-          type: string
-          description: AWS IAM role ARN for cross-account access
+  parameters:
+    projectId:
+      name: project_id
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel project ID
   securitySchemes:
     basicAuth:
       type: http

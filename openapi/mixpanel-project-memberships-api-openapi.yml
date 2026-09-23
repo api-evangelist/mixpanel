@@ -105,21 +105,6 @@ paths:
         '404':
           description: Membership not found
 components:
-  parameters:
-    serviceAccountId:
-      name: serviceAccountId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The service account ID
-    organizationId:
-      name: organizationId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The Mixpanel organization ID
   schemas:
     ProjectMembership:
       type: object
@@ -137,6 +122,21 @@ components:
           - analyst
           - consumer
           description: Role assigned to the service account
+  parameters:
+    serviceAccountId:
+      name: serviceAccountId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The service account ID
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel organization ID
   securitySchemes:
     basicAuth:
       type: http

@@ -49,7 +49,8 @@
     "mixpanel-lexicon-schemas-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "mixpanel-query-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "mixpanel-service-accounts-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "mixpanel-warehouse-connectors-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+    "mixpanel-warehouse-connectors-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "mixpanel-annotations-api-openapi.yml: previously refined output, superseded by openapi/_original/",

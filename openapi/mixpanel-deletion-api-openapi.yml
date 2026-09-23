@@ -69,7 +69,39 @@ paths:
         '404':
           description: Task not found
 components:
+  parameters:
+    taskId:
+      name: taskId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The task ID returned when the request was created
+    projectToken:
+      name: token
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Mixpanel project token
   schemas:
+    PrivacyRequest:
+      type: object
+      required:
+      - distinct_ids
+      - compliance_type
+      properties:
+        distinct_ids:
+          type: array
+          items:
+            type: string
+          description: List of distinct_ids to retrieve or delete data for
+        compliance_type:
+          type: string
+          enum:
+          - GDPR
+          - CCPA
+          description: The compliance regulation for the request
     TaskResponse:
       type: object
       properties:
@@ -119,38 +151,6 @@ components:
               type: string
               format: uri
               description: URL to download retrieval results (retrieval only)
-    PrivacyRequest:
-      type: object
-      required:
-      - distinct_ids
-      - compliance_type
-      properties:
-        distinct_ids:
-          type: array
-          items:
-            type: string
-          description: List of distinct_ids to retrieve or delete data for
-        compliance_type:
-          type: string
-          enum:
-          - GDPR
-          - CCPA
-          description: The compliance regulation for the request
-  parameters:
-    projectToken:
-      name: token
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Mixpanel project token
-    taskId:
-      name: taskId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The task ID returned when the request was created
   securitySchemes:
     bearerAuth:
       type: http

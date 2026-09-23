@@ -122,15 +122,6 @@ paths:
       - basicAuth: []
 components:
   parameters:
-    verbose:
-      name: verbose
-      in: query
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-      description: When set to 1, returns a JSON response with status and error details
     ip:
       name: ip
       in: query
@@ -140,6 +131,15 @@ components:
         - 0
         - 1
       description: When set to 1, use the IP address for geolocation
+    verbose:
+      name: verbose
+      in: query
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+      description: When set to 1, returns a JSON response with status and error details
   schemas:
     ImportResponse:
       type: object
@@ -153,6 +153,31 @@ components:
         status:
           type: string
           description: Status message
+    Event:
+      type: object
+      required:
+      - event
+      - properties
+      properties:
+        event:
+          type: string
+          description: The event name
+        properties:
+          type: object
+          properties:
+            distinct_id:
+              type: string
+              description: Unique identifier for the user who performed the event
+            time:
+              type: integer
+              description: Unix timestamp in seconds when the event occurred
+            $insert_id:
+              type: string
+              description: Unique identifier for the event for deduplication
+            token:
+              type: string
+              description: Mixpanel project token
+          additionalProperties: true
     ErrorResponse:
       type: object
       properties:
@@ -191,31 +216,6 @@ components:
         error:
           type: string
           description: Error message if status is 0
-    Event:
-      type: object
-      required:
-      - event
-      - properties
-      properties:
-        event:
-          type: string
-          description: The event name
-        properties:
-          type: object
-          properties:
-            distinct_id:
-              type: string
-              description: Unique identifier for the user who performed the event
-            time:
-              type: integer
-              description: Unix timestamp in seconds when the event occurred
-            $insert_id:
-              type: string
-              description: Unique identifier for the event for deduplication
-            token:
-              type: string
-              description: Mixpanel project token
-          additionalProperties: true
   securitySchemes:
     basicAuth:
       type: http
