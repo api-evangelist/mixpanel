@@ -81,8 +81,6 @@ apis:
     url: openapi/mixpanel-annotations-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -113,8 +111,6 @@ apis:
     url: openapi/mixpanel-cohorts-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -145,8 +141,6 @@ apis:
     url: openapi/mixpanel-connectors-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -177,8 +171,6 @@ apis:
     url: openapi/mixpanel-deletion-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -211,8 +203,6 @@ apis:
     url: openapi/mixpanel-events-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -243,8 +233,6 @@ apis:
     url: openapi/mixpanel-export-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -275,8 +263,6 @@ apis:
     url: openapi/mixpanel-funnels-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -307,8 +293,6 @@ apis:
     url: openapi/mixpanel-group-profiles-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -339,8 +323,6 @@ apis:
     url: openapi/mixpanel-identity-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -373,8 +355,6 @@ apis:
     url: openapi/mixpanel-imports-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -405,8 +385,6 @@ apis:
     url: openapi/mixpanel-insights-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -437,8 +415,6 @@ apis:
     url: openapi/mixpanel-lookup-tables-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -469,8 +445,6 @@ apis:
     url: openapi/mixpanel-pipeline-runs-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -501,8 +475,6 @@ apis:
     url: openapi/mixpanel-pipelines-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -533,8 +505,6 @@ apis:
     url: openapi/mixpanel-project-memberships-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -565,8 +535,6 @@ apis:
     url: openapi/mixpanel-retention-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -597,8 +565,6 @@ apis:
     url: openapi/mixpanel-retrieval-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -631,8 +597,6 @@ apis:
     url: openapi/mixpanel-schemas-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -663,8 +627,6 @@ apis:
     url: openapi/mixpanel-segmentation-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -695,8 +657,6 @@ apis:
     url: openapi/mixpanel-service-accounts-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
@@ -727,8 +687,6 @@ apis:
     url: openapi/mixpanel-user-profiles-api-openapi.yml
   - type: Documentation
     url: https://developer.mixpanel.com/reference/ingestion-api
-  - type: GraphQL
-    url: graphql/mixpanel-graphql.md
   - type: Documentation
     url: https://developer.mixpanel.com/reference/query-api
   - type: Documentation
