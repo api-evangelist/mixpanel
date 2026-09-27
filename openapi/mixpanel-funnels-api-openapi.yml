@@ -127,21 +127,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    FunnelResponse:
-      type: object
-      properties:
-        meta:
-          type: object
-          properties:
-            dates:
-              type: object
-              additionalProperties:
-                type: object
-                properties:
-                  steps:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/FunnelStep'
     FunnelStep:
       type: object
       properties:
@@ -169,6 +154,21 @@ components:
         name:
           type: string
           description: Funnel name
+    FunnelResponse:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            dates:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  steps:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FunnelStep'
   securitySchemes:
     basicAuth:
       type: http

@@ -55,19 +55,17 @@ paths:
       security:
       - projectToken: []
 components:
+  parameters:
+    verbose:
+      name: verbose
+      in: query
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+      description: When set to 1, returns a JSON response with status and error details
   schemas:
-    TrackResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          enum:
-          - 0
-          - 1
-          description: 1 for success, 0 for failure
-        error:
-          type: string
-          description: Error message if status is 0
     GroupUpdate:
       type: object
       required:
@@ -100,16 +98,18 @@ components:
         $delete:
           type: string
           description: Set to empty string to delete the group profile
-  parameters:
-    verbose:
-      name: verbose
-      in: query
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-      description: When set to 1, returns a JSON response with status and error details
+    TrackResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          enum:
+          - 0
+          - 1
+          description: 1 for success, 0 for failure
+        error:
+          type: string
+          description: Error message if status is 0
   securitySchemes:
     basicAuth:
       type: http

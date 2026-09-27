@@ -70,13 +70,6 @@ paths:
           description: Task not found
 components:
   parameters:
-    taskId:
-      name: taskId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The task ID returned when the request was created
     projectToken:
       name: token
       in: query
@@ -84,24 +77,14 @@ components:
       schema:
         type: string
       description: Mixpanel project token
+    taskId:
+      name: taskId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The task ID returned when the request was created
   schemas:
-    PrivacyRequest:
-      type: object
-      required:
-      - distinct_ids
-      - compliance_type
-      properties:
-        distinct_ids:
-          type: array
-          items:
-            type: string
-          description: List of distinct_ids to retrieve or delete data for
-        compliance_type:
-          type: string
-          enum:
-          - GDPR
-          - CCPA
-          description: The compliance regulation for the request
     TaskResponse:
       type: object
       properties:
@@ -120,6 +103,23 @@ components:
         error:
           type: string
           description: Error message if status is error
+    PrivacyRequest:
+      type: object
+      required:
+      - distinct_ids
+      - compliance_type
+      properties:
+        distinct_ids:
+          type: array
+          items:
+            type: string
+          description: List of distinct_ids to retrieve or delete data for
+        compliance_type:
+          type: string
+          enum:
+          - GDPR
+          - CCPA
+          description: The compliance regulation for the request
     TaskStatus:
       type: object
       properties:
