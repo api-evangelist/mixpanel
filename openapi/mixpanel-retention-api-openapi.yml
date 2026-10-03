@@ -94,7 +94,7 @@ paths:
           - week
           - month
         description: Time unit for retention periods
-      - name: true
+      - name: 'on'
         in: query
         schema:
           type: string

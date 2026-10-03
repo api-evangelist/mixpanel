@@ -72,7 +72,7 @@ paths:
         schema:
           type: integer
         description: Number of days per data point
-      - name: true
+      - name: 'on'
         in: query
         schema:
           type: string
