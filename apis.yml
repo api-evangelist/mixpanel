@@ -706,6 +706,9 @@ apis:
   - type: Documentation
     url: https://developer.mixpanel.com/reference/warehouse-connectors-api
 common:
+- type: CapabilityMap
+  url: capabilities/mixpanel-capability-edges.yml
+  name: Mixpanel Business Capability Map
 - type: Website
   url: https://www.mixpanel.com/
 - type: AgenticAccess

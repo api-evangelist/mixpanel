@@ -1,0 +1,114 @@
+slug: mixpanel
+provider: Mixpanel
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 10
+edges:
+- tag: Events
+  spec_file: mixpanel-events-api-openapi.yml
+  capability_id: BC-4280.10
+  capability_id_l1: BC-4280
+  capability_name: Product Telemetry Instrumentation
+  confidence: 0.9
+  evidence: POST /track trackEvent ... POST /import importEvents
+  reason: Direct ingestion of product usage events from client and server runtimes — the instrumentation
+    sub-capability of product telemetry.
+- tag: Funnels
+  spec_file: mixpanel-funnels-api-openapi.yml
+  capability_id: BC-4280.30
+  capability_id_l1: BC-4280
+  capability_name: Product Usage Analytics
+  confidence: 0.85
+  evidence: GET /funnels queryFunnels  Mixpanel Query funnel data
+  reason: Funnel querying is explicitly the analytical view of product usage described by Product Usage
+    Analytics (funnels, retention cohorts).
+- tag: Insights
+  spec_file: mixpanel-insights-api-openapi.yml
+  capability_id: BC-4280.30
+  capability_id_l1: BC-4280
+  capability_name: Product Usage Analytics
+  confidence: 0.85
+  evidence: GET /insights queryInsights  Mixpanel Query insights
+  reason: Querying insight reports over product event data is analytical consumption of product usage
+    telemetry.
+- tag: Retention
+  spec_file: mixpanel-retention-api-openapi.yml
+  capability_id: BC-4280.30
+  capability_id_l1: BC-4280
+  capability_name: Product Usage Analytics
+  confidence: 0.82
+  evidence: 'GET /retention ''Query retention data''; description: ''querying and retrieving analytics
+    data from Mixpanel, including cohorts, funnels, insights, retention, segmentation'''
+  reason: Mixpanel is a product analytics service; this tag returns retention cohort analysis over product
+    usage events, which is exactly Product Usage Analytics (funnels, retention cohorts, feature engagement).
+- tag: Deletion
+  spec_file: mixpanel-deletion-api-openapi.yml
+  capability_id: BC-130.50
+  capability_id_l1: BC-130
+  capability_name: Privacy & Data Protection Management
+  confidence: 0.8
+  evidence: API for submitting data retrieval and deletion requests to help meet GDPR and CCPA compliance
+    requirements
+  reason: Operations create and track data-subject deletion/retrieval tasks (schema PrivacyRequest), which
+    realises privacy and data-protection compliance rather than any analytics capability.
+- tag: Segmentation
+  spec_file: mixpanel-segmentation-api-openapi.yml
+  capability_id: BC-4280.30
+  capability_id_l1: BC-4280
+  capability_name: Product Usage Analytics
+  confidence: 0.78
+  evidence: GET /segmentation 'Query event segmentation'; GET /segmentation/average 'Query numeric property
+    average'
+  reason: Read-only analytical queries that break product usage events down by property — product usage
+    analytics, not customer segmentation for marketing treatment.
+- tag: Retrieval
+  spec_file: mixpanel-retrieval-api-openapi.yml
+  capability_id: BC-130.50
+  capability_id_l1: BC-130
+  capability_name: Privacy & Data Protection Management
+  confidence: 0.72
+  evidence: '''API for submitting data retrieval and deletion requests to help meet GDPR and CCPA compliance
+    requirements''; schema PrivacyRequest'
+  reason: The operations create and track data-subject retrieval/deletion tasks explicitly framed as GDPR/CCPA
+    compliance — privacy and data protection, specifically data subject rights. Some ambiguity with the
+    SaaS-vendor-side framing (service privacy commitments), hence not higher.
+- tag: Schemas
+  spec_file: mixpanel-schemas-api-openapi.yml
+  capability_id: BC-4280.20
+  capability_id_l1: BC-4280
+  capability_name: Telemetry Quality & Governance
+  confidence: 0.72
+  evidence: '''syncing your internal data dictionary or tracking plan with Mixpanel using schemas ...
+    that describe the data you send to Mixpanel''; schemas PropertySchema, SchemaDefinition'
+  reason: Create/replace/delete of event and property schema definitions governing the tracking plan is
+    telemetry schema governance. Could also be read as generic data governance, but the context is explicitly
+    the product-event tracking plan.
+- tag: Cohorts
+  spec_file: mixpanel-cohorts-api-openapi.yml
+  capability_id: BC-4280.30
+  capability_id_l1: BC-4280
+  capability_name: Product Usage Analytics
+  confidence: 0.7
+  evidence: API for querying and retrieving analytics data from Mixpanel, including cohorts, funnels,
+    insights, retention, segmentation
+  reason: 'Product usage analytics platform: cohort listing is part of funnels/retention/segmentation
+    analysis of product usage telemetry. Single list operation makes it thin, hence 0.7.'
+- tag: Export
+  spec_file: mixpanel-export-api-openapi.yml
+  capability_id: BC-4280
+  capability_id_l1: BC-4280
+  capability_name: Product Telemetry & Experimentation Management
+  confidence: 0.7
+  evidence: API for downloading raw event data as it is received and stored within Mixpanel, complete
+    with all event properties
+  reason: Raw product telemetry event export; clearly within product telemetry management but the single
+    export operation does not pin a specific sub-capability.
