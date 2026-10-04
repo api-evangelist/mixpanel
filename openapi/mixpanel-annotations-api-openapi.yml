@@ -145,7 +145,35 @@ paths:
         '404':
           description: Annotation not found
 components:
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel project ID
+    annotationId:
+      name: annotationId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The annotation ID
   schemas:
+    CreateAnnotationRequest:
+      type: object
+      required:
+      - date
+      - description
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: The date and time to annotate (YYYY-MM-DDThh:mm:ss)
+        description:
+          type: string
+          description: Description text for the annotation
     Annotation:
       type: object
       properties:
@@ -172,34 +200,6 @@ components:
           type: string
           format: date-time
           description: When the annotation was created
-    CreateAnnotationRequest:
-      type: object
-      required:
-      - date
-      - description
-      properties:
-        date:
-          type: string
-          format: date-time
-          description: The date and time to annotate (YYYY-MM-DDThh:mm:ss)
-        description:
-          type: string
-          description: Description text for the annotation
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The Mixpanel project ID
-    annotationId:
-      name: annotationId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The annotation ID
   securitySchemes:
     basicAuth:
       type: http

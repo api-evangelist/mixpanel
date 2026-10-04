@@ -172,37 +172,7 @@ paths:
         '404':
           description: Schema not found
 components:
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The Mixpanel project ID
   schemas:
-    PropertySchema:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - string
-          - number
-          - boolean
-          - datetime
-          - list
-          - object
-          description: Data type of the property
-        description:
-          type: string
-          description: Description of the property
-        required:
-          type: boolean
-          description: Whether the property is required
-        isHidden:
-          type: boolean
-          description: Whether to hide this property in the UI
     SchemaDefinition:
       type: object
       properties:
@@ -231,6 +201,28 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/PropertySchema'
           description: Property definitions for this schema
+    PropertySchema:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - string
+          - number
+          - boolean
+          - datetime
+          - list
+          - object
+          description: Data type of the property
+        description:
+          type: string
+          description: Description of the property
+        required:
+          type: boolean
+          description: Whether the property is required
+        isHidden:
+          type: boolean
+          description: Whether to hide this property in the UI
     SchemaEntry:
       type: object
       required:
@@ -262,6 +254,14 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/PropertySchema'
           description: Property definitions
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel project ID
   securitySchemes:
     basicAuth:
       type: http

@@ -188,6 +188,18 @@ paths:
           description: Pipeline not found
 components:
   schemas:
+    BigQueryConfig:
+      type: object
+      properties:
+        projectId:
+          type: string
+          description: Google Cloud project ID
+        dataset:
+          type: string
+          description: BigQuery dataset name
+        serviceAccountKey:
+          type: string
+          description: Base64-encoded service account JSON key
     CreatePipelineRequest:
       type: object
       required:
@@ -241,6 +253,76 @@ components:
           $ref: '#/components/schemas/S3Config'
         gcsConfig:
           $ref: '#/components/schemas/GCSConfig'
+    S3Config:
+      type: object
+      properties:
+        bucket:
+          type: string
+          description: S3 bucket name
+        prefix:
+          type: string
+          description: S3 key prefix for exported files
+        region:
+          type: string
+          description: AWS region
+        roleArn:
+          type: string
+          description: AWS IAM role ARN for cross-account access
+    UpdatePipelineRequest:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: Pipeline ID to update
+        name:
+          type: string
+          description: Updated pipeline name
+        dataTypes:
+          type: array
+          items:
+            type: string
+          description: Updated data types to export
+        frequency:
+          type: string
+          enum:
+          - hourly
+          - daily
+          description: Updated export frequency
+    GCSConfig:
+      type: object
+      properties:
+        bucket:
+          type: string
+          description: GCS bucket name
+        prefix:
+          type: string
+          description: GCS path prefix
+        serviceAccountKey:
+          type: string
+          description: Base64-encoded service account JSON key
+    SnowflakeConfig:
+      type: object
+      properties:
+        account:
+          type: string
+          description: Snowflake account identifier
+        warehouse:
+          type: string
+          description: Snowflake warehouse name
+        database:
+          type: string
+          description: Snowflake database name
+        schema:
+          type: string
+          description: Snowflake schema name
+        username:
+          type: string
+          description: Snowflake username
+        password:
+          type: string
+          description: Snowflake password
     Pipeline:
       type: object
       properties:
@@ -299,88 +381,6 @@ components:
           - hourly
           - daily
           description: How often the pipeline runs
-    SnowflakeConfig:
-      type: object
-      properties:
-        account:
-          type: string
-          description: Snowflake account identifier
-        warehouse:
-          type: string
-          description: Snowflake warehouse name
-        database:
-          type: string
-          description: Snowflake database name
-        schema:
-          type: string
-          description: Snowflake schema name
-        username:
-          type: string
-          description: Snowflake username
-        password:
-          type: string
-          description: Snowflake password
-    S3Config:
-      type: object
-      properties:
-        bucket:
-          type: string
-          description: S3 bucket name
-        prefix:
-          type: string
-          description: S3 key prefix for exported files
-        region:
-          type: string
-          description: AWS region
-        roleArn:
-          type: string
-          description: AWS IAM role ARN for cross-account access
-    GCSConfig:
-      type: object
-      properties:
-        bucket:
-          type: string
-          description: GCS bucket name
-        prefix:
-          type: string
-          description: GCS path prefix
-        serviceAccountKey:
-          type: string
-          description: Base64-encoded service account JSON key
-    BigQueryConfig:
-      type: object
-      properties:
-        projectId:
-          type: string
-          description: Google Cloud project ID
-        dataset:
-          type: string
-          description: BigQuery dataset name
-        serviceAccountKey:
-          type: string
-          description: Base64-encoded service account JSON key
-    UpdatePipelineRequest:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          description: Pipeline ID to update
-        name:
-          type: string
-          description: Updated pipeline name
-        dataTypes:
-          type: array
-          items:
-            type: string
-          description: Updated data types to export
-        frequency:
-          type: string
-          enum:
-          - hourly
-          - daily
-          description: Updated export frequency
   parameters:
     projectId:
       name: project_id

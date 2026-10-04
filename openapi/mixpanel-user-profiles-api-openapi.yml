@@ -55,16 +55,6 @@ paths:
       security:
       - projectToken: []
 components:
-  parameters:
-    verbose:
-      name: verbose
-      in: query
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-      description: When set to 1, returns a JSON response with status and error details
   schemas:
     TrackResponse:
       type: object
@@ -127,6 +117,16 @@ components:
         $delete:
           type: string
           description: Set to empty string to delete the profile entirely
+  parameters:
+    verbose:
+      name: verbose
+      in: query
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+      description: When set to 1, returns a JSON response with status and error details
   securitySchemes:
     basicAuth:
       type: http

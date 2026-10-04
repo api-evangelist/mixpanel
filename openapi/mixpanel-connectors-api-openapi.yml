@@ -137,22 +137,25 @@ paths:
         '404':
           description: Source not found
 components:
-  parameters:
-    sourceId:
-      name: sourceId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The warehouse source connection ID
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The Mixpanel project ID
   schemas:
+    UpdateWarehouseSourceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated source name
+        schedule:
+          type: string
+          enum:
+          - hourly
+          - daily
+          - weekly
+          description: Updated import schedule
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableConfig'
+          description: Updated table configurations
     CreateWarehouseSourceRequest:
       type: object
       required:
@@ -188,6 +191,32 @@ components:
           items:
             $ref: '#/components/schemas/TableConfig'
           description: Tables to import
+    TableConfig:
+      type: object
+      required:
+      - tableName
+      - importType
+      properties:
+        tableName:
+          type: string
+          description: Full table name (schema.table)
+        importType:
+          type: string
+          enum:
+          - event
+          - user
+          - group
+          - lookup_table
+          description: How to import this table's data
+        eventNameColumn:
+          type: string
+          description: Column to use as event name (event type only)
+        distinctIdColumn:
+          type: string
+          description: Column to use as distinct_id
+        timeColumn:
+          type: string
+          description: Column to use as event timestamp
     WarehouseSource:
       type: object
       properties:
@@ -228,50 +257,21 @@ components:
           type: string
           format: date-time
           description: When the last import ran
-    TableConfig:
-      type: object
-      required:
-      - tableName
-      - importType
-      properties:
-        tableName:
-          type: string
-          description: Full table name (schema.table)
-        importType:
-          type: string
-          enum:
-          - event
-          - user
-          - group
-          - lookup_table
-          description: How to import this table's data
-        eventNameColumn:
-          type: string
-          description: Column to use as event name (event type only)
-        distinctIdColumn:
-          type: string
-          description: Column to use as distinct_id
-        timeColumn:
-          type: string
-          description: Column to use as event timestamp
-    UpdateWarehouseSourceRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated source name
-        schedule:
-          type: string
-          enum:
-          - hourly
-          - daily
-          - weekly
-          description: Updated import schedule
-        tables:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableConfig'
-          description: Updated table configurations
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel project ID
+    sourceId:
+      name: sourceId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The warehouse source connection ID
   securitySchemes:
     basicAuth:
       type: http

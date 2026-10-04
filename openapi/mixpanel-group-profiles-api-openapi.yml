@@ -55,16 +55,6 @@ paths:
       security:
       - projectToken: []
 components:
-  parameters:
-    verbose:
-      name: verbose
-      in: query
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-      description: When set to 1, returns a JSON response with status and error details
   schemas:
     GroupUpdate:
       type: object
@@ -110,6 +100,16 @@ components:
         error:
           type: string
           description: Error message if status is 0
+  parameters:
+    verbose:
+      name: verbose
+      in: query
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+      description: When set to 1, returns a JSON response with status and error details
   securitySchemes:
     basicAuth:
       type: http

@@ -122,6 +122,55 @@ paths:
       - basicAuth: []
 components:
   schemas:
+    Event:
+      type: object
+      required:
+      - event
+      - properties
+      properties:
+        event:
+          type: string
+          description: The event name
+        properties:
+          type: object
+          properties:
+            distinct_id:
+              type: string
+              description: Unique identifier for the user who performed the event
+            time:
+              type: integer
+              description: Unix timestamp in seconds when the event occurred
+            $insert_id:
+              type: string
+              description: Unique identifier for the event for deduplication
+            token:
+              type: string
+              description: Mixpanel project token
+          additionalProperties: true
+    TrackResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          enum:
+          - 0
+          - 1
+          description: 1 for success, 0 for failure
+        error:
+          type: string
+          description: Error message if status is 0
+    ImportResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        num_records_imported:
+          type: integer
+          description: Number of records successfully imported
+        status:
+          type: string
+          description: Status message
     ErrorResponse:
       type: object
       properties:
@@ -148,55 +197,6 @@ components:
               message:
                 type: string
                 description: Error message for this record
-    TrackResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          enum:
-          - 0
-          - 1
-          description: 1 for success, 0 for failure
-        error:
-          type: string
-          description: Error message if status is 0
-    Event:
-      type: object
-      required:
-      - event
-      - properties
-      properties:
-        event:
-          type: string
-          description: The event name
-        properties:
-          type: object
-          properties:
-            distinct_id:
-              type: string
-              description: Unique identifier for the user who performed the event
-            time:
-              type: integer
-              description: Unix timestamp in seconds when the event occurred
-            $insert_id:
-              type: string
-              description: Unique identifier for the event for deduplication
-            token:
-              type: string
-              description: Mixpanel project token
-          additionalProperties: true
-    ImportResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        num_records_imported:
-          type: integer
-          description: Number of records successfully imported
-        status:
-          type: string
-          description: Status message
   parameters:
     ip:
       name: ip

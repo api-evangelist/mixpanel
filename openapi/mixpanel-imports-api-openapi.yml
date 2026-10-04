@@ -94,22 +94,28 @@ paths:
         '429':
           description: Rate limit exceeded - too many runs triggered
 components:
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The Mixpanel project ID
-    sourceId:
-      name: sourceId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The warehouse source connection ID
   schemas:
+    WarehouseTable:
+      type: object
+      properties:
+        tableName:
+          type: string
+          description: Full table name
+        importType:
+          type: string
+          enum:
+          - event
+          - user
+          - group
+          - lookup_table
+          description: Import type
+        rowCount:
+          type: integer
+          description: Number of rows in the table
+        lastImportedAt:
+          type: string
+          format: date-time
+          description: When this table was last imported
     WarehouseRun:
       type: object
       properties:
@@ -139,27 +145,21 @@ components:
           items:
             type: string
           description: Error messages if any
-    WarehouseTable:
-      type: object
-      properties:
-        tableName:
-          type: string
-          description: Full table name
-        importType:
-          type: string
-          enum:
-          - event
-          - user
-          - group
-          - lookup_table
-          description: Import type
-        rowCount:
-          type: integer
-          description: Number of rows in the table
-        lastImportedAt:
-          type: string
-          format: date-time
-          description: When this table was last imported
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel project ID
+    sourceId:
+      name: sourceId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The warehouse source connection ID
   securitySchemes:
     basicAuth:
       type: http

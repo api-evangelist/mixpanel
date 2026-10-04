@@ -123,13 +123,6 @@ components:
           - consumer
           description: Role assigned to the service account
   parameters:
-    serviceAccountId:
-      name: serviceAccountId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The service account ID
     organizationId:
       name: organizationId
       in: path
@@ -137,6 +130,13 @@ components:
       schema:
         type: integer
       description: The Mixpanel organization ID
+    serviceAccountId:
+      name: serviceAccountId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The service account ID
   securitySchemes:
     basicAuth:
       type: http
