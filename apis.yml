@@ -706,6 +706,10 @@ apis:
   - type: Documentation
     url: https://developer.mixpanel.com/reference/warehouse-connectors-api
 common:
+- type: Plans
+  url: plans/mixpanel-plans-pricing.yml
+- type: FinOps
+  url: finops/mixpanel-finops.yml
 - type: CapabilityMap
   url: capabilities/mixpanel-capability-edges.yml
   name: Mixpanel Business Capability Map
