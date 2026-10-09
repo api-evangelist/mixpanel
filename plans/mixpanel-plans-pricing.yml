@@ -107,3 +107,41 @@ plans:
       - name: Premium 24/7 support
       - name: HIPAA tools
       - name: Dedicated account manager
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - metered
+  - seat
+  units:
+  - message
+  - object
+  - seat
+  plans:
+  - name: Free
+    access: freemium
+    model: free
+    model_how: derived
+    units:
+    - message
+    - object
+    - other
+    periods:
+    - month
+  - name: Growth
+    access: paid
+    model: metered
+    model_how: derived
+    units:
+    - message
+    periods:
+    - month
+  - name: Enterprise
+    access: enterprise
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
