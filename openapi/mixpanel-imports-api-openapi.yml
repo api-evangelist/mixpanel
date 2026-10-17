@@ -146,13 +146,6 @@ components:
             type: string
           description: Error messages if any
   parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The Mixpanel project ID
     sourceId:
       name: sourceId
       in: path
@@ -160,6 +153,13 @@ components:
       schema:
         type: string
       description: The warehouse source connection ID
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel project ID
   securitySchemes:
     basicAuth:
       type: http

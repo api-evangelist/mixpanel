@@ -127,15 +127,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    FunnelSummary:
-      type: object
-      properties:
-        funnel_id:
-          type: integer
-          description: Unique funnel identifier
-        name:
-          type: string
-          description: Funnel name
     FunnelResponse:
       type: object
       properties:
@@ -151,6 +142,15 @@ components:
                     type: array
                     items:
                       $ref: '#/components/schemas/FunnelStep'
+    FunnelSummary:
+      type: object
+      properties:
+        funnel_id:
+          type: integer
+          description: Unique funnel identifier
+        name:
+          type: string
+          description: Funnel name
     FunnelStep:
       type: object
       properties:

@@ -51,14 +51,6 @@ paths:
         '404':
           description: Pipeline not found
 components:
-  parameters:
-    projectId:
-      name: project_id
-      in: query
-      required: true
-      schema:
-        type: integer
-      description: The Mixpanel project ID
   schemas:
     PipelineRun:
       type: object
@@ -90,6 +82,14 @@ components:
         error:
           type: string
           description: Error message if the run failed
+  parameters:
+    projectId:
+      name: project_id
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: The Mixpanel project ID
   securitySchemes:
     basicAuth:
       type: http

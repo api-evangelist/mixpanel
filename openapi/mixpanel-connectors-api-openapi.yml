@@ -138,24 +138,32 @@ paths:
           description: Source not found
 components:
   schemas:
-    UpdateWarehouseSourceRequest:
+    TableConfig:
       type: object
+      required:
+      - tableName
+      - importType
       properties:
-        name:
+        tableName:
           type: string
-          description: Updated source name
-        schedule:
+          description: Full table name (schema.table)
+        importType:
           type: string
           enum:
-          - hourly
-          - daily
-          - weekly
-          description: Updated import schedule
-        tables:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableConfig'
-          description: Updated table configurations
+          - event
+          - user
+          - group
+          - lookup_table
+          description: How to import this table's data
+        eventNameColumn:
+          type: string
+          description: Column to use as event name (event type only)
+        distinctIdColumn:
+          type: string
+          description: Column to use as distinct_id
+        timeColumn:
+          type: string
+          description: Column to use as event timestamp
     CreateWarehouseSourceRequest:
       type: object
       required:
@@ -191,32 +199,24 @@ components:
           items:
             $ref: '#/components/schemas/TableConfig'
           description: Tables to import
-    TableConfig:
+    UpdateWarehouseSourceRequest:
       type: object
-      required:
-      - tableName
-      - importType
       properties:
-        tableName:
+        name:
           type: string
-          description: Full table name (schema.table)
-        importType:
+          description: Updated source name
+        schedule:
           type: string
           enum:
-          - event
-          - user
-          - group
-          - lookup_table
-          description: How to import this table's data
-        eventNameColumn:
-          type: string
-          description: Column to use as event name (event type only)
-        distinctIdColumn:
-          type: string
-          description: Column to use as distinct_id
-        timeColumn:
-          type: string
-          description: Column to use as event timestamp
+          - hourly
+          - daily
+          - weekly
+          description: Updated import schedule
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableConfig'
+          description: Updated table configurations
     WarehouseSource:
       type: object
       properties:

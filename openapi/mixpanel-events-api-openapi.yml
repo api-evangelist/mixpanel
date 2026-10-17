@@ -122,6 +122,18 @@ paths:
       - basicAuth: []
 components:
   schemas:
+    TrackResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          enum:
+          - 0
+          - 1
+          description: 1 for success, 0 for failure
+        error:
+          type: string
+          description: Error message if status is 0
     Event:
       type: object
       required:
@@ -147,18 +159,6 @@ components:
               type: string
               description: Mixpanel project token
           additionalProperties: true
-    TrackResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          enum:
-          - 0
-          - 1
-          description: 1 for success, 0 for failure
-        error:
-          type: string
-          description: Error message if status is 0
     ImportResponse:
       type: object
       properties:
