@@ -168,7 +168,7 @@
     - generally_available
     in_cloud: true
     builder: unknown (community connector; contributor not in the record)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: mixpanel-fivetran
   label: Fivetran
@@ -194,7 +194,7 @@
     - connectors/applications/mixpanel
     vendor_link: https://mixpanel.com/
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: mixpanel-meltano
   label: Meltano
@@ -230,7 +230,7 @@
     - silver
     - unknown
     builder: 'community (Meltano Hub variant maintainers: airbyte, bytecodeio, hotgluexyz, transferwise)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
 - slug: mixpanel-slack-own
   label: Slack (own)
