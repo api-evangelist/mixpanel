@@ -1,4 +1,116 @@
-generated: '2026-10-14'
+generated: '2026-10-20'
+method: searched
+source:
+- https://docs.mparticle.com/integrations/mixpanel/audience/
+- https://fivetran.com/docs/activations/destinations/available-destinations/mixpanel
+- https://github.com/rudderlabs/rudder-integrations-config/tree/main/src/configurations/destinations/mp
+- https://hightouch.com/docs/destinations/mixpanel
+- https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-mixpanel
+- https://zapier.com/apps/mixpanel/integrations
+- https://n8n.io/integrations/mixpanel/
+- https://composio.dev/toolkits/mixpanel
+checked:
+- https://cloudsecurityalliance.org/star/registry
+- https://connectors.airbyte.com/files/registries/v0/cloud_registry.json
+- https://connectors.airbyte.com/files/registries/v0/oss_registry.json
+- https://docs.mparticle.com/integrations/mixpanel/audience/
+- https://docs.mparticle.com/integrations/mixpanel/event/
+- https://eucoc.cloud/en/public-register/list-of-adherent-services
+- https://fivetran.com/docs-sitemap.xml
+- https://fivetran.com/docs/activations/destinations/available-destinations/mixpanel
+- https://fivetran.com/docs/connectors/partner-built-program
+- https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
+- https://github.com/meltano/hub
+- https://github.com/rudderlabs/rudder-integrations-config/tree/main/src/configurations/destinations/mp
+- https://hightouch.com/docs/destinations/mixpanel
+- https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-mixpanel
+- https://zapier.com/api/v4/apps/
+- okta/integrations/okta-integration-edges.yml
+- slack/integrations/slack-integration-edges.yml
+- stripe/integrations/stripe-integration-edges.yml
+- https://composio.dev/toolkits/mixpanel
+- https://monid.ai/tools/mixpanel
+- https://n8n.io/integrations/mixpanel/
+- https://zapier.com/apps/mixpanel/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: mixpanel
+  url: https://zapier.com/apps/mixpanel/integrations
+  external_url: https://mixpanel.com/
+  partner_tier: SILVER
+  triggers: []
+  actions:
+  - key: engage
+    label: Create or Update Profile
+  - key: track
+    label: Track Event
+  searches: []
+- marketplace: n8n
+  channel: open-source-node
+  app: mixpanel
+  url: https://n8n.io/integrations/mixpanel/
+  identity: title
+  pair_pages: 7
+  pairs:
+  - mysql
+  - notion
+  - openai
+  - postgres
+  - slack
+  - supabase
+  - telegram
+- marketplace: composio
+  channel: agent-gateway
+  app: mixpanel
+  url: https://composio.dev/toolkits/mixpanel
+  identity: action-prefix
+  actions:
+  - key: MIXPANEL_ADD_UNIQUE_TO_PROFILE_LIST_PROPERTY
+  - key: MIXPANEL_AGGREGATED_EVENT_PROPERTY_VALUES
+  - key: MIXPANEL_AGGREGATE_EVENTS
+  - key: MIXPANEL_COHORTS_LIST
+  - key: MIXPANEL_CREATE_ANNOTATION_TAG
+  - key: MIXPANEL_CREATE_IDENTITY
+  - key: MIXPANEL_CREATE_SERVICE_ACCOUNT
+  - key: MIXPANEL_DELETE_GROUP
+  - key: MIXPANEL_DELETE_PROFILE
+  - key: MIXPANEL_DELETE_PROFILE_BATCH
+  - key: MIXPANEL_DELETE_PROFILE_PROPERTY
+  - key: MIXPANEL_GET_ALL_PROJECTS
+  - key: MIXPANEL_GET_ANNOTATION_TAGS_ALT1
+  - key: MIXPANEL_GROUP_BATCH_UPDATE
+  - key: MIXPANEL_GROUP_DELETE_PROPERTY
+  - key: MIXPANEL_IDENTITY_CREATE_ALIAS
+  - key: MIXPANEL_JQL_QUERY
+  - key: MIXPANEL_LIST_FUNNELS
+  - key: MIXPANEL_LIST_SERVICE_ACCOUNTS
+  - key: MIXPANEL_PROFILE_APPEND_TO_LIST_PROPERTY
+  - key: MIXPANEL_PROFILE_BATCH_UPDATE
+  - key: MIXPANEL_PROFILE_EVENT_ACTIVITY
+  - key: MIXPANEL_PROFILE_NUMERICAL_ADD
+  - key: MIXPANEL_PROFILE_REMOVE_FROM_LIST_PROPERTY
+  - key: MIXPANEL_PROFILE_SET
+  - key: MIXPANEL_QUERY_FREQUENCY_REPORT
+  - key: MIXPANEL_QUERY_FUNNEL
+  - key: MIXPANEL_QUERY_INSIGHT
+  - key: MIXPANEL_QUERY_NUMERIC_AVERAGE
+  - key: MIXPANEL_QUERY_NUMERIC_SUM
+  - key: MIXPANEL_QUERY_PROFILES
+  - key: MIXPANEL_QUERY_RETENTION_REPORT
+  - key: MIXPANEL_QUERY_SEGMENTATION
+  - key: MIXPANEL_QUERY_TOP_EVENTS
+  - key: MIXPANEL_REMOVE_FROM_GROUP_LIST_PROPERTY
+  - key: MIXPANEL_REMOVE_FROM_LIST_PROPERTY
+  - key: MIXPANEL_SEGMENTATION_NUMERIC_QUERY
+  - key: MIXPANEL_SET_GROUP_PROPERTY_ONCE
+  - key: MIXPANEL_SET_PROFILE_PROPERTY_ONCE
+  - key: MIXPANEL_TOP_EVENTS
+  - key: MIXPANEL_TOP_EVENT_PROPERTIES
+  - key: MIXPANEL_TOP_EVENT_PROPERTY_VALUES
+  - key: MIXPANEL_UPDATE_GROUP_LIST_PROPERTY
 edges:
 - partner_name: Okta (own)
   partner: okta
@@ -378,30 +490,425 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
   first_seen: '2026-10-20'
-method: searched
-checked:
-- https://cloudsecurityalliance.org/star/registry
-- https://connectors.airbyte.com/files/registries/v0/cloud_registry.json
-- https://connectors.airbyte.com/files/registries/v0/oss_registry.json
-- https://docs.mparticle.com/integrations/mixpanel/audience/
-- https://docs.mparticle.com/integrations/mixpanel/event/
-- https://eucoc.cloud/en/public-register/list-of-adherent-services
-- https://fivetran.com/docs-sitemap.xml
-- https://fivetran.com/docs/activations/destinations/available-destinations/mixpanel
-- https://fivetran.com/docs/connectors/partner-built-program
-- https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
-- https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
-- https://github.com/meltano/hub
-- https://github.com/rudderlabs/rudder-integrations-config/tree/main/src/configurations/destinations/mp
-- https://hightouch.com/docs/destinations/mixpanel
-- https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-mixpanel
-- https://zapier.com/api/v4/apps/
-- okta/integrations/okta-integration-edges.yml
-- slack/integrations/slack-integration-edges.yml
-- stripe/integrations/stripe-integration-edges.yml
-source:
-- https://docs.mparticle.com/integrations/mixpanel/audience/
-- https://fivetran.com/docs/activations/destinations/available-destinations/mixpanel
-- https://github.com/rudderlabs/rudder-integrations-config/tree/main/src/configurations/destinations/mp
-- https://hightouch.com/docs/destinations/mixpanel
-- https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-mixpanel
+- partner_name: Zoom
+  partner: zoom
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/zoom
+  direction: third-party
+  category: Video Conferencing
+  partner_url: https://www.zoom.us/
+- partner_name: Drip
+  partner: drip
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/drip
+  direction: third-party
+  category: Drip Emails
+  partner_url: https://www.getdrip.com/
+- partner_name: Google Forms (Legacy)
+  partner: google-forms
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/google-forms-legacy
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+- partner_name: OpenGov Enterprise Asset Management
+  partner: opengov
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/opengov-enterprise-asset-mgmt
+  direction: third-party
+  category: Business Intelligence
+  partner_url: https://opengov.com/products/asset-management?utm_source=zapieream
+- partner_name: Pics.io
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/pics-io
+  direction: third-party
+  category: Team Collaboration
+  partner_url: https://pics.io/
+- partner_name: Transloadit
+  partner: transloadit
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/transloadit
+  direction: third-party
+  category: Images & Design
+  partner_url: https://transloadit.com/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: WebinarJam / EverWebinar
+  partner: webinarjam
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/webinarjam
+  direction: third-party
+  category: Webinars
+  partner_url: http://webinarjam.com/
+- partner_name: Landbot
+  partner: landbot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/landbot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://landbot.io/
+- partner_name: Typeform
+  partner: typeform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/typeform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.typeform.com/signup?utm_medium=referral&utm_source=zapier&utm_campaign=zapier_integration&utm_content=marketplace
+- partner_name: SendGrid
+  partner: sendgrid
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/sendgrid
+  direction: third-party
+  category: Transactional Email
+  partner_url: https://sendgrid.com/
+- partner_name: Mailchimp Transactional
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/mandrill
+  direction: third-party
+  category: Transactional Email
+  partner_url: http://mandrill.com/
+- partner_name: Adalo
+  partner: adalo
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/adalo
+  direction: third-party
+  category: App Builder
+  partner_url: https://www.adalo.com/?utm_campaign=zapier_profile
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Facebook Conversions
+  partner: facebook
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/facebook-conversions
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://developers.facebook.com/docs/marketing-api/server-side-api/guides/zapier-integration
+- partner_name: AppSorteos
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/appsorteos
+  direction: third-party
+  category: Social Media Marketing
+  partner_url: https://app-sorteos.com/
+- partner_name: Customer.io
+  partner: customer-io
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/customerio
+  direction: third-party
+  category: Email
+  partner_url: https://customer.io/?utm_source=zapier.com&utm_medium=referral&utm_campaign=zapier-landing-page
+- partner_name: Recurly
+  partner: recurly
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/recurly
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://recurly.com/
+- partner_name: Stripe
+  partner: stripe
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/stripe
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://stripe.com/
+- partner_name: Calendly
+  partner: calendly
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/calendly
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://calendly.com/?utm_medium=partner&utm_source=zapier&utm_campaign=main_partner_page&utm_content=main_inbound_link
+- partner_name: Instagram for Business
+  partner: instagram
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/instagram-for-business
+  direction: third-party
+  category: Facebook
+  partner_url: https://instagram.com/
+- partner_name: MemberSpace
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/memberspace
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://www.memberspace.com/
+- partner_name: Stripe (Legacy)
+  partner: stripe
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/stripe-legacy
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://stripe.com/
+- partner_name: Mailgun
+  partner: mailgun
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/mailgun
+  direction: third-party
+  category: Transactional Email
+  partner_url: https://www.mailgun.com/
+- partner_name: Facebook Lead Ads
+  partner: facebook-lead-ads
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/facebook-lead-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://www.facebook.com/business/ads/lead-ads
+- partner_name: Mailchimp
+  partner: mailchimp
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/mailchimp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://mailchimp.com/
+- partner_name: Salesforce
+  partner: salesforce
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/salesforce
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.salesforce.com/
+- partner_name: Xero
+  partner: xero
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/xero
+  direction: third-party
+  category: Accounting
+  partner_url: https://xero5440.partnerlinks.io/uvwuuwrxyoi8
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: Google Forms
+  partner: google-forms
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mixpanel/integrations/google-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+templates:
+- title: Track events in Mixpanel for new charges on Stripe
+  url: https://zapier.com/apps/mixpanel/integrations/stripe/17628/track-events-in-mixpanel-for-new-charges-on-stripe
+  apps:
+  - stripe
+  - mixpanel
+- title: Track new PostgreSQL rows as events in Mixpanel
+  url: https://zapier.com/apps/mixpanel/integrations/postgresql/1602321/track-new-postgresql-rows-as-events-in-mixpanel
+  apps:
+  - postgresql
+  - mixpanel
+- title: Create Mixpanel events from new Google Sheets rows
+  url: https://zapier.com/apps/google-sheets/integrations/mixpanel/1227406/create-mixpanel-events-from-new-google-sheets-rows
+  apps:
+  - google-sheets
+  - mixpanel
+- title: Track new Discord channel messages as events in Mixpanel
+  url: https://zapier.com/apps/discord/integrations/mixpanel/1279611/track-new-discord-channel-messages-as-events-in-mixpanel
+  apps:
+  - discord
+  - mixpanel
+- title: Update profiles in Mixpanel with data from new Refiner surveys
+  url: https://zapier.com/apps/mixpanel/integrations/refiner/1084313/update-profiles-in-mixpanel-with-data-from-new-refiner-surveys
+  apps:
+  - refiner
+  - mixpanel
+- title: Create or update Mixpanel profiles for new contacts in HubSpot
+  url: https://zapier.com/apps/hubspot/integrations/mixpanel/17738/create-or-update-mixpanel-profiles-for-new-contacts-in-hubspot
+  apps:
+  - hubspot
+  - mixpanel
+- title: Create or update Mixpanel profile with Wootric NPS survey responses
+  url: https://zapier.com/apps/mixpanel/integrations/wootric/17625/create-or-update-mixpanel-profile-with-wootric-nps-survey-responses
+  apps:
+  - wootric
+  - mixpanel
+- title: Create or update Mixpanel profiles when users respond to SurveyMonkey surveys
+  url: https://zapier.com/apps/mixpanel/integrations/surveymonkey/17626/createupdate-mixpanel-people-profile-with-surveymonkey-response
+  apps:
+  - surveymonkey
+  - mixpanel
+- title: Create or update Mixpanel profiles whenever people unsubscribe from Mailchimp
+  url: https://zapier.com/apps/mailchimp/integrations/mixpanel/17627/create-or-update-mixpanel-profiles-whenever-people-unsubscribe-from-mailchimp
+  apps:
+  - mailchimp
+  - mixpanel
+- title: Track events in Mixpanel for new Zendesk tickets
+  url: https://zapier.com/apps/mixpanel/integrations/zendesk/17629/track-events-in-mixpanel-for-new-zendesk-tickets
+  apps:
+  - zendesk
+  - mixpanel
+- title: Create or update Mixpanel profiles when new lead are created in Marketo
+  url: https://zapier.com/apps/marketo/integrations/mixpanel/17731/create-or-update-mixpanel-profiles-when-new-lead-are-created-in-marketo
+  apps:
+  - marketo
+  - mixpanel
+- title: Create or update Mixpanel profiles for new Microsoft Dynamics CRM leads
+  url: https://zapier.com/apps/microsoft-dynamics-crm/integrations/mixpanel/17732/create-or-update-mixpanel-profiles-for-new-microsoft-dynamics-crm-leads
+  apps:
+  - microsoft-dynamics-crm
+  - mixpanel
+template_total: 74
