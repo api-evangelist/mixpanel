@@ -33,6 +33,12 @@ checked:
 - https://monid.ai/tools/mixpanel
 - https://n8n.io/integrations/mixpanel/
 - https://zapier.com/apps/mixpanel/integrations
+- https://500.co/api/startups
+- https://500.co/companies
+- https://www.antler.co/portfolio
+- https://www.techstars.com/portfolio
+- https://www.ycombinator.com/companies
+- terraform/integrations/terraform-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -112,70 +118,6 @@ marketplace_apps:
   - key: MIXPANEL_TOP_EVENT_PROPERTY_VALUES
   - key: MIXPANEL_UPDATE_GROUP_LIST_PROPERTY
 edges:
-- partner_name: Okta (own)
-  partner: okta
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://www.okta.com/integrations/mixpanelprovisioning/
-  mirror_of: okta/integrations/okta-integration-edges.yml
-  apps:
-  - Mixpanel
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Single Sign-On
-  badges:
-  - OKTA_VERIFIED
-  features:
-  - CREATE
-  - DEACTIVATE
-  - GROUP_LINKING
-  - GROUP_PUSH
-  - IDENTITY_SECURITY_POSTURE_MANAGEMENT
-  - SAML
-  - SWA
-  - UNIVERSAL_LOGOUT
-  - UPDATE
-  - WORKFLOWS_CONNECTORS
-- partner_name: Stripe (own)
-  partner: stripe
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://marketplace.stripe.com/apps/mixpanel-provider-integration
-  mirror_of: stripe/integrations/stripe-integration-edges.yml
-  apps:
-  - Mixpanel
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: data_and_analytics, developer_tools
-- partner_name: Slack (own)
-  partner: slack
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://slack.com/marketplace/AKMP1USA3-mixpanel
-  mirror_of: slack/integrations/slack-integration-edges.yml
-  apps:
-  - Mixpanel
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Slack app
 - partner_name: Airbyte
   partner: airbyte
   partner_match: aggregator
@@ -850,6 +792,118 @@ edges:
   direction: third-party
   category: Forms & Surveys
   partner_url: http://google.com/
+- partner_name: Y Combinator
+  partner: y-combinator
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.ycombinator.com/companies/mixpanel
+  category: accelerator portfolio participation
+  contract_reference:
+    register: Y Combinator company directory (ycombinator.com/companies/<slug>)
+    standard: null
+    spec_file: null
+    role: accelerator-portfolio-company
+    registered_name: Mixpanel
+    register_id: https://www.ycombinator.com/companies/mixpanel
+    register_country: US
+    register_website: http://mixpanel.com
+    matched_domain: mixpanel.com
+    matched_by: domain
+    signal_note: 'participation only: the accelerator''s own portfolio register lists the company (cohort / investment);
+      an ownership and participation record, not conformance or certification'
+    detected_by: sweep-accelerator-portfolios.py
+    detected: '2026-10-21'
+    batch: Summer 2009
+    year: '2009'
+    status: Active
+  detected_by: sweep-accelerator-portfolios.py
+  first_seen: '2026-10-21'
+- partner_name: Okta (own)
+  partner: okta
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.okta.com/integrations/mixpanelprovisioning/
+  mirror_of: okta/integrations/okta-integration-edges.yml
+  apps:
+  - Mixpanel
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Single Sign-On
+  badges:
+  - OKTA_VERIFIED
+  features:
+  - CREATE
+  - DEACTIVATE
+  - GROUP_LINKING
+  - GROUP_PUSH
+  - IDENTITY_SECURITY_POSTURE_MANAGEMENT
+  - SAML
+  - SWA
+  - UNIVERSAL_LOGOUT
+  - UPDATE
+  - WORKFLOWS_CONNECTORS
+- partner_name: Stripe (own)
+  partner: stripe
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.stripe.com/apps/mixpanel-provider-integration
+  mirror_of: stripe/integrations/stripe-integration-edges.yml
+  apps:
+  - Mixpanel
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: data_and_analytics, developer_tools
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/AKMP1USA3-mixpanel
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - Mixpanel
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
+- partner_name: Terraform (terraform-registry)
+  partner: terraform
+  partner_match: mirror
+  mirror_match: register
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: terraform-registry
+  evidence: https://registry.terraform.io/providers/mixpanel/mixpanel
+  mirror_of: terraform/integrations/terraform-integration-edges.yml
+  apps:
+  - mixpanel/mixpanel
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: infrastructure-as-code provider registry listing
+  badges:
+  - Verified publisher (GitHub domain-verified organization)
 templates:
 - title: Track events in Mixpanel for new charges on Stripe
   url: https://zapier.com/apps/mixpanel/integrations/stripe/17628/track-events-in-mixpanel-for-new-charges-on-stripe
