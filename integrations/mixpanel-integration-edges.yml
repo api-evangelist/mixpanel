@@ -45,6 +45,11 @@ checked:
 - https://www.indexventures.com/companies/
 - https://www.sequoiacap.com/our-companies/
 - https://www.sequoiacap.com/sitemap.xml
+- https://cdn.cocoapods.org/all_pods.txt
+- https://cert.appdefensealliance.org/certifications
+- https://play.google.com/sdks
+- https://search.maven.org/solrsearch/select
+- google-play/integrations/google-play-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -827,6 +832,81 @@ edges:
     status: Active
   detected_by: sweep-accelerator-portfolios.py
   first_seen: '2026-10-21'
+- partner_name: Andreessen Horowitz (a16z)
+  partner: a16z
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://a16z.com/companies/mixpanel/
+  category: vc portfolio participation
+  contract_reference:
+    register: a16z portfolio (a16z.com/portfolio/, the page's own data-companies JSON)
+    standard: null
+    spec_file: null
+    role: vc-portfolio-company
+    registered_name: Mixpanel
+    register_id: https://a16z.com/companies/mixpanel/
+    register_country: null
+    register_website: https://mixpanel.com/
+    matched_domain: mixpanel.com
+    matched_by: domain
+    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
+      an ownership and participation record, not conformance or certification'
+    detected_by: sweep-vc-portfolios.py
+    detected: '2026-10-21'
+    year: '2012'
+    status: Active
+    sector: Enterprise
+  detected_by: sweep-vc-portfolios.py
+  first_seen: '2026-10-21'
+- partner_name: CocoaPods trunk
+  partner: null
+  partner_match: register
+  type: register
+  channel: package-registry
+  relationship: distribution-channel
+  direction: provider-built
+  evidence: https://cocoapods.org/pods/Mixpanel
+  category: iOS SDK (CocoaPods)
+  contract_reference:
+    register: CocoaPods trunk (cdn.cocoapods.org Specs; github.com/CocoaPods/Specs)
+    spec_file: null
+    role: cocoapods-publisher
+    registered_name: Mixpanel, Inc
+    matched_domain: mixpanel.com
+    matched_by: domain
+    pods:
+    - pod: Mixpanel
+      version: 5.0.8
+      homepage: https://mixpanel.com
+      deprecated: false
+    - pod: Mixpanel-AppExtension
+      version: 3.2.2
+      homepage: https://mixpanel.com
+      deprecated: false
+    - pod: Mixpanel-OSX-Community
+      version: 2.0.0
+      homepage: http://mixpanel.com
+      deprecated: false
+    - pod: Mixpanel-OSX-Unofficial
+      version: '1.0'
+      homepage: http://mixpanel.com
+      deprecated: false
+    - pod: Mixpanel-swift
+      version: 7.0.0
+      homepage: https://mixpanel.com
+      deprecated: false
+    - pod: Mixpanel-swift-appex
+      version: 2.1.6
+      homepage: https://mixpanel.com
+      deprecated: false
+    signal_note: latest podspec homepage (domain) + authors (name); pods, versions and counts are context
+    detected_by: sweep-mobile-sdk-index.py
+    detected: '2026-10-21'
+  detected_by: sweep-mobile-sdk-index.py
+  first_seen: '2026-10-21'
 - partner_name: Okta (own)
   partner: okta
   partner_match: mirror
@@ -910,35 +990,25 @@ edges:
   category: infrastructure-as-code provider registry listing
   badges:
   - Verified publisher (GitHub domain-verified organization)
-- partner_name: Andreessen Horowitz (a16z)
-  partner: a16z
-  partner_match: register
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://a16z.com/companies/mixpanel/
-  category: vc portfolio participation
-  contract_reference:
-    register: a16z portfolio (a16z.com/portfolio/, the page's own data-companies JSON)
-    standard: null
-    spec_file: null
-    role: vc-portfolio-company
-    registered_name: Mixpanel
-    register_id: https://a16z.com/companies/mixpanel/
-    register_country: null
-    register_website: https://mixpanel.com/
-    matched_domain: mixpanel.com
-    matched_by: domain
-    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
-      an ownership and participation record, not conformance or certification'
-    detected_by: sweep-vc-portfolios.py
-    detected: '2026-10-21'
-    year: '2012'
-    status: Active
-    sector: Enterprise
-  detected_by: sweep-vc-portfolios.py
-  first_seen: '2026-10-21'
+- partner_name: Google Play Developer (Google Play SDK Index)
+  partner: google-play
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: Google Play SDK Index
+  evidence: https://play.google.com/sdks/details/com-mixpanel-android-mixpanel-android
+  mirror_of: google-play/integrations/google-play-integration-edges.yml
+  apps:
+  - Official Mixpanel Android SDK
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: mobile SDK (analytics)
+  publisher_verified:
+  - Registered in Google Play SDK Console
 templates:
 - title: Track events in Mixpanel for new charges on Stripe
   url: https://zapier.com/apps/mixpanel/integrations/stripe/17628/track-events-in-mixpanel-for-new-charges-on-stripe

@@ -660,6 +660,82 @@
     status: Active
   status: not-a-workflow
   arazzo: null
+- slug: mixpanel-andreessen-horowitz-a16z
+  label: Andreessen Horowitz (a16z)
+  partner: a16z
+  partner_name: Andreessen Horowitz (a16z)
+  category: vc portfolio participation
+  type: register
+  channel: standard-directory
+  evidence: https://a16z.com/companies/mixpanel/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: a16z portfolio (a16z.com/portfolio/, the page's own data-companies JSON)
+    standard: null
+    spec_file: null
+    role: vc-portfolio-company
+    registered_name: Mixpanel
+    register_id: https://a16z.com/companies/mixpanel/
+    register_country: null
+    register_website: https://mixpanel.com/
+    matched_domain: mixpanel.com
+    matched_by: domain
+    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
+      an ownership and participation record, not conformance or certification'
+    detected_by: sweep-vc-portfolios.py
+    detected: '2026-10-21'
+    year: '2012'
+    status: Active
+    sector: Enterprise
+  status: not-a-workflow
+  arazzo: null
+- slug: mixpanel-cocoapods-trunk
+  label: CocoaPods trunk
+  partner_name: CocoaPods trunk
+  category: iOS SDK (CocoaPods)
+  type: register
+  channel: package-registry
+  evidence: https://cocoapods.org/pods/Mixpanel
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: CocoaPods trunk (cdn.cocoapods.org Specs; github.com/CocoaPods/Specs)
+    spec_file: null
+    role: cocoapods-publisher
+    registered_name: Mixpanel, Inc
+    matched_domain: mixpanel.com
+    matched_by: domain
+    pods:
+    - pod: Mixpanel
+      version: 5.0.8
+      homepage: https://mixpanel.com
+      deprecated: false
+    - pod: Mixpanel-AppExtension
+      version: 3.2.2
+      homepage: https://mixpanel.com
+      deprecated: false
+    - pod: Mixpanel-OSX-Community
+      version: 2.0.0
+      homepage: http://mixpanel.com
+      deprecated: false
+    - pod: Mixpanel-OSX-Unofficial
+      version: '1.0'
+      homepage: http://mixpanel.com
+      deprecated: false
+    - pod: Mixpanel-swift
+      version: 7.0.0
+      homepage: https://mixpanel.com
+      deprecated: false
+    - pod: Mixpanel-swift-appex
+      version: 2.1.6
+      homepage: https://mixpanel.com
+      deprecated: false
+    signal_note: latest podspec homepage (domain) + authors (name); pods, versions and counts are context
+    detected_by: sweep-mobile-sdk-index.py
+    detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
 - slug: mixpanel-okta-own
   label: Okta (own)
   partner: okta
@@ -712,33 +788,16 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
-- slug: mixpanel-andreessen-horowitz-a16z
-  label: Andreessen Horowitz (a16z)
-  partner: a16z
-  partner_name: Andreessen Horowitz (a16z)
-  category: vc portfolio participation
-  type: register
-  channel: standard-directory
-  evidence: https://a16z.com/companies/mixpanel/
+- slug: mixpanel-google-play-developer-google-play-sdk-index
+  label: Google Play Developer (Google Play SDK Index)
+  partner: google-play
+  partner_name: Google Play Developer (Google Play SDK Index)
+  category: mobile SDK (analytics)
+  type: marketplace
+  marketplace: Google Play SDK Index
+  channel: partner-built
+  evidence: https://play.google.com/sdks/details/com-mixpanel-android-mixpanel-android
   source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: a16z portfolio (a16z.com/portfolio/, the page's own data-companies JSON)
-    standard: null
-    spec_file: null
-    role: vc-portfolio-company
-    registered_name: Mixpanel
-    register_id: https://a16z.com/companies/mixpanel/
-    register_country: null
-    register_website: https://mixpanel.com/
-    matched_domain: mixpanel.com
-    matched_by: domain
-    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
-      an ownership and participation record, not conformance or certification'
-    detected_by: sweep-vc-portfolios.py
-    detected: '2026-10-21'
-    year: '2012'
-    status: Active
-    sector: Enterprise
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
