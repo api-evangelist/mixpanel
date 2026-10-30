@@ -1,4 +1,4 @@
-# Mixpanel (mixpanel)
+# Mixpanel
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,315 +66,285 @@
 
 Mixpanel is a business analytics service company that tracks user interactions with web and mobile applications and provides tools for targeted communication with them.
 
-**APIs.json:** [https://mixpanel.com](https://mixpanel.com)
+**Areas:** Analytics · Data Analysis · Event Tracking · Product Analytics · User Behavior
 
-## Scope
+## Mixpanel on APIs.io
 
-- **Type:** Index
+Everything profiled for Mixpanel is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/mixpanel/](https://apis.io/providers/mixpanel/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (22)
 
-- Analytics
-- Data Analysis
-- Event Tracking
-- Product Analytics
-- User Behavior
+- [Mixpanel Webhooks](https://apis.io/apis/mixpanel/mixpanel-webhooks/) — Outbound webhook surfaces delivered by Mixpanel to customer-hosted HTTPS endpoints, covering Custom Alert notifications (fired from reports configured in…
+- [Mixpanel Annotations API](https://apis.io/apis/mixpanel/mixpanel-annotations-api/) — Manage chart annotations for time-based markers
+- [Mixpanel Cohorts API](https://apis.io/apis/mixpanel/mixpanel-cohorts-api/) — Manage and query user cohorts
+- [Mixpanel Connectors API](https://apis.io/apis/mixpanel/mixpanel-connectors-api/) — Manage warehouse data connections
+- [Mixpanel Deletion API](https://apis.io/apis/mixpanel/mixpanel-deletion-api/) — Submit and check data deletion requests
+- [Mixpanel Events API](https://apis.io/apis/mixpanel/mixpanel-events-api/) — Track and import event data
+- [Mixpanel Export API](https://apis.io/apis/mixpanel/mixpanel-export-api/) — Export raw event data
+- [Mixpanel Funnels API](https://apis.io/apis/mixpanel/mixpanel-funnels-api/) — Analyze conversion funnels
+- [Mixpanel Group Profiles API](https://apis.io/apis/mixpanel/mixpanel-group-profiles-api/) — Manage group analytics profiles
+- [Mixpanel Identity API](https://apis.io/apis/mixpanel/mixpanel-identity-api/) — Manage user identity resolution and merging
+- [Mixpanel Imports API](https://apis.io/apis/mixpanel/mixpanel-imports-api/) — Manage and trigger warehouse import runs
+- [Mixpanel Insights API](https://apis.io/apis/mixpanel/mixpanel-insights-api/) — Query event data with aggregation and breakdowns
+- [Mixpanel Lookup Tables API](https://apis.io/apis/mixpanel/mixpanel-lookup-tables-api/) — Manage lookup tables for data enrichment
+- [Mixpanel Pipeline Runs API](https://apis.io/apis/mixpanel/mixpanel-pipeline-runs-api/) — Monitor and manage pipeline execution runs
+- [Mixpanel Pipelines API](https://apis.io/apis/mixpanel/mixpanel-pipelines-api/) — Create and manage data export pipelines
+- [Mixpanel Project Memberships API](https://apis.io/apis/mixpanel/mixpanel-project-memberships-api/) — Manage service account project access
+- [Mixpanel Retention API](https://apis.io/apis/mixpanel/mixpanel-retention-api/) — Query retention analysis data
+- [Mixpanel Retrieval API](https://apis.io/apis/mixpanel/mixpanel-retrieval-api/) — Submit and check data retrieval requests
+- [Mixpanel Schemas API](https://apis.io/apis/mixpanel/mixpanel-schemas-api/) — Manage Lexicon schema definitions
+- [Mixpanel Segmentation API](https://apis.io/apis/mixpanel/mixpanel-segmentation-api/) — Query event segmentation data over time
+- [Mixpanel Service Accounts API](https://apis.io/apis/mixpanel/mixpanel-service-accounts-api/) — Manage service accounts for API access
+- [Mixpanel User Profiles API](https://apis.io/apis/mixpanel/mixpanel-user-profiles-api/) — Manage user profile properties
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Arazzo workflows (14)
+
+Multi-step workflows that chain operations into a business task.
+
+- [Mixpanel Cohort-Driven Segmentation](https://apis.io/arazzos/mixpanel/mixpanel-cohort-driven-segmentation-workflow/)
+- [Mixpanel Funnel Analysis and Annotate](https://apis.io/arazzos/mixpanel/mixpanel-funnel-analysis-workflow/)
+- [Mixpanel GDPR Data Deletion Flow](https://apis.io/arazzos/mixpanel/mixpanel-gdpr-deletion-flow-workflow/)
+- [Mixpanel GDPR Data Retrieval Flow](https://apis.io/arazzos/mixpanel/mixpanel-gdpr-retrieval-flow-workflow/)
+- [Mixpanel Update Group Profile and Query Insights](https://apis.io/arazzos/mixpanel/mixpanel-group-profile-and-insights-workflow/)
+- [Mixpanel Resolve Identity and Track](https://apis.io/arazzos/mixpanel/mixpanel-identity-resolve-and-track-workflow/)
+- [Mixpanel Import Events and Export Raw](https://apis.io/arazzos/mixpanel/mixpanel-import-and-export-workflow/)
+- [Mixpanel Refresh Lookup Table and Track Enriched Event](https://apis.io/arazzos/mixpanel/mixpanel-lookup-table-enrichment-workflow/)
+- [Mixpanel Numeric Metric Monitor and Annotate](https://apis.io/arazzos/mixpanel/mixpanel-numeric-metric-monitor-workflow/)
+- [Mixpanel Update Profile and Query Engagement](https://apis.io/arazzos/mixpanel/mixpanel-profile-and-engage-query-workflow/)
+- [Mixpanel Annotate Release and Measure Retention](https://apis.io/arazzos/mixpanel/mixpanel-retention-with-annotation-workflow/)
+- [Mixpanel Schema Governance and Verify](https://apis.io/arazzos/mixpanel/mixpanel-schema-governance-workflow/)
+- [Mixpanel Track Event and Segment](https://apis.io/arazzos/mixpanel/mixpanel-track-and-segment-workflow/)
+- [Mixpanel Provision Warehouse Source and Trigger Import](https://apis.io/arazzos/mixpanel/mixpanel-warehouse-import-run-workflow/)
 
-## Timestamps
+#### AsyncAPI (1)
 
-- **Created:** 2024
-- **Modified:** 2026-05-30
+Event-driven and webhook contracts.
 
-## APIs
+- [Mixpanel Webhooks](https://apis.io/asyncapis/mixpanel/mixpanel-webhooks-asyncapi/)
 
-### Mixpanel Ingestion API
+#### Event channels (2)
 
-API for sending event data to Mixpanel for tracking and analysis, including importing events, tracking events, managing user profiles, group profiles, and lookup tables.
+Individual events and webhooks the provider emits.
 
-- **Human URL:** [https://developer.mixpanel.com/reference/ingestion-api](https://developer.mixpanel.com/reference/ingestion-api)
-- **Base URL:** `https://api.mixpanel.com`
+- [/mixpanel/alerts](https://apis.io/channels/mixpanel/mixpanel-alerts/)
+- [/mixpanel/cohort-sync](https://apis.io/channels/mixpanel/mixpanel-cohort-sync/)
 
-#### Tags
+#### GraphQL (1)
 
-- Analytics
-- Events
-- Group Profiles
-- Ingestion
-- Tracking
-- User Profiles
+GraphQL schemas.
+
+- [Moved to /providers/mixpanel/](https://apis.io/graphqls/mixpanel/mixpanel-graphql/)
+
+#### MCP servers (2)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [MCP Server](https://apis.io/servers/mixpanel/mcp-server/)
+- [mixpanel](https://apis.io/servers/mixpanel/mixpanel/)
+
+#### Agent skills (9)
+
+Agent skills built on the API.
+
+- [create-dashboard](https://apis.io/agent-skills/mixpanel/create-dashboard/)
+- [create-dashboard](https://apis.io/agent-skills/mixpanel/create-dashboard-2/)
+- [create-dashboard](https://apis.io/agent-skills/mixpanel/create-dashboard-3/)
+- [deep-research](https://apis.io/agent-skills/mixpanel/deep-research/)
+- [deep-research](https://apis.io/agent-skills/mixpanel/deep-research-2/)
+- [deep-research](https://apis.io/agent-skills/mixpanel/deep-research-3/)
+- [tracking-implementation](https://apis.io/agent-skills/mixpanel/tracking-implementation/)
+- [tracking-implementation](https://apis.io/agent-skills/mixpanel/tracking-implementation-2/)
+- [tracking-implementation](https://apis.io/agent-skills/mixpanel/tracking-implementation-3/)
+
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://developer.mixpanel.com/reference/ingestion-api)
-- [OpenAPI](https://developer.mixpanel.com/reference/openapi) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](openapi/mixpanel-ingestion-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/mixpanel-ingestion.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-ingestion.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Mixpanel Agentic Access](https://apis.io/agentic-access/mixpanel/mixpanel-agentic-access/)
 
-### Mixpanel Query API
+#### JSON Schema (43)
+
+The data models the API reads and writes.
+
+- [Annotation](https://apis.io/schemas/mixpanel/mixpanel-annotation/)
+- [BigQueryConfig](https://apis.io/schemas/mixpanel/mixpanel-bigqueryconfig/)
+- [Cohort](https://apis.io/schemas/mixpanel/mixpanel-cohort/)
+- [CreateAnnotationRequest](https://apis.io/schemas/mixpanel/mixpanel-createannotationrequest/)
+- [CreatePipelineRequest](https://apis.io/schemas/mixpanel/mixpanel-createpipelinerequest/)
+- [CreateServiceAccountRequest](https://apis.io/schemas/mixpanel/mixpanel-createserviceaccountrequest/)
+- [CreateWarehouseSourceRequest](https://apis.io/schemas/mixpanel/mixpanel-createwarehousesourcerequest/)
+- [ErrorResponse](https://apis.io/schemas/mixpanel/mixpanel-errorresponse/)
+- [Mixpanel Event](https://apis.io/schemas/mixpanel/mixpanel-event/)
+- [Mixpanel Funnel](https://apis.io/schemas/mixpanel/mixpanel-funnel/)
+- [FunnelResponse](https://apis.io/schemas/mixpanel/mixpanel-funnelresponse/)
+- [FunnelStep](https://apis.io/schemas/mixpanel/mixpanel-funnelstep/)
+- [FunnelSummary](https://apis.io/schemas/mixpanel/mixpanel-funnelsummary/)
+- [GCSConfig](https://apis.io/schemas/mixpanel/mixpanel-gcsconfig/)
+- [GroupUpdate](https://apis.io/schemas/mixpanel/mixpanel-groupupdate/)
+- [IdentityResponse](https://apis.io/schemas/mixpanel/mixpanel-identityresponse/)
+- [ImportResponse](https://apis.io/schemas/mixpanel/mixpanel-importresponse/)
+- [InsightsResponse](https://apis.io/schemas/mixpanel/mixpanel-insightsresponse/)
+- [LookupTable](https://apis.io/schemas/mixpanel/mixpanel-lookuptable/)
+- [Pipeline](https://apis.io/schemas/mixpanel/mixpanel-pipeline/)
+- [PipelineRun](https://apis.io/schemas/mixpanel/mixpanel-pipelinerun/)
+- [PrivacyRequest](https://apis.io/schemas/mixpanel/mixpanel-privacyrequest/)
+- [ProfileUpdate](https://apis.io/schemas/mixpanel/mixpanel-profileupdate/)
+- [ProjectMembership](https://apis.io/schemas/mixpanel/mixpanel-projectmembership/)
+- [PropertySchema](https://apis.io/schemas/mixpanel/mixpanel-propertyschema/)
+- …and 18 more published on APIs.io
 
-API for querying and retrieving analytics data from Mixpanel, including cohorts, funnels, insights, retention, segmentation, activity feeds, and event breakdowns.
+#### JSON Structure (1)
 
-- **Human URL:** [https://developer.mixpanel.com/reference/query-api](https://developer.mixpanel.com/reference/query-api)
-- **Base URL:** `https://mixpanel.com/api`
+Data models expressed in JSON Structure.
 
-#### Tags
+- [Mixpanel Structure](https://apis.io/json-structure/mixpanel/mixpanel-structure/)
 
-- Analytics
-- Cohorts
-- Data Export
-- Funnels
-- Query
-- Retention
-- Segmentation
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://developer.mixpanel.com/reference/query-api)
-- [OpenAPI](https://developer.mixpanel.com/reference/openapi) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](openapi/mixpanel-query-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/mixpanel-query.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-query.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Mixpanel Context](https://apis.io/jsonld/mixpanel/mixpanel-context/)
 
-### Mixpanel Data Pipelines API
+#### Vocabulary (1)
 
-API for creating, managing, and monitoring data export pipelines in Mixpanel, including creating, editing, pausing, resuming, and deleting pipelines.
+The provider's domain terms, defined.
 
-- **Human URL:** [https://developer.mixpanel.com/reference/overview-2](https://developer.mixpanel.com/reference/overview-2)
-- **Base URL:** `https://data.mixpanel.com`
+- [Mixpanel Domain Vocabulary](https://apis.io/vocabularies/mixpanel/mixpanel-vocabulary/)
 
-#### Tags
+#### Collections (41)
 
-- Data Pipeline
-- Export
-- Import
+Postman and Open Collection request collections.
 
-#### Properties
+- [Mixpanel Annotations API](https://apis.io/collections/mixpanel/open-mixpanel-annotations/)
+- [Mixpanel Annotations API](https://apis.io/collections/mixpanel/open-mixpanel-annotations-api/)
+- [Mixpanel Annotations Cohorts API](https://apis.io/collections/mixpanel/open-mixpanel-cohorts-api/)
+- [Mixpanel Annotations Connectors API](https://apis.io/collections/mixpanel/open-mixpanel-connectors-api/)
+- [Mixpanel Data Pipelines API](https://apis.io/collections/mixpanel/open-mixpanel-data-pipelines/)
+- [Mixpanel Annotations Deletion API](https://apis.io/collections/mixpanel/open-mixpanel-deletion-api/)
+- [Mixpanel Event Export API](https://apis.io/collections/mixpanel/open-mixpanel-event-export/)
+- [Mixpanel Annotations Events API](https://apis.io/collections/mixpanel/open-mixpanel-events-api/)
+- [Mixpanel Annotations Export API](https://apis.io/collections/mixpanel/open-mixpanel-export-api/)
+- [Mixpanel Annotations Funnels API](https://apis.io/collections/mixpanel/open-mixpanel-funnels-api/)
+- [Mixpanel GDPR and CCPA API](https://apis.io/collections/mixpanel/open-mixpanel-gdpr-ccpa/)
+- [Mixpanel Annotations Group Profiles API](https://apis.io/collections/mixpanel/open-mixpanel-group-profiles-api/)
+- [Mixpanel Identity API](https://apis.io/collections/mixpanel/open-mixpanel-identity/)
+- [Mixpanel Annotations Identity API](https://apis.io/collections/mixpanel/open-mixpanel-identity-api/)
+- [Mixpanel Annotations Imports API](https://apis.io/collections/mixpanel/open-mixpanel-imports-api/)
+- [Mixpanel Ingestion API](https://apis.io/collections/mixpanel/open-mixpanel-ingestion/)
+- [Mixpanel Annotations Insights API](https://apis.io/collections/mixpanel/open-mixpanel-insights-api/)
+- [Mixpanel Lexicon Schemas API](https://apis.io/collections/mixpanel/open-mixpanel-lexicon-schemas/)
+- [Mixpanel Annotations Lookup Tables API](https://apis.io/collections/mixpanel/open-mixpanel-lookup-tables-api/)
+- [Mixpanel Annotations Pipeline Runs API](https://apis.io/collections/mixpanel/open-mixpanel-pipeline-runs-api/)
+- [Mixpanel Annotations Pipelines API](https://apis.io/collections/mixpanel/open-mixpanel-pipelines-api/)
+- [Mixpanel Annotations Project Memberships API](https://apis.io/collections/mixpanel/open-mixpanel-project-memberships-api/)
+- [Mixpanel Query API](https://apis.io/collections/mixpanel/open-mixpanel-query/)
+- [Mixpanel Annotations Retention API](https://apis.io/collections/mixpanel/open-mixpanel-retention-api/)
+- [Mixpanel Annotations Retrieval API](https://apis.io/collections/mixpanel/open-mixpanel-retrieval-api/)
+- …and 16 more published on APIs.io
 
-- [Documentation](https://developer.mixpanel.com/reference/raw-data-export-api)
-- [OpenAPI](https://developer.mixpanel.com/reference/openapi) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](openapi/mixpanel-data-pipelines-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/mixpanel-data-pipelines.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-data-pipelines.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (2)
 
-### Mixpanel Identity API
+Spectral rulesets for the provider's contracts.
 
-API for managing user identity in Mixpanel, including creating identities, creating aliases, and merging identities to accurately resolve users across multiple devices.
+- [Mixpanel — asyncapi rules](https://apis.io/rules/mixpanel/mixpanel-asyncapi-spectral-rules/)
+- [Mixpanel — jsonschema rules](https://apis.io/rules/mixpanel/mixpanel-jsonschema-spectral-rules/)
 
-- **Human URL:** [https://developer.mixpanel.com/reference/create-identity](https://developer.mixpanel.com/reference/create-identity)
-- **Base URL:** `https://api.mixpanel.com`
+#### Security (3)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- ID Merge
-- Identity
-- User Management
+- [Mixpanel Authentication](https://apis.io/security/mixpanel/mixpanel-authentication/)
+- [Mixpanel Domain Security](https://apis.io/security/mixpanel/mixpanel-domain-security/)
+- [Mixpanel Vulnerability Disclosure](https://apis.io/security/mixpanel/mixpanel-vulnerability-disclosure/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://developer.mixpanel.com/reference/create-identity)
-- [OpenAPI](openapi/mixpanel-identity-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/mixpanel-identity.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-identity.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published plans, tiers and prices.
 
-### Mixpanel Event Export API
+- [Mixpanel Plans Pricing](https://apis.io/plans/mixpanel/mixpanel-plans-pricing/)
 
-API for downloading raw event data as it is received and stored within Mixpanel, complete with all event properties including distinct_id and exact timestamps.
+#### Rate limits (1)
 
-- **Human URL:** [https://developer.mixpanel.com/reference/raw-event-export](https://developer.mixpanel.com/reference/raw-event-export)
-- **Base URL:** `https://data.mixpanel.com/api/2.0`
+Published request limits.
 
-#### Tags
+- [Mixpanel Rate Limits](https://apis.io/rate-limits/mixpanel/mixpanel-rate-limits/)
 
-- Data Export
-- Events
-- Raw Data
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [Documentation](https://developer.mixpanel.com/reference/raw-event-export)
-- [OpenAPI](openapi/mixpanel-event-export-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/mixpanel-event-export.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-event-export.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Mixpanel Finops](https://apis.io/finops/mixpanel/mixpanel-finops/)
 
-### Mixpanel Lexicon Schemas API
+## Where to find this API
 
-API for syncing your internal data dictionary or tracking plan with Mixpanel using schemas, allowing you to create, replace, retrieve, and delete schema definitions that describe the data you send to Mixpanel.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- **Human URL:** [https://developer.mixpanel.com/reference/lexicon-schemas-api](https://developer.mixpanel.com/reference/lexicon-schemas-api)
-- **Base URL:** `https://mixpanel.com/api/app`
-
-#### Tags
-
-- Data Dictionary
-- Data Governance
-- Lexicon
-- Schemas
-
-#### Properties
-
-- [Documentation](https://developer.mixpanel.com/reference/lexicon-schemas-api)
-- [OpenAPI](openapi/mixpanel-lexicon-schemas-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/mixpanel-lexicon-schemas.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-lexicon-schemas.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Mixpanel Service Accounts API
-
-API for programmatically managing service accounts within your organization, including creating, deleting, listing service accounts, and managing their project memberships.
-
-- **Human URL:** [https://developer.mixpanel.com/reference/service-accounts-api](https://developer.mixpanel.com/reference/service-accounts-api)
-- **Base URL:** `https://mixpanel.com/api/app`
-
-#### Tags
-
-- Administration
-- Authentication
-- Service Accounts
-
-#### Properties
-
-- [Documentation](https://developer.mixpanel.com/reference/service-accounts-api)
-- [OpenAPI](openapi/mixpanel-service-accounts-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/mixpanel-service-accounts.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-service-accounts.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Mixpanel Annotations API
-
-API for creating, retrieving, updating, and deleting annotations that label specific points in time on Mixpanel charts with descriptions, useful for marking product launches, campaigns, or data anomalies.
-
-- **Human URL:** [https://developer.mixpanel.com/reference/create-annotation](https://developer.mixpanel.com/reference/create-annotation)
-- **Base URL:** `https://mixpanel.com/api/app`
-
-#### Tags
-
-- Annotations
-- Charts
-- Reports
-
-#### Properties
-
-- [Documentation](https://developer.mixpanel.com/reference/create-annotation)
-- [OpenAPI](openapi/mixpanel-annotations-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/mixpanel-annotations.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-annotations.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Mixpanel GDPR and CCPA API
-
-API for submitting data retrieval and deletion requests to help meet GDPR and CCPA compliance requirements, including creating and checking the status of retrieval and deletion tasks.
-
-- **Human URL:** [https://developer.mixpanel.com/reference/gdpr-api](https://developer.mixpanel.com/reference/gdpr-api)
-- **Base URL:** `https://mixpanel.com/api/app`
-
-#### Tags
-
-- CCPA
-- Compliance
-- Data Deletion
-- Data Retrieval
-- GDPR
-- Privacy
-
-#### Properties
-
-- [Documentation](https://developer.mixpanel.com/reference/gdpr-api)
-- [OpenAPI](openapi/mixpanel-gdpr-ccpa-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/mixpanel-gdpr-ccpa.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-gdpr-ccpa.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Mixpanel Warehouse Connectors API
-
-API for connecting a data warehouse to import events, users, groups, and lookup tables into Mixpanel, and for manually triggering specific warehouse import runs.
-
-- **Human URL:** [https://developer.mixpanel.com/reference/warehouse-connectors-api](https://developer.mixpanel.com/reference/warehouse-connectors-api)
-- **Base URL:** `https://mixpanel.com/api/app`
-
-#### Tags
-
-- Connectors
-- Data Import
-- Integrations
-- Warehouse
-
-#### Properties
-
-- [Documentation](https://developer.mixpanel.com/reference/warehouse-connectors-api)
-- [OpenAPI](openapi/mixpanel-warehouse-connectors-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/mixpanel-warehouse-connectors.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-warehouse-connectors.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Mixpanel Webhooks
-
-Outbound webhook surfaces delivered by Mixpanel to customer-hosted HTTPS endpoints, covering Custom Alert notifications (fired from reports configured in Project Settings) and Cohort Sync Custom Webhooks (full and incremental cohort membership change deliveries).
-
-- **Human URL:** [https://docs.mixpanel.com/docs/features/alerts](https://docs.mixpanel.com/docs/features/alerts)
-- **Base URL:** `https://example.com/mixpanel/webhook`
-
-#### Tags
-
-- Alerts
-- Cohort Sync
-- Notifications
-- Webhooks
-
-#### Properties
-
-- [Documentation](https://docs.mixpanel.com/docs/features/alerts)
-- [Documentation](https://docs.mixpanel.com/docs/cohort-sync/overview)
-- [Documentation](https://docs.mixpanel.com/docs/cohort-sync/webhooks)
-- [AsyncAPI](asyncapi/mixpanel-webhooks-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/mixpanel-annotations.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-annotations.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/mixpanel-data-pipelines.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-data-pipelines.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/mixpanel-event-export.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-event-export.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/mixpanel-gdpr-ccpa.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-gdpr-ccpa.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/mixpanel-identity.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-identity.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/mixpanel-ingestion.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-ingestion.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/mixpanel-lexicon-schemas.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-lexicon-schemas.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/mixpanel-query.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-query.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/mixpanel-service-accounts.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-service-accounts.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/mixpanel-warehouse-connectors.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mixpanel-warehouse-connectors.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [LinkedIn](https://www.linkedin.com/company/mixpanel-inc-)
-- [Portal](https://developer.mixpanel.com/)
-- [Getting Started](https://developer.mixpanel.com/docs/getting-started)
-- [Authentication](https://developer.mixpanel.com/reference/authentication)
-- [S D Ks](https://developer.mixpanel.com/docs/sdks)
-- [Rate Limits](https://developer.mixpanel.com/reference/rate-limits)
-- [A P I  Status](https://www.mixpanelstatus.com/)
-- [Changelog](https://docs.mixpanel.com/changelogs)
-- [GitHub Organization](https://github.com/mixpanel)
-- [Integrations](https://mixpanel.com/partners/integrations)
-- [Security](https://mixpanel.com/legal/security-overview/)
-- [Login](https://mixpanel.com/login/)
-- [Sign Up](https://mixpanel.com/register/)
-- [Terms of Service](https://mixpanel.com/legal/terms-of-use)
-- [Privacy Policy](https://mixpanel.com/legal/privacy-policy)
+- [Website](https://www.mixpanel.com/)
+- [Getting started](https://developer.mixpanel.com/docs/getting-started)
 - [Pricing](https://mixpanel.com/pricing)
-- [Blog](https://mixpanel.com/blog)
 - [Support](https://mixpanel.com/get-support)
-- [JSON-LD](json-ld/mixpanel-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/mixpanel-event-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/mixpanel-user-profile-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/mixpanel-funnel-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Features](undefined)
-- [M C P Server](https://github.com/mixpanel/mcp-go)
-- [Agent Skill](https://github.com/mixpanel/ai-plugins)
-- [L L Ms Txt](https://developer.mixpanel.com/llms.txt)
+- [Changelog](https://docs.mixpanel.com/changelogs)
+- [Blog](https://mixpanel.com/blog)
+- [Security](https://mixpanel.com/legal/security-overview/)
+- [Terms of service](https://mixpanel.com/legal/terms-of-use)
+- [Privacy policy](https://mixpanel.com/legal/privacy-policy)
+- [GitHub](https://github.com/mixpanel)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 54.0** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.3 |
+| Contract quality | 63.8 |
+| Contract governance | 13.6 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 64.8 |
+| Access clarity | 46.1 |
+
+**Agent readiness 48.3** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | unknown |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 30.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/mixpanel/](https://apis.io/providers/mixpanel/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Mixpanel: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/mixpanel/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
